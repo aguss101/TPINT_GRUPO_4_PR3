@@ -17,7 +17,7 @@
             justify-content: center;
         }
 
-        h2 { /* titulo */
+        h2 { 
             margin-bottom: 20px;
             text-align: center;
         }

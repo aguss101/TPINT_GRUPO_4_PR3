@@ -36,6 +36,12 @@ namespace Vistas
 
             }
 
+            else if (user == "medico" && password == "1234")
+            {
+                Session["User"] = user;
+                Response.Redirect("Medico.aspx");
+            }
+
             else
             {
                 lblError.Text = "Usuario o contraseña incorrectos.";
