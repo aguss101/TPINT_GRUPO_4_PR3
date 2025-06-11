@@ -13,5 +13,35 @@ namespace Vistas
         {
 
         }
+
+        protected void lvMedicos_ItemEditing(object sender, ListViewEditEventArgs e)
+        {
+
+        }
+
+        protected void lvMedicos_ItemUpdating(object sender, ListViewUpdateEventArgs e)
+        {
+
+        }
+
+        protected void lvMedicos_ItemInserting(object sender, ListViewInsertEventArgs e)
+        {
+
+        }
+
+        protected void lvMedicos_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+
+        }
+
+        protected void lvMedicos_ItemCanceling(object sender, ListViewCancelEventArgs e)
+        {
+
+        }
+
+        protected void lvMedicos_ItemDeleting(object sender, ListViewDeleteEventArgs e)
+        {
+
+        }
     }
 }
