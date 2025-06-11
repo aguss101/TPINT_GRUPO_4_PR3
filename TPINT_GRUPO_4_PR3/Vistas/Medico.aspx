@@ -40,7 +40,22 @@
             border-radius: 4px;
             text-align: left;
         }
-
+        .containerCartel {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: right;
+        }
+        .sidebarUser {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 150px;
+            background-color: #f4f4f4;
+            border-radius: 12.5px;
+            padding: 8px;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+        }
         .sidebar .btn:hover {
             background-color: #0056b3;
         }
@@ -84,6 +99,10 @@
                    
                     <p>Seleccioná una opción del menú para comenzar.</p>
                 </div>
+            </div>
+            <div class="containerCartel">
+            <div class="sidebarUser">
+                <asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Italic="False" Font-Names="Calibri" Font-Overline="False" Text="Lautaro Dancervich"></asp:Label>
             </div>
         </div>
     </form>

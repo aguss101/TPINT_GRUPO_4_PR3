@@ -14,6 +14,8 @@
             display: flex;
             height: 100vh;
             border-radius: 25px;
+            position: relative;
+            
         }
 
         .containerCartel {
@@ -24,14 +26,21 @@
         }
 
         .sidebar {
-            position: absolute;
-            top:16px;
-            left:16px;
+            position: fixed;
+            top: 50%;
+            left: 16px;
+            transform: translateY(-50%);
             width: 200px;
-            background-color: #f4f4f4;
+            height: 100vh;
+            background: radial-gradient(circle, #ffffff 0%, #ffffff 40%, #cfc9c9 100%);
             padding: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            border-radius:25px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+            border-radius: 25px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
         }
         .sidebarUser {
             position: absolute;
@@ -88,6 +97,7 @@
             border-radius: 4px;
             background-color: #fafafa;
             min-height: 300px;
+            
         }
     </style>
 </head>
