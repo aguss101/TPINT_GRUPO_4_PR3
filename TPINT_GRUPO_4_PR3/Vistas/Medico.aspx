@@ -13,6 +13,7 @@
         .container {
             display: flex;
             height: 100vh;
+            border-radius: 25px; 
         }
 
         .sidebar {

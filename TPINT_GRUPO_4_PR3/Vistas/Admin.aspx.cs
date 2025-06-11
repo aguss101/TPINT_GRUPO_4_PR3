@@ -43,5 +43,10 @@ namespace Vistas
         {
 
         }
+
+        protected void btnPacientes_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
