@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -11,6 +12,35 @@ namespace Vistas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+        }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            string user = tbxUser.Text.Trim();
+            string password = TxbPassword.Text.Trim();
+
+            if(string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
+            {
+                lblError.Text = "Por favor, ingrese usuario y contraseña.";
+                lblError.Visible = true;
+                return;
+            }
+
+            else if (user == "admin" && password == "1234") { 
+            
+            Session["User"] = user;
+             Response.Redirect("Admin.aspx");
+
+
+            }
+
+            else
+            {
+                lblError.Text = "Usuario o contraseña incorrectos.";
+                lblError.Visible = true;
+            }
+
 
         }
     }
