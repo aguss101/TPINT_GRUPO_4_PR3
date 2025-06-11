@@ -9,7 +9,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial;
+            font-family: Arial, sans-serif;
             background-color: #f2f2f2;
             height: 100vh;
             display: flex;
@@ -17,12 +17,17 @@
             justify-content: center;
         }
 
+        h2 { /* titulo */
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
         .login-container {
             background-color: #ffffff;
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 300px;
+            border-radius: 25px; 
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            width: 320px;
             text-align: center;
         }
 
@@ -35,9 +40,15 @@
         }
 
         .login-container input {
-            padding: 8px;
+            padding: 10px;
             border: 1px solid #ccc;
-            border-radius: 6px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+
+        .login-container input:focus {
+            border-color: #007bff;
+            outline: none;
         }
 
         .login-container button {
@@ -45,36 +56,38 @@
             background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 12px;
+            font-weight: bold;
             cursor: pointer;
         }
 
-        .login-container button:hover {
-            background-color: #0056b3;
-        }
         .clinica {
             color: #666666;
             font-weight: bold;
         }
+
         .frgp {
             color: #00aaff;
             font-weight: bold;
+        }
+
+        #lblError {
+            margin-top: 10px;
+            color: red;
+            font-size: 13px;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <h2><span class="clinica">Clinica</span> <span class="frgp">FRGP</span></h2>
+        <h2><span class="clinica">Clínica</span> <span class="frgp">FRGP</span></h2>
         <asp:Panel runat="server" DefaultButton="btnLogin" CssClass="login-container">
-            <asp:Label ID="lblUser" runat="server" Text="Usuario" AssociatedControlID="tbxUser" />
-            <asp:TextBox ID="tbxUser" runat="server" />
+            <asp:Label ID="LblTitle2" runat="server" Text="Iniciar sesión en Clínica FRGP" AssociatedControlID="lblTitle2" />
+            <asp:TextBox ID="txbUser" runat="server" Width="286px" />
 
-            <asp:Label ID="lblPassword" runat="server" Text="Contraseña" AssociatedControlID="TxbPassword" />
-            <asp:TextBox ID="TxbPassword" runat="server" TextMode="Password" />
+            <asp:TextBox ID="TxbPassword" runat="server" TextMode="Password" Width="286px" />
 
-            
-
-            <asp:Button ID="btnLogin" runat="server" Text="Ingresar" OnClick="btnLogin_Click" />
+            <asp:Button ID="btnLogin" runat="server" Text="Iniciar Sesión" OnClick="btnLogin_Click" />
             <asp:Label ID="lblError" runat="server" Visible="False" ForeColor="Red"></asp:Label>
         </asp:Panel>
     </form>

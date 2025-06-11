@@ -12,12 +12,13 @@ namespace Vistas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            txbUser.Attributes["placeholder"] = "Nombre de usuario";
+            TxbPassword.Attributes["placeholder"] = "Contraseña";
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string user = tbxUser.Text.Trim();
+            string user = txbUser.Text.Trim();
             string password = TxbPassword.Text.Trim();
 
             if(string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
