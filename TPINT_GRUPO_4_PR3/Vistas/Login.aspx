@@ -10,7 +10,9 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            background: url('images/login-bg2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            /*background-color: #f2f2f2;*/
             height: 100vh;
             display: flex;
             align-items: center;

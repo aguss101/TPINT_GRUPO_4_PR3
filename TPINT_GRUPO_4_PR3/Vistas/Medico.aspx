@@ -79,32 +79,162 @@
             background-color: #fafafa;
             min-height: 300px;
         }
+        .tablaDiv {
+            width: 100%;
+            height: 349px;
+        }
+        .columnaIndex {
+            width: 157px;
+            background-color:#ffffff;
+        }
+        .auto-style3 {
+            width: 100%;
+            height: 621px;
+        }
+        .auto-style4 {
+            width: 151px;
+            height: 310px;
+        }
+        .columnaBody-Bienvenida {
+            width: 151px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .columnaBody {
+            background-color:#e6e6e6;
+        }
+        .btn-index {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 10px 16px;
+            font-size: 16px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-weight: normal;
+            width: 100%;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-index:hover {
+            background-color: #4da9ff;
+            color: white;
+            border-color: #4da9ff;
+        }
+        .auto-style7 {
+            width: 151px;
+            text-align: center;
+            font-size: 16px;
+            height: 85px;
+        }
+        .auto-style9 {
+            width: 151px;
+            height: 20px;
+        }
+        .auto-style10 {
+            width: 100%;
+            height: 623px;
+            margin-top: 0px;
+        }
+        .auto-style11 {
+            height: 59px;
+        }
+        .hl-CambiarContrasenia {
+            width: 151px;
+            height: 24px;
+            text-align:center;
+        }
+        .hl-CerrarSesion {
+            width: 151px;
+            height: 26px;
+            text-align:center;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="container">
-           
-            <div class="sidebar">
-                <h2>Panel Médico</h2>
-                <asp:Button ID="btnVerTurnos" runat="server" Text="Ver Turnos" CssClass="btn" />
-                <asp:Button ID="btnDiagnostico" runat="server" Text="Cargar Diagnóstico" CssClass="btn" />
-                <asp:Button ID="btnHistorial" runat="server" Text="Ver Historial" CssClass="btn" />
-            </div>
-
-   
-            <div class="main-content">
-                <div class="header">Bienvenido, Dr. [Nombre]</div>
-                <div class="content-box">
-                   
-                    <p>Seleccioná una opción del menú para comenzar.</p>
-                </div>
-            </div>
-            <div class="containerCartel">
-            <div class="sidebarUser">
-                <asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Italic="False" Font-Names="Calibri" Font-Overline="False" Text="Lautaro Dancervich"></asp:Label>
-            </div>
-        </div>
+    <table class="tablaDiv">
+        <tr>
+            <td class="columnaIndex">
+                <table class="auto-style3">
+                    <tr>
+                        <td class="auto-style7">Bienvenido<br />
+                            [nombre del medico]</td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style9">
+                            <asp:Button runat="server" Text="Ver Turnos" CssClass="btn-index" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style9">
+                            <asp:Button ID="Button2" runat="server" Text="Cargar Diagnostico" CssClass="btn-index" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style9">
+                            <asp:Button ID="Button3" runat="server" Text="Ver Historial" CssClass="btn-index" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style4"></td>
+                    </tr>
+                    <tr>
+                        <td class="hl-CambiarContrasenia">
+                            <asp:HyperLink ID="hlCambiarContrasenia" runat="server" NavigateUrl="~/Admin.aspx">Cambiar Contraseña</asp:HyperLink>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="hl-CerrarSesion">
+                            <asp:HyperLink ID="hlCerrarSesion" runat="server" NavigateUrl="~/Admin.aspx">Cerrar Sesión</asp:HyperLink>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="columnaBody">
+                <table class="auto-style10">
+                    <tr>
+                        <td class="auto-style11" colspan="3">Información del médico</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Turnos hoy</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Solicitud de turnos</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
     </form>
 </body>
 </html>
