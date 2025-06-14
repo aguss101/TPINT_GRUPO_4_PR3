@@ -83,6 +83,9 @@
             width: 100%;
             height: 349px;
         }
+        .no-select {
+            user-select: none;
+        }
         .columnaIndex {
             width: 157px;
             background-color:#ffffff;
@@ -95,17 +98,20 @@
             width: 151px;
             height: 310px;
         }
-        .columnaBody-Bienvenida {
+        .columnaIndex-Bienvenida {
             width: 151px;
             text-align: center;
             font-size: 16px;
+            font-weight:bold;
         }
         .columnaBody {
             background-color:#e6e6e6;
+            padding: 0px 30px 30px 30px;
+            font-weight: bold;
         }
         .btn-index {
             background-color: white;
-            color: black;
+            color: #595959;
             border: none;
             padding: 10px 16px;
             font-size: 16px;
@@ -121,24 +127,7 @@
             color: white;
             border-color: #4da9ff;
         }
-        .auto-style7 {
-            width: 151px;
-            text-align: center;
-            font-size: 16px;
-            height: 85px;
-        }
-        .auto-style9 {
-            width: 151px;
-            height: 20px;
-        }
-        .auto-style10 {
-            width: 100%;
-            height: 623px;
-            margin-top: 0px;
-        }
-        .auto-style11 {
-            height: 59px;
-        }
+        
         .hl-CambiarContrasenia {
             width: 151px;
             height: 24px;
@@ -149,6 +138,59 @@
             height: 26px;
             text-align:center;
         }
+        .nombre-clinica {
+            text-align: right;
+        }
+        .clinica {
+            color: #666666;
+            font-weight: bold;
+        }
+        .frgp {
+            color: #00aaff;
+            font-weight: bold;
+        }
+        .auto-style9 {
+            width: 151px;
+            height: 20px;
+        }
+        .auto-style10 {
+            width: 100%;
+            height: 623px;
+            margin-top: 0px;
+        }
+        .auto-style18 {
+            height: 25px;
+            width: 420px;
+        }
+        .auto-style20 {
+            width: 420px;
+        }
+                
+        .auto-style22 {
+            text-align: right;
+            height: 26px;
+        }
+        
+        .auto-style23 {
+            width: 420px;
+            height: 74px;
+        }
+        .auto-style26 {
+            user-select: none;
+            height: 74px;
+        }
+        .auto-style27 {
+            width: 151px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            height: 138px;
+        }
+        .auto-style28 {
+            user-select: none;
+            height: 25px;
+        }
+        
     </style>
 </head>
 <body>
@@ -158,7 +200,7 @@
             <td class="columnaIndex">
                 <table class="auto-style3">
                     <tr>
-                        <td class="auto-style7">Bienvenido<br />
+                        <td class="auto-style27">Bienvenido,<br />
                             [nombre del medico]</td>
                     </tr>
                     <tr>
@@ -194,42 +236,50 @@
             <td class="columnaBody">
                 <table class="auto-style10">
                     <tr>
-                        <td class="auto-style11" colspan="3">Información del médico</td>
+                        <td class="auto-style22" colspan="3">
+                            <h2><span class="clinica">Clínica</span> <span class="frgp">FRGP</span></h2>
+                        </td>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td class="auto-style18">Información del médico</td>
+                        <td class="auto-style28"></td>
+                        <td class="auto-style28">
+                        </td>
                     </tr>
                     <tr>
-                        <td>Turnos hoy</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td class="no-select"></td>
+                        <td class="no-select"></td>
+                        <td class="no-select"></td>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td class="auto-style20">Turnos hoy</td>
+                        <td class="no-select">&nbsp;</td>
+                        <td class="no-select">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td>Solicitud de turnos</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td class="no-select"></td>
+                        <td class="no-select"></td>
+                        <td class="no-select"></td>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td class="auto-style23">Solicitud de turnos</td>
+                        <td class="no-select"></td>
+                        <td class="no-select"></td>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td class="no-select">&nbsp;</td>
+                        <td class="no-select">&nbsp;</td>
+                        <td class="no-select">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td class="no-select"></td>
+                        <td class="no-select"></td>
+                        <td class="no-select"></td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style26"></td>
+                        <td class="no-select"></td>
+                        <td class="no-select"></td>
                     </tr>
                 </table>
             </td>
