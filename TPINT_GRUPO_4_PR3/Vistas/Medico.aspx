@@ -45,9 +45,8 @@
             flex-direction: row;
             width: 100%;
             justify-content: right;
-        }
+        }/*
         .sidebarUser {
-            position: absolute;
             top: 16px;
             right: 16px;
             width: 150px;
@@ -55,7 +54,21 @@
             border-radius: 12.5px;
             padding: 8px;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-        }
+        }*/
+         .sidebarUser {
+            width: fit-content;
+            background-color: #f4f4f4;
+            border-radius: 12.5px;
+            padding: 8px 12px;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+            margin-top: 4px;
+         }
+         .titulo-con-nombre {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Alinea todo a la derecha */
+         }
+
         .sidebar .btn:hover {
             background-color: #0056b3;
         }
@@ -237,11 +250,15 @@
                 <table class="auto-style10">
                     <tr>
                         <td class="auto-style22" colspan="3">
-                            <h2><span class="clinica">Clínica</span> <span class="frgp">FRGP</span></h2>
+                            <div class="titulo-con-nombre">
+                                <h2><span class="clinica">Clínica</span> <span class="frgp">FRGP</span></h2>
+                                <div class="sidebarUser">
+                                    <asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Names="Calibri" Text="Lautaro Dancervich"></asp:Label>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td class="auto-style18">Información del médico</td>
                         <td class="auto-style28"></td>
                         <td class="auto-style28">
                         </td>
