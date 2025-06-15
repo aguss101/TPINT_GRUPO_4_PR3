@@ -5,9 +5,10 @@
 <head runat="server">
     <title>Panel Médico</title>
     <style>
-        body {
+        html, body, form {
             margin: 0;
             font-family: Arial, sans-serif;
+            height:100%;
         }
 
         .container {
@@ -94,7 +95,7 @@
         }
         .tablaDiv {
             width: 100%;
-            height: 349px;
+            height:100%;
         }
         .no-select {
             user-select: none;
@@ -102,10 +103,11 @@
         .columnaIndex {
             width: 157px;
             background-color:#ffffff;
+            height:100%;
         }
         .auto-style3 {
             width: 100%;
-            height: 621px;
+            height:100%;
         }
         .auto-style4 {
             width: 151px;
@@ -116,11 +118,13 @@
             text-align: center;
             font-size: 16px;
             font-weight:bold;
+            height:80px;
         }
         .columnaBody {
             background-color:#e6e6e6;
             padding: 0px 30px 30px 30px;
             font-weight: bold;
+            height:100%;
         }
         .btn-index {
             background-color: white;
@@ -132,7 +136,12 @@
             cursor: pointer;
             font-weight: normal;
             width: 100%;
+            height: 100%;
             transition: background-color 0.3s, color 0.3s;
+        }
+        .td-btn-index {
+            width: 151px;
+            height: 10px;
         }
 
         .btn-index:hover {
@@ -162,18 +171,10 @@
             color: #00aaff;
             font-weight: bold;
         }
-        .auto-style9 {
-            width: 151px;
-            height: 20px;
-        }
         .auto-style10 {
             width: 100%;
-            height: 623px;
+            height: 100%;
             margin-top: 0px;
-        }
-        .auto-style18 {
-            height: 25px;
-            width: 420px;
         }
         .auto-style20 {
             width: 420px;
@@ -188,20 +189,9 @@
             width: 420px;
             height: 74px;
         }
-        .auto-style26 {
-            user-select: none;
-            height: 74px;
-        }
-        .auto-style27 {
-            width: 151px;
-            text-align: center;
-            font-size: 16px;
-            font-weight: bold;
-            height: 138px;
-        }
         .auto-style28 {
             user-select: none;
-            height: 25px;
+            width: 34px;
         }
         
     </style>
@@ -213,21 +203,21 @@
             <td class="columnaIndex">
                 <table class="auto-style3">
                     <tr>
-                        <td class="auto-style27">Bienvenido,<br />
+                        <td class="columnaIndex-Bienvenida">Bienvenido,<br />
                             [nombre del medico]</td>
                     </tr>
                     <tr>
-                        <td class="auto-style9">
+                        <td class="td-btn-index">
                             <asp:Button runat="server" Text="Ver Turnos" CssClass="btn-index" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="auto-style9">
+                        <td class="td-btn-index">
                             <asp:Button ID="Button2" runat="server" Text="Cargar Diagnostico" CssClass="btn-index" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="auto-style9">
+                        <td class="td-btn-index">
                             <asp:Button ID="Button3" runat="server" Text="Ver Historial" CssClass="btn-index" />
                         </td>
                     </tr>
@@ -259,44 +249,39 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="no-select"></td>
+                        <td class="no-select"></td>
                         <td class="auto-style28"></td>
-                        <td class="auto-style28">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="no-select"></td>
-                        <td class="no-select"></td>
-                        <td class="no-select"></td>
                     </tr>
                     <tr>
                         <td class="auto-style20">Turnos hoy</td>
                         <td class="no-select">&nbsp;</td>
-                        <td class="no-select">&nbsp;</td>
+                        <td class="auto-style28">&nbsp;</td>
                     </tr>
                     <tr>
                         <td class="no-select"></td>
                         <td class="no-select"></td>
-                        <td class="no-select"></td>
+                        <td class="auto-style28"></td>
                     </tr>
                     <tr>
                         <td class="auto-style23">Solicitud de turnos</td>
                         <td class="no-select"></td>
-                        <td class="no-select"></td>
+                        <td class="auto-style28"></td>
                     </tr>
                     <tr>
                         <td class="no-select">&nbsp;</td>
                         <td class="no-select">&nbsp;</td>
-                        <td class="no-select">&nbsp;</td>
+                        <td class="auto-style28">&nbsp;</td>
                     </tr>
                     <tr>
                         <td class="no-select"></td>
                         <td class="no-select"></td>
-                        <td class="no-select"></td>
+                        <td class="auto-style28"></td>
                     </tr>
                     <tr>
-                        <td class="auto-style26"></td>
                         <td class="no-select"></td>
                         <td class="no-select"></td>
+                        <td class="auto-style28"></td>
                     </tr>
                 </table>
             </td>
