@@ -1,5 +1,5 @@
 CREATE DATABASE ClinicaDB
-
+GO
 USE ClinicaDB
 -- Tabla Roles
 CREATE TABLE Roles (
