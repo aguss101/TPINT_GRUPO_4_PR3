@@ -5,59 +5,28 @@
 <head runat="server">
     <title>Panel Administrador</title>
     <style>
-        body {
+        html, body, form {
             margin: 0;
             font-family: Arial, sans-serif;
+            height:100%;
         }
 
         .container {
             display: flex;
             height: 100vh;
-            border-radius: 25px;
-            position: relative;
-            
-        }
-
-        .containerCartel {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            justify-content: right;
+            border-radius: 25px; 
         }
 
         .sidebar {
-            position: fixed;
-            top: 50%;
-            left: 16px;
-            transform: translateY(-50%);
             width: 200px;
-            height: 100vh;
-            background: radial-gradient(circle, #ffffff 0%, #ffffff 40%, #cfc9c9 100%);
-            padding: 20px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
-            border-radius: 25px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            
-        }
-        .sidebarUser {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 150px;
             background-color: #f4f4f4;
-            border-radius: 12.5px;
-            padding: 8px;
-            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
-
 
         .sidebar h2 {
             font-size: 18px;
             margin-bottom: 20px;
-            text-align: center;
         }
 
         .sidebar .btn {
@@ -72,17 +41,43 @@
             border-radius: 4px;
             text-align: left;
         }
+        .containerCartel {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: right;
+        }/*
+        .sidebarUser {
+            top: 16px;
+            right: 16px;
+            width: 150px;
+            background-color: #f4f4f4;
+            border-radius: 12.5px;
+            padding: 8px;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+        }*/
+         .sidebarUser {
+            width: fit-content;
+            background-color: #f4f4f4;
+            border-radius: 12.5px;
+            padding: 8px 12px;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+            margin-top: 4px;
+         }
+         .titulo-con-nombre {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Alinea todo a la derecha */
+         }
 
         .sidebar .btn:hover {
             background-color: #0056b3;
         }
 
         .main-content {
-            margin-left: 260px;
             flex-grow: 1;
             padding: 30px;
             background-color: #fff;
-            text-align: center;
         }
 
         .header {
@@ -97,32 +92,188 @@
             border-radius: 4px;
             background-color: #fafafa;
             min-height: 300px;
-            
         }
+        .tablaDiv {
+            width: 100%;
+            height:100%;
+        }
+        .no-select {
+            user-select: none;
+        }
+        .columnaIndex {
+            width: 157px;
+            background-color:#ffffff;
+            height:100%;
+        }
+        .auto-style3 {
+            width: 100%;
+            height:100%;
+        }
+        .auto-style4 {
+            width: 151px;
+            height: 310px;
+        }
+        .columnaIndex-PanelAdmin {
+            width: 151px;
+            text-align: center;
+            font-size: 16px;
+            font-weight:bold;
+            height:80px;
+        }
+        .columnaBody {
+            background-color:#e6e6e6;
+            padding: 0px 30px 30px 30px;
+            font-weight: bold;
+            height:100%;
+        }
+        .btn-index {
+            background-color: white;
+            color: #595959;
+            border: none;
+            padding: 10px 16px;
+            font-size: 16px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-weight: normal;
+            width: 100%;
+            height: 100%;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .td-btn-index {
+            width: 151px;
+            height: 10px;
+        }
+
+        .btn-index:hover {
+            background-color: #4da9ff;
+            color: white;
+            border-color: #4da9ff;
+        }
+        .hl-CerrarSesion {
+            width: 151px;
+            height: 26px;
+            text-align:center;
+        }
+        .nombre-clinica {
+            text-align: right;
+        }
+        .clinica {
+            color: #666666;
+            font-weight: bold;
+        }
+        .frgp {
+            color: #00aaff;
+            font-weight: bold;
+        }
+        .auto-style10 {
+            width: 100%;
+            height: 100%;
+            margin-top: 0px;
+        }
+        .auto-style20 {
+            width: 420px;
+        }
+                
+        .auto-style22 {
+            text-align: right;
+            height: 26px;
+        }
+        
+        .auto-style28 {
+            user-select: none;
+            width: 34px;
+        }
+        
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="container">
-           
-            <div class="sidebar">
-                <h2>Panel Admin</h2>
-                <asp:Button ID="btnMedicos" runat="server" Text="Administrar Médicos" CssClass="btn" />
-                <asp:Button ID="btnPacientes" runat="server" Text="Administrar Pacientes" CssClass="btn" OnClick="btnPacientes_Click" />
-                <asp:Button ID="btnTurnos" runat="server" Text="Administrar Turnos" CssClass="btn" />
-            </div>
-            <div class="main-content">
-                <div class="header">Bienvenido, Administrador</div>
-                <div class="content-box">
-                    <p>Seleccioná una opción del menú para comenzar.</p>
-                </div>
-            </div>
-            <div class="containerCartel">
-                <div class="sidebarUser">
-                    <asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Italic="False" Font-Names="Calibri" Font-Overline="False" Text="Lautaro Dancervich"></asp:Label>
-                </div>
-            </div>
-        </div>
+    <table class="tablaDiv">
+        <tr>
+            <td class="columnaIndex">
+                <table class="auto-style3">
+                    <tr>
+                        <td class="columnaIndex-PanelAdmin">Panel Admin</td>
+                    </tr>
+                    <tr>
+                        <td class="td-btn-index">
+                            <asp:Button runat="server" Text="Administrar Médicos" CssClass="btn-index" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-btn-index">
+                            <asp:Button ID="Button2" runat="server" Text=" Administrar Pacientes" CssClass="btn-index" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-btn-index">
+                            <asp:Button ID="Button3" runat="server" Text="Administrar Turnos" CssClass="btn-index" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style4"></td>
+                    </tr>
+                    <tr>
+                        <td> &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="hl-CerrarSesion">
+                            <asp:HyperLink ID="hlCerrarSesion" runat="server" NavigateUrl="~/Admin.aspx">Cerrar Sesión</asp:HyperLink>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="columnaBody">
+                <table class="auto-style10">
+                    <tr>
+                        <td class="auto-style22" colspan="3">
+                            <div class="titulo-con-nombre">
+                                <h2><span class="clinica">Clínica</span> <span class="frgp">FRGP</span></h2>
+                                <div class="sidebarUser">
+                                    <asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Names="Calibri" Text="Administrador"></asp:Label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="no-select"></td>
+                        <td class="no-select"></td>
+                        <td class="auto-style28"></td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style20">Seleccioná una opción del menú para comenzar.</td>
+                        <td class="no-select">&nbsp;</td>
+                        <td class="auto-style28">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="no-select"></td>
+                        <td class="no-select"></td>
+                        <td class="auto-style28"></td>
+                    </tr>
+                    <tr>
+                        <td class="no-select">&nbsp;</td>
+                        <td class="no-select"></td>
+                        <td class="auto-style28"></td>
+                    </tr>
+                    <tr>
+                        <td class="no-select">&nbsp;</td>
+                        <td class="no-select">&nbsp;</td>
+                        <td class="auto-style28">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="no-select"></td>
+                        <td class="no-select"></td>
+                        <td class="auto-style28"></td>
+                    </tr>
+                    <tr>
+                        <td class="no-select"></td>
+                        <td class="no-select"></td>
+                        <td class="auto-style28"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
     </form>
 </body>
 </html>

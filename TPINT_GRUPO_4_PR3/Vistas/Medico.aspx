@@ -149,12 +149,6 @@
             color: white;
             border-color: #4da9ff;
         }
-        
-        .hl-CambiarContrasenia {
-            width: 151px;
-            height: 24px;
-            text-align:center;
-        }
         .hl-CerrarSesion {
             width: 151px;
             height: 26px;
@@ -226,8 +220,7 @@
                     </tr>
                     <tr>
                         <td class="hl-CambiarContrasenia">
-                            <asp:HyperLink ID="hlCambiarContrasenia" runat="server" NavigateUrl="~/Admin.aspx">Cambiar Contraseña</asp:HyperLink>
-                        </td>
+                            &nbsp;</td>
                     </tr>
                     <tr>
                         <td class="hl-CerrarSesion">
@@ -264,7 +257,7 @@
                         <td class="auto-style28"></td>
                     </tr>
                     <tr>
-                        <td class="auto-style23">Solicitud de turnos</td>
+                        <td class="no-select">&nbsp;</td>
                         <td class="no-select"></td>
                         <td class="auto-style28"></td>
                     </tr>
