@@ -23,44 +23,44 @@ namespace Vistas
             Errores(user, password);
 
         }
-            protected void Errores(string user, string password)
+        protected void Errores(string user, string password)
+        {
+            if (!RedirectBoth(user, password))
             {
-                if (!RedirectBoth(user, password))
-                {
 
-                    if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
-                    {
-                        lblError.Text = "Por favor, ingrese usuario y contraseña.";
-                        lblError.Visible = true;
-                        return;
-                    }
-                    else
-                    {
-                        lblError.Text = "Usuario o contraseña incorrectos.";
-                        lblError.Visible = true;
-                    }
-                }
-            }
-
-            protected bool RedirectBoth(string user, string password)
-            {
-                if (user == "admin" && password == "1234")
+                if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
                 {
-
-                    Session["User"] = user;
-                    Response.Redirect("Admin.aspx");
-                    return true;
-                }
-                else if (user == "medico" && password == "1234")
-                {
-                    Session["User"] = user;
-                    Response.Redirect("Medico.aspx");
-                    return true;
+                    lblError.Text = "Por favor, ingrese usuario y contraseña.";
+                    lblError.Visible = true;
+                    return;
                 }
                 else
                 {
-                    return false;
+                    lblError.Text = "Usuario o contraseña incorrectos.";
+                    lblError.Visible = true;
                 }
             }
+        }
+
+        protected bool RedirectBoth(string user, string password)
+        {
+            if (user == "admin" && password == "1234")
+            {
+
+                Session["User"] = user;
+                Response.Redirect("Admin.aspx");
+                return true;
+            }
+            else if (user == "medico" && password == "1234")
+            {
+                Session["User"] = user;
+                Response.Redirect("Medico.aspx");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
