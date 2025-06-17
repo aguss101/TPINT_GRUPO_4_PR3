@@ -67,9 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="images\login-bg.jpeg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="images\login-bg.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="Admin.aspx" />
     <Content Include="Medico.aspx" />
@@ -118,6 +116,7 @@
       <Name>Negocio</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
