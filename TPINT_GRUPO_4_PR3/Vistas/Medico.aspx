@@ -179,10 +179,6 @@
             height: 26px;
         }
         
-        .auto-style23 {
-            width: 420px;
-            height: 74px;
-        }
         .auto-style28 {
             user-select: none;
             width: 34px;
@@ -242,7 +238,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="no-select"></td>
+                        <td class="no-select">&nbsp;</td>
                         <td class="no-select"></td>
                         <td class="auto-style28"></td>
                     </tr>

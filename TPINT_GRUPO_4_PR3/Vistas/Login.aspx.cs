@@ -20,35 +20,47 @@ namespace Vistas
         {
             string user = txbUser.Text.Trim();
             string password = TxbPassword.Text.Trim();
-
-            if(string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
-            {
-                lblError.Text = "Por favor, ingrese usuario y contraseña.";
-                lblError.Visible = true;
-                return;
-            }
-
-            else if (user == "admin" && password == "1234") { 
-            
-            Session["User"] = user;
-             Response.Redirect("Admin.aspx");
-
-
-            }
-
-            else if (user == "medico" && password == "1234")
-            {
-                Session["User"] = user;
-                Response.Redirect("Medico.aspx");
-            }
-
-            else
-            {
-                lblError.Text = "Usuario o contraseña incorrectos.";
-                lblError.Visible = true;
-            }
-
+            Errores(user, password);
 
         }
+            protected void Errores(string user, string password)
+            {
+                if (!RedirectBoth(user, password))
+                {
+
+                    if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
+                    {
+                        lblError.Text = "Por favor, ingrese usuario y contraseña.";
+                        lblError.Visible = true;
+                        return;
+                    }
+                    else
+                    {
+                        lblError.Text = "Usuario o contraseña incorrectos.";
+                        lblError.Visible = true;
+                    }
+                }
+            }
+
+            protected bool RedirectBoth(string user, string password)
+            {
+                if (user == "admin" && password == "1234")
+                {
+
+                    Session["User"] = user;
+                    Response.Redirect("Admin.aspx");
+                    return true;
+                }
+                else if (user == "medico" && password == "1234")
+                {
+                    Session["User"] = user;
+                    Response.Redirect("Medico.aspx");
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
     }
 }
