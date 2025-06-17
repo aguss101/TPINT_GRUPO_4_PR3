@@ -224,7 +224,7 @@
                     </tr>
                     <tr>
                         <td class="hl-CerrarSesion">
-                            <asp:HyperLink ID="hlCerrarSesion" runat="server" NavigateUrl="~/Admin.aspx">Cerrar Sesión</asp:HyperLink>
+                            <asp:HyperLink ID="hlCerrarSesion" runat="server" NavigateUrl="~/Login.aspx">Cerrar Sesión</asp:HyperLink>
                         </td>
                     </tr>
                 </table>
@@ -236,7 +236,7 @@
                             <div class="titulo-con-nombre">
                                 <h2><span class="clinica">Clínica</span> <span class="frgp">FRGP</span></h2>
                                 <div class="sidebarUser">
-                                    <asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Names="Calibri" Text="Lautaro Dancervich"></asp:Label>
+                                    <asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Names="Calibri" Text="Médico"></asp:Label>
                                 </div>
                             </div>
                         </td>

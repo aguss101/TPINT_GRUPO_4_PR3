@@ -218,7 +218,7 @@
                     </tr>
                     <tr>
                         <td class="hl-CerrarSesion">
-                            <asp:HyperLink ID="hlCerrarSesion" runat="server" NavigateUrl="~/Admin.aspx">Cerrar Sesión</asp:HyperLink>
+                            <asp:HyperLink ID="hlCerrarSesion" runat="server" NavigateUrl="~/Login.aspx">Cerrar Sesión</asp:HyperLink>
                         </td>
                     </tr>
                 </table>
