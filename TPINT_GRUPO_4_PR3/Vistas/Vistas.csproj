@@ -67,6 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\Administrar_Medicos.aspx" />
+    <Content Include="admin\Administrar_Pacientes.aspx" />
+    <Content Include="admin\Administrar_Turnos.aspx" />
     <Content Include="images\login-bg.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="Admin.aspx" />
@@ -74,6 +77,27 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\Administrar_Medicos.aspx.cs">
+      <DependentUpon>Administrar_Medicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Administrar_Medicos.aspx.designer.cs">
+      <DependentUpon>Administrar_Medicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Administrar_Pacientes.aspx.cs">
+      <DependentUpon>Administrar_Pacientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Administrar_Pacientes.aspx.designer.cs">
+      <DependentUpon>Administrar_Pacientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Administrar_Turnos.aspx.cs">
+      <DependentUpon>Administrar_Turnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Administrar_Turnos.aspx.designer.cs">
+      <DependentUpon>Administrar_Turnos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
