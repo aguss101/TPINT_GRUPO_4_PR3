@@ -41,10 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Persona\Correos.cs" />
-    <Compile Include="Persona\Genero.cs" />
-    <Compile Include="Persona\Localidades.cs" />
-    <Compile Include="Persona\Paises.cs" />
+    <Compile Include="Genero.cs" />
+    <Compile Include="Paciente.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Persona\Provincias.cs" />

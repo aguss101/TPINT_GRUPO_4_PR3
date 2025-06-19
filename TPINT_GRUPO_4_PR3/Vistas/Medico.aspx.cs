@@ -10,21 +10,20 @@ namespace Vistas
 {
     public partial class Medico : System.Web.UI.Page
     {
-        private GestorUsuario gestorUsuario = new GestorUsuario();
+        private GestorPaciente gestorPaciente = new GestorPaciente();
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarUsuarios();
+            cargarPacientes();
 
 
         }
-        protected void cargarUsuarios()
+        protected void cargarPacientes()
         {
-            List<Usuario> usuarios = gestorUsuario.GetUsuarios();
+            List<Paciente> pacientes = gestorPaciente.GetPacientes();
 
-            DropDownList1.DataSource = usuarios;
-            DropDownList1.DataTextField = "NombreUsuario"; // Lo que se muestra
-            DropDownList1.DataValueField = "DNI";    // Valor oculto que se envía al servidor
-            DropDownList1.DataBind();
+            gvMedico.DataSource = pacientes;
+           
+            gvMedico.DataBind();
 
         }
     }

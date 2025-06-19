@@ -249,15 +249,15 @@
                     </tr>
                     <tr>
                         <td class="no-select">
-                            <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True">
-                                <asp:ListItem></asp:ListItem>
-                            </asp:DropDownList>
-                        </td>
+                            &nbsp;</td>
                         <td class="no-select"></td>
                         <td class="auto-style28"></td>
                     </tr>
                     <tr>
-                        <td class="no-select">&nbsp;</td>
+                        <td class="no-select">
+                            <asp:GridView ID="gvMedico" runat="server">
+                            </asp:GridView>
+                        </td>
                         <td class="no-select"></td>
                         <td class="auto-style28"></td>
                     </tr>
