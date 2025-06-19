@@ -8,12 +8,12 @@ using Entidades;
 
 namespace Negocio
 {
-    public class GestorUsuario
+   public class GestorPersona
     {
-        private ConsultasUsuario consultaUsuario= new ConsultasUsuario();
-        public List<Usuario> GetUsuarios()
+        private ConsultasPersona consultaPersona = new ConsultasPersona();
+        public List<Persona> GetPersonas()
         {
-            return consultaUsuario.getUsuarios();
+            return consultaPersona.getPersona();
         }
     }
 }
