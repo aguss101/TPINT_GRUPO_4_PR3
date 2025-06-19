@@ -16,7 +16,7 @@ namespace Datos
         public List<Usuario> getUsuarios()
         {
             List<Usuario> usuarios = new List<Usuario>();
-            Usuario usuario = new Usuario();
+            
 
             string query = "SELECT * FROM Usuario";
             using (SqlConnection connection = conexion.AbrirConexion())
@@ -28,7 +28,8 @@ namespace Datos
                     {
                         while (reader.Read())
                         {
-                            
+                            Usuario usuario = new Usuario();
+
                             usuario.DNI = (reader["DNI"].ToString());
                             usuario.idRol = (Convert.ToInt32(reader["idRol"]));
                             usuario.NombreUsuario = (reader["nombreUsuario"].ToString());
@@ -36,8 +37,8 @@ namespace Datos
                             usuario.ultimoIngreso = (Convert.ToDateTime(reader["ultimoIngreso"]));
                             usuario.alta = (Convert.ToDateTime(reader["alta"]));
 
+                            usuarios.Add(usuario);
                         }
-                        usuarios.Add(usuario);
                     }
                 }
             }
