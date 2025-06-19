@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using Entidades;
+using Negocio;
 namespace Vistas
 {
     public partial class Login : System.Web.UI.Page
     {
+        private GestorUsuario gestorUsuario = new GestorUsuario();
         protected void Page_Load(object sender, EventArgs e)
         {
             txbUser.Attributes["placeholder"] = "Nombre de usuario";
@@ -18,48 +20,30 @@ namespace Vistas
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string user = txbUser.Text.Trim();
-            string password = TxbPassword.Text.Trim();
-            Errores(user, password);
-
-        }
-        protected void Errores(string user, string password)
-        {
-            if (!RedirectBoth(user, password))
+            lblError.Visible = false;
+            List<Usuario> usuarios = new List<Usuario>();
+            usuarios = gestorUsuario.GetUsuarios();
+            foreach (Usuario usuario in usuarios)
             {
-
-                if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
+                if (usuario.NombreUsuario == txbUser.Text.Trim() && usuario.contrasenia == TxbPassword.Text.Trim())
                 {
-                    lblError.Text = "Por favor, ingrese usuario y contraseña.";
-                    lblError.Visible = true;
-                    return;
+                    Session["User"] = usuario.NombreUsuario;
+                    if (usuario.idRol == 1)
+                    {
+                        Response.Redirect("Admin.aspx");
+                        return;
+
+                    }
+                    Response.Redirect("Medico.aspx");
+
                 }
                 else
                 {
                     lblError.Text = "Usuario o contraseña incorrectos.";
                     lblError.Visible = true;
+                    return;
                 }
-            }
-        }
 
-        protected bool RedirectBoth(string user, string password)
-        {
-            if (user == "admin" && password == "1234")
-            {
-
-                Session["User"] = user;
-                Response.Redirect("Admin.aspx");
-                return true;
-            }
-            else if (user == "medico" && password == "1234")
-            {
-                Session["User"] = user;
-                Response.Redirect("Medico.aspx");
-                return true;
-            }
-            else
-            {
-                return false;
             }
         }
     }

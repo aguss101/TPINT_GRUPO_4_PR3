@@ -248,7 +248,11 @@
                         <td class="auto-style28">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="no-select"></td>
+                        <td class="no-select">
+                            <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True">
+                                <asp:ListItem></asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
                         <td class="no-select"></td>
                         <td class="auto-style28"></td>
                     </tr>

@@ -10,7 +10,7 @@ namespace Datos
 {
     public class DataAccess
     {
-        private string connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=BDClinica;Integrated Security=True;Encrypt=False";
+        private string connectionString = "Data Source=DESKTOP-KCSRHEU\\SQLEXPRESS;Initial Catalog=ClinicaDB;Integrated Security=True;Encrypt=False";
 
         public SqlConnection AbrirConexion()
         {
