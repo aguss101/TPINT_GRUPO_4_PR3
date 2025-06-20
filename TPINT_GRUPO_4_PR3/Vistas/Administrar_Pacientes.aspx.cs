@@ -74,8 +74,8 @@ namespace Vistas.admin
       
             else
                 lblAddUserState.Text = "Hubo un error durante la carga";
-            lblAddUserState.Visible = true;
             lblAddUserState.ForeColor = System.Drawing.Color.Red;
+            lblAddUserState.Visible = true;
 
         }
 
