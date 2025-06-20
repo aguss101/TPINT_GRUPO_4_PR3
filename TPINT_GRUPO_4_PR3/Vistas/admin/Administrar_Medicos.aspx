@@ -280,17 +280,17 @@
                     </tr>
                     <tr>
                         <td class="td-btn-index">
-                            <asp:Button runat="server" Text="Administrar Médicos" CssClass="btn-index" />
+                            <asp:Button runat="server" Text="Administrar Médicos" CssClass="btn-index" ID="btnAdministrarMedico" OnClick="btnAdministrarMedico_Click" />
                         </td>
                     </tr>
                     <tr>
                         <td class="td-btn-index">
-                            <asp:Button ID="Button2" runat="server" Text=" Administrar Pacientes" CssClass="btn-index" />
+                            <asp:Button ID="btnAdministrarPacientes" runat="server" Text=" Administrar Pacientes" CssClass="btn-index" OnClick="btnAdministrarPacientes_Click" />
                         </td>
                     </tr>
                     <tr>
                         <td class="td-btn-index">
-                            <asp:Button ID="Button3" runat="server" Text="Administrar Turnos" CssClass="btn-index" />
+                            <asp:Button ID="btnAdministrarTurnos" runat="server" Text="Administrar Turnos" CssClass="btn-index" OnClick="btnAdministrarTurnos_Click" />
                         </td>
                     </tr>
                     <tr>
@@ -340,82 +340,98 @@
 
                                         <table class="auto-style44">
                                             <tr>
+                                                <td class="auto-style32">Legajo</td>
+                                                <td class="auto-style30">
+                                                    <asp:TextBox ID="txbLegajo" runat="server"></asp:TextBox>
+                                                </td>
+                                                <td class="auto-style31">&nbsp;</td>
+                                            </tr>
+                                            <tr>
                                                 <td class="auto-style32">DNI</td>
                                                 <td class="auto-style30">
-                                                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txbDni" runat="server"></asp:TextBox>
                                                 </td>
                                                 <td class="auto-style31"></td>
                                             </tr>
                                             <tr>
                                                 <td class="auto-style32">Nombre</td>
                                                 <td class="auto-style30">
-                                                    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txbNombre" runat="server"></asp:TextBox>
                                                 </td>
                                                 <td class="auto-style31"></td>
                                             </tr>
                                             <tr>
                                                 <td class="auto-style32">Apellido</td>
                                                 <td class="auto-style30">
-                                                    <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txbApellido" runat="server"></asp:TextBox>
                                                 </td>
                                                 <td class="auto-style31"></td>
                                             </tr>
                                             <tr>
                                                 <td class="auto-style32">Sexo</td>
                                                 <td class="auto-style30">
-                                                    <asp:DropDownList ID="DropDownList4" runat="server">
+                                                    <asp:DropDownList ID="ddlGenero" runat="server" DataSourceID="dbGenero" DataTextField="descripcion" DataValueField="idSexo">
                                                     </asp:DropDownList>
+                                                    <br />
+                                                    <asp:SqlDataSource ID="dbGenero" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString2 %>" ProviderName="<%$ ConnectionStrings:ClinicaDBConnectionString2.ProviderName %>" SelectCommand="SELECT * FROM [Sexos]"></asp:SqlDataSource>
                                                 </td>
                                                 <td class="auto-style31"></td>
                                             </tr>
                                             <tr>
                                                 <td class="auto-style32">Nacionalidad</td>
                                                 <td class="auto-style30">
-                                                    <asp:DropDownList ID="DropDownList5" runat="server">
+                                                    <asp:DropDownList ID="ddlNacionalidad" runat="server" DataSourceID="dbNacionalidades" DataTextField="gentilicio" DataValueField="idPais">
                                                     </asp:DropDownList>
+                                                    <br />
+                                                    <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString2 %>" SelectCommand="SELECT * FROM [Paises]"></asp:SqlDataSource>
                                                 </td>
                                                 <td class="auto-style31"></td>
                                             </tr>
                                             <tr>
                                                 <td class="auto-style32">Fecha de nacimiento</td>
                                                 <td class="auto-style30">
-                                                    &nbsp;</td>
+                                                    <asp:TextBox ID="txbFechaNacimiento" runat="server"></asp:TextBox>
+                                                </td>
                                                 <td class="auto-style31"></td>
                                             </tr>
                                             <tr>
                                                 <td class="auto-style32">Dirección</td>
                                                 <td class="auto-style30">
-                                                    <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txbDireccion" runat="server"></asp:TextBox>
                                                 </td>
                                                 <td class="auto-style31"></td>
                                             </tr>
                                             <tr>
                                                 <td class="auto-style32">Provincia</td>
                                                 <td class="auto-style30">
-                                                    <asp:DropDownList ID="DropDownList6" runat="server">
+                                                    <asp:DropDownList ID="ddlProvincia" runat="server" DataSourceID="dbProvincias" DataTextField="nombreProvincia" DataValueField="idProvincia">
                                                     </asp:DropDownList>
+                                                    <br />
+                                                    <asp:SqlDataSource ID="dbProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString2 %>" SelectCommand="SELECT [idProvincia], [nombreProvincia] FROM [Provincias]"></asp:SqlDataSource>
                                                 </td>
                                                 <td class="auto-style31">&nbsp;</td>
                                             </tr>
                                             <tr>
                                                 <td class="auto-style32">Localidad</td>
                                                 <td class="auto-style30">
-                                                    <asp:DropDownList ID="DropDownList7" runat="server">
+                                                    <asp:DropDownList ID="ddlLocalidades" runat="server" DataSourceID="dbLocalidades" DataTextField="nombreLocalidad" DataValueField="idLocalidad">
                                                     </asp:DropDownList>
+                                                    <br />
+                                                    <asp:SqlDataSource ID="dbLocalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString2 %>" SelectCommand="SELECT * FROM [Localidades]"></asp:SqlDataSource>
                                                 </td>
                                                 <td class="auto-style31">&nbsp;</td>
                                             </tr>
                                             <tr>
                                                 <td class="auto-style32">Correo Electrónico</td>
                                                 <td class="auto-style30">
-                                                    <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txbCorreo" runat="server"></asp:TextBox>
                                                 </td>
                                                 <td class="auto-style31">&nbsp;</td>
                                             </tr>
                                             <tr>
                                                 <td class="auto-style32">Teléfono</td>
                                                 <td class="auto-style30">
-                                                    <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txbTelefono" runat="server"></asp:TextBox>
                                                 </td>
                                                 <td class="auto-style31"></td>
                                             </tr>
@@ -427,10 +443,11 @@
                                             </tr>
                                             <tr>
                                                 <td class="auto-style32">
-                                                    <asp:Button ID="Button4" runat="server" Text="Registrar paciente" Width="188px" />
+                                                    <asp:Button ID="btnRegistrarMedico" runat="server" Text="Registrar paciente" Width="188px" OnClick="btnRegistrarMedico_Click" />
                                                 </td>
                                                 <td class="auto-style30">
-                                                    &nbsp;</td>
+                                                    <asp:Label ID="lblAddUserState" runat="server" Visible="False"></asp:Label>
+                                                </td>
                                                 <td class="auto-style31">&nbsp;</td>
                                             </tr>
                                         </table>

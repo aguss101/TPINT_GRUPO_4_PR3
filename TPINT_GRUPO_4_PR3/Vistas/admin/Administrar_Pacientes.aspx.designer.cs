@@ -11,7 +11,7 @@ namespace Vistas.admin
 {
 
 
-    public partial class Administrar_Medicos
+    public partial class Administrar_Pacientes
     {
 
         /// <summary>
@@ -33,13 +33,13 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.Button btnAdministrarMedico;
 
         /// <summary>
-        /// Control btnAdministrarPacientes.
+        /// Control btnAdministrarPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdministrarPacientes;
+        protected global::System.Web.UI.WebControls.Button btnAdministrarPaciente;
 
         /// <summary>
         /// Control btnAdministrarTurnos.
@@ -123,15 +123,6 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.View vwAlta;
 
         /// <summary>
-        /// Control txbLegajo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbLegajo;
-
-        /// <summary>
         /// Control txbDni.
         /// </summary>
         /// <remarks>
@@ -213,13 +204,13 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.TextBox txbDireccion;
 
         /// <summary>
-        /// Control ddlProvincia.
+        /// Control ddlProvincias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProvincia;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProvincias;
 
         /// <summary>
         /// Control dbProvincias.
@@ -249,13 +240,22 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.SqlDataSource dbLocalidades;
 
         /// <summary>
-        /// Control txbCorreo.
+        /// Control ddlObraSocial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbCorreo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlObraSocial;
+
+        /// <summary>
+        /// Control dbObraSocial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dbObraSocial;
 
         /// <summary>
         /// Control txbTelefono.
@@ -267,13 +267,22 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.TextBox txbTelefono;
 
         /// <summary>
-        /// Control btnRegistrarMedico.
+        /// Control txbCorreo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegistrarMedico;
+        protected global::System.Web.UI.WebControls.TextBox txbCorreo;
+
+        /// <summary>
+        /// Control btnRegistrarPaciente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRegistrarPaciente;
 
         /// <summary>
         /// Control lblAddUserState.
@@ -321,13 +330,13 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.View vwModificacion;
 
         /// <summary>
-        /// Control TextBox9.
+        /// Control txtbModSearchPacienteDNI.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox9;
+        protected global::System.Web.UI.WebControls.TextBox txtbModSearchPacienteDNI;
 
         /// <summary>
         /// Control GridView3.
@@ -346,15 +355,6 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View vwLectura;
-
-        /// <summary>
-        /// Control TextBox8.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox8;
 
         /// <summary>
         /// Control GridView2.

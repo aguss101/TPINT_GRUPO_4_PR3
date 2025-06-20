@@ -68,12 +68,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\Administrar_Medicos.aspx" />
-    <Content Include="Administrar_Pacientes.aspx" />
+    <Content Include="admin\Administrar_Pacientes.aspx" />
     <Content Include="admin\Administrar_Turnos.aspx" />
     <Content Include="images\login-bg.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="Admin.aspx" />
-    <Content Include="Medico.aspx" />
+    <Content Include="PanelMedico.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -84,11 +84,11 @@
     <Compile Include="admin\Administrar_Medicos.aspx.designer.cs">
       <DependentUpon>Administrar_Medicos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administrar_Pacientes.aspx.cs">
+    <Compile Include="admin\Administrar_Pacientes.aspx.cs">
       <DependentUpon>Administrar_Pacientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Administrar_Pacientes.aspx.designer.cs">
+    <Compile Include="admin\Administrar_Pacientes.aspx.designer.cs">
       <DependentUpon>Administrar_Pacientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\Administrar_Turnos.aspx.cs">
@@ -112,12 +112,12 @@
     <Compile Include="Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Medico.aspx.cs">
-      <DependentUpon>Medico.aspx</DependentUpon>
+    <Compile Include="PanelMedico.aspx.cs">
+      <DependentUpon>PanelMedico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Medico.aspx.designer.cs">
-      <DependentUpon>Medico.aspx</DependentUpon>
+    <Compile Include="PanelMedico.aspx.designer.cs">
+      <DependentUpon>PanelMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

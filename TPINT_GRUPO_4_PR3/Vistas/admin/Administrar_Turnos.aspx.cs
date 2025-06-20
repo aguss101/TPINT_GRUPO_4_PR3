@@ -13,5 +13,20 @@ namespace Vistas.admin
         {
 
         }
+
+        protected void btnAdministrarMedicos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/admin/Administrar_Medicos.aspx");
+        }
+
+        protected void btnAdministrarPacientes_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/admin/Administrar_Pacientes.aspx");
+        }
+
+        protected void btnAdministrarTurnos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/admin/Administrar_Turnos.aspx");
+        }
     }
 }

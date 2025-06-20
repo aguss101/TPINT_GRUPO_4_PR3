@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Medico.aspx.cs" Inherits="Vistas.Medico" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PanelMedico.aspx.cs" Inherits="Vistas.PanelMedico" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -208,7 +208,7 @@
                     </tr>
                     <tr>
                         <td class="td-btn-index">
-                            <asp:Button ID="Button3" runat="server" Text="Ver Historial" CssClass="btn-index" />
+                            <asp:Button ID="Button3" runat="server" Text="Ver Historial" CssClass="btn-index" OnClick="Button3_Click" />
                         </td>
                     </tr>
                     <tr>

@@ -16,9 +16,6 @@ namespace Vistas.admin
         {
             
         }
-
-       
-
         protected void btnAlta_Click(object sender, EventArgs e)
         {
             mvFormularios.ActiveViewIndex = 0;
@@ -70,9 +67,10 @@ namespace Vistas.admin
         protected void InsertarPacientes()
         {
             Paciente paciente = new Paciente();
+            
             paciente.nombre = txbNombre.Text.Trim();
             paciente.apellido = txbApellido.Text.Trim();
-            paciente.DNI = int.Parse(txbDni.Text.Trim());
+            paciente.DNI = txbDni.Text.Trim();
             paciente.fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim());
             paciente.ObraSocial = int.Parse(ddlObraSocial.SelectedValue);
             paciente.genero = int.Parse(ddlGenero.SelectedValue);
@@ -90,7 +88,7 @@ namespace Vistas.admin
             if (filas > 0)
             {
                 lblAddUserState.Text = "Se agrego correctamente el Paciente";
-                lblAddUserState.ForeColor = System.Drawing.Color.Green; // DEBUG para testear si a;ade o no el paciente
+                lblAddUserState.ForeColor = System.Drawing.Color.Green; // DEBUG para testear si añade o no el paciente
                 lblAddUserState.Visible = true;
             }
       
@@ -101,6 +99,19 @@ namespace Vistas.admin
 
         }
 
-      
+        protected void btnAdministrarMedico_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/admin/Administrar_Medicos.aspx");
+        }
+
+        protected void btnAdministrarPaciente_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/admin/Administrar_Pacientes.aspx");
+        }
+
+        protected void btnAdministrarTurnos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/admin/Administrar_Turnos.aspx");
+        }
     }
 }

@@ -6,9 +6,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
 using Entidades;
+
 namespace Vistas
 {
-    public partial class Medico : System.Web.UI.Page
+    public partial class PanelMedico : System.Web.UI.Page
     {
         private GestorPaciente gestorPaciente = new GestorPaciente();
         protected void Page_Load(object sender, EventArgs e)

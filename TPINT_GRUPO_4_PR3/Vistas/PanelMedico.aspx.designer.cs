@@ -11,7 +11,7 @@ namespace Vistas
 {
 
 
-    public partial class Medico
+    public partial class PanelMedico
     {
 
         /// <summary>

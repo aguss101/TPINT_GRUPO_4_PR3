@@ -280,17 +280,17 @@
                     </tr>
                     <tr>
                         <td class="td-btn-index">
-                            <asp:Button runat="server" Text="Administrar Médicos" CssClass="btn-index" />
+                            <asp:Button runat="server" Text="Administrar Médicos" CssClass="btn-index" ID="btnAdministrarMedico" OnClick="btnAdministrarMedico_Click" />
                         </td>
                     </tr>
                     <tr>
                         <td class="td-btn-index">
-                            <asp:Button ID="Button2" runat="server" Text=" Administrar Pacientes" CssClass="btn-index" />
+                            <asp:Button ID="btnAdministrarPaciente" runat="server" Text=" Administrar Pacientes" CssClass="btn-index" OnClick="btnAdministrarPaciente_Click" />
                         </td>
                     </tr>
                     <tr>
                         <td class="td-btn-index">
-                            <asp:Button ID="Button3" runat="server" Text="Administrar Turnos" CssClass="btn-index" />
+                            <asp:Button ID="btnAdministrarTurnos" runat="server" Text="Administrar Turnos" CssClass="btn-index" OnClick="btnAdministrarTurnos_Click" />
                         </td>
                     </tr>
                     <tr>
@@ -365,7 +365,7 @@
                                                 <td class="auto-style30">
                                                     <asp:DropDownList ID="ddlGenero" runat="server" AutoPostBack="True" DataSourceID="dbGenero" DataTextField="descripcion" DataValueField="idSexo">
                                                     </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbGenero" runat="server" ConnectionString="<%$ ConnectionStrings:DBLATO %>" SelectCommand="SELECT * FROM [Sexos]"></asp:SqlDataSource>
+                                                    <asp:SqlDataSource ID="dbGenero" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString2 %>" SelectCommand="SELECT * FROM [Sexos]"></asp:SqlDataSource>
                                                 </td>
                                                 <td class="auto-style31"></td>
                                             </tr>
@@ -374,7 +374,7 @@
                                                 <td class="auto-style30">
                                                     <asp:DropDownList ID="ddlNacionalidad" runat="server" DataSourceID="dbNacionalidades" DataTextField="gentilicio" DataValueField="gentilicio">
                                                     </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:DBLATO %>" SelectCommand="SELECT * FROM [Paises]"></asp:SqlDataSource>
+                                                    <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString2 %>" SelectCommand="SELECT * FROM [Paises]"></asp:SqlDataSource>
                                                 </td>
                                                 <td class="auto-style31"></td>
                                             </tr>
@@ -397,7 +397,7 @@
                                                 <td class="auto-style30">
                                                     <asp:DropDownList ID="ddlProvincias" runat="server" DataSourceID="dbProvincias" DataTextField="nombreProvincia" DataValueField="idProvincia">
                                                     </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:DBLATO %>" SelectCommand="SELECT [idProvincia], [nombreProvincia] FROM [Provincias]"></asp:SqlDataSource>
+                                                    <asp:SqlDataSource ID="dbProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString2 %>" SelectCommand="SELECT [idProvincia], [nombreProvincia] FROM [Provincias]"></asp:SqlDataSource>
                                                 </td>
                                                 <td class="auto-style31">&nbsp;</td>
                                             </tr>
@@ -406,7 +406,7 @@
                                                 <td class="auto-style30">
                                                     <asp:DropDownList ID="ddlLocalidades" runat="server" AutoPostBack="True" DataSourceID="dbLocalidades" DataTextField="nombreLocalidad" DataValueField="idLocalidad">
                                                     </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbLocalidades" runat="server" ConnectionString="<%$ ConnectionStrings:DBLATO %>" SelectCommand="SELECT * FROM [Localidades]"></asp:SqlDataSource>
+                                                    <asp:SqlDataSource ID="dbLocalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString2 %>" SelectCommand="SELECT * FROM [Localidades]"></asp:SqlDataSource>
                                                 </td>
                                                 <td class="auto-style31">&nbsp;</td>
                                             </tr>
@@ -416,7 +416,7 @@
                                                     <asp:DropDownList ID="ddlObraSocial" runat="server" AutoPostBack="True" DataSourceID="dbObraSocial" DataTextField="nombre" DataValueField="idObraSocial">
                                                         <asp:ListItem Value="1">Swiss Medical</asp:ListItem>
                                                     </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbObraSocial" runat="server" ConnectionString="<%$ ConnectionStrings:DBLATO %>" SelectCommand="SELECT [idObraSocial], [nombre] FROM [ObraSocial]"></asp:SqlDataSource>
+                                                    <asp:SqlDataSource ID="dbObraSocial" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString2 %>" SelectCommand="SELECT [idObraSocial], [nombre] FROM [ObraSocial]"></asp:SqlDataSource>
                                                 </td>
                                                 <td class="auto-style31">&nbsp;</td>
                                             </tr>

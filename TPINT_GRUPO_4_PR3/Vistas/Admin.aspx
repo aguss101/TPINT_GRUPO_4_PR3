@@ -197,17 +197,17 @@
                     </tr>
                     <tr>
                         <td class="td-btn-index">
-                            <asp:Button runat="server" Text="Administrar Médicos" CssClass="btn-index" ID="btnAdministrarPacientes" OnClick="btnAdministrarPacientes_Click" />
+                            <asp:Button runat="server" Text="Administrar Médicos" CssClass="btn-index" ID="btnAdministrarMedicos" OnClick="btnAdministrarMedicos_Click" />
                         </td>
                     </tr>
                     <tr>
                         <td class="td-btn-index">
-                            <asp:Button ID="Button2" runat="server" Text=" Administrar Pacientes" CssClass="btn-index" />
+                            <asp:Button ID="Administrar_Pacientes" runat="server" Text=" Administrar Pacientes" CssClass="btn-index" OnClick="Administrar_Pacientes_Click" />
                         </td>
                     </tr>
                     <tr>
                         <td class="td-btn-index">
-                            <asp:Button ID="Button3" runat="server" Text="Administrar Turnos" CssClass="btn-index" />
+                            <asp:Button ID="Administrar_Turnos" runat="server" Text="Administrar Turnos" CssClass="btn-index" OnClick="Administrar_Turnos_Click" />
                         </td>
                     </tr>
                     <tr>

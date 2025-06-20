@@ -10,7 +10,7 @@ namespace Entidades
 {
     public class Persona
     {
-        public int DNI { get; set; }
+        public string DNI { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
         public int genero { get; set; }

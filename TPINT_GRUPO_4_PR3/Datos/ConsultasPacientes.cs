@@ -29,7 +29,7 @@ namespace Datos
                         {
                             Paciente paciente = new Paciente();
 
-                           paciente.DNI = (Convert.ToInt32(reader["DNI"]));
+                            paciente.DNI = (reader["DNI"].ToString());
                             paciente.ObraSocial = (Convert.ToInt32(reader["idObraSocial"]));
                             paciente.nombre = (reader["nombre"].ToString());
                             paciente.apellido = (reader["apellido"].ToString());
