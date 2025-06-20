@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\Administrar_Medicos.aspx" />
-    <Content Include="admin\Administrar_Pacientes.aspx" />
+    <Content Include="Administrar_Pacientes.aspx" />
     <Content Include="admin\Administrar_Turnos.aspx" />
     <Content Include="images\login-bg.jpg" />
     <Content Include="Login.aspx" />
@@ -84,11 +84,11 @@
     <Compile Include="admin\Administrar_Medicos.aspx.designer.cs">
       <DependentUpon>Administrar_Medicos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Administrar_Pacientes.aspx.cs">
+    <Compile Include="Administrar_Pacientes.aspx.cs">
       <DependentUpon>Administrar_Pacientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Administrar_Pacientes.aspx.designer.cs">
+    <Compile Include="Administrar_Pacientes.aspx.designer.cs">
       <DependentUpon>Administrar_Pacientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\Administrar_Turnos.aspx.cs">

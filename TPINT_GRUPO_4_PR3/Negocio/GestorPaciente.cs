@@ -16,5 +16,10 @@ namespace Negocio
            
             return consultas.GetPacientes();
         }
+
+        public int InsertarPaciente(string nombreprocedimiento, Paciente paciente)
+        {
+            return consultas.InsertarPaciente(nombreprocedimiento, paciente);
+        }
     }
 }

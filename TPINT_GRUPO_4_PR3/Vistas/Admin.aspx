@@ -197,7 +197,7 @@
                     </tr>
                     <tr>
                         <td class="td-btn-index">
-                            <asp:Button runat="server" Text="Administrar Médicos" CssClass="btn-index" />
+                            <asp:Button runat="server" Text="Administrar Médicos" CssClass="btn-index" ID="btnAdministrarPacientes" OnClick="btnAdministrarPacientes_Click" />
                         </td>
                     </tr>
                     <tr>

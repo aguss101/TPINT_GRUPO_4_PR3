@@ -9,6 +9,7 @@ namespace Vistas.admin
 {
     public partial class Administrar_Medicos : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
