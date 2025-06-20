@@ -1,3 +1,6 @@
+USE ClinicaDB
+
+GO
 
 CREATE OR ALTER PROCEDURE sp_AltaPaciente
     @DNI INT,
