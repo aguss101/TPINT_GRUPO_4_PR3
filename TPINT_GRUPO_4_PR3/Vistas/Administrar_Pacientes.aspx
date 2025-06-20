@@ -365,7 +365,7 @@
                                                 <td class="auto-style30">
                                                     <asp:DropDownList ID="ddlGenero" runat="server" AutoPostBack="True" DataSourceID="dbGenero" DataTextField="descripcion" DataValueField="idSexo">
                                                     </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbGenero" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString %>" SelectCommand="SELECT * FROM [Sexos]"></asp:SqlDataSource>
+                                                    <asp:SqlDataSource ID="dbGenero" runat="server" ConnectionString="<%$ ConnectionStrings:DBLATO %>" SelectCommand="SELECT * FROM [Sexos]"></asp:SqlDataSource>
                                                 </td>
                                                 <td class="auto-style31"></td>
                                             </tr>
@@ -374,7 +374,7 @@
                                                 <td class="auto-style30">
                                                     <asp:DropDownList ID="ddlNacionalidad" runat="server" DataSourceID="dbNacionalidades" DataTextField="gentilicio" DataValueField="gentilicio">
                                                     </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString %>" SelectCommand="SELECT * FROM [Paises]"></asp:SqlDataSource>
+                                                    <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:DBLATO %>" SelectCommand="SELECT * FROM [Paises]"></asp:SqlDataSource>
                                                 </td>
                                                 <td class="auto-style31"></td>
                                             </tr>
@@ -397,7 +397,7 @@
                                                 <td class="auto-style30">
                                                     <asp:DropDownList ID="ddlProvincias" runat="server" DataSourceID="dbProvincias" DataTextField="nombreProvincia" DataValueField="idProvincia">
                                                     </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString %>" SelectCommand="SELECT [idProvincia], [nombreProvincia] FROM [Provincias]"></asp:SqlDataSource>
+                                                    <asp:SqlDataSource ID="dbProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:DBLATO %>" SelectCommand="SELECT [idProvincia], [nombreProvincia] FROM [Provincias]"></asp:SqlDataSource>
                                                 </td>
                                                 <td class="auto-style31">&nbsp;</td>
                                             </tr>
@@ -406,7 +406,7 @@
                                                 <td class="auto-style30">
                                                     <asp:DropDownList ID="ddlLocalidades" runat="server" AutoPostBack="True" DataSourceID="dbLocalidades" DataTextField="nombreLocalidad" DataValueField="idLocalidad">
                                                     </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbLocalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString %>" SelectCommand="SELECT * FROM [Localidades]"></asp:SqlDataSource>
+                                                    <asp:SqlDataSource ID="dbLocalidades" runat="server" ConnectionString="<%$ ConnectionStrings:DBLATO %>" SelectCommand="SELECT * FROM [Localidades]"></asp:SqlDataSource>
                                                 </td>
                                                 <td class="auto-style31">&nbsp;</td>
                                             </tr>
@@ -416,7 +416,7 @@
                                                     <asp:DropDownList ID="ddlObraSocial" runat="server" AutoPostBack="True" DataSourceID="dbObraSocial" DataTextField="nombre" DataValueField="idObraSocial">
                                                         <asp:ListItem Value="1">Swiss Medical</asp:ListItem>
                                                     </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbObraSocial" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString %>" SelectCommand="SELECT [idObraSocial], [nombre] FROM [ObraSocial]"></asp:SqlDataSource>
+                                                    <asp:SqlDataSource ID="dbObraSocial" runat="server" ConnectionString="<%$ ConnectionStrings:DBLATO %>" SelectCommand="SELECT [idObraSocial], [nombre] FROM [ObraSocial]"></asp:SqlDataSource>
                                                 </td>
                                                 <td class="auto-style31">&nbsp;</td>
                                             </tr>
@@ -462,7 +462,7 @@
                                     <h3>Modificar Paciente</h3>
                                     <div>
 
-                                        Ingrese un valor:<asp:TextBox ID="TextBox9" runat="server"></asp:TextBox>
+                                        Ingrese el DNI del Paciente:<asp:TextBox ID="txtbModSearchPacienteDNI" runat="server"></asp:TextBox>
                                         <asp:GridView ID="GridView3" runat="server">
                                         </asp:GridView>
                                     </div>
@@ -472,8 +472,29 @@
                                     <h3>Listar Pacientes</h3>
                                     <div>
 
-                                        Ingrese un valor:<asp:TextBox ID="TextBox8" runat="server"></asp:TextBox>
-                                        <asp:GridView ID="GridView2" runat="server">
+                                        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Height="205px" Width="1027px">
+                                            <AlternatingRowStyle BackColor="White" />
+                                            <Columns>
+                                                <asp:BoundField DataField="DNI" HeaderText="DNI" />
+                                                <asp:BoundField DataField="obraSocial" HeaderText="Obra Social" />
+                                                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                                                <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
+                                                <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
+                                                <asp:BoundField DataField="Localidad" HeaderText="Localidad" />
+                                                <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
+                                                <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
+                                                <asp:BoundField HeaderText="Correo" />
+                                            </Columns>
+                                            <EditRowStyle BackColor="#2461BF" />
+                                            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                                            <RowStyle BackColor="#EFF3FB" />
+                                            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                            <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                                            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                                            <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                                            <SortedDescendingHeaderStyle BackColor="#4870BE" />
                                         </asp:GridView>
 
                                     </div>

@@ -18,10 +18,16 @@ namespace Entidades
         public DateTime fechaNacimiento { get; set; }
         public string nacionalidad { get; set; }
 
+        
         public string Direccion { get; set; }
+
         public int Telefono { get; set; }
         public string Correo { get; set; }
 
+        // DATO A AGREGAR PARA LA BAJA LOGICA
+        /*
+        public bool estado { get; set; }
+        */
 
 
     }

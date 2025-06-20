@@ -14,7 +14,7 @@ namespace Vistas.admin
         private GestorPaciente gestorPaciente = new GestorPaciente();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
        
@@ -32,17 +32,39 @@ namespace Vistas.admin
         protected void btnMod_Click(object sender, EventArgs e)
         {
             mvFormularios.ActiveViewIndex = 2;
+
         }
 
         protected void btnLectura_Click(object sender, EventArgs e)
         {
             mvFormularios.ActiveViewIndex = 3;
+            loadGridPacientes();
+
         }
 
         protected void btnRegistrarPaciente_Click(object sender, EventArgs e)
         {
             InsertarPacientes();
         }
+
+        protected void loadGridPacientes()
+        {
+
+            GestorPaciente gestorPaciente = new GestorPaciente();
+            List<Paciente> listaPacientes = gestorPaciente.GetPacientes();
+
+            GridView2.DataSource = listaPacientes;
+            GridView2.DataBind();
+           
+        }
+
+        /*
+        protected void deletedGridPaciente()
+        {
+            GestorPaciente gestorPaciente = new GestorPaciente();
+            gestorPaciente.
+        }
+        */
 
 
         protected void InsertarPacientes()
