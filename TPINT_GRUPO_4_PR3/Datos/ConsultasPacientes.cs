@@ -72,6 +72,36 @@ namespace Datos
             return conexion.EjecutarProcedimientoAlmacenado(nombreprocedimiento, parametros);
         }
 
+        public int EliminarPaciente(string nombreProcedimiento, int dni)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@DNI", dni)
+            };
+            return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);
+        }
+
+        public int ModificarPaciente(string nombreProcedimiento, Paciente paciente)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@DNI", paciente.DNI),
+                new SqlParameter("@Nombre", paciente.nombre),
+                new SqlParameter("@Apellido", paciente.apellido),
+                new SqlParameter("@Nacionalidad", paciente.nacionalidad),
+                new SqlParameter("@FechaNacimiento", paciente.fechaNacimiento),
+                new SqlParameter("@Sexo", paciente.genero),
+                new SqlParameter("@IdLocalidad", paciente.Localidad),
+                new SqlParameter("@ObraSocial", paciente.ObraSocial),
+                new SqlParameter("@UltimaAtencion", paciente.ultimaAtencion),
+                new SqlParameter("@Alta", paciente.Alta),
+                new SqlParameter("@Telefono", paciente.Telefono),
+                new SqlParameter("@Direccion", paciente.Direccion),
+                new SqlParameter("@Correo", paciente.Correo)
+            };
+            return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);
+        }
+
 
     }
 }
