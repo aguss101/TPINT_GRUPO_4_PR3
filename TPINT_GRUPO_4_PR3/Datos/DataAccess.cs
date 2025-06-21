@@ -11,7 +11,6 @@ namespace Datos
     public class DataAccess
     {
         private string connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=ClinicaDB;Integrated Security=True;Encrypt=False";
-
         public SqlConnection AbrirConexion()
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -128,7 +127,7 @@ namespace Datos
                         filasAfectadas = command.ExecuteNonQuery();
                     }
                     catch (Exception ex)
-                    {
+                    {   
                         throw new Exception("Error al ejecutar el procedimiento almacenado: " + ex.Message);
                     }
                 }

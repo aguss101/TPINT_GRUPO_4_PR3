@@ -37,39 +37,81 @@ namespace Vistas.admin
         {
             mvFormularios.ActiveViewIndex = 3;
         }
-        
-        protected void InsertarMedicos()
+protected void InsertarMedicos()
+{
+    try
+    {
+        Medico medico = new Medico();
+
+        medico.Legajo = txbLegajo.Text.Trim();
+        medico.DNI = txbDni.Text.Trim();
+        medico.nombre = txbNombre.Text.Trim();
+        medico.apellido = txbApellido.Text.Trim();
+        medico.idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue);
+        medico.genero = int.Parse(ddlGenero.SelectedValue);
+        medico.nacionalidad = ddlNacionalidad.SelectedValue.ToString();
+        medico.fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim());
+        medico.Direccion = txbDireccion.Text.Trim();
+        medico.Localidad = int.Parse(ddlLocalidades.SelectedValue);
+        medico.Correo = txbCorreo.Text.Trim();
+        medico.Telefono = int.Parse(txbTelefono.Text.Trim());
+
+        string nombreProcedimiento = "sp_AltaMedico";
+        int filas = gestorMedico.InsertarMedico(nombreProcedimiento, medico);
+
+        if (filas > 0)
         {
-            Medico medico = new Medico();
-
-            medico.Legajo = txbLegajo.Text.Trim();
-            medico.DNI = txbDni.Text.Trim();
-            medico.nombre = txbNombre.Text.Trim();
-            medico.apellido = txbApellido.Text.Trim();
-            medico.genero = int.Parse(ddlGenero.SelectedValue);
-            medico.nacionalidad = ddlNacionalidad.SelectedValue.ToString();
-            medico.fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim());
-            medico.Direccion = txbDireccion.Text.Trim();
-            medico.Localidad = int.Parse(ddlLocalidades.SelectedValue);
-            medico.Correo = txbCorreo.Text.Trim();
-            medico.Telefono = int.Parse(txbTelefono.Text.Trim());
-
-
-            string nombreProcedimiento = "sp_AltaMedico";
-            int filas = gestorMedico.InsertarMedico(nombreProcedimiento, medico);
-            if (filas > 0)
-            {
-                lblAddUserState.Text = "Se agrego correctamente el Paciente";
-                lblAddUserState.ForeColor = System.Drawing.Color.Green;
-                lblAddUserState.Visible = true;
-            }
-
-            else
-                lblAddUserState.Text = "Hubo un error durante la carga";
-            lblAddUserState.ForeColor = System.Drawing.Color.Red;
-            lblAddUserState.Visible = true;
-
+            lblAddUserState.Text = "Se agregó correctamente el médico";
+            lblAddUserState.ForeColor = System.Drawing.Color.Green;
         }
+        else
+        {
+            lblAddUserState.Text = "Hubo un error durante la carga (no se insertó ninguna fila)";
+            lblAddUserState.ForeColor = System.Drawing.Color.Red;
+        }
+
+        lblAddUserState.Visible = true;
+    }
+    catch (Exception ex)
+    {
+        lblAddUserState.Text = "❌ Error: " + ex.Message;
+        lblAddUserState.ForeColor = System.Drawing.Color.Red;
+        lblAddUserState.Visible = true;
+    }
+}
+        //protected void InsertarMedicos()
+        //{
+        //    Medico medico = new Medico();
+
+        //    medico.Legajo = txbLegajo.Text.Trim();
+        //    medico.DNI = txbDni.Text.Trim();
+        //    medico.nombre = txbNombre.Text.Trim();
+        //    medico.apellido = txbApellido.Text.Trim();
+        //    medico.idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue);
+        //    medico.genero = int.Parse(ddlGenero.SelectedValue);
+        //    medico.nacionalidad = ddlNacionalidad.SelectedValue.ToString();
+        //    medico.fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim());
+        //    medico.Direccion = txbDireccion.Text.Trim();
+        //    medico.Localidad = int.Parse(ddlLocalidades.SelectedValue);
+        //    medico.Correo = txbCorreo.Text.Trim();
+        //    medico.Telefono = int.Parse(txbTelefono.Text.Trim());
+
+
+        //    string nombreProcedimiento = "sp_AltaMedico";
+        //    int filas = gestorMedico.InsertarMedico(nombreProcedimiento, medico);
+        //    if (filas > 0)
+        //    {
+        //        lblAddUserState.Text = "Se agrego correctamente el médico";
+        //        lblAddUserState.ForeColor = System.Drawing.Color.Green;
+        //        lblAddUserState.Visible = true;
+        //    }
+
+        //    else
+        //        lblAddUserState.Text = "Hubo un error durante la carga";
+        //    lblAddUserState.ForeColor = System.Drawing.Color.Red;
+        //    lblAddUserState.Visible = true;
+
+        //}
 
         protected void btnAdministrarMedico_Click(object sender, EventArgs e)
         {

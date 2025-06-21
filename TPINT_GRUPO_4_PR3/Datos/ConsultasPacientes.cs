@@ -37,8 +37,11 @@ namespace Datos
                             paciente.Alta = (DateTime)reader["alta"];
                             paciente.genero = (Convert.ToInt32(reader["idSexo"]));
                             paciente.fechaNacimiento = (DateTime)reader["FechaNacimiento"];
+                            paciente.Direccion = (reader["Direccion"].ToString());
                             paciente.Localidad = (Convert.ToInt32(reader["idLocalidad"]));
                             paciente.nacionalidad = (reader["nacionalidad"].ToString());
+                            paciente.Correo = (reader["Correo"].ToString());
+                            paciente.Telefono = (Convert.ToInt32(reader["Telefono"]));
 
                             pacientes.Add(paciente);
                         }

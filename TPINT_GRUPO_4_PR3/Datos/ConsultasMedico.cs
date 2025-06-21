@@ -28,6 +28,7 @@ namespace Datos
 
                             medico.Legajo = (reader["Legajo"].ToString());
                             medico.DNI = (reader["DNI"].ToString());
+                            medico.idEspecialidad = (Convert.ToInt32(reader["idEspecialidad"]));
                             medico.nombre = (reader["nombre"].ToString());
                             medico.apellido = (reader["apellido"].ToString());
                             medico.genero = (Convert.ToInt32(reader["Descripcion"]));
@@ -51,7 +52,9 @@ namespace Datos
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
+        new SqlParameter("@Legajo", medico.Legajo),
         new SqlParameter("@DNI", medico.DNI),
+        new SqlParameter("@idEspecialidad", medico.idEspecialidad),
         new SqlParameter("@Nombre", medico.nombre),
         new SqlParameter("@Apellido", medico.apellido),
         new SqlParameter("@Nacionalidad", medico.nacionalidad),
@@ -80,7 +83,9 @@ namespace Datos
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
+                new SqlParameter("@Legajo", medico.DNI),
                 new SqlParameter("@DNI", medico.DNI),
+                new SqlParameter("@idEspecialidad", medico.idEspecialidad),
                 new SqlParameter("@Nombre", medico.nombre),
                 new SqlParameter("@Apellido", medico.apellido),
                 new SqlParameter("@Nacionalidad", medico.nacionalidad),

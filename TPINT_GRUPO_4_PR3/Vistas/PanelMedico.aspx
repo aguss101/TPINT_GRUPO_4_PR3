@@ -208,7 +208,7 @@
                     </tr>
                     <tr>
                         <td class="td-btn-index">
-                            <asp:Button ID="Button3" runat="server" Text="Ver Historial" CssClass="btn-index" OnClick="Button3_Click" />
+                            <asp:Button ID="Button3" runat="server" Text="Ver Historial" CssClass="btn-index" />
                         </td>
                     </tr>
                     <tr>
