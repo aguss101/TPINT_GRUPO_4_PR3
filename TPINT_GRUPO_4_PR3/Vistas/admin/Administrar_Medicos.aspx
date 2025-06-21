@@ -389,7 +389,7 @@
                                             <tr>
                                                 <td class="auto-style32">Nacionalidad</td>
                                                 <td class="auto-style30">
-                                                    <asp:DropDownList ID="ddlNacionalidad" runat="server" DataSourceID="dbNacionalidades" DataTextField="gentilicio" DataValueField="idPais">
+                                                    <asp:DropDownList ID="ddlNacionalidad" runat="server" DataSourceID="dbNacionalidades" DataTextField="nombrePais" DataValueField="gentilicio">
                                                     </asp:DropDownList>
                                                     <br />
                                                     <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT * FROM [Paises]"></asp:SqlDataSource>
