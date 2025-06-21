@@ -8,13 +8,13 @@
         html, body, form {
             margin: 0;
             font-family: Arial, sans-serif;
-            height:100%;
+            height: 100%;
         }
 
         .container {
             display: flex;
             height: 100vh;
-            border-radius: 25px; 
+            border-radius: 25px;
         }
 
         .sidebar {
@@ -24,29 +24,31 @@
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
 
-        .sidebar h2 {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
+            .sidebar h2 {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
 
-        .sidebar .btn {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            text-align: left;
-        }
+            .sidebar .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 10px;
+                padding: 10px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                cursor: pointer;
+                border-radius: 4px;
+                text-align: left;
+            }
+
         .containerCartel {
             display: flex;
             flex-direction: row;
             width: 100%;
             justify-content: right;
-        }/*
+        }
+        /*
         .sidebarUser {
             top: 16px;
             right: 16px;
@@ -56,19 +58,20 @@
             padding: 8px;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
         }*/
-         .sidebarUser {
+        .sidebarUser {
             width: fit-content;
             background-color: #f4f4f4;
             border-radius: 12.5px;
             padding: 8px 12px;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
             margin-top: 4px;
-         }
-         .titulo-con-nombre {
+        }
+
+        .titulo-con-nombre {
             display: flex;
             flex-direction: column;
             align-items: flex-end; /* Alinea todo a la derecha */
-         }
+        }
 
         .sidebar .btn:hover {
             background-color: #0056b3;
@@ -93,39 +96,47 @@
             background-color: #fafafa;
             min-height: 300px;
         }
+
         .tablaDiv {
             width: 100%;
-            height:100%;
+            height: 100%;
         }
+
         .no-select {
             user-select: none;
         }
+
         .columnaIndex {
             width: 157px;
-            background-color:#ffffff;
-            height:100%;
+            background-color: #ffffff;
+            height: 100%;
         }
+
         .auto-style3 {
             width: 100%;
-            height:100%;
+            height: 100%;
         }
+
         .auto-style4 {
             width: 151px;
             height: 310px;
         }
+
         .columnaIndex-PanelAdmin {
             width: 151px;
             text-align: center;
             font-size: 16px;
-            font-weight:bold;
-            height:80px;
+            font-weight: bold;
+            height: 80px;
         }
+
         .columnaBody {
-            background-color:#e6e6e6;
+            background-color: #e6e6e6;
             padding: 0px 30px 30px 30px;
             font-weight: normal;
-            height:100%;
+            height: 100%;
         }
+
         .btn-index {
             background-color: white;
             color: #595959;
@@ -139,6 +150,7 @@
             height: 100%;
             transition: background-color 0.3s, color 0.3s;
         }
+
         .td-btn-index {
             width: 151px;
             height: 10px;
@@ -149,375 +161,472 @@
             color: white;
             border-color: #4da9ff;
         }
+
         .hl-CerrarSesion {
             width: 151px;
             height: 26px;
-            text-align:center;
+            text-align: center;
         }
+
         .nombre-clinica {
             text-align: right;
         }
+
         .clinica {
             color: #666666;
             font-weight: bold;
         }
+
         .frgp {
             color: #00aaff;
             font-weight: bold;
         }
+
         .botonera {
             width: 100%;
             padding: 0;
         }
 
-        .botonera .btn-td {
-            display: inline;
-            width: 20%;
-            margin-bottom: 10px; /* espacio entre botones */
-            box-sizing: border-box;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 6px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
+            .botonera .btn-td {
+                display: inline;
+                width: 20%;
+                margin-bottom: 10px; /* espacio entre botones */
+                box-sizing: border-box;
+                padding: 10px;
+                font-size: 16px;
+                border-radius: 6px;
+                border: none;
+                background-color: #007bff;
+                color: white;
+                cursor: pointer;
+            }
 
-        .botonera .btn-td:hover {
-            background-color: #0056b3;
-        }
+                .botonera .btn-td:hover {
+                    background-color: #0056b3;
+                }
+
         .auto-style10 {
             width: 100%;
             height: 100%;
             margin-top: 0px;
         }
-                        
+
         .auto-style22 {
             text-align: right;
             height: 26px;
         }
-        
+
         .auto-style28 {
             user-select: none;
             width: 34px;
         }
-        
+
         .auto-style30 {
             user-select: none;
             height: 24px;
         }
+
         .auto-style31 {
             user-select: none;
             width: 34px;
             height: 24px;
         }
+
         .auto-style32 {
             user-select: none;
             height: 24px;
             width: 196px;
         }
+
         .auto-style33 {
             user-select: none;
             width: 196px;
             height: 34px;
         }
+
         .auto-style34 {
             user-select: none;
             height: 51px;
         }
+
         .auto-style35 {
             user-select: none;
             width: 34px;
             height: 51px;
         }
-        
+
         .auto-style36 {
             user-select: none;
             height: 25px;
             width: 34px;
         }
-        
+
         .auto-style37 {
             user-select: none;
             width: 196px;
         }
+
         .auto-style38 {
             user-select: none;
             height: 34px;
         }
+
         .auto-style39 {
             user-select: none;
             width: 34px;
             height: 34px;
         }
+
         .auto-style41 {
             user-select: none;
             width: 34px;
             height: 18px;
         }
-        
+
         .auto-style43 {
             width: 100%;
             padding: 0;
             height: 18px;
         }
-        
+
         .auto-style44 {
             width: 100%;
         }
-        
-        </style>
+    </style>
+
+    <script type="text/javascript">
+        function seleccionarUnico(checkboxSeleccionado) {
+            var grid = document.getElementById('<%= GridView2.ClientID %>');
+            var checkboxes = grid.querySelectorAll("input[type='checkbox']");
+
+            checkboxes.forEach(function (chk) {
+                if (chk !== checkboxSeleccionado) {
+                    chk.checked = false;
+                }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function seleccionarUnico(checkboxSeleccionado) {
+            var grid = document.getElementById('<%= GridView2.ClientID %>');
+        var checkboxes = grid.querySelectorAll("input[type='checkbox']");
+
+        var algunoMarcado = false;
+
+        checkboxes.forEach(function (chk) {
+            if (chk !== checkboxSeleccionado) {
+                chk.checked = false;
+            }
+        });
+
+        // Verificamos si el checkbox actual quedó seleccionado
+        if (checkboxSeleccionado.checked) {
+            algunoMarcado = true;
+        }
+
+        // Mostrar u ocultar los botones según corresponda
+        var btnModificar = document.getElementById('<%= btnMod.ClientID %>');
+        var btnBaja = document.getElementById('<%= btnBaja.ClientID %>');
+
+            if (algunoMarcado) {
+                btnModificar.style.display = "inline-block";
+                btnBaja.style.display = "inline-block";
+            } else {
+                btnModificar.style.display = "none";
+                btnBaja.style.display = "none";
+            }
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
-    <table class="tablaDiv">
-        <tr>
-            <td class="columnaIndex">
-                <table class="auto-style3">
-                    <tr>
-                        <td class="columnaIndex-PanelAdmin">Panel Admin</td>
-                    </tr>
-                    <tr>
-                        <td class="td-btn-index">
-                            <asp:Button runat="server" Text="Administrar Médicos" CssClass="btn-index" ID="btnAdministrarMedico" OnClick="btnAdministrarMedico_Click" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="td-btn-index">
-                            <asp:Button ID="btnAdministrarPaciente" runat="server" Text=" Administrar Pacientes" CssClass="btn-index" OnClick="btnAdministrarPaciente_Click" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="td-btn-index">
-                            <asp:Button ID="btnAdministrarTurnos" runat="server" Text="Administrar Turnos" CssClass="btn-index" OnClick="btnAdministrarTurnos_Click" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style4"></td>
-                    </tr>
-                    <tr>
-                        <td> &nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="hl-CerrarSesion">
-                            <asp:HyperLink ID="hlCerrarSesion" runat="server" NavigateUrl="~/Login.aspx">Cerrar Sesión</asp:HyperLink>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td class="columnaBody">
-                <table class="auto-style10">
-                    <tr>
-                        <td class="auto-style22" colspan="3">
-                            <div class="titulo-con-nombre">
-                                <h2><span class="clinica">Clínica</span> <span class="frgp">FRGP</span></h2>
-                                <div class="sidebarUser">
-                                    <asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Names="Calibri" Text="Administrador"></asp:Label>
+        <table class="tablaDiv">
+            <tr>
+                <td class="columnaIndex">
+                    <table class="auto-style3">
+                        <tr>
+                            <td class="columnaIndex-PanelAdmin">Panel Admin</td>
+                        </tr>
+                        <tr>
+                            <td class="td-btn-index">
+                                <asp:Button runat="server" Text="Administrar Médicos" CssClass="btn-index" ID="btnAdministrarMedico" OnClick="btnAdministrarMedico_Click" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-btn-index">
+                                <asp:Button ID="btnAdministrarPaciente" runat="server" Text=" Administrar Pacientes" CssClass="btn-index" OnClick="btnAdministrarPaciente_Click" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-btn-index">
+                                <asp:Button ID="btnAdministrarTurnos" runat="server" Text="Administrar Turnos" CssClass="btn-index" OnClick="btnAdministrarTurnos_Click" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style4"></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="hl-CerrarSesion">
+                                <asp:HyperLink ID="hlCerrarSesion" runat="server" NavigateUrl="~/Login.aspx">Cerrar Sesión</asp:HyperLink>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td class="columnaBody">
+                    <table class="auto-style10">
+                        <tr>
+                            <td class="auto-style22" colspan="3">
+                                <div class="titulo-con-nombre">
+                                    <h2><span class="clinica">Clínica</span> <span class="frgp">FRGP</span></h2>
+                                    <div class="sidebarUser">
+                                        <asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Names="Calibri" Text="Administrador"></asp:Label>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style34" colspan="2"><h2>Administrar Paciente</h2></td>
-                        <td class="auto-style35"></td>
-                    </tr>
-                    <tr>
-                        <td class="botonera" colspan="2">
-                            <asp:Button ID="btnAlta" runat="server" Text="Registrar" CssClass="btn-td" OnClick="btnAlta_Click" />
-                            <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" CssClass="btn-td" OnClick="btnBaja_Click" />
-                            <asp:Button ID="btnMod" runat="server" Text="Modificar" CssClass="btn-td" OnClick="btnMod_Click" />
-                            <asp:Button ID="btnLectura" runat="server" Text="Listar" CssClass="btn-td" OnClick="btnLectura_Click" />
-                        </td>
-                        <td class="auto-style41"></td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style43" colspan="2">
-                            <asp:MultiView ID="mvFormularios" runat="server" ActiveViewIndex="0">
-                                <asp:View ID="vwAlta" runat="server">
-                                    <h3>Registrar Paciente</h3>
-                                    <div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style34" colspan="2">
+                                <h2>Administrar Paciente</h2>
+                            </td>
+                            <td class="auto-style35"></td>
+                        </tr>
+                        <tr>
+                            <td class="botonera" colspan="2">
+                                <asp:Button ID="btnAlta" runat="server" Text="Registrar" CssClass="btn-td" OnClick="btnAlta_Click" />
+                                <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" CssClass="btn-td" OnClick="btnBaja_Click" Style="display: none;" />
+                                <asp:Button ID="btnMod" runat="server" Text="Modificar" CssClass="btn-td" OnClick="btnMod_Click" Style="display: none;"/>
+                                <asp:Button ID="btnLectura" runat="server" Text="Listar" CssClass="btn-td" OnClick="btnLectura_Click" />
+                            </td>
+                            <td class="auto-style41"></td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style43" colspan="2">
+                                <asp:MultiView ID="mvFormularios" runat="server" ActiveViewIndex="0">
+                                    <asp:View ID="vwAlta" runat="server">
+                                        <h3>Registrar Paciente</h3>
+                                        <div>
 
-                                        <table class="auto-style44">
-                                            <tr>
-                                                <td class="auto-style32">DNI</td>
-                                                <td class="auto-style30">
-                                                    <asp:TextBox ID="txbDni" runat="server"></asp:TextBox>
-                                                </td>
-                                                <td class="auto-style31"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="auto-style32">Nombre</td>
-                                                <td class="auto-style30">
-                                                    <asp:TextBox ID="txbNombre" runat="server"></asp:TextBox>
-                                                </td>
-                                                <td class="auto-style31"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="auto-style32">Apellido</td>
-                                                <td class="auto-style30">
-                                                    <asp:TextBox ID="txbApellido" runat="server"></asp:TextBox>
-                                                </td>
-                                                <td class="auto-style31"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="auto-style32">Sexo</td>
-                                                <td class="auto-style30">
-                                                    <asp:DropDownList ID="ddlGenero" runat="server" AutoPostBack="True" DataSourceID="dbGenero" DataTextField="descripcion" DataValueField="idSexo">
-                                                    </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbGenero" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT * FROM [Sexos]"></asp:SqlDataSource>
-                                                </td>
-                                                <td class="auto-style31"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="auto-style32">Nacionalidad</td>
-                                                <td class="auto-style30">
-                                                    <asp:DropDownList ID="ddlNacionalidad" runat="server" DataSourceID="dbNacionalidades" DataTextField="gentilicio" DataValueField="gentilicio">
-                                                    </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT * FROM [Paises]"></asp:SqlDataSource>
-                                                </td>
-                                                <td class="auto-style31"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="auto-style32">Fecha de nacimiento</td>
-                                                <td class="auto-style30">
-                                                    <asp:TextBox ID="txbFechaNacimiento" runat="server"></asp:TextBox>
-                                                </td>
-                                                <td class="auto-style31"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="auto-style32">Dirección</td>
-                                                <td class="auto-style30">
-                                                    <asp:TextBox ID="txbDireccion" runat="server"></asp:TextBox>
-                                                </td>
-                                                <td class="auto-style31"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="auto-style32">Provincia</td>
-                                                <td class="auto-style30">
-                                                    <asp:DropDownList ID="ddlProvincias" runat="server" DataSourceID="dbProvincias" DataTextField="nombreProvincia" DataValueField="idProvincia">
-                                                    </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT [idProvincia], [nombreProvincia] FROM [Provincias]"></asp:SqlDataSource>
-                                                </td>
-                                                <td class="auto-style31">&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="auto-style32">Localidad</td>
-                                                <td class="auto-style30">
-                                                    <asp:DropDownList ID="ddlLocalidades" runat="server" AutoPostBack="True" DataSourceID="dbLocalidades" DataTextField="nombreLocalidad" DataValueField="idLocalidad">
-                                                    </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbLocalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT * FROM [Localidades]"></asp:SqlDataSource>
-                                                </td>
-                                                <td class="auto-style31">&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="auto-style32">Obra Social</td>
-                                                <td class="auto-style30">
-                                                    <asp:DropDownList ID="ddlObraSocial" runat="server" AutoPostBack="True" DataSourceID="dbObraSocial" DataTextField="nombre" DataValueField="idObraSocial">
-                                                        <asp:ListItem Value="1">Swiss Medical</asp:ListItem>
-                                                    </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbObraSocial" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT [idObraSocial], [nombre] FROM [ObraSocial]"></asp:SqlDataSource>
-                                                </td>
-                                                <td class="auto-style31">&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="auto-style32">Teléfono</td>
-                                                <td class="auto-style30">
-                                                    <asp:TextBox ID="txbTelefono" runat="server"></asp:TextBox>
-                                                </td>
-                                                <td class="auto-style31"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="auto-style37">Correo</td>
-                                                <td class="no-select">
-                                                    <asp:TextBox ID="txbCorreo" runat="server"></asp:TextBox>
-                                                </td>
-                                                <td class="auto-style36"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="auto-style32">
-                                                    <asp:Button ID="btnRegistrarPaciente" runat="server" Text="Registrar paciente" Width="188px" OnClick="btnRegistrarPaciente_Click" />
-                                                </td>
-                                                <td class="auto-style30">
-                                                    <asp:Label ID="lblAddUserState" runat="server" Visible="False"></asp:Label>
-                                                </td>
-                                                <td class="auto-style31">&nbsp;</td>
-                                            </tr>
-                                        </table>
+                                            <table class="auto-style44">
+                                                <tr>
+                                                    <td class="auto-style32">DNI</td>
+                                                    <td class="auto-style30">
+                                                        <asp:TextBox ID="txbDni" runat="server"></asp:TextBox>
+                                                    </td>
+                                                    <td class="auto-style31"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">Nombre</td>
+                                                    <td class="auto-style30">
+                                                        <asp:TextBox ID="txbNombre" runat="server"></asp:TextBox>
+                                                    </td>
+                                                    <td class="auto-style31"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">Apellido</td>
+                                                    <td class="auto-style30">
+                                                        <asp:TextBox ID="txbApellido" runat="server"></asp:TextBox>
+                                                    </td>
+                                                    <td class="auto-style31"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">Sexo</td>
+                                                    <td class="auto-style30">
+                                                        <asp:DropDownList ID="ddlGenero" runat="server" AutoPostBack="True" DataSourceID="dbGenero" DataTextField="descripcion" DataValueField="idSexo">
+                                                        </asp:DropDownList>
+                                                        <asp:SqlDataSource ID="dbGenero" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT * FROM [Sexos]"></asp:SqlDataSource>
+                                                    </td>
+                                                    <td class="auto-style31"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">Nacionalidad</td>
+                                                    <td class="auto-style30">
+                                                        <asp:DropDownList ID="ddlNacionalidad" runat="server" DataSourceID="dbNacionalidades" DataTextField="gentilicio" DataValueField="gentilicio">
+                                                        </asp:DropDownList>
+                                                        <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:DBLATO %>" SelectCommand="SELECT [idPais], [gentilicio] FROM [Paises]"></asp:SqlDataSource>
+                                                    </td>
+                                                    <td class="auto-style31"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">Fecha de nacimiento</td>
+                                                    <td class="auto-style30">
+                                                        <asp:TextBox ID="txbFechaNacimiento" runat="server"></asp:TextBox>
+                                                    </td>
+                                                    <td class="auto-style31"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">Dirección</td>
+                                                    <td class="auto-style30">
+                                                        <asp:TextBox ID="txbDireccion" runat="server"></asp:TextBox>
+                                                    </td>
+                                                    <td class="auto-style31"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">Provincia</td>
+                                                    <td class="auto-style30">
+                                                        <asp:DropDownList ID="ddlProvincias" runat="server" DataSourceID="dbProvincias" DataTextField="nombreProvincia" DataValueField="idProvincia">
+                                                        </asp:DropDownList>
+                                                        <asp:SqlDataSource ID="dbProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT [idProvincia], [nombreProvincia] FROM [Provincias]"></asp:SqlDataSource>
+                                                    </td>
+                                                    <td class="auto-style31">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">Localidad</td>
+                                                    <td class="auto-style30">
+                                                        <asp:DropDownList ID="ddlLocalidades" runat="server" AutoPostBack="True" DataSourceID="dbLocalidades" DataTextField="nombreLocalidad" DataValueField="idLocalidad">
+                                                        </asp:DropDownList>
+                                                        <asp:SqlDataSource ID="dbLocalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT * FROM [Localidades]"></asp:SqlDataSource>
+                                                    </td>
+                                                    <td class="auto-style31">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">Obra Social</td>
+                                                    <td class="auto-style30">
+                                                        <asp:DropDownList ID="ddlObraSocial" runat="server" AutoPostBack="True" DataSourceID="dbObraSocial" DataTextField="nombre" DataValueField="idObraSocial">
+                                                            <asp:ListItem Value="1">Swiss Medical</asp:ListItem>
+                                                        </asp:DropDownList>
+                                                        <asp:SqlDataSource ID="dbObraSocial" runat="server" ConnectionString="<%$ ConnectionStrings:DBLATO %>" SelectCommand="SELECT [nombre], [idObraSocial] FROM [ObraSocial]"></asp:SqlDataSource>
+                                                    </td>
+                                                    <td class="auto-style31">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">Teléfono</td>
+                                                    <td class="auto-style30">
+                                                        <asp:TextBox ID="txbTelefono" runat="server"></asp:TextBox>
+                                                    </td>
+                                                    <td class="auto-style31"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style37">Correo</td>
+                                                    <td class="no-select">
+                                                        <asp:TextBox ID="txbCorreo" runat="server"></asp:TextBox>
+                                                    </td>
+                                                    <td class="auto-style36"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">
+                                                        <asp:Button ID="btnRegistrarPaciente" runat="server" Text="Registrar paciente" Width="188px" OnClick="btnRegistrarPaciente_Click" />
+                                                    </td>
+                                                    <td class="auto-style30">
+                                                        <asp:Label ID="lblAddUserState" runat="server" Visible="False"></asp:Label>
+                                                    </td>
+                                                    <td class="auto-style31">&nbsp;</td>
+                                                </tr>
+                                            </table>
 
-                                    </div>
-                                </asp:View>
+                                        </div>
+                                    </asp:View>
 
-                                <asp:View ID="vwBaja" runat="server">
-                                    <h3>Dar de baja Paciente</h3>
-                                    <div>
-                                        Ingrese un valor:
+                                    <asp:View ID="vwBaja" runat="server">
+                                        <h3>Dar de baja Paciente</h3>
+                                        <div>
+                                            Ingrese un valor:
                                         <asp:TextBox ID="TextBox7" runat="server"></asp:TextBox>
-                                        <asp:GridView ID="GridView1" runat="server">
-                                        </asp:GridView>
-                                    </div>
-                                </asp:View>
+                                            <asp:GridView ID="GridView1" runat="server">
+                                            </asp:GridView>
+                                        </div>
+                                    </asp:View>
 
-                                <asp:View ID="vwModificacion" runat="server">
-                                    <h3>Modificar Paciente</h3>
-                                    <div>
+                                    <asp:View ID="vwModificacion" runat="server">
+                                        <h3>Modificar Paciente</h3>
+                                        <div>
+                                            DNI del Paciente:
+    <asp:TextBox ID="txtbModPacienteDNI" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div>
+                                            Obra Social:
+                                            <asp:DropDownList ID="DropDownListModOS" runat="server" DataSourceID="dbObraSocial" DataTextField="nombre" DataValueField="nombre">
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div>
+                                            Nombre:
+    <asp:TextBox ID="txtbModPacienteNombre" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div>
+                                            Apellido:
+    <asp:TextBox ID="txtbModPacienteApellido" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div>
+                                            Nacionalidad:
+                                            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="dbNacionalidades" DataTextField="gentilicio" DataValueField="idPais">
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div>
+                                            Dirección:
+    <asp:TextBox ID="txtbModPacienteDireccion" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div>
+                                            Teléfono:
+    <asp:TextBox ID="txtbModPacienteTelefono" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div>
+                                            Correo:
+    <asp:TextBox ID="txtbModPacienteCorreo" runat="server"></asp:TextBox>
+                                        </div>
+                                    </asp:View>
 
-                                        Ingrese el DNI del Paciente:<asp:TextBox ID="txtbModSearchPacienteDNI" runat="server"></asp:TextBox>
-                                        <asp:GridView ID="GridView3" runat="server">
-                                        </asp:GridView>
-                                    </div>
-                                </asp:View>
+                                    <asp:View ID="vwLectura" runat="server">
+                                        <h3>Listar Pacientes</h3>
+                                        <div>
 
-                                <asp:View ID="vwLectura" runat="server">
-                                    <h3>Listar Pacientes</h3>
-                                    <div>
+                                            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Height="205px" Width="1027px">
+                                                <AlternatingRowStyle BackColor="White" />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="Seleccionar">
+                                                        <ItemTemplate>
+                                                            <asp:CheckBox ID="chkSeleccionar" runat="server" onclick="seleccionarUnico(this)" OnCheckedChanged="buttonsCbxVisibility" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:BoundField DataField="DNI" HeaderText="DNI" />
+                                                    <asp:BoundField DataField="obraSocial" HeaderText="Obra Social" />
+                                                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                                                    <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
+                                                    <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
+                                                    <asp:BoundField DataField="Localidad" HeaderText="Localidad" />
+                                                    <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
+                                                    <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
+                                                    <asp:BoundField HeaderText="Correo" />
+                                                </Columns>
+                                                <EditRowStyle BackColor="#2461BF" />
+                                                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                                                <RowStyle BackColor="#EFF3FB" />
+                                                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                                <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                                                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                                                <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                                                <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                                            </asp:GridView>
 
-                                        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Height="205px" Width="1027px">
-                                            <AlternatingRowStyle BackColor="White" />
-                                            <Columns>
-                                                <asp:BoundField DataField="DNI" HeaderText="DNI" />
-                                                <asp:BoundField DataField="obraSocial" HeaderText="Obra Social" />
-                                                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                                                <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
-                                                <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
-                                                <asp:BoundField DataField="Localidad" HeaderText="Localidad" />
-                                                <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
-                                                <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
-                                                <asp:BoundField HeaderText="Correo" />
-                                            </Columns>
-                                            <EditRowStyle BackColor="#2461BF" />
-                                            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                                            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                                            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                                            <RowStyle BackColor="#EFF3FB" />
-                                            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                                            <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                                            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                                            <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                                            <SortedDescendingHeaderStyle BackColor="#4870BE" />
-                                        </asp:GridView>
+                                        </div>
+                                    </asp:View>
+                                </asp:MultiView>
+                            </td>
+                            <td class="auto-style41"></td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style33">
+                                <h3>
+                                    <asp:TextBox ID="TextBox8" runat="server"></asp:TextBox>
+                                </h3>
+                            </td>
+                            <td class="auto-style38"></td>
+                            <td class="auto-style39"></td>
+                        </tr>
 
-                                    </div>
-                                </asp:View>
-                            </asp:MultiView>
-                        </td>
-                        <td class="auto-style41"></td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style33"><h3>&nbsp;</h3></td>
-                        <td class="auto-style38"></td>
-                        <td class="auto-style39"></td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="auto-style37"></td>
-                        <td class="no-select"></td>
-                        <td class="auto-style28"></td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+                        <tr>
+                            <td class="auto-style37"></td>
+                            <td class="no-select"></td>
+                            <td class="auto-style28"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
     </form>
 </body>
 </html>

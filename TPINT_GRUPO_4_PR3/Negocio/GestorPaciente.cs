@@ -16,6 +16,10 @@ namespace Negocio
            
             return consultas.GetPacientes();
         }
+        public Paciente getPacientePorID(string idPaciente)
+        {
+            return consultas.getPacientePorID(idPaciente);
+        }
 
         public int InsertarPaciente(string nombreprocedimiento, Paciente paciente)
         {

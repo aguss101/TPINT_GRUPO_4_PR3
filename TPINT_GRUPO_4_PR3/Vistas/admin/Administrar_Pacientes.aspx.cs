@@ -14,7 +14,11 @@ namespace Vistas.admin
         private GestorPaciente gestorPaciente = new GestorPaciente();
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
+
             
+
         }
         protected void btnAlta_Click(object sender, EventArgs e)
         {
@@ -23,19 +27,67 @@ namespace Vistas.admin
 
         protected void btnBaja_Click(object sender, EventArgs e)
         {
-            mvFormularios.ActiveViewIndex = 1;
+            mvFormularios.ActiveViewIndex = 3;
+            loadGridPacientes();
+
+
+
+
         }
 
         protected void btnMod_Click(object sender, EventArgs e)
         {
-            mvFormularios.ActiveViewIndex = 2;
 
+            //recorro el gridview buscando el cbx seleccionado
+            foreach (GridViewRow row in GridView2.Rows)
+            {
+                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
+
+                //verifico que no sea null el valor y este tildado
+                if (chk != null && chk.Checked)
+                {
+                    //obtengo el DNI del seleccionado
+                    string DNI = row.Cells[1].Text;
+
+
+
+                    Paciente paciente = new Paciente();
+
+                    paciente = gestorPaciente.getPacientePorID(DNI);
+                    mvFormularios.ActiveViewIndex = 2;
+                    txtbModPacienteDNI.Text = paciente.DNI;
+                    txtbModPacienteNombre.Text = paciente.nombre;
+                    txtbModPacienteApellido.Text = paciente.apellido;
+                    
+
+                    break;
+                }
+            }
+
+
+        }
+
+        protected void buttonsCbxVisibility(object sender, EventArgs e)
+        {
+            CheckBox cbox = (CheckBox)sender;
+            if (cbox.Checked)
+            {
+            btnMod.Visible = true;
+            btnBaja.Visible = true ;
+            }
+            else
+            {
+                btnMod.Visible = false;
+                btnBaja.Visible = false;
+
+            }
         }
 
         protected void btnLectura_Click(object sender, EventArgs e)
         {
             mvFormularios.ActiveViewIndex = 3;
             loadGridPacientes();
+            
 
         }
 
