@@ -294,7 +294,7 @@
         }
     </style>
 
-    <script type="text/javascript">
+    <%--<script type="text/javascript">
         function seleccionarUnico(checkboxSeleccionado) {
             var grid = document.getElementById('<%= GridView2.ClientID %>');
             var checkboxes = grid.querySelectorAll("input[type='checkbox']");
@@ -337,7 +337,7 @@
                 btnBaja.style.display = "none";
             }
         }
-    </script>
+    </script>--%>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -397,8 +397,8 @@
                         <tr>
                             <td class="botonera" colspan="2">
                                 <asp:Button ID="btnAlta" runat="server" Text="Registrar" CssClass="btn-td" OnClick="btnAlta_Click" />
-                                <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" CssClass="btn-td" OnClick="btnBaja_Click" Style="display: none;" />
-                                <asp:Button ID="btnMod" runat="server" Text="Modificar" CssClass="btn-td" OnClick="btnMod_Click" Style="display: none;"/>
+                                <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" CssClass="btn-td" OnClick="btnBaja_Click"/>
+                                <asp:Button ID="btnMod" runat="server" Text="Modificar" CssClass="btn-td" OnClick="btnMod_Click"/>
                                 <asp:Button ID="btnLectura" runat="server" Text="Listar" CssClass="btn-td" OnClick="btnLectura_Click" />
                             </td>
                             <td class="auto-style41"></td>
@@ -446,7 +446,7 @@
                                                     <td class="auto-style30">
                                                         <asp:DropDownList ID="ddlNacionalidad" runat="server" DataSourceID="dbNacionalidades" DataTextField="gentilicio" DataValueField="gentilicio">
                                                         </asp:DropDownList>
-                                                        <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:DBLATO %>" SelectCommand="SELECT [idPais], [gentilicio] FROM [Paises]"></asp:SqlDataSource>
+                                                        <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT [idPais], [gentilicio] FROM [Paises]"></asp:SqlDataSource>
                                                     </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
@@ -488,7 +488,7 @@
                                                         <asp:DropDownList ID="ddlObraSocial" runat="server" AutoPostBack="True" DataSourceID="dbObraSocial" DataTextField="nombre" DataValueField="idObraSocial">
                                                             <asp:ListItem Value="1">Swiss Medical</asp:ListItem>
                                                         </asp:DropDownList>
-                                                        <asp:SqlDataSource ID="dbObraSocial" runat="server" ConnectionString="<%$ ConnectionStrings:DBLATO %>" SelectCommand="SELECT [nombre], [idObraSocial] FROM [ObraSocial]"></asp:SqlDataSource>
+                                                        <asp:SqlDataSource ID="dbObraSocial" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT [nombre], [idObraSocial] FROM [ObraSocial]"></asp:SqlDataSource>
                                                     </td>
                                                     <td class="auto-style31">&nbsp;</td>
                                                 </tr>
@@ -577,7 +577,7 @@
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Seleccionar">
                                                         <ItemTemplate>
-                                                            <asp:CheckBox ID="chkSeleccionar" runat="server" onclick="seleccionarUnico(this)" OnCheckedChanged="buttonsCbxVisibility" />
+                                                            <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True"  OnCheckedChanged="chkSeleccionar_CheckedChanged"/>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:BoundField DataField="DNI" HeaderText="DNI" />

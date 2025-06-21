@@ -17,7 +17,11 @@ namespace Vistas.admin
 
 
 
-            
+            if (!IsPostBack)
+            {
+                btnMod.Visible = false;
+                btnBaja.Visible = false;
+            }
 
         }
         protected void btnAlta_Click(object sender, EventArgs e)
@@ -64,24 +68,13 @@ namespace Vistas.admin
                 }
             }
 
+            btnMod.Visible = false;
+            btnBaja.Visible = false;
+
 
         }
 
-        protected void buttonsCbxVisibility(object sender, EventArgs e)
-        {
-            CheckBox cbox = (CheckBox)sender;
-            if (cbox.Checked)
-            {
-            btnMod.Visible = true;
-            btnBaja.Visible = true ;
-            }
-            else
-            {
-                btnMod.Visible = false;
-                btnBaja.Visible = false;
-
-            }
-        }
+      
 
         protected void btnLectura_Click(object sender, EventArgs e)
         {
@@ -119,7 +112,7 @@ namespace Vistas.admin
         protected void InsertarPacientes()
         {
             Paciente paciente = new Paciente();
-            
+
             paciente.nombre = txbNombre.Text.Trim();
             paciente.apellido = txbApellido.Text.Trim();
             paciente.DNI = txbDni.Text.Trim();
@@ -143,13 +136,53 @@ namespace Vistas.admin
                 lblAddUserState.ForeColor = System.Drawing.Color.Green; // DEBUG para testear si añade o no el paciente
                 lblAddUserState.Visible = true;
             }
-      
-            else
-                lblAddUserState.Text = "Hubo un error durante la carga";
-            lblAddUserState.ForeColor = System.Drawing.Color.Red;
-            lblAddUserState.Visible = true;
 
         }
+      
+
+
+
+        protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                CheckBox chk = (CheckBox)e.Row.FindControl("chkSeleccionar");
+                chk.AutoPostBack = true;
+                chk.CheckedChanged += new EventHandler(chkSeleccionar_CheckedChanged);  // Cada vez que se checkea un checkbox se dispara el evento, que recorre todos los checkboxs y desmarca los que no dispararon el evento.
+            }
+        }
+
+        protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            foreach (GridViewRow row in GridView2.Rows)
+            {
+                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");  // Recorre todas las filas y desmarca todos aquellos checkboxs que no dispararon el evento.
+                if (chk != sender)
+                {
+                    chk.Checked = false;
+                }
+            }
+
+          
+            bool algunoMarcado = false;
+            foreach (GridViewRow row in GridView2.Rows)
+            {
+                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar"); // Esta verifica que haya alguno marcado para mostrar los botones.
+                if (chk.Checked)
+                {
+                    algunoMarcado = true;
+                   
+                    break;
+                }
+            }
+
+            btnMod.Visible = algunoMarcado;   // Si AlgunoMarcado es FALSE no se muestra ningun boton.
+            btnBaja.Visible = algunoMarcado;
+        }
+          
+
+        
 
         protected void btnAdministrarMedico_Click(object sender, EventArgs e)
         {
