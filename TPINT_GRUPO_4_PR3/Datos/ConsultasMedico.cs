@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -96,7 +97,7 @@ namespace Datos
                 new SqlParameter("@FechaNacimiento", medico.fechaNacimiento),
                 new SqlParameter("@Sexo", medico.genero),
                 new SqlParameter("@IdLocalidad", medico.Localidad),
-                new SqlParameter("@Telefono", medico.Telefono),
+                new SqlParameter("@Telefono", medico.Telefono.ToString()),
                 new SqlParameter("@Direccion", medico.Direccion),
                 new SqlParameter("@Correo", medico.Correo)
             };

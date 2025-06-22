@@ -75,8 +75,8 @@ namespace Vistas.admin
                     txtbModMedicoDNI.Text = medico.DNI;
                     txtbModMedicoLegajo.Text = medico.Legajo;
                     txtbModMedicoNombre.Text = medico.nombre;
-                    DateTime date = medico.fechaNacimiento;
-                    txtbModFechaNac.Text = date.Date.ToString();
+                    DateTime fechaNac = medico.fechaNacimiento.Date;
+                    txtbModFechaNac.Text = fechaNac.ToString("dd-MM-yyyy");
                     txtbModMedicoApellido.Text = medico.apellido;
                     ddlModEspecialidad.SelectedValue = medico.idEspecialidad.ToString();
                     ddlModNacionalidad.SelectedValue = medico.nacionalidad;
@@ -148,8 +148,8 @@ namespace Vistas.admin
             medico.apellido = txtbModMedicoApellido.Text.Trim();
             medico.fechaNacimiento = Convert.ToDateTime(txtbModFechaNac.Text.Trim());
             medico.idEspecialidad = int.Parse(ddlModEspecialidad.SelectedValue.Trim());
-            medico.genero = ddlModGenero.SelectedIndex;
-            medico.Localidad = ddlModLocalidad.SelectedIndex;
+            medico.genero = int.Parse(ddlModGenero.SelectedValue);
+            medico.Localidad = int.Parse(ddlModLocalidad.SelectedValue);
             medico.nacionalidad = ddlModNacionalidad.SelectedValue;
             medico.Direccion = txtbModMedicoDireccion.Text;
             medico.Telefono = int.Parse(txtbModMedicoTelefono.Text.Trim());

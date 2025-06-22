@@ -526,10 +526,9 @@
                                              <asp:TextBox ID="txtbModMedicoCorreo" runat="server"></asp:TextBox>
                                         </div>
                                         <div>
-                                             <asp:Button ID="btnMoficarMedico" Text="Modificar Medico" runat="server" Width="188px" OnClick="btnModificarMedico_Click" /></td>
+                                             <asp:Button ID="btnMoficarMedico" Text="Modificar Medico" runat="server" Width="188px" OnClick="btnModificarMedico_Click" />
                                              <asp:Label ID="lblModificarMedico" Text="Medico modificado con éxito" Visible="false" runat="server"></asp:Label>
                                         </div>
-
                                     </asp:View>
 
                                 <asp:View ID="vwLectura" runat="server">
