@@ -29,8 +29,30 @@ namespace Vistas.admin
 
         protected void btnBaja_Click(object sender, EventArgs e)
         {
-            mvFormularios.ActiveViewIndex = 1;
+            try
+            {
+                foreach (GridViewRow row in gvLecturaMedico.Rows)
+                {
+                    CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
+                    if (chk != null && chk.Checked)
+                    {
+                        string DNI = row.Cells[2].Text;
+                        gestorMedico.EliminarMedico("sp_EliminarMedico", DNI);
+                    }
+                }
+                loadGridMedicos();
+                lblAddUserState0.Text = "Médico/s dado/s de baja correctamente.";
+                lblAddUserState0.ForeColor = System.Drawing.Color.Green;
+            }
+            catch (Exception ex)
+            {
+                lblAddUserState0.Text = "❌ Error: " + ex.Message;
+                lblAddUserState0.ForeColor = System.Drawing.Color.Red;
+            }
+            btnMod.Visible = false;
+            btnBaja.Visible = false;
         }
+
 
         protected void btnMod_Click(object sender, EventArgs e)
         {
@@ -53,11 +75,13 @@ namespace Vistas.admin
                     txtbModMedicoNombre.Text = medico.nombre;
                     txtbModMedicoApellido.Text = medico.apellido;
 
+
+
                     break;
                 }
             }
             btnMod.Visible = false;
-            btnBaja.Visible = false; 
+            btnBaja.Visible = false;
         }
 
         protected void btnLectura_Click(object sender, EventArgs e)
@@ -89,22 +113,22 @@ namespace Vistas.admin
 
                 if (filas > 0)
                 {
-                    lblAddUserState.Text = "Se agregó correctamente el médico";
-                    lblAddUserState.ForeColor = System.Drawing.Color.Green;
+                    lblAddUserState0.Text = "Se agregó correctamente el médico";
+                    lblAddUserState0.ForeColor = System.Drawing.Color.Green;
                 }
                 else
                 {
-                    lblAddUserState.Text = "Hubo un error durante la carga (no se insertó ninguna fila)";
-                    lblAddUserState.ForeColor = System.Drawing.Color.Red;
+                    lblAddUserState0.Text = "Hubo un error durante la carga (no se insertó ninguna fila)";
+                    lblAddUserState0.ForeColor = System.Drawing.Color.Red;
                 }
 
-                lblAddUserState.Visible = true;
+                lblAddUserState0.Visible = true;
             }
             catch (Exception ex)
             {
-                lblAddUserState.Text = "❌ Error: " + ex.Message;
-                lblAddUserState.ForeColor = System.Drawing.Color.Red;
-                lblAddUserState.Visible = true;
+                lblAddUserState0.Text = "❌ Error: " + ex.Message;
+                lblAddUserState0.ForeColor = System.Drawing.Color.Red;
+                lblAddUserState0.Visible = true;
             }
         }
         protected void loadGridMedicos()
@@ -135,5 +159,51 @@ namespace Vistas.admin
             Response.Redirect("/admin/Administrar_Turnos.aspx");
         }
 
+        protected void gvLecturaMedico_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                CheckBox chk = (CheckBox)e.Row.FindControl("chkSeleccionar");
+                chk.AutoPostBack = true;
+                chk.CheckedChanged += new EventHandler(chkSeleccionar_CheckedChanged);  // Cada vez que se checkea un checkbox se dispara el evento, que recorre todos los checkboxs y desmarca los que no dispararon el evento.
+            }
+        }
+
+        protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in gvLecturaMedico.Rows)
+            {
+                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
+                if (chk != sender)
+                {
+                    chk.Checked = false;
+                }
+
+
+            }
+            bool algunoMarcado = false;
+            foreach (GridViewRow row in gvLecturaMedico.Rows)
+            {
+                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
+                if (chk.Checked)
+                {
+                    algunoMarcado = true;
+
+                    break;
+                }
+            }
+
+            btnMod.Visible = algunoMarcado;
+            btnBaja.Visible = algunoMarcado;
+
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            mvFormularios.ActiveViewIndex = 1;
+
+        }
+
     }
+
 }

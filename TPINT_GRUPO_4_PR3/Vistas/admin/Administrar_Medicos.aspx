@@ -328,6 +328,7 @@
                             <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" CssClass="btn-td" OnClick="btnBaja_Click" />
                             <asp:Button ID="btnMod" runat="server" Text="Modificar" CssClass="btn-td" OnClick="btnMod_Click" />
                             <asp:Button ID="btnLectura" runat="server" Text="Listar" CssClass="btn-td" OnClick="btnLectura_Click" />
+                            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn-td" OnClick="btnEliminar_Click" Visible="False" />
                         </td>
                         <td class="auto-style41"></td>
                     </tr>
@@ -455,8 +456,7 @@
                                                     <asp:Button ID="btnRegistrarMedico" runat="server" Text="Registrar paciente" Width="188px" OnClick="btnRegistrarMedico_Click" />
                                                 </td>
                                                 <td class="auto-style30">
-                                                    <asp:Label ID="lblAddUserState" runat="server" Visible="False"></asp:Label>
-                                                </td>
+                                                    &nbsp;</td>
                                                 <td class="auto-style31">&nbsp;</td>
                                             </tr>
                                         </table>
@@ -479,6 +479,9 @@
                                         <div>
                                             DNI del Medico:
                                             <asp:TextBox ID="txtbModMedicoDNI" runat="server" ></asp:TextBox>
+                                            <br />
+                                            Legajo:
+                                            <asp:TextBox ID="txtbModMedicoNombre0" runat="server"></asp:TextBox>
                                         </div>
                                         <div>
                                             Nombre:
@@ -487,6 +490,10 @@
                                         <div>
                                             Apellido:
                                              <asp:TextBox ID="txtbModMedicoApellido" runat="server"></asp:TextBox>
+                                            <br />
+                                            Especialidad:<asp:DropDownList ID="ddlModNacionalidad0" runat="server" DataSourceID="dbespecialidad" DataTextField="descripcion" DataValueField="idEspecialidad">
+                                            </asp:DropDownList>
+                                            <asp:SqlDataSource ID="dbespecialidad" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT * FROM [Especialidades]"></asp:SqlDataSource>
                                         </div>
                                         <div>
                                             Nacionalidad:
@@ -511,12 +518,12 @@
                                     <h3>Listar Médico</h3>
                                     <div>
 
-                                        <asp:GridView ID="gvLecturaMedico" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" style="margin-right: 0px">
+                                        <asp:GridView ID="gvLecturaMedico" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" style="margin-right: 0px" OnRowDataBound="gvLecturaMedico_RowDataBound">
                                             <AlternatingRowStyle BackColor="White" />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Seleccionar">
                                                     <ItemTemplate>
-                                                        <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True"/>
+                                                        <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccionar_CheckedChanged"/>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:BoundField DataField="Legajo" HeaderText="Legajo" />
@@ -548,7 +555,9 @@
                         <td class="auto-style41"></td>
                     </tr>
                     <tr>
-                        <td class="auto-style33"><h3>&nbsp;</h3></td>
+                        <td class="auto-style33"><h3>
+                                                    <asp:Label ID="lblAddUserState0" runat="server" Visible="False"></asp:Label>
+                                                </h3></td>
                         <td class="auto-style38"></td>
                         <td class="auto-style39"></td>
                     </tr>

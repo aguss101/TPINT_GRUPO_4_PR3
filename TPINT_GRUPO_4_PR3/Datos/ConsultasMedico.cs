@@ -15,8 +15,8 @@ namespace Datos
         {
             List<Medico> medicos = new List<Medico>();
             string query = "SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, C.correo, T.telefono, L.idLocalidad " +
-                "FROM Medico ME " + "INNER JOIN Persona PE ON ME.DNI = ME.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo " + "INNER JOIN Localidades L ON PE.idLocalidad " +
-                "= L.idLocalidad" + "  INNER JOIN Correos C ON PE.DNI = C.idPersona  INNER JOIN Telefonos T ON PE.DNI = T.idPersona";
+                "FROM Medico ME " + "INNER JOIN Persona PE ON ME.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo " + "INNER JOIN Localidades L ON PE.idLocalidad " +
+                "= L.idLocalidad" + "  LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona ";
 
             using (SqlConnection connection = conexion.AbrirConexion())
             {
@@ -73,7 +73,7 @@ namespace Datos
             return conexion.EjecutarProcedimientoAlmacenado(nombreprocedimiento, parametros);
         }
 
-        public int EliminarMedico(string nombreProcedimiento, int dni)
+        public int EliminarMedico(string nombreProcedimiento, string dni)
         {
             SqlParameter[] parametros = new SqlParameter[]
             {

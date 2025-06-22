@@ -105,6 +105,15 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.Button btnLectura;
 
         /// <summary>
+        /// Control btnEliminar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEliminar;
+
+        /// <summary>
         /// Control mvFormularios.
         /// </summary>
         /// <remarks>
@@ -294,15 +303,6 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.Button btnRegistrarMedico;
 
         /// <summary>
-        /// Control lblAddUserState.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddUserState;
-
-        /// <summary>
         /// Control vwBaja.
         /// </summary>
         /// <remarks>
@@ -348,6 +348,15 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.TextBox txtbModMedicoDNI;
 
         /// <summary>
+        /// Control txtbModMedicoNombre0.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbModMedicoNombre0;
+
+        /// <summary>
         /// Control txtbModMedicoNombre.
         /// </summary>
         /// <remarks>
@@ -364,6 +373,24 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbModMedicoApellido;
+
+        /// <summary>
+        /// Control ddlModNacionalidad0.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlModNacionalidad0;
+
+        /// <summary>
+        /// Control dbespecialidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dbespecialidad;
 
         /// <summary>
         /// Control ddlModNacionalidad.
@@ -418,5 +445,14 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvLecturaMedico;
+
+        /// <summary>
+        /// Control lblAddUserState0.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAddUserState0;
     }
 }
