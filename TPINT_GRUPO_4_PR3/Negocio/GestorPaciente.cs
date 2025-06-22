@@ -30,5 +30,9 @@ namespace Negocio
         {
             return consultas.ModificarPaciente(nombreprocedimiento, paciente);
         }
+        public int EliminarPaciente(string nombreprocedimiento, string DNI)
+        {
+            return consultas.EliminarPaciente(nombreprocedimiento, DNI);
+        }
     }
 }

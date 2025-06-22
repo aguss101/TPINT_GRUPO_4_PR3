@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
 using Entidades;
+using System.Diagnostics;
 
 namespace Vistas.admin
 {
@@ -28,22 +29,43 @@ namespace Vistas.admin
 
         protected void btnBaja_Click(object sender, EventArgs e)
         {
-            mvFormularios.ActiveViewIndex = 3;
-            loadGridPacientes();
+            try
+            {
+                foreach (GridViewRow row in GridView2.Rows)
+                {
+                    CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
+                    Debug.Print(chk.Checked.ToString());
+                    Debug.Print("Antes");
+                    if (chk != null && chk.Checked)
+                    {
+                        Debug.Print("Adentro");
+                        string DNI = row.Cells[1].Text;
+                        Debug.Print(row.Cells[1].Text);
+                        gestorPaciente.EliminarPaciente("sp_EliminarPaciente", DNI);
+                    }
+                    Debug.Print("Despues");
+                }
+                loadGridPacientes();
+                lblAddUserState.Text = "Paciente/s dado/s de baja correctamente.";
+                lblAddUserState.ForeColor = System.Drawing.Color.Green;
+            }
+            catch (Exception ex)
+            {
+                lblAddUserState.Text = "❌ Error: " + ex.Message;
+                lblAddUserState.ForeColor = System.Drawing.Color.Red;
+            }
+            btnMod.Visible = false;
+            btnBaja.Visible = false;
         }
 
         protected void btnMod_Click(object sender, EventArgs e)
         {
-
-            //recorro el gridview buscando el cbx seleccionado
             foreach (GridViewRow row in GridView2.Rows)
             {
                 CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
 
-                //verifico que no sea null el valor y este tildado
                 if (chk != null && chk.Checked)
                 {
-                    //obtengo el DNI del seleccionado
                     string DNI = row.Cells[1].Text;
 
 
@@ -52,11 +74,19 @@ namespace Vistas.admin
 
                     paciente = gestorPaciente.getPacientePorID(DNI);
                     mvFormularios.ActiveViewIndex = 2;
-                    txtbModPacienteDNI.Text = paciente.DNI;
-                    txtbModPacienteNombre.Text = paciente.nombre;
-                    txtbModPacienteApellido.Text = paciente.apellido;
-                    txtbModPacienteCorreo.Text = paciente.Correo;
-                    txtbModPacienteTelefono.Text = paciente.Telefono.ToString();                    
+                    txbModDni.Text = paciente.DNI;
+                    txbModNombre.Text = paciente.nombre;
+                    txbModApellido.Text = paciente.apellido;
+                    ddlModGenero.SelectedValue = paciente.genero.ToString();
+                    ddlModNacionalidad.SelectedValue = paciente.nacionalidad;
+                    ddlModLocalidades.SelectedValue = paciente.Localidad.ToString();
+                    //ddlModProvincias.SelectedIndex = ;
+                    DateTime fechaNac = paciente.fechaNacimiento.Date;
+                    txbModFechaNacimiento.Text = fechaNac.ToString("dd-MM-yyyy");
+                    txbModDireccion.Text = paciente.Direccion;
+                    ddlModObraSocial.SelectedValue = paciente.ObraSocial.ToString();
+                    txbModTelefono.Text = paciente.Telefono.ToString();
+                    txbModCorreo.Text = paciente.Correo;             
 
                     break;
                 }
@@ -137,28 +167,28 @@ namespace Vistas.admin
         {
             Paciente paciente = new Paciente();
 
-            paciente.nombre = txbNombre.Text.Trim();
-            paciente.apellido = txbApellido.Text.Trim();
-            paciente.DNI = txbDni.Text.Trim();
-            paciente.fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim());
-            paciente.ObraSocial = int.Parse(ddlObraSocial.SelectedValue);
-            paciente.genero = int.Parse(ddlGenero.SelectedValue);
-            paciente.Localidad = int.Parse(ddlLocalidades.SelectedValue);
+            paciente.nombre = txbModNombre.Text.Trim();
+            paciente.apellido = txbModApellido.Text.Trim();
+            paciente.DNI = txbModDni.Text.Trim();
+            paciente.fechaNacimiento = Convert.ToDateTime(txbModFechaNacimiento.Text.Trim());
+            paciente.ObraSocial = int.Parse(ddlModObraSocial.SelectedValue);
+            paciente.genero = int.Parse(ddlModGenero.SelectedValue);
+            paciente.Localidad = int.Parse(ddlModLocalidades.SelectedValue);
             paciente.ultimaAtencion = DateTime.Now;
             paciente.Alta = DateTime.Now;
-            paciente.nacionalidad = ddlNacionalidad.SelectedValue.ToString();
-            paciente.Telefono = int.Parse(txbTelefono.Text.Trim());
-            paciente.Direccion = txbDireccion.Text.Trim();
-            paciente.Correo = txbCorreo.Text.Trim();
+            paciente.nacionalidad = ddlModNacionalidad.SelectedValue.ToString();
+            paciente.Telefono = int.Parse(txbModTelefono.Text.Trim());
+            paciente.Direccion = txbModDireccion.Text.Trim();
+            paciente.Correo = txbModCorreo.Text.Trim();
 
 
             string nombreProcedimiento = "sp_ModificarPaciente";
             int filas = gestorPaciente.ModificarPaciente(nombreProcedimiento, paciente);
             if (filas > 0)
             {
-                lblAddUserState.Text = "Se agrego correctamente el Paciente";
-                lblAddUserState.ForeColor = System.Drawing.Color.Green; // DEBUG para testear si añade o no el paciente
-                lblAddUserState.Visible = true;
+                lblModUser.Text = "Se modifico correctamente el Paciente";
+                lblModUser.ForeColor = System.Drawing.Color.Green; // DEBUG para testear si añade o no el paciente
+                lblModUser.Visible = true;
             }
         }
 
