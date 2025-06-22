@@ -437,7 +437,7 @@
                                                     <td class="auto-style30">
                                                         <asp:DropDownList ID="ddlGenero" runat="server" AutoPostBack="True" DataSourceID="dbGenero" DataTextField="descripcion" DataValueField="idSexo">
                                                         </asp:DropDownList>
-                                                        <asp:SqlDataSource ID="dbGenero" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT * FROM [Sexos]"></asp:SqlDataSource>
+                                                        <asp:SqlDataSource ID="dbGenero" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString4 %>" SelectCommand="SELECT * FROM [Sexos]"></asp:SqlDataSource>
                                                     </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
@@ -446,7 +446,7 @@
                                                     <td class="auto-style30">
                                                         <asp:DropDownList ID="ddlNacionalidad" runat="server" DataSourceID="dbNacionalidades" DataTextField="gentilicio" DataValueField="gentilicio">
                                                         </asp:DropDownList>
-                                                        <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT [idPais], [gentilicio] FROM [Paises]"></asp:SqlDataSource>
+                                                        <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString4 %>" SelectCommand="SELECT [idPais], [gentilicio] FROM [Paises]"></asp:SqlDataSource>
                                                     </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
@@ -469,7 +469,7 @@
                                                     <td class="auto-style30">
                                                         <asp:DropDownList ID="ddlProvincias" runat="server" DataSourceID="dbProvincias" DataTextField="nombreProvincia" DataValueField="idProvincia">
                                                         </asp:DropDownList>
-                                                        <asp:SqlDataSource ID="dbProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT [idProvincia], [nombreProvincia] FROM [Provincias]"></asp:SqlDataSource>
+                                                        <asp:SqlDataSource ID="dbProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString4 %>" SelectCommand="SELECT [idProvincia], [nombreProvincia] FROM [Provincias]"></asp:SqlDataSource>
                                                     </td>
                                                     <td class="auto-style31">&nbsp;</td>
                                                 </tr>
@@ -478,7 +478,7 @@
                                                     <td class="auto-style30">
                                                         <asp:DropDownList ID="ddlLocalidades" runat="server" AutoPostBack="True" DataSourceID="dbLocalidades" DataTextField="nombreLocalidad" DataValueField="idLocalidad">
                                                         </asp:DropDownList>
-                                                        <asp:SqlDataSource ID="dbLocalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT * FROM [Localidades]"></asp:SqlDataSource>
+                                                        <asp:SqlDataSource ID="dbLocalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString4 %>" SelectCommand="SELECT * FROM [Localidades]"></asp:SqlDataSource>
                                                     </td>
                                                     <td class="auto-style31">&nbsp;</td>
                                                 </tr>
@@ -488,7 +488,7 @@
                                                         <asp:DropDownList ID="ddlObraSocial" runat="server" AutoPostBack="True" DataSourceID="dbObraSocial" DataTextField="nombre" DataValueField="idObraSocial">
                                                             <asp:ListItem Value="1">Swiss Medical</asp:ListItem>
                                                         </asp:DropDownList>
-                                                        <asp:SqlDataSource ID="dbObraSocial" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString3 %>" SelectCommand="SELECT [nombre], [idObraSocial] FROM [ObraSocial]"></asp:SqlDataSource>
+                                                        <asp:SqlDataSource ID="dbObraSocial" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionString4 %>" SelectCommand="SELECT [nombre], [idObraSocial] FROM [ObraSocial]" ProviderName="<%$ ConnectionStrings:ClinicaDBConnectionString4.ProviderName %>"></asp:SqlDataSource>
                                                     </td>
                                                     <td class="auto-style31">&nbsp;</td>
                                                 </tr>
@@ -565,6 +565,10 @@
                                         <div>
                                             Correo:
     <asp:TextBox ID="txtbModPacienteCorreo" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div>
+    <asp:Button ID="btnModificarUsuario" Text="Modificar Paciente" runat="server"  Width="188px" OnClick="btnModificarPaciente_Click"></asp:Button>
+    <asp:Label ID="lblModificarUsuario" Text="Se ha modificado con éxito" runat="server" Visible="false"></asp:Label>
                                         </div>
                                     </asp:View>
 

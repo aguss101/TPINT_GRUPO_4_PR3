@@ -15,14 +15,11 @@ namespace Vistas.admin
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
-
             if (!IsPostBack)
             {
                 btnMod.Visible = false;
                 btnBaja.Visible = false;
             }
-
         }
         protected void btnAlta_Click(object sender, EventArgs e)
         {
@@ -33,10 +30,6 @@ namespace Vistas.admin
         {
             mvFormularios.ActiveViewIndex = 3;
             loadGridPacientes();
-
-
-
-
         }
 
         protected void btnMod_Click(object sender, EventArgs e)
@@ -62,7 +55,8 @@ namespace Vistas.admin
                     txtbModPacienteDNI.Text = paciente.DNI;
                     txtbModPacienteNombre.Text = paciente.nombre;
                     txtbModPacienteApellido.Text = paciente.apellido;
-                    
+                    txtbModPacienteCorreo.Text = paciente.Correo;
+                    txtbModPacienteTelefono.Text = paciente.Telefono.ToString();                    
 
                     break;
                 }
@@ -70,11 +64,7 @@ namespace Vistas.admin
 
             btnMod.Visible = false;
             btnBaja.Visible = false;
-
-
-        }
-
-      
+        }    
 
         protected void btnLectura_Click(object sender, EventArgs e)
         {
@@ -87,6 +77,10 @@ namespace Vistas.admin
         protected void btnRegistrarPaciente_Click(object sender, EventArgs e)
         {
             InsertarPacientes();
+        }
+        protected void btnModificarPaciente_Click(object sender, EventArgs e)
+        {
+            ModificarPaciente();
         }
 
         protected void loadGridPacientes()
@@ -139,6 +133,34 @@ namespace Vistas.admin
 
         }
       
+        protected void ModificarPaciente()
+        {
+            Paciente paciente = new Paciente();
+
+            paciente.nombre = txbNombre.Text.Trim();
+            paciente.apellido = txbApellido.Text.Trim();
+            paciente.DNI = txbDni.Text.Trim();
+            paciente.fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim());
+            paciente.ObraSocial = int.Parse(ddlObraSocial.SelectedValue);
+            paciente.genero = int.Parse(ddlGenero.SelectedValue);
+            paciente.Localidad = int.Parse(ddlLocalidades.SelectedValue);
+            paciente.ultimaAtencion = DateTime.Now;
+            paciente.Alta = DateTime.Now;
+            paciente.nacionalidad = ddlNacionalidad.SelectedValue.ToString();
+            paciente.Telefono = int.Parse(txbTelefono.Text.Trim());
+            paciente.Direccion = txbDireccion.Text.Trim();
+            paciente.Correo = txbCorreo.Text.Trim();
+
+
+            string nombreProcedimiento = "sp_ModificarPaciente";
+            int filas = gestorPaciente.ModificarPaciente(nombreProcedimiento, paciente);
+            if (filas > 0)
+            {
+                lblAddUserState.Text = "Se agrego correctamente el Paciente";
+                lblAddUserState.ForeColor = System.Drawing.Color.Green; // DEBUG para testear si añade o no el paciente
+                lblAddUserState.Visible = true;
+            }
+        }
 
 
 

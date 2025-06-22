@@ -25,5 +25,10 @@ namespace Negocio
         {
             return consultas.InsertarPaciente(nombreprocedimiento, paciente);
         }
+
+        public int ModificarPaciente(string nombreprocedimiento, Paciente paciente)
+        {
+            return consultas.ModificarPaciente(nombreprocedimiento, paciente);
+        }
     }
 }
