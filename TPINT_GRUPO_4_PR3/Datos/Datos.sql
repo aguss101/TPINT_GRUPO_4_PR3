@@ -1,5 +1,5 @@
 -- INSERCIONES DE DATOS
-USE ClinicaDB
+
 -- Roles
 INSERT INTO Roles VALUES (1, 'Administrador'), (2, 'Médico'), (3, 'Paciente');
 
@@ -17,8 +17,8 @@ INSERT INTO Localidades VALUES (1, 'Pilar', 1), (2, 'Villa Carlos Paz', 2);
 
 -- Personas
 INSERT INTO Persona VALUES 
-('12345678', 'Juan', 'Pérez', 1, 'Calle Falsa 123', 1, '1985-06-15', 'argentino'),
-('87654321', 'María', 'Gómez', 2, 'Av Siempreviva 742', 2, '1990-09-22', 'uruguayo');
+('12345678', 'Juan', 'Pérez', 1, 'Calle Falsa 123', 1, '1985-06-15', 'argentino', 1),
+('87654321', 'María', 'Gómez', 2, 'Av Siempreviva 742', 2, '1990-09-22', 'uruguayo', 1);
 
 -- Usuarios (clave simple: 123)
 INSERT INTO Usuario VALUES 
@@ -65,4 +65,4 @@ INSERT INTO EstadoTurnos VALUES
 
 -- Turno
 INSERT INTO Turnos VALUES 
-('M001', '87654321', '2025-07-01', 1, 'Dolor abdominal', 'Gastritis');
+('M001', '87654321', DEFAULT, 1, 'Dolor abdominal', 'Gastritis');
