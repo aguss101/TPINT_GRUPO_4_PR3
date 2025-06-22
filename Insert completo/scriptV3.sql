@@ -1,8 +1,41 @@
+--Orden
+-- Sexos
+
+-- Paises
+
+-- Provincias
+
+-- Localidades
+
+-- ObraSocial
+
+-- Especialidades
+
+-- EstadoTurnos
+
+-- Persona
+
+-- Correos
+
+-- Telefonos
+
+-- Paciente
+
+-- Roles
+
+-- Usuario
+
+-- Medico
+
+-- Jornadas
+
+-- Turnos
 USE ClinicaDB
 GO
 
 INSERT INTO Sexos (idSexo, descripcion) VALUES (1, 'Masculino');
 INSERT INTO Sexos (idSexo, descripcion) VALUES (2, 'Femenino');
+INSERT INTO Sexos (idSexo, descripcion) VALUES (3, 'Otro');
 
 INSERT INTO Paises (idPais, nombrePais, gentilicio) VALUES (1, 'Argentina', 'Argentino');
 INSERT INTO Paises (idPais, nombrePais, gentilicio) VALUES (2, 'Brasil', 'Brasileño');
@@ -25,20 +58,328 @@ INSERT INTO Paises (idPais, nombrePais, gentilicio) VALUES (18, 'Suecia', 'Sueco
 INSERT INTO Paises (idPais, nombrePais, gentilicio) VALUES (19, 'Noruega', 'Noruego');
 INSERT INTO Paises (idPais, nombrePais, gentilicio) VALUES (20, 'Suiza', 'Suizo');
 
-INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (1, 'Buenos Aires');
-INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (2, 'Córdoba');
-INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (3, 'Santa Fe');
-INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (4, 'Mendoza');
-INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (5, 'Tucumán');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (1, 'Buenos Aires'); --
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (2, 'Catamarca'); --
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (3, 'Chaco');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (4, 'Chubut');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (5, 'Ciudad Autónoma de Buenos Aires'); --
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (6, 'Córdoba');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (7, 'Corrientes');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (8, 'Entre Ríos');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (9, 'Formosa');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (10, 'Jujuy');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (11, 'La Pampa');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (12, 'La Rioja');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (13, 'Mendoza');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (14, 'Misiones');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (15, 'Neuquén');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (16, 'Río Negro');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (17, 'Salta');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (18, 'San Juan');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (19, 'San Luis');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (20, 'Santa Cruz');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (21, 'Santa Fe');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (22, 'Santiago del Estero');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (23, 'Tierra del Fuego'); --
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (24, 'Tucumán');--
 
-INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1, 'La Plata', 1);
-INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2, 'Mar del Plata', 1);
-INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (3, 'Córdoba Capital', 2);
-INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (4, 'Rosario', 3);
-INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (5, 'Santa Fe Capital', 3);
-INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (6, 'Godoy Cruz', 4);
-INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (7, 'San Miguel de Tucumán', 5);
 
+--Localidades
+
+--Localidades Buenos Aires
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (400, 'La Plata', 1);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (401, 'Mar del Plata', 1);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (402, 'Bahía Blanca', 1);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (403, 'Tandil', 1);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (404, 'Olavarría', 1);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (405, 'San Nicolás de los Arroyos', 1);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (406, 'Pergamino', 1);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (407, 'Junín', 1);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (408, 'Avellaneda', 1);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (409, 'Quilmes', 1);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (410, 'Morón', 1);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (411, 'Lomas de Zamora', 1);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (412, 'Tres de Febrero', 1);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (413, 'San Isidro', 1);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (414, 'Tigre', 1);
+--Localidades Catamarca
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (300, 'San Fernando del Valle de Catamarca', 2);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (301, 'Valle Viejo', 2);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (302, 'Fray Mamerto Esquiú', 2);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (303, 'Andalgalá', 2);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (304, 'Belén', 2);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (305, 'Tinogasta', 2);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (306, 'Santa María', 2);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (307, 'Recreo', 2);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (308, 'Capayán', 2);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (309, 'La Puerta', 2);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (310, 'Pomán', 2);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (311, 'El Rodeo', 2);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (312, 'Los Altos', 2);
+--Localidades Chaco
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (600, 'Resistencia', 3);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (601, 'Barranqueras', 3);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (602, 'Fontana', 3);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (603, 'Presidencia Roque Sáenz Peña', 3);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (604, 'Villa Ángela', 3);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (605, 'Charata', 3);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (606, 'Quitilipi', 3);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (607, 'Machagai', 3);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (608, 'General José de San Martín', 3);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (609, 'Las Breñas', 3);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (610, 'Juan José Castelli', 3);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (611, 'Puerto Vilelas', 3);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (612, 'La Leonesa', 3);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (613, 'Puerto Tirol', 3);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (614, 'Presidencia de la Plaza', 3);
+--Localidades Chubut
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (700, 'Rawson', 4);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (701, 'Trelew', 4);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (702, 'Comodoro Rivadavia', 4);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (703, 'Puerto Madryn', 4);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (704, 'Esquel', 4);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (705, 'Gaiman', 4);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (706, 'Dolavon', 4);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (707, 'El Hoyo', 4);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (708, 'Lago Puelo', 4);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (709, 'Sarmiento', 4);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (710, 'Rada Tilly', 4);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (711, 'Paso de Indios', 4);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (712, 'José de San Martín', 4);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (713, 'Gobernador Costa', 4);
+
+--Localidades Ciudad Autonoma de Buenos Aires
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (500, 'Palermo', 5);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (501, 'Recoleta', 5);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (502, 'Belgrano', 5);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (503, 'Caballito', 5);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (504, 'Flores', 5);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (505, 'Villa Urquiza', 5);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (506, 'Villa Crespo', 5);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (507, 'Almagro', 5);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (508, 'San Telmo', 5);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (509, 'Retiro', 5);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (510, 'Constitución', 5);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (511, 'Villa Devoto', 5);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (512, 'Puerto Madero', 5);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (513, 'Liniers', 5);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (514, 'Barracas', 5);
+
+--Localidades Cordoba
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (800, 'Córdoba', 6);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (801, 'Villa Carlos Paz', 6);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (802, 'Río Cuarto', 6);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (803, 'Villa María', 6);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (804, 'Alta Gracia', 6);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (805, 'Jesús María', 6);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (806, 'Río Tercero', 6);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (807, 'La Falda', 6);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (808, 'Capilla del Monte', 6);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (809, 'Cosquín', 6);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (810, 'San Francisco', 6);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (811, 'Bell Ville', 6);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (812, 'La Cumbre', 6);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (813, 'Villa General Belgrano', 6);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (814, 'General Deheza', 6);
+
+--Localidades Corrientes
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (900, 'Corrientes', 7);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (901, 'Resistencia', 7);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (902, 'Goya', 7);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (903, 'Paso de los Libres', 7);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (904, 'Mercedes', 7);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (905, 'Curuzú Cuatiá', 7);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (906, 'Itatí', 7);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (907, 'Santa Lucía', 7);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (908, 'Monte Caseros', 7);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (909, 'Bella Vista', 7);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (910, 'San Roque', 7);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (911, 'San Cosme', 7);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (912, 'Paso de la Patria', 7);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (913, 'Caá Catí', 7);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (914, 'San Luis del Palmar', 7);
+
+--Localidades Entre Ríos
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1000, 'Paraná', 8);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1001, 'Concordia', 8);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1002, 'Gualeguaychú', 8);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1003, 'Concepción del Uruguay', 8);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1004, 'Victoria', 8);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1005, 'Colón', 8);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1006, 'Villaguay', 8);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1007, 'Gualeguay', 8);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1008, 'La Paz', 8);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1009, 'Federal', 8);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1010, 'Chajarí', 8);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1011, 'Basavilbaso', 8);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1012, 'Urdinarrain', 8);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1013, 'Viale', 8);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1014, 'San José', 8);
+
+--Localidades Formosa
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1100, 'Formosa', 9);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1101, 'Clorinda', 9);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1102, 'Pirané', 9);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1103, 'El Colorado', 9);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1104, 'Laguna Blanca', 9);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1105, 'Ibarreta', 9);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1106, 'Herradura', 9);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1107, 'El Espinillo', 9);
+
+--Localidades Jujuy
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1200, 'San Salvador de Jujuy', 10);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1201, 'Palpalá', 10);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1202, 'Libertador General San Martín', 10);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1203, 'Perico', 10);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1204, 'Humahuaca', 10);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1205, 'Tilcara', 10);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1206, 'La Quiaca', 10);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1207, 'El Carmen', 10);
+
+--Localidades La Pampa
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1300, 'Santa Rosa', 11);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1301, 'General Pico', 11);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1302, 'Toay', 11);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1303, 'Realicó', 11);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1304, 'Guatraché', 11);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1305, 'Eduardo Castex', 11);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1306, 'General Acha', 11);
+
+--Localidades La Rioja
+
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1400, 'La Rioja', 12);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1401, 'Chepes', 12);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1402, 'Chilecito', 12);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1403, 'Aimogasta', 12);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1404, 'Villa Unión', 12);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1405, 'Chamical', 12);
+
+--Localidades Mendoza
+
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1500, 'Mendoza', 13);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1501, 'Godoy Cruz', 13);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1502, 'Luján de Cuyo', 13);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1503, 'San Rafael', 13);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1504, 'Maipú', 13);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1505, 'Guaymallén', 13);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1506, 'Tunuyán', 13);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1507, 'San Martín', 13);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1508, 'Rivadavia', 13);
+
+--Localidades Misiones
+
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1600, 'Posadas', 14);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1601, 'Eldorado', 14);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1602, 'Oberá', 14);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1603, 'Puerto Iguazú', 14);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1604, 'San Vicente', 14);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1605, 'Apóstoles', 14);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1606, 'San Pedro', 14);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1607, 'Montecarlo', 14);
+
+--Localidades Neuquen
+
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1700, 'Neuquén', 15);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1701, 'Plottier', 15);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1702, 'Cutral Có', 15);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1703, 'Centenario', 15);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1704, 'San Martín de los Andes', 15);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1705, 'Villa La Angostura', 15);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1706, 'Zapala', 15);
+
+--Localidades Río Negro
+
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1800, 'Viedma', 16);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1801, 'General Roca', 16);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1802, 'Bariloche', 16);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1803, 'Cipolletti', 16);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1804, 'San Carlos de Bariloche', 16);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1805, 'Choele Choel', 16);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1806, 'Allen', 16);
+
+--Localidades Salta
+
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1900, 'Salta', 17);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1901, 'Orán', 17);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1902, 'San Ramón de la Nueva Orán', 17);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1903, 'Metán', 17);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1904, 'Embarcación', 17);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1905, 'General Güemes', 17);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1906, 'Tartagal', 17);
+
+--Localidades San Juan
+
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2000, 'San Juan', 18);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2001, 'Rawson', 18);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2002, 'Santa Lucía', 18);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2003, 'Villa Krause', 18);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2004, 'Chimbas', 18);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2005, 'Rivadavia', 18);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2006, 'Pocito', 18);
+
+--Localidades San Luis
+
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2100, 'San Luis', 19);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2101, 'Villa Mercedes', 19);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2102, 'Merlo', 19);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2103, 'La Toma', 19);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2104, 'Carpintería', 19);
+
+--Localidades Santa Cruz
+
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2200, 'Río Gallegos', 20);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2201, 'Caleta Olivia', 20);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2202, 'El Calafate', 20);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2203, 'Puerto Deseado', 20);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2204, 'Puerto San Julián', 20);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2205, 'Las Heras', 20);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2206, 'Perito Moreno', 20);
+
+
+--Localidades Santa Fe
+
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2300, 'Rosario', 21);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2301, 'Santa Fe', 21);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2302, 'Rafaela', 21);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2303, 'Venado Tuerto', 21);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2304, 'Sunchales', 21);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2305, 'Reconquista', 21);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2306, 'Firmat', 21);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2307, 'Esperanza', 21);
+
+--Localidades Santiago del Estero
+
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2400, 'Santiago del Estero', 22);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2401, 'La Banda', 22);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2402, 'Añatuya', 22);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2403, 'Loreto', 22);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2404, 'Sumampa', 22);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2405, 'Quimilí', 22);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2406, 'Selva', 22);
+
+--Localidades 
+
+--Localidades Tierra del Fuego
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (200, 'Ushuaia', 23);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (201, 'Río Grande', 23);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (202, 'Tolhuin', 23);
+
+--Localidades Tucuman
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (100, 'San Miguel de Tucumán', 24);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (101, 'Yerba Buena', 24);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (102, 'Tafí Viejo', 24);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (103, 'Las Talitas', 24);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (104, 'Alderetes', 24);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (105, 'Banda del Río Salí', 24);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (106, 'Famaillá', 24);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (107, 'Lules', 24);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (108, 'Monteros', 24);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (109, 'Aguilares', 24);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (110, 'Bella Vista', 24);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (111, 'Concepción', 24);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (112, 'Tafí del Valle', 24);
+
+--Obra Social
 INSERT INTO ObraSocial (idObraSocial, nombre) VALUES (1, 'OSDE');
 INSERT INTO ObraSocial (idObraSocial, nombre) VALUES (2, 'Swiss Medical');
 INSERT INTO ObraSocial (idObraSocial, nombre) VALUES (3, 'Galeno');
@@ -1395,7 +1736,7 @@ INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUE
 INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('17599909', 3, 1, 'Migraña', 'Control en 15 días');
 INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('23898737', 1, 1, 'Dermatitis', 'Observación ambulatoria');
 INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('38286814', 9, 2, 'Migraña', 'Control en 15 días');
--- Script SQL para inserción de datos en la base de datos de la clínica médica
+--Orden
 -- Sexos
 
 -- Paises
