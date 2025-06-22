@@ -19,7 +19,8 @@ namespace Datos
             List<Paciente> pacientes = new List<Paciente>();
             string query = "SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, O.idObraSocial, L.idLocalidad FROM Paciente PA" +
                 " INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.IdSexo INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial " +
-                "INNER JOIN Localidades L ON PE.IdLocalidad = L.IdLocalidad  ";
+                "INNER JOIN Localidades L ON PE.IdLocalidad = L.IdLocalidad  " +
+                "WHERE activo = 1";
             using (SqlConnection connection = conexion.AbrirConexion())
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -77,7 +78,7 @@ namespace Datos
             return conexion.EjecutarProcedimientoAlmacenado(nombreprocedimiento, parametros);
         }
 
-        public int EliminarPaciente(string nombreProcedimiento, int dni)
+        public int EliminarPaciente(string nombreProcedimiento, string dni)
         {
             SqlParameter[] parametros = new SqlParameter[]
             {

@@ -67,10 +67,9 @@ BEGIN
         END
 
       
-        DELETE FROM Paciente WHERE DNI = @DNI;
-
-      
-        DELETE FROM Persona WHERE DNI = @DNI;
+UPDATE Persona 
+SET activo = 0
+WHERE DNI = @DNI;
 
         COMMIT TRANSACTION;
         PRINT 'Paciente eliminado correctamente.';

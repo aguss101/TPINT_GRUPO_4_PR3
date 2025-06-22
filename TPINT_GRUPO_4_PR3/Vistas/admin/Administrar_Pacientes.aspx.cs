@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
 using Entidades;
+using System.Diagnostics;
 
 namespace Vistas.admin
 {
@@ -28,8 +29,33 @@ namespace Vistas.admin
 
         protected void btnBaja_Click(object sender, EventArgs e)
         {
-            mvFormularios.ActiveViewIndex = 3;
-            loadGridPacientes();
+            try
+            {
+                foreach (GridViewRow row in GridView2.Rows)
+                {
+                    CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
+                    Debug.Print(chk.Checked.ToString());
+                    Debug.Print("Antes");
+                    if (chk != null && chk.Checked)
+                    {
+                        Debug.Print("Adentro");
+                        string DNI = row.Cells[1].Text;
+                        Debug.Print(row.Cells[1].Text);
+                        gestorPaciente.EliminarPaciente("sp_EliminarPaciente", DNI);
+                    }
+                    Debug.Print("Despues");
+                }
+                loadGridPacientes();
+                lblAddUserState.Text = "Paciente/s dado/s de baja correctamente.";
+                lblAddUserState.ForeColor = System.Drawing.Color.Green;
+            }
+            catch (Exception ex)
+            {
+                lblAddUserState.Text = "❌ Error: " + ex.Message;
+                lblAddUserState.ForeColor = System.Drawing.Color.Red;
+            }
+            btnMod.Visible = false;
+            btnBaja.Visible = false;
         }
 
         protected void btnMod_Click(object sender, EventArgs e)
