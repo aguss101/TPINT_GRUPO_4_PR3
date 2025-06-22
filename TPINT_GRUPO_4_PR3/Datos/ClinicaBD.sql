@@ -1,9 +1,6 @@
 CREATE DATABASE ClinicaDB;
 GO
 
-USE ClinicaDB;
-GO
-
 -- Tabla: Roles
 CREATE TABLE Roles (
     idRol INT PRIMARY KEY,
@@ -15,11 +12,10 @@ CREATE TABLE Sexos (
     idSexo INT PRIMARY KEY,
     descripcion VARCHAR(25)
 );
-
 -- Tabla: Paises
 CREATE TABLE Paises (
     idPais INT PRIMARY KEY,
-    nombrePais VARCHAR(25),
+    nombrePais VARCHAR(25) UNIQUE,
     gentilicio VARCHAR(25) UNIQUE
 );
 
@@ -45,7 +41,8 @@ CREATE TABLE Persona (
     direccion VARCHAR(25),
     idLocalidad INT FOREIGN KEY REFERENCES Localidades(idLocalidad),
     fechaNacimiento DATE,
-    nacionalidad VARCHAR(25) FOREIGN KEY REFERENCES Paises(gentilicio)
+    nacionalidad VARCHAR(25) FOREIGN KEY REFERENCES Paises(gentilicio),
+	activo BIT NOT NULL DEFAULT 1
 );
 
 -- Tabla: Usuario
@@ -130,7 +127,7 @@ CREATE TABLE Paciente (
 CREATE TABLE Turnos (
     Legajo VARCHAR(20),
     DNIPaciente VARCHAR(20),
-    fechaPactada DATE,
+    fechaPactada TIMESTAMP,
     estado INT,
     observacion VARCHAR(200),
     diagnostico VARCHAR(50),
