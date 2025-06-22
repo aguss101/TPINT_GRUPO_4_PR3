@@ -474,22 +474,71 @@
                                     </div>
                                 </asp:View>
 
-                                <asp:View ID="vwModificacion" runat="server">
-                                    <h3>Modificar Médico</h3>
-                                    <div>
-
-                                        Ingrese un valor:<asp:TextBox ID="TextBox9" runat="server"></asp:TextBox>
-                                        <asp:GridView ID="GridView3" runat="server">
-                                        </asp:GridView>
-                                    </div>
-                                </asp:View>
+                                    <asp:View ID="vwModificacion" runat="server">
+                                        <h3>Modificar Medico</h3>
+                                        <div>
+                                            DNI del Medico:
+                                            <asp:TextBox ID="txtbModMedicoDNI" runat="server" ></asp:TextBox>
+                                        </div>
+                                        <div>
+                                            Nombre:
+                                          <asp:TextBox ID="txtbModMedicoNombre" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div>
+                                            Apellido:
+                                             <asp:TextBox ID="txtbModMedicoApellido" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div>
+                                            Nacionalidad:
+                                            <asp:DropDownList ID="ddlModNacionalidad" runat="server" DataSourceID="dbNacionalidades" DataTextField="gentilicio" DataValueField="idPais">
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div>
+                                            Dirección:
+                                             <asp:TextBox ID="txtbModMedicoDireccion" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div>
+                                            Teléfono:
+                                            <asp:TextBox ID="txtbModMedicoTelefono" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div>
+                                            Correo:
+                                             <asp:TextBox ID="txtbModMedicoCorreo" runat="server"></asp:TextBox>
+                                        </div>
+                                    </asp:View>
 
                                 <asp:View ID="vwLectura" runat="server">
                                     <h3>Listar Médico</h3>
                                     <div>
 
-                                        Ingrese un valor:<asp:TextBox ID="TextBox8" runat="server"></asp:TextBox>
-                                        <asp:GridView ID="GridView2" runat="server">
+                                        <asp:GridView ID="gvLecturaMedico" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" style="margin-right: 0px">
+                                            <AlternatingRowStyle BackColor="White" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Seleccionar">
+                                                    <ItemTemplate>
+                                                        <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True"/>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="Legajo" HeaderText="Legajo" />
+                                                <asp:BoundField DataField="DNI" HeaderText="DNI" />
+                                                <asp:BoundField DataField="idEspecialidad" HeaderText="Especialidad" />
+                                                <asp:BoundField DataField="nombre" HeaderText="Nombre" />
+                                                <asp:BoundField DataField="apellido" HeaderText="Apellido" />
+                                                <asp:BoundField DataField="genero" HeaderText="Genero" />
+                                                <asp:BoundField DataField="nacionalidad" HeaderText="Nacionalidad" />
+                                                <asp:BoundField DataField="correo" HeaderText="Correo" />
+                                                <asp:BoundField DataField="telefono" HeaderText="Telefono" />
+                                            </Columns>
+                                            <EditRowStyle BackColor="#2461BF" />
+                                            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                                            <RowStyle BackColor="#EFF3FB" />
+                                            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                            <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                                            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                                            <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                                            <SortedDescendingHeaderStyle BackColor="#4870BE" />
                                         </asp:GridView>
 
                                     </div>
