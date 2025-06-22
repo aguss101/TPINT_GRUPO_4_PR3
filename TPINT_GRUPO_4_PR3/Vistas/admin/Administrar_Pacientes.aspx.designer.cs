@@ -321,103 +321,184 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.GridView GridView1;
 
         /// <summary>
-        /// Control vwModificacion.
+        /// Control vwModificar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View vwModificacion;
+        protected global::System.Web.UI.WebControls.View vwModificar;
 
         /// <summary>
-        /// Control txtbModPacienteDNI.
+        /// Control txbModDni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbModPacienteDNI;
+        protected global::System.Web.UI.WebControls.TextBox txbModDni;
 
         /// <summary>
-        /// Control DropDownListModOS.
+        /// Control txbModNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListModOS;
+        protected global::System.Web.UI.WebControls.TextBox txbModNombre;
 
         /// <summary>
-        /// Control txtbModPacienteNombre.
+        /// Control txbModApellido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbModPacienteNombre;
+        protected global::System.Web.UI.WebControls.TextBox txbModApellido;
 
         /// <summary>
-        /// Control txtbModPacienteApellido.
+        /// Control ddlModGenero.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbModPacienteApellido;
+        protected global::System.Web.UI.WebControls.DropDownList ddlModGenero;
 
         /// <summary>
-        /// Control DropDownList1.
+        /// Control dbModGenero.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.SqlDataSource dbModGenero;
 
         /// <summary>
-        /// Control txtbModPacienteDireccion.
+        /// Control ddlModNacionalidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbModPacienteDireccion;
+        protected global::System.Web.UI.WebControls.DropDownList ddlModNacionalidad;
 
         /// <summary>
-        /// Control txtbModPacienteTelefono.
+        /// Control dbModNacionalidades.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbModPacienteTelefono;
+        protected global::System.Web.UI.WebControls.SqlDataSource dbModNacionalidades;
 
         /// <summary>
-        /// Control txtbModPacienteCorreo.
+        /// Control txbModFechaNacimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbModPacienteCorreo;
+        protected global::System.Web.UI.WebControls.TextBox txbModFechaNacimiento;
 
         /// <summary>
-        /// Control btnModificarUsuario.
+        /// Control txbModDireccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarUsuario;
+        protected global::System.Web.UI.WebControls.TextBox txbModDireccion;
 
         /// <summary>
-        /// Control lblModificarUsuario.
+        /// Control ddlModProvincias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblModificarUsuario;
+        protected global::System.Web.UI.WebControls.DropDownList ddlModProvincias;
+
+        /// <summary>
+        /// Control dbModProvincias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dbModProvincias;
+
+        /// <summary>
+        /// Control ddlModLocalidades.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlModLocalidades;
+
+        /// <summary>
+        /// Control dbModLocalidades.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dbModLocalidades;
+
+        /// <summary>
+        /// Control ddlModObraSocial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlModObraSocial;
+
+        /// <summary>
+        /// Control dbModObraSocial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dbModObraSocial;
+
+        /// <summary>
+        /// Control txbModTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbModTelefono;
+
+        /// <summary>
+        /// Control txbModCorreo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbModCorreo;
+
+        /// <summary>
+        /// Control btnModificarPaciente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModificarPaciente;
+
+        /// <summary>
+        /// Control lblModUser.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModUser;
 
         /// <summary>
         /// Control vwLectura.
