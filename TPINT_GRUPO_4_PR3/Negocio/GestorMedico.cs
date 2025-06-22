@@ -16,7 +16,10 @@ namespace Negocio
 
             return consultas.GetMedicos();
         }
-
+        public Medico getMedicoPorID(string idMedico)
+        {
+            return consultas.getMedicoPorID(idMedico);
+        }
         public int InsertarMedico(string nombreprocedimiento, Medico medico)
         {
             return consultas.InsertarMedico(nombreprocedimiento, medico);

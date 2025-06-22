@@ -14,7 +14,10 @@ namespace Datos
         public List<Medico> GetMedicos()
         {
             List<Medico> medicos = new List<Medico>();
-            string query = "SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, S.Descripcion, L.nombreLocalidad FROM Medico ME INNER JOIN Persona PE ON ME.DNI = ME.DNI INNER JOIN Sexos S ON PE.sexo = S.IdSexo INNER JOIN Localidades L ON PE.IdLocalidad = L.IdLocalidad  ";
+            string query = "SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, C.correo, T.telefono, L.idLocalidad " +
+                "FROM Medico ME " + "INNER JOIN Persona PE ON ME.DNI = ME.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo " + "INNER JOIN Localidades L ON PE.idLocalidad " +
+                "= L.idLocalidad" + "  INNER JOIN Correos C ON PE.DNI = C.idPersona  INNER JOIN Telefonos T ON PE.DNI = T.idPersona";
+
             using (SqlConnection connection = conexion.AbrirConexion())
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -31,13 +34,13 @@ namespace Datos
                             medico.idEspecialidad = (Convert.ToInt32(reader["idEspecialidad"]));
                             medico.nombre = (reader["nombre"].ToString());
                             medico.apellido = (reader["apellido"].ToString());
-                            medico.genero = (Convert.ToInt32(reader["Descripcion"]));
+                            medico.genero = (Convert.ToInt32(reader["idSexo"]));
                             medico.fechaNacimiento = (DateTime)reader["FechaNacimiento"];
                             medico.nacionalidad = (reader["nacionalidad"].ToString());
                             medico.Direccion = (reader["Direccion"].ToString());
-                            medico.Localidad = (Convert.ToInt32(reader["nombreLocalidad"]));
+                            medico.Localidad = (Convert.ToInt32(reader["idLocalidad"]));
                             medico.Correo = (reader["Correo"].ToString());
-                            medico.Telefono = (Convert.ToInt32(reader["Telefono"]));
+                            medico.Telefono = (Convert.ToInt32(reader["telefono"]));
 
                             medicos.Add(medico);
                         }
@@ -99,6 +102,46 @@ namespace Datos
             return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);
         }
 
+        public Medico getMedicoPorID(string idMedico)
+        {
+            Medico medico = null; // null si no se encuentra
 
+
+
+            using (SqlConnection connection = conexion.AbrirConexion())
+            {
+                string query = "SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, C.correo, T.telefono, L.idLocalidad " +
+                "FROM Medico ME " + "INNER JOIN Persona PE ON ME.DNI = ME.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo " + "INNER JOIN Localidades L ON PE.idLocalidad " +
+                "= L.idLocalidad" + "  INNER JOIN Correos C ON PE.DNI = C.idPersona  INNER JOIN Telefonos T ON PE.DNI = T.idPersona";
+
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@id", idMedico);
+
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    medico = new Medico();
+
+
+                    medico.DNI = (reader["DNI"].ToString());
+                    medico.nombre = (reader["nombre"].ToString());
+                    medico.apellido = (reader["apellido"].ToString());
+                    medico.genero = (Convert.ToInt32(reader["idSexo"]));
+                    medico.fechaNacimiento = (DateTime)reader["FechaNacimiento"];
+                    medico.Direccion = (reader["Direccion"].ToString());
+                    medico.Localidad = (Convert.ToInt32(reader["idLocalidad"]));
+                    medico.nacionalidad = (reader["nacionalidad"].ToString());
+                    medico.Correo = (reader["Correo"].ToString());
+                    medico.Telefono = (Convert.ToInt32(reader["Telefono"]));
+
+                }
+
+                reader.Close();
+            }
+
+            return medico;
+        }
     }
 }
