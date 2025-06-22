@@ -128,12 +128,13 @@ CREATE TABLE Paciente (
 
 -- Tabla: Turnos
 CREATE TABLE Turnos (
-    Legajo VARCHAR(20),
+    Legajo VARCHAR(20) ,
     DNIPaciente VARCHAR(20),
     fechaPactada TIMESTAMP,
     estado INT,
     observacion VARCHAR(200),
     diagnostico VARCHAR(50),
+	PRIMARY KEY (Legajo, fechaPactada),
     FOREIGN KEY (Legajo) REFERENCES Medico(Legajo),
     FOREIGN KEY (DNIPaciente) REFERENCES Paciente(DNI),
     FOREIGN KEY (estado) REFERENCES EstadoTurnos(idEstado)
