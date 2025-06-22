@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
 using Entidades;
+using System.Diagnostics;
 
 namespace Vistas.admin
 {
@@ -72,10 +73,16 @@ namespace Vistas.admin
                     medico = gestorMedico.getMedicoPorID(DNI);
                     mvFormularios.ActiveViewIndex = 2;
                     txtbModMedicoDNI.Text = medico.DNI;
+                    txtbModMedicoLegajo.Text = medico.Legajo;
                     txtbModMedicoNombre.Text = medico.nombre;
+                    DateTime date = medico.fechaNacimiento;
+                    txtbModFechaNac.Text = date.Date.ToString();
                     txtbModMedicoApellido.Text = medico.apellido;
-
-
+                    ddlModEspecialidad.SelectedValue = medico.idEspecialidad.ToString();
+                    ddlModNacionalidad.SelectedValue = medico.nacionalidad;
+                    txtbModMedicoDireccion.Text = medico.Direccion;
+                    txtbModMedicoTelefono.Text = medico.Telefono.ToString();
+                    txtbModMedicoCorreo.Text = medico.Correo;
 
                     break;
                 }
@@ -131,6 +138,32 @@ namespace Vistas.admin
                 lblAddUserState0.Visible = true;
             }
         }
+        protected void ModificarMedico()
+        {
+            Medico medico = new Medico();
+
+            medico.DNI = txtbModMedicoDNI.Text.Trim();
+            medico.Legajo = txtbModMedicoLegajo.Text.Trim();
+            medico.nombre = txtbModMedicoNombre.Text.Trim();
+            medico.apellido = txtbModMedicoApellido.Text.Trim();
+            medico.fechaNacimiento = Convert.ToDateTime(txtbModFechaNac.Text.Trim());
+            medico.idEspecialidad = int.Parse(ddlModEspecialidad.SelectedValue.Trim());
+            medico.genero = ddlModGenero.SelectedIndex;
+            medico.Localidad = ddlModLocalidad.SelectedIndex;
+            medico.nacionalidad = ddlModNacionalidad.SelectedValue;
+            medico.Direccion = txtbModMedicoDireccion.Text;
+            medico.Telefono = int.Parse(txtbModMedicoTelefono.Text.Trim());
+            medico.Correo = txtbModMedicoCorreo.Text;
+
+            string nombreProcedimiento = "sp_ModificarMedico";
+            int filas = gestorMedico.ModificarMedico(nombreProcedimiento, medico);
+            if(filas > 0)
+            {
+                lblModificarMedico.Text = "Se modifico correctamente el Medico.";
+                lblModificarMedico.ForeColor = System.Drawing.Color.Green;
+                lblModificarMedico.Visible = true;
+            }
+        }
         protected void loadGridMedicos()
         {
             GestorMedico gestorMedico = new GestorMedico();
@@ -143,7 +176,10 @@ namespace Vistas.admin
         {
             InsertarMedicos();
         }
-
+        protected void btnModificarMedico_Click(object sender, EventArgs e)
+        {
+            ModificarMedico();
+        }
         protected void btnAdministrarMedico_Click(object sender, EventArgs e)
         {
             Response.Redirect("/admin/Administrar_Medicos.aspx");

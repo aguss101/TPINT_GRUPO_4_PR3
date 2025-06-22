@@ -34,16 +34,11 @@ namespace Vistas.admin
                 foreach (GridViewRow row in GridView2.Rows)
                 {
                     CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
-                    Debug.Print(chk.Checked.ToString());
-                    Debug.Print("Antes");
                     if (chk != null && chk.Checked)
                     {
-                        Debug.Print("Adentro");
                         string DNI = row.Cells[1].Text;
-                        Debug.Print(row.Cells[1].Text);
                         gestorPaciente.EliminarPaciente("sp_EliminarPaciente", DNI);
                     }
-                    Debug.Print("Despues");
                 }
                 loadGridPacientes();
                 lblAddUserState.Text = "Paciente/s dado/s de baja correctamente.";

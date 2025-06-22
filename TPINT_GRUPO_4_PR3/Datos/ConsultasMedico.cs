@@ -16,7 +16,8 @@ namespace Datos
             List<Medico> medicos = new List<Medico>();
             string query = "SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, C.correo, T.telefono, L.idLocalidad " +
                 "FROM Medico ME " + "INNER JOIN Persona PE ON ME.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo " + "INNER JOIN Localidades L ON PE.idLocalidad " +
-                "= L.idLocalidad" + "  LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona ";
+                "= L.idLocalidad" + "  LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona "+
+                "WHERE activo = 1";
 
             using (SqlConnection connection = conexion.AbrirConexion())
             {
@@ -86,7 +87,7 @@ namespace Datos
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@Legajo", medico.DNI),
+                new SqlParameter("@Legajo", medico.Legajo),
                 new SqlParameter("@DNI", medico.DNI),
                 new SqlParameter("@idEspecialidad", medico.idEspecialidad),
                 new SqlParameter("@Nombre", medico.nombre),
@@ -135,6 +136,8 @@ namespace Datos
                     medico.nacionalidad = (reader["nacionalidad"].ToString());
                     medico.Correo = (reader["Correo"].ToString());
                     medico.Telefono = (Convert.ToInt32(reader["Telefono"]));
+                    medico.idEspecialidad = (Convert.ToInt32(reader["idEspecialidad"]));
+                    medico.Legajo = reader["Legajo"].ToString();
 
                 }
 
