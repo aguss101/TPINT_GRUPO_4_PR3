@@ -1,6 +1,9 @@
 CREATE DATABASE ClinicaDB;
 GO
 
+USE ClinicaDB
+GO
+
 -- Tabla: Roles
 CREATE TABLE Roles (
     idRol INT PRIMARY KEY,
@@ -95,7 +98,7 @@ CREATE TABLE Medico (
 CREATE TABLE Jornadas (
     Legajo VARCHAR(20),
     DiaSemana VARCHAR(20),
-    rangoHorario TIME,
+    rangoHorario TIME(0),
     PRIMARY KEY (Legajo, DiaSemana, rangoHorario),
     FOREIGN KEY (Legajo) REFERENCES Medico(Legajo)
 );
