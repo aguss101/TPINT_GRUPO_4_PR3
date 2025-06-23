@@ -453,7 +453,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="auto-style32">
-                                                    <asp:Button ID="btnRegistrarMedico" runat="server" Text="Registrar paciente" Width="188px" OnClick="btnRegistrarMedico_Click" />
+                                                    <asp:Button ID="btnRegistrarMedico" runat="server" Text="Registrar medico" Width="188px" OnClick="btnRegistrarMedico_Click" />
                                                 </td>
                                                 <td class="auto-style30">
                                                     &nbsp;</td>

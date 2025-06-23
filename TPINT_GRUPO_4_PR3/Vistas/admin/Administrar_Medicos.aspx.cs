@@ -30,6 +30,8 @@ namespace Vistas.admin
 
         protected void btnBaja_Click(object sender, EventArgs e)
         {
+            lblAddUserState0.Visible = false;
+
             try
             {
                 foreach (GridViewRow row in gvLecturaMedico.Rows)
@@ -94,10 +96,12 @@ namespace Vistas.admin
         protected void btnLectura_Click(object sender, EventArgs e)
         {
             mvFormularios.ActiveViewIndex = 3;
+            lblModificarMedico.Visible = false;
             loadGridMedicos();
         }
         protected void InsertarMedicos()
         {
+            lblAddUserState0.Visible = false;
             try
             {
                 Medico medico = new Medico();
@@ -128,7 +132,6 @@ namespace Vistas.admin
                     lblAddUserState0.Text = "Hubo un error durante la carga (no se insertó ninguna fila)";
                     lblAddUserState0.ForeColor = System.Drawing.Color.Red;
                 }
-
                 lblAddUserState0.Visible = true;
             }
             catch (Exception ex)
@@ -140,6 +143,7 @@ namespace Vistas.admin
         }
         protected void ModificarMedico()
         {
+            lblModificarMedico.Visible = false;
             Medico medico = new Medico();
 
             medico.DNI = txtbModMedicoDNI.Text.Trim();
@@ -156,11 +160,37 @@ namespace Vistas.admin
             medico.Correo = txtbModMedicoCorreo.Text;
 
             string nombreProcedimiento = "sp_ModificarMedico";
+            //Validaciones anteriores a enviar los datos del Medico a modificar
+            if (medico.DNI== "" || medico.Legajo == "" || medico.nombre == "" || medico.apellido == "")
+            {
+                lblModificarMedico.Text = "⚠️ Faltan datos obligatorios.";
+                lblModificarMedico.ForeColor = System.Drawing.Color.OrangeRed;
+                lblModificarMedico.Visible = true;
+                return;
+            }
+            
+            DateTime edadMinima = DateTime.Today.AddYears(-18);
+            DateTime edadMaxima = DateTime.Today.AddYears(-120);
+
+            if (medico.fechaNacimiento > edadMinima || medico.fechaNacimiento < edadMaxima)
+            {
+                lblModificarMedico.Text = "⚠️ Fecha de nacimiento inválida.";
+                lblModificarMedico.ForeColor = System.Drawing.Color.OrangeRed;
+                lblModificarMedico.Visible = true;
+                return;
+            }
             int filas = gestorMedico.ModificarMedico(nombreProcedimiento, medico);
-            if(filas > 0)
+            
+            if(filas > 0) // Verificación final luego de llamar al sp
             {
                 lblModificarMedico.Text = "Se modifico correctamente el Medico.";
                 lblModificarMedico.ForeColor = System.Drawing.Color.Green;
+                lblModificarMedico.Visible = true;
+            }
+            else
+            {
+                lblModificarMedico.Text = "❌ Error: no se modificó ninguna fila.";
+                lblModificarMedico.ForeColor = System.Drawing.Color.Red;
                 lblModificarMedico.Visible = true;
             }
         }

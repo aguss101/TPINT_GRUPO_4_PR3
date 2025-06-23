@@ -5,7 +5,7 @@ CREATE OR ALTER PROCEDURE sp_AltaPaciente
     @DNI VARCHAR(25),
     @Nombre VARCHAR(50),
     @Apellido VARCHAR(50),
-    @Nacionalidad VARCHAR(50),                                -- Agregar Paciente
+    @Nacionalidad VARCHAR(50),
     @FechaNacimiento DATE,
     @Sexo INT,
     @IdLocalidad INT,
@@ -51,7 +51,7 @@ END;
 
 GO
 
-CREATE OR ALTER PROCEDURE sp_EliminarPaciente     --  Eliminar Paciente
+CREATE OR ALTER PROCEDURE sp_EliminarPaciente
     @DNI VARCHAR(50)
 AS
 BEGIN
@@ -82,7 +82,7 @@ END;
 
 GO
 
-CREATE OR ALTER PROCEDURE sp_ModificarPaciente  -- Modificar Paciente
+CREATE OR ALTER PROCEDURE sp_ModificarPaciente
     @DNI VARCHAR(50),
     @Nombre VARCHAR(50),
     @Apellido VARCHAR(50),
@@ -151,7 +151,7 @@ BEGIN
 END;
 
 GO
-CREATE OR ALTER PROCEDURE sp_AltaMedico -- Agregar Medico
+CREATE OR ALTER PROCEDURE sp_AltaMedico
     @Legajo VARCHAR(50),
 	@DNI VARCHAR(50),
 	@idEspecialidad INT,
@@ -202,8 +202,8 @@ END;
 
 GO
 
-CREATE OR ALTER PROCEDURE sp_EliminarMedico  --  Eliminar Medico
-    @DNI INT
+CREATE OR ALTER PROCEDURE sp_EliminarMedico
+    @DNI VARCHAR(50)
 AS
 BEGIN
     BEGIN TRY

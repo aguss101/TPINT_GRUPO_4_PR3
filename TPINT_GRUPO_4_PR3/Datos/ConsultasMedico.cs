@@ -52,7 +52,6 @@ namespace Datos
             return medicos;
 
         }
-
         public int InsertarMedico(string nombreprocedimiento, Medico medico)
         {
             SqlParameter[] parametros = new SqlParameter[]
@@ -106,9 +105,7 @@ namespace Datos
 
         public Medico getMedicoPorID(string idMedico)
         {
-            Medico medico = null; // null si no se encuentra
-
-
+            Medico medico = null;
 
             using (SqlConnection connection = conexion.AbrirConexion())
             {
