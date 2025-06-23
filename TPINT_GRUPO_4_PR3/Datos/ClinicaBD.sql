@@ -25,13 +25,13 @@ CREATE TABLE Paises (
 -- Tabla: Provincias
 CREATE TABLE Provincias (
     idProvincia INT PRIMARY KEY,
-    nombreProvincia VARCHAR(25) UNIQUE
+    nombreProvincia VARCHAR(35) UNIQUE
 );
 
 -- Tabla: Localidades
 CREATE TABLE Localidades (
     idLocalidad INT PRIMARY KEY,
-    nombreLocalidad VARCHAR(25),
+    nombreLocalidad VARCHAR(35),
     idProvincia INT FOREIGN KEY REFERENCES Provincias(idProvincia)
 );
 
@@ -41,7 +41,7 @@ CREATE TABLE Persona (
     nombre VARCHAR(25),
     apellido VARCHAR(25),
     sexo INT FOREIGN KEY REFERENCES Sexos(idSexo),
-    direccion VARCHAR(25),
+    direccion VARCHAR(60),
     idLocalidad INT FOREIGN KEY REFERENCES Localidades(idLocalidad),
     fechaNacimiento DATE,
     nacionalidad VARCHAR(25) FOREIGN KEY REFERENCES Paises(gentilicio),
