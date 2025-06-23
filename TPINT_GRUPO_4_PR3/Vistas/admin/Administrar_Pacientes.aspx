@@ -389,14 +389,17 @@
                                                     <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="auto-style32">Nacionalidad</td><td class="auto-style30">
-                                                        <asp:DropDownList ID="ddlNacionalidad" runat="server" DataSourceID="dbNacionalidades" DataTextField="gentilicio" DataValueField="gentilicio"></asp:DropDownList>
-                                                        <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT [idPais], [gentilicio] FROM [Paises]"></asp:SqlDataSource>
+                                                    <td class="auto-style32">Fecha de nacimiento</td><td class="auto-style30">
+                                                        <asp:TextBox ID="txbFechaNacimiento" runat="server"></asp:TextBox>
                                                     </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="auto-style32">Fecha de nacimiento</td><td class="auto-style30"><asp:TextBox ID="txbFechaNacimiento" runat="server"></asp:TextBox></td>
+                                                    <td class="auto-style32">Nacionalidad</td><td class="auto-style30">
+                                                    <asp:DropDownList ID="ddlNacionalidad" runat="server" DataSourceID="dbNacionalidades" DataTextField="gentilicio" DataValueField="gentilicio">
+                                                    </asp:DropDownList>
+                                                    <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT [idPais], [gentilicio] FROM [Paises]"></asp:SqlDataSource>
+                                                    </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>
@@ -405,14 +408,14 @@
                                                     <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="auto-style32">Provincia</td><td class="auto-style30">
+                                                    <td class="auto-style32">Localidad:</td><td class="auto-style30">
                                                         <asp:DropDownList ID="ddlProvincias" runat="server" DataSourceID="dbProvincias" DataTextField="nombreProvincia" DataValueField="idProvincia"></asp:DropDownList>
                                                         <asp:SqlDataSource ID="dbProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT [idProvincia], [nombreProvincia] FROM [Provincias]"></asp:SqlDataSource>
                                                     </td>
                                                     <td class="auto-style31">&nbsp;</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="auto-style32">Localidad</td><td class="auto-style30">
+                                                    <td class="auto-style32">Provincia:</td><td class="auto-style30">
                                                         <asp:DropDownList ID="ddlLocalidades" runat="server" AutoPostBack="True" DataSourceID="dbLocalidades" DataTextField="nombreLocalidad" DataValueField="idLocalidad"></asp:DropDownList>
                                                         <asp:SqlDataSource ID="dbLocalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT * FROM [Localidades]"></asp:SqlDataSource>
                                                     </td>

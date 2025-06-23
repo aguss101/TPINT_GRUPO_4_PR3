@@ -204,24 +204,6 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.SqlDataSource dbGenero;
 
         /// <summary>
-        /// Control ddlNacionalidad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlNacionalidad;
-
-        /// <summary>
-        /// Control dbNacionalidades.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dbNacionalidades;
-
-        /// <summary>
         /// Control txbFechaNacimiento.
         /// </summary>
         /// <remarks>
@@ -231,6 +213,15 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.TextBox txbFechaNacimiento;
 
         /// <summary>
+        /// Control lblCondiciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCondiciones;
+
+        /// <summary>
         /// Control txbDireccion.
         /// </summary>
         /// <remarks>
@@ -238,6 +229,24 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txbDireccion;
+
+        /// <summary>
+        /// Control ddlLocalidades.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocalidades;
+
+        /// <summary>
+        /// Control dbLocalidades.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dbLocalidades;
 
         /// <summary>
         /// Control ddlProvincia.
@@ -258,22 +267,22 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.SqlDataSource dbProvincias;
 
         /// <summary>
-        /// Control ddlLocalidades.
+        /// Control ddlNacionalidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLocalidades;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNacionalidad;
 
         /// <summary>
-        /// Control dbLocalidades.
+        /// Control dbNacionalidades.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dbLocalidades;
+        protected global::System.Web.UI.WebControls.SqlDataSource dbNacionalidades;
 
         /// <summary>
         /// Control txbCorreo.
@@ -303,6 +312,15 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.Button btnRegistrarMedico;
 
         /// <summary>
+        /// Control lblAddUserState.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAddUserState;
+
+        /// <summary>
         /// Control vwBaja.
         /// </summary>
         /// <remarks>
@@ -321,15 +339,6 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.View vwModificacion;
 
         /// <summary>
-        /// Control txtbModMedicoDNI.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbModMedicoDNI;
-
-        /// <summary>
         /// Control txtbModMedicoLegajo.
         /// </summary>
         /// <remarks>
@@ -337,6 +346,15 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbModMedicoLegajo;
+
+        /// <summary>
+        /// Control txtbModMedicoDNI.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbModMedicoDNI;
 
         /// <summary>
         /// Control txtbModMedicoNombre.
@@ -384,6 +402,15 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.TextBox txtbModFechaNac;
 
         /// <summary>
+        /// Control lblCondiciones0.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCondiciones0;
+
+        /// <summary>
         /// Control ddlModGenero.
         /// </summary>
         /// <remarks>
@@ -400,6 +427,15 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource dbModGenero;
+
+        /// <summary>
+        /// Control txtbModMedicoDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbModMedicoDireccion;
 
         /// <summary>
         /// Control ddlModLocalidad.
@@ -420,6 +456,15 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.SqlDataSource dbModLocalidad;
 
         /// <summary>
+        /// Control dbModProvincia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dbModProvincia;
+
+        /// <summary>
         /// Control ddlModNacionalidad.
         /// </summary>
         /// <remarks>
@@ -436,15 +481,6 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource dbModNacionalidades;
-
-        /// <summary>
-        /// Control txtbModMedicoDireccion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbModMedicoDireccion;
 
         /// <summary>
         /// Control txtbModMedicoTelefono.
@@ -474,13 +510,13 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.Button btnModificarMedico;
 
         /// <summary>
-        /// Control lblModificarMedico.
+        /// Control lblModificarMedico0.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblModificarMedico;
+        protected global::System.Web.UI.WebControls.Label lblModificarMedico0;
 
         /// <summary>
         /// Control vwLectura.
