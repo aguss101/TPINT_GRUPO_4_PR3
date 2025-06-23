@@ -42,7 +42,7 @@ namespace Datos
                             medico.Direccion = (reader["Direccion"].ToString());
                             medico.Localidad = (Convert.ToInt32(reader["idLocalidad"]));
                             medico.Correo = (reader["Correo"].ToString());
-                            medico.Telefono = (Convert.ToInt32(reader["telefono"]));
+                            medico.Telefono = (reader["telefono"].ToString());
 
                             medicos.Add(medico);
                         }
@@ -136,7 +136,7 @@ namespace Datos
                     medico.Localidad = (Convert.ToInt32(reader["idLocalidad"]));
                     medico.nacionalidad = (reader["nacionalidad"].ToString());
                     medico.Correo = (reader["Correo"].ToString());
-                    medico.Telefono = (Convert.ToInt32(reader["Telefono"]));
+                    medico.Telefono = (reader["Telefono"].ToString());
                     medico.idEspecialidad = (Convert.ToInt32(reader["idEspecialidad"]));
                     medico.Legajo = reader["Legajo"].ToString();
 

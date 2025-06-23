@@ -2,10 +2,10 @@ USE ClinicaDB;
 GO
 
 CREATE OR ALTER PROCEDURE sp_AltaPaciente
-    @DNI INT,
+    @DNI VARCHAR(25),
     @Nombre VARCHAR(50),
     @Apellido VARCHAR(50),
-    @Nacionalidad VARCHAR(50),
+    @Nacionalidad VARCHAR(50),                                -- Agregar Paciente
     @FechaNacimiento DATE,
     @Sexo INT,
     @IdLocalidad INT,
@@ -13,13 +13,13 @@ CREATE OR ALTER PROCEDURE sp_AltaPaciente
     @UltimaAtencion DATETIME,
     @Alta DATETIME,
 	@Direccion varchar(50),
-	@Telefono INT,
+	@Telefono VARCHAR(25),
 	@Correo VARCHAR(50)
 	
 AS
 BEGIN
     BEGIN TRY
-        BEGIN TRANSACTION;
+        BEGIN TRANSACTION;  
 
         IF EXISTS (SELECT 1 FROM Persona WHERE DNI = @DNI)
         BEGIN
@@ -51,7 +51,7 @@ END;
 
 GO
 
-CREATE OR ALTER PROCEDURE sp_EliminarPaciente
+CREATE OR ALTER PROCEDURE sp_EliminarPaciente     --  Eliminar Paciente
     @DNI INT
 AS
 BEGIN
@@ -82,7 +82,7 @@ END;
 
 GO
 
-CREATE OR ALTER PROCEDURE sp_ModificarPaciente
+CREATE OR ALTER PROCEDURE sp_ModificarPaciente  -- Modificar Paciente
     @DNI INT,
     @Nombre VARCHAR(50),
     @Apellido VARCHAR(50),
@@ -151,9 +151,9 @@ BEGIN
 END;
 
 GO
-CREATE OR ALTER PROCEDURE sp_AltaMedico
-    @Legajo INT,
-	@DNI INT,
+CREATE OR ALTER PROCEDURE sp_AltaMedico -- Agregar Medico
+    @Legajo VARCHAR(50),
+	@DNI VARCHAR(50),
 	@idEspecialidad INT,
     @Nombre VARCHAR(50),
     @Apellido VARCHAR(50),
@@ -196,13 +196,13 @@ BEGIN
     ROLLBACK TRANSACTION;
 
     DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
-    RAISERROR(@ErrorMessage, 16, 1); -- Ahora C# puede atraparlo
+    RAISERROR(@ErrorMessage, 16, 1); 
 END CATCH
 END;
 
 GO
 
-CREATE OR ALTER PROCEDURE sp_EliminarMedico
+CREATE OR ALTER PROCEDURE sp_EliminarMedico  --  Eliminar Medico
     @DNI INT
 AS
 BEGIN
@@ -235,7 +235,7 @@ END;
 
 GO
 
-CREATE OR ALTER PROCEDURE sp_ModificarMedico
+CREATE OR ALTER PROCEDURE sp_ModificarMedico --  Modificar Medico
 	@Legajo VARCHAR(50),
 	@DNI VARCHAR(50),
 	@idEspecialidad INT,
@@ -275,7 +275,9 @@ BEGIN
      
         PRINT 'Antes de Carga';
         UPDATE Persona
-        SET nombre = @Nombre,
+			
+        SET DNI = @DNI,
+			nombre = @Nombre,
             apellido = @Apellido,
             sexo = @Sexo,
             direccion = @Direccion,
@@ -287,7 +289,7 @@ BEGIN
       
         UPDATE Medico
         SET idEspecialidad = @idEspecialidad,
-			legajo = @Legajo
+		Legajo = @Legajo
         WHERE DNI = @DNI;
 
     
@@ -309,4 +311,5 @@ BEGIN
         PRINT 'Error: ' + ERROR_MESSAGE();
     END CATCH
 END;
-SELECT * FROM Persona WHERE DNI = 20123456  -- Reemplaza con el DNI que estás usando
+
+

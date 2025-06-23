@@ -80,7 +80,7 @@ namespace Vistas.admin
                     txbModFechaNacimiento.Text = fechaNac.ToString("dd-MM-yyyy");
                     txbModDireccion.Text = paciente.Direccion;
                     ddlModObraSocial.SelectedValue = paciente.ObraSocial.ToString();
-                    txbModTelefono.Text = paciente.Telefono.ToString();
+                    //txbModTelefono.Text = paciente.Telefono.ToString();
                     txbModCorreo.Text = paciente.Correo;             
 
                     break;
@@ -142,7 +142,7 @@ namespace Vistas.admin
             paciente.ultimaAtencion = DateTime.Now;
             paciente.Alta = DateTime.Now;
             paciente.nacionalidad = ddlNacionalidad.SelectedValue.ToString();
-            paciente.Telefono = int.Parse(txbTelefono.Text.Trim());
+            paciente.Telefono = txbTelefono.Text.Trim();
             paciente.Direccion = txbDireccion.Text.Trim();
             paciente.Correo = txbCorreo.Text.Trim();
 
@@ -172,7 +172,7 @@ namespace Vistas.admin
             paciente.ultimaAtencion = DateTime.Now;
             paciente.Alta = DateTime.Now;
             paciente.nacionalidad = ddlModNacionalidad.SelectedValue.ToString();
-            paciente.Telefono = int.Parse(txbModTelefono.Text.Trim());
+            paciente.Telefono = txbModTelefono.Text.Trim();
             paciente.Direccion = txbModDireccion.Text.Trim();
             paciente.Correo = txbModCorreo.Text.Trim();
 

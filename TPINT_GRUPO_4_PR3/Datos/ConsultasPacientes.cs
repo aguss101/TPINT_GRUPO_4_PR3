@@ -99,8 +99,6 @@ namespace Datos
                 new SqlParameter("@Sexo", paciente.genero),
                 new SqlParameter("@IdLocalidad", paciente.Localidad),
                 new SqlParameter("@ObraSocial", paciente.ObraSocial),
-                new SqlParameter("@UltimaAtencion", paciente.ultimaAtencion),
-                new SqlParameter("@Alta", paciente.Alta),
                 new SqlParameter("@Telefono", paciente.Telefono),
                 new SqlParameter("@Direccion", paciente.Direccion),
                 new SqlParameter("@Correo", paciente.Correo)

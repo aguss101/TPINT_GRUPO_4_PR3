@@ -73,7 +73,7 @@ namespace Vistas.admin
                     medico = gestorMedico.getMedicoPorID(DNI);
                     mvFormularios.ActiveViewIndex = 2;
                     txtbModMedicoDNI.Text = medico.DNI;
-                    txtbModMedicoLegajo.Text = medico.Legajo;
+                    txtbModMedicoLegajo.Text = medico.Legajo.ToString();
                     txtbModMedicoNombre.Text = medico.nombre;
                     DateTime fechaNac = medico.fechaNacimiento.Date;
                     txtbModFechaNac.Text = fechaNac.ToString("dd-MM-yyyy");
@@ -113,7 +113,7 @@ namespace Vistas.admin
                 medico.Direccion = txbDireccion.Text.Trim();
                 medico.Localidad = int.Parse(ddlLocalidades.SelectedValue);
                 medico.Correo = txbCorreo.Text.Trim();
-                medico.Telefono = int.Parse(txbTelefono.Text.Trim());
+                medico.Telefono = txbTelefono.Text.Trim();
 
                 string nombreProcedimiento = "sp_AltaMedico";
                 int filas = gestorMedico.InsertarMedico(nombreProcedimiento, medico);
@@ -152,7 +152,7 @@ namespace Vistas.admin
             medico.Localidad = int.Parse(ddlModLocalidad.SelectedValue);
             medico.nacionalidad = ddlModNacionalidad.SelectedValue;
             medico.Direccion = txtbModMedicoDireccion.Text;
-            medico.Telefono = int.Parse(txtbModMedicoTelefono.Text.Trim());
+            medico.Telefono = txtbModMedicoTelefono.Text.Trim();
             medico.Correo = txtbModMedicoCorreo.Text;
 
             string nombreProcedimiento = "sp_ModificarMedico";

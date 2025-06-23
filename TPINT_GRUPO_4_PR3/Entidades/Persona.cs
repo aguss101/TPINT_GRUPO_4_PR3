@@ -21,7 +21,7 @@ namespace Entidades
         
         public string Direccion { get; set; }
 
-        public int Telefono { get; set; }
+        public string Telefono { get; set; }
         public string Correo { get; set; }
 
         // DATO A AGREGAR PARA LA BAJA LOGICA
