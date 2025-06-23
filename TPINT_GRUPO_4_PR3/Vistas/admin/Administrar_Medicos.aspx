@@ -467,10 +467,6 @@
                                 <asp:View ID="vwBaja" runat="server">
                                     <h3>Dar de baja Médico</h3>
                                     <div>
-                                        Ingrese un valor:
-                                        <asp:TextBox ID="TextBox7" runat="server"></asp:TextBox>
-                                        <asp:GridView ID="GridView1" runat="server">
-                                        </asp:GridView>
                                     </div>
                                 </asp:View>
 

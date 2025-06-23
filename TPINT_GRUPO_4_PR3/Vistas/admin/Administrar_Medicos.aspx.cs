@@ -25,6 +25,7 @@ namespace Vistas.admin
 
         protected void btnAlta_Click(object sender, EventArgs e)
         {
+            lblAddUserState0.Visible = false;
             mvFormularios.ActiveViewIndex = 0;
         }
 
@@ -73,14 +74,17 @@ namespace Vistas.admin
                     Medico medico = new Medico();
 
                     medico = gestorMedico.getMedicoPorID(DNI);
+                    lblAddUserState0.Visible = false;
+
                     mvFormularios.ActiveViewIndex = 2;
+
                     txtbModMedicoDNI.Text = medico.DNI;
                     txtbModMedicoLegajo.Text = medico.Legajo.ToString();
+                    ddlModEspecialidad.SelectedValue = medico.idEspecialidad.ToString();
                     txtbModMedicoNombre.Text = medico.nombre;
+                    txtbModMedicoApellido.Text = medico.apellido;
                     DateTime fechaNac = medico.fechaNacimiento.Date;
                     txtbModFechaNac.Text = fechaNac.ToString("dd-MM-yyyy");
-                    txtbModMedicoApellido.Text = medico.apellido;
-                    ddlModEspecialidad.SelectedValue = medico.idEspecialidad.ToString();
                     ddlModNacionalidad.SelectedValue = medico.nacionalidad;
                     txtbModMedicoDireccion.Text = medico.Direccion;
                     txtbModMedicoTelefono.Text = medico.Telefono.ToString();
@@ -95,9 +99,11 @@ namespace Vistas.admin
 
         protected void btnLectura_Click(object sender, EventArgs e)
         {
-            mvFormularios.ActiveViewIndex = 3;
+            lblAddUserState0.Visible = false;
             lblModificarMedico.Visible = false;
+            mvFormularios.ActiveViewIndex = 3;
             loadGridMedicos();
+
         }
         protected void InsertarMedicos()
         {

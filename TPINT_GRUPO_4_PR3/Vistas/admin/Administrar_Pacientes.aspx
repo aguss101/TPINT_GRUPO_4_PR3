@@ -293,51 +293,6 @@
             width: 100%;
         }
     </style>
-
-    <%--<script type="text/javascript">
-        function seleccionarUnico(checkboxSeleccionado) {
-            var grid = document.getElementById('<%= GridView2.ClientID %>');
-            var checkboxes = grid.querySelectorAll("input[type='checkbox']");
-
-            checkboxes.forEach(function (chk) {
-                if (chk !== checkboxSeleccionado) {
-                    chk.checked = false;
-                }
-            });
-        }
-    </script>
-
-    <script type="text/javascript">
-        function seleccionarUnico(checkboxSeleccionado) {
-            var grid = document.getElementById('<%= GridView2.ClientID %>');
-        var checkboxes = grid.querySelectorAll("input[type='checkbox']");
-
-        var algunoMarcado = false;
-
-        checkboxes.forEach(function (chk) {
-            if (chk !== checkboxSeleccionado) {
-                chk.checked = false;
-            }
-        });
-
-        // Verificamos si el checkbox actual quedó seleccionado
-        if (checkboxSeleccionado.checked) {
-            algunoMarcado = true;
-        }
-
-        // Mostrar u ocultar los botones según corresponda
-        var btnModificar = document.getElementById('<%= btnMod.ClientID %>');
-        var btnBaja = document.getElementById('<%= btnBaja.ClientID %>');
-
-            if (algunoMarcado) {
-                btnModificar.style.display = "inline-block";
-                btnBaja.style.display = "inline-block";
-            } else {
-                btnModificar.style.display = "none";
-                btnBaja.style.display = "none";
-            }
-        }
-    </script>--%>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -490,10 +445,6 @@
                                     <asp:View ID="vwBaja" runat="server">
                                         <h3>Dar de baja Paciente</h3>
                                         <div>
-                                            Ingrese un valor:
-                                        <asp:TextBox ID="TextBox7" runat="server"></asp:TextBox>
-                                            <asp:GridView ID="GridView1" runat="server">
-                                            </asp:GridView>
                                         </div>
                                     </asp:View>
 
@@ -599,8 +550,8 @@
                                                     <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
                                                     <asp:BoundField DataField="Localidad" HeaderText="Localidad" />
                                                     <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
-                                                    <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
-                                                    <asp:BoundField HeaderText="Correo" />
+                                                    <asp:BoundField HeaderText="Correo" DataField="correo" />
+                                                    <asp:BoundField DataField="telefono" HeaderText="Telefono" />
                                                 </Columns>
                                                 <EditRowStyle BackColor="#2461BF" />
                                                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -623,8 +574,7 @@
                         <tr>
                             <td class="auto-style33">
                                 <h3>
-                                    <asp:TextBox ID="TextBox8" runat="server"></asp:TextBox>
-                                </h3>
+                                    &nbsp;</h3>
                             </td>
                             <td class="auto-style38"></td>
                             <td class="auto-style39"></td>

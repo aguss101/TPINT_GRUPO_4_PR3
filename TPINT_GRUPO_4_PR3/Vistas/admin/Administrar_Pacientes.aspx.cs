@@ -68,19 +68,21 @@ namespace Vistas.admin
                     Paciente paciente = new Paciente();
 
                     paciente = gestorPaciente.getPacientePorID(DNI);
+
                     mvFormularios.ActiveViewIndex = 2;
+
                     txbModDni.Text = paciente.DNI;
                     txbModNombre.Text = paciente.nombre;
                     txbModApellido.Text = paciente.apellido;
                     ddlModGenero.SelectedValue = paciente.genero.ToString();
                     ddlModNacionalidad.SelectedValue = paciente.nacionalidad;
                     ddlModLocalidades.SelectedValue = paciente.Localidad.ToString();
-                    //ddlModProvincias.SelectedIndex = ;
+                    ddlModProvincias.SelectedValue = paciente.//Provincia.ToString();
                     DateTime fechaNac = paciente.fechaNacimiento.Date;
                     txbModFechaNacimiento.Text = fechaNac.ToString("dd-MM-yyyy");
                     txbModDireccion.Text = paciente.Direccion;
                     ddlModObraSocial.SelectedValue = paciente.ObraSocial.ToString();
-                    //txbModTelefono.Text = paciente.Telefono.ToString();
+                    txbModTelefono.Text = paciente.Telefono.ToString();
                     txbModCorreo.Text = paciente.Correo;             
 
                     break;

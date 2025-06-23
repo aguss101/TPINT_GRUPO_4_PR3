@@ -17,9 +17,9 @@ namespace Datos
         public List<Paciente> GetPacientes()
         {
             List<Paciente> pacientes = new List<Paciente>();
-            string query = "SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, O.idObraSocial, L.idLocalidad FROM Paciente PA" +
-                " INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.IdSexo INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial " +
-                "INNER JOIN Localidades L ON PE.IdLocalidad = L.IdLocalidad  " +
+            string query = "SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, O.idObraSocial, C.correo, T.telefono, L.idLocalidad FROM Paciente PA" +
+                " INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial " +
+                "INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad  " + " LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona " + 
                 "WHERE activo = 1";
             using (SqlConnection connection = conexion.AbrirConexion())
             {
@@ -43,8 +43,8 @@ namespace Datos
                             paciente.Direccion = (reader["Direccion"].ToString());
                             paciente.Localidad = (Convert.ToInt32(reader["idLocalidad"]));
                             paciente.nacionalidad = (reader["nacionalidad"].ToString());
-                            //paciente.Correo = (reader["Correo"].ToString());
-                            //paciente.Telefono = (Convert.ToInt32(reader["Telefono"]));
+                            paciente.Correo = (reader["Correo"].ToString());
+                            paciente.Telefono = (reader["telefono"].ToString());
 
                             pacientes.Add(paciente);
                         }
@@ -108,13 +108,21 @@ namespace Datos
 
         public Paciente getPacientePorID(string idPaciente)
         {
-            Paciente paciente = null; // null si no se encuentra
+            Paciente paciente = null;
 
             
 
             using (SqlConnection connection = conexion.AbrirConexion())
             {
-                string query = "SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.direccion, PE.fechaNacimiento, S.idSexo, O.idObraSocial, L.idLocalidad FROM Paciente PA INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.IdSexo INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial INNER JOIN Localidades L ON PE.IdLocalidad = L.IdLocalidad   WHERE PA.DNI = @id";
+                string query = "SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.direccion, PE.fechaNacimiento, S.idSexo, O.idObraSocial, L.idLocalidad FROM Paciente PA" +
+                    " INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.IdSexo INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial INNER JOIN Localidades L " +
+                    "ON PE.IdLocalidad = L.IdLocalidad   WHERE PA.DNI = @id";
+                //-----------------
+
+                string query2 = "SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, C.correo, T.telefono, L.idLocalidad " +
+                "FROM Medico ME " + "INNER JOIN Persona PE ON ME.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo " + "INNER JOIN Localidades L ON PE.idLocalidad " +
+                "= L.idLocalidad" + "  INNER JOIN Correos C ON PE.DNI = C.idPersona  INNER JOIN Telefonos T ON PE.DNI = T.idPersona WHERE ME.DNI = @id";
+
 
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@id", idPaciente);
