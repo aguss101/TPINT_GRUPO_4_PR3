@@ -71,7 +71,7 @@ CREATE TABLE Telefonos (
 -- Tabla: Correos
 CREATE TABLE Correos (
     idPersona VARCHAR(20),
-    correo VARCHAR(25),
+    correo VARCHAR(35),
     PRIMARY KEY (idPersona, correo),
     FOREIGN KEY (idPersona) REFERENCES Persona(DNI)
 );
