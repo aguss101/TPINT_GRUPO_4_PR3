@@ -52,7 +52,7 @@ END;
 GO
 
 CREATE OR ALTER PROCEDURE sp_EliminarPaciente     --  Eliminar Paciente
-    @DNI INT
+    @DNI VARCHAR(50)
 AS
 BEGIN
     BEGIN TRY

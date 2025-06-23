@@ -1,3 +1,5 @@
+use ClinicaDB
+
 -- INSERCIONES DE DATOS
 
 -- Roles

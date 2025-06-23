@@ -195,15 +195,6 @@ namespace Vistas.admin
             Response.Redirect("/admin/Administrar_Turnos.aspx");
         }
 
-        //protected void gvLecturaMedico_RowDataBound(object sender, GridViewRowEventArgs e)
-        //{
-        //    if (e.Row.RowType == DataControlRowType.DataRow)
-        //    {
-        //        CheckBox chk = (CheckBox)e.Row.FindControl("chkSeleccionar");
-        //        chk.AutoPostBack = true;
-        //        chk.CheckedChanged += new EventHandler(chkSeleccionar_CheckedChanged);  // Cada vez que se checkea un checkbox se dispara el evento, que recorre todos los checkboxs y desmarca los que no dispararon el evento.
-        //    }
-        //}
 
         protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
         {
