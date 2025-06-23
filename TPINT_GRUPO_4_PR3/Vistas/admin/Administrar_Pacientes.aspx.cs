@@ -77,7 +77,7 @@ namespace Vistas.admin
                     ddlModGenero.SelectedValue = paciente.genero.ToString();
                     ddlModNacionalidad.SelectedValue = paciente.nacionalidad;
                     ddlModLocalidades.SelectedValue = paciente.Localidad.ToString();
-                    ddlModProvincias.SelectedValue = paciente.//Provincia.ToString();
+                    //ddlModProvincias.SelectedValue = paciente.//Provincia.ToString();
                     DateTime fechaNac = paciente.fechaNacimiento.Date;
                     txbModFechaNacimiento.Text = fechaNac.ToString("dd-MM-yyyy");
                     txbModDireccion.Text = paciente.Direccion;
@@ -121,32 +121,25 @@ namespace Vistas.admin
            
         }
 
-        /*
-        protected void deletedGridPaciente()
-        {
-            GestorPaciente gestorPaciente = new GestorPaciente();
-            gestorPaciente.
-        }
-        */
-
-
         protected void InsertarPacientes()
         {
+            lblAddUserState.Visible = false;
+
             Paciente paciente = new Paciente();
 
-            paciente.nombre = txbNombre.Text.Trim();
-            paciente.apellido = txbApellido.Text.Trim();
             paciente.DNI = txbDni.Text.Trim();
-            paciente.fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim());
             paciente.ObraSocial = int.Parse(ddlObraSocial.SelectedValue);
-            paciente.genero = int.Parse(ddlGenero.SelectedValue);
-            paciente.Localidad = int.Parse(ddlLocalidades.SelectedValue);
             paciente.ultimaAtencion = DateTime.Now;
             paciente.Alta = DateTime.Now;
-            paciente.nacionalidad = ddlNacionalidad.SelectedValue.ToString();
-            paciente.Telefono = txbTelefono.Text.Trim();
+            paciente.nombre = txbNombre.Text.Trim();
+            paciente.apellido = txbApellido.Text.Trim();
+            paciente.genero = int.Parse(ddlGenero.SelectedValue);
+            paciente.fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim());
             paciente.Direccion = txbDireccion.Text.Trim();
+            paciente.Localidad = int.Parse(ddlLocalidades.SelectedValue);
+            paciente.nacionalidad = ddlNacionalidad.SelectedValue.ToString();
             paciente.Correo = txbCorreo.Text.Trim();
+            paciente.Telefono = txbTelefono.Text.Trim();
 
 
             string nombreProcedimiento = "sp_AltaPaciente";
@@ -154,9 +147,15 @@ namespace Vistas.admin
             if (filas > 0)
             {
                 lblAddUserState.Text = "Se agrego correctamente el Paciente";
-                lblAddUserState.ForeColor = System.Drawing.Color.Green; // DEBUG para testear si añade o no el paciente
+                lblAddUserState.ForeColor = System.Drawing.Color.Green;
                 lblAddUserState.Visible = true;
             }
+            else
+            {
+                lblAddUserState.Text = "Hubo un error durante la carga (no se insertó ninguna fila)";
+                lblAddUserState.ForeColor = System.Drawing.Color.Red;
+            }
+            lblAddUserState.Visible = true;
 
         }
       
@@ -184,7 +183,7 @@ namespace Vistas.admin
             if (filas > 0)
             {
                 lblModUser.Text = "Se modifico correctamente el Paciente";
-                lblModUser.ForeColor = System.Drawing.Color.Green; // DEBUG para testear si añade o no el paciente
+                lblModUser.ForeColor = System.Drawing.Color.Green;
                 lblModUser.Visible = true;
             }
         }
@@ -197,7 +196,7 @@ namespace Vistas.admin
             {
                 CheckBox chk = (CheckBox)e.Row.FindControl("chkSeleccionar");
                 chk.AutoPostBack = true;
-                chk.CheckedChanged += new EventHandler(chkSeleccionar_CheckedChanged);  // Cada vez que se checkea un checkbox se dispara el evento, que recorre todos los checkboxs y desmarca los que no dispararon el evento.
+                chk.CheckedChanged += new EventHandler(chkSeleccionar_CheckedChanged);
             }
         }
 
@@ -206,7 +205,7 @@ namespace Vistas.admin
             
             foreach (GridViewRow row in GridView2.Rows)
             {
-                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");  // Recorre todas las filas y desmarca todos aquellos checkboxs que no dispararon el evento.
+                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
                 if (chk != sender)
                 {
                     chk.Checked = false;
@@ -217,7 +216,7 @@ namespace Vistas.admin
             bool algunoMarcado = false;
             foreach (GridViewRow row in GridView2.Rows)
             {
-                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar"); // Esta verifica que haya alguno marcado para mostrar los botones.
+                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
                 if (chk.Checked)
                 {
                     algunoMarcado = true;
@@ -226,7 +225,7 @@ namespace Vistas.admin
                 }
             }
 
-            btnMod.Visible = algunoMarcado;   // Si AlgunoMarcado es FALSE no se muestra ningun boton.
+            btnMod.Visible = algunoMarcado;
             btnBaja.Visible = algunoMarcado;
         }
           

@@ -108,6 +108,7 @@ namespace Vistas.admin
         protected void InsertarMedicos()
         {
             lblAddUserState0.Visible = false;
+
             try
             {
                 Medico medico = new Medico();

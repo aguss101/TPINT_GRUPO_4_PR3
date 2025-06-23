@@ -124,7 +124,9 @@ namespace Datos
                     medico = new Medico();
 
 
+                    medico.Legajo = reader["Legajo"].ToString();
                     medico.DNI = (reader["DNI"].ToString());
+                    medico.idEspecialidad = (Convert.ToInt32(reader["idEspecialidad"]));
                     medico.nombre = (reader["nombre"].ToString());
                     medico.apellido = (reader["apellido"].ToString());
                     medico.genero = (Convert.ToInt32(reader["idSexo"]));
@@ -134,8 +136,6 @@ namespace Datos
                     medico.nacionalidad = (reader["nacionalidad"].ToString());
                     medico.Correo = (reader["Correo"].ToString());
                     medico.Telefono = (reader["Telefono"].ToString());
-                    medico.idEspecialidad = (Convert.ToInt32(reader["idEspecialidad"]));
-                    medico.Legajo = reader["Legajo"].ToString();
 
                 }
 
