@@ -526,7 +526,7 @@
                                              <asp:TextBox ID="txtbModMedicoCorreo" runat="server"></asp:TextBox>
                                         </div>
                                         <div>
-                                             <asp:Button ID="btnMoficarMedico" Text="Modificar Medico" runat="server" Width="188px" OnClick="btnModificarMedico_Click" />
+                                             <asp:Button ID="btnModificarMedico" Text="Modificar Medico" runat="server" Width="188px" OnClick="btnModificarMedico_Click" />
                                              <asp:Label ID="lblModificarMedico" Text="Medico modificado con éxito" Visible="false" runat="server"></asp:Label>
                                         </div>
                                     </asp:View>
@@ -534,8 +534,8 @@
                                 <asp:View ID="vwLectura" runat="server">
                                     <h3>Listar Médico</h3>
                                     <div>
-
-                                        <asp:GridView ID="gvLecturaMedico" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" style="margin-right: 0px" OnRowDataBound="gvLecturaMedico_RowDataBound">
+                                        
+                                        <asp:GridView ID="gvLecturaMedico" runat="server" AutoGenerateColumns="False"  CellPadding="4" ForeColor="#333333" GridLines="None" style="margin-right: 0px">
                                             <AlternatingRowStyle BackColor="White" />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Seleccionar">
@@ -574,6 +574,7 @@
                     <tr>
                         <td class="auto-style33"><h3>
                                                     <asp:Label ID="lblAddUserState0" runat="server" Visible="False"></asp:Label>
+                                                    <asp:Label ID="lblCheck" runat="server"></asp:Label>
                                                 </h3></td>
                         <td class="auto-style38"></td>
                         <td class="auto-style39"></td>

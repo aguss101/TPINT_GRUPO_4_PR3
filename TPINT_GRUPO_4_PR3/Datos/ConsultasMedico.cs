@@ -113,8 +113,8 @@ namespace Datos
             using (SqlConnection connection = conexion.AbrirConexion())
             {
                 string query = "SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, C.correo, T.telefono, L.idLocalidad " +
-                "FROM Medico ME " + "INNER JOIN Persona PE ON ME.DNI = ME.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo " + "INNER JOIN Localidades L ON PE.idLocalidad " +
-                "= L.idLocalidad" + "  INNER JOIN Correos C ON PE.DNI = C.idPersona  INNER JOIN Telefonos T ON PE.DNI = T.idPersona";
+                "FROM Medico ME " + "INNER JOIN Persona PE ON ME.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo " + "INNER JOIN Localidades L ON PE.idLocalidad " +
+                "= L.idLocalidad" + "  INNER JOIN Correos C ON PE.DNI = C.idPersona  INNER JOIN Telefonos T ON PE.DNI = T.idPersona WHERE ME.DNI = @id";
 
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@id", idMedico);

@@ -83,7 +83,7 @@ END;
 GO
 
 CREATE OR ALTER PROCEDURE sp_ModificarPaciente  -- Modificar Paciente
-    @DNI INT,
+    @DNI VARCHAR(50),
     @Nombre VARCHAR(50),
     @Apellido VARCHAR(50),
     @Nacionalidad VARCHAR(50),
@@ -161,7 +161,7 @@ CREATE OR ALTER PROCEDURE sp_AltaMedico -- Agregar Medico
     @FechaNacimiento DATE,
     @Sexo INT,
     @IdLocalidad INT,
-	@Telefono INT,
+	@Telefono VARCHAR(50),
 	@Direccion VARCHAR(50),
 	@Correo VARCHAR(50)
 	
@@ -312,4 +312,5 @@ BEGIN
     END CATCH
 END;
 
+SELECT * FROM Persona
 

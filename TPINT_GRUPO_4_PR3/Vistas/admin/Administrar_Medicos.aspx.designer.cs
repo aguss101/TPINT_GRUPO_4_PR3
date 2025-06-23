@@ -483,13 +483,13 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.TextBox txtbModMedicoCorreo;
 
         /// <summary>
-        /// Control btnMoficarMedico.
+        /// Control btnModificarMedico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMoficarMedico;
+        protected global::System.Web.UI.WebControls.Button btnModificarMedico;
 
         /// <summary>
         /// Control lblModificarMedico.
@@ -526,5 +526,14 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAddUserState0;
+
+        /// <summary>
+        /// Control lblCheck.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCheck;
     }
 }
