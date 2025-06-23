@@ -236,8 +236,8 @@ END;
 GO
 
 CREATE OR ALTER PROCEDURE sp_ModificarMedico
-	@Legajo INT,
-	@DNI INT,
+	@Legajo VARCHAR(50),
+	@DNI VARCHAR(50),
 	@idEspecialidad INT,
     @Nombre VARCHAR(50),
     @Apellido VARCHAR(50),
@@ -245,7 +245,7 @@ CREATE OR ALTER PROCEDURE sp_ModificarMedico
     @FechaNacimiento DATE,
     @Sexo INT,
     @IdLocalidad INT,
-	@Telefono INT,
+	@Telefono VARCHAR(25),
 	@Direccion VARCHAR(50),
 	@Correo VARCHAR(50)
 
@@ -255,6 +255,7 @@ BEGIN
         BEGIN TRANSACTION;
 
     
+        PRINT 'Antes de IF1';
         IF NOT EXISTS (SELECT 1 FROM Persona WHERE DNI = @DNI)
         BEGIN
             RAISERROR('No existe una persona con ese DNI.', 16, 1);
@@ -263,6 +264,7 @@ BEGIN
         END
 
  
+        PRINT 'Antes de IF2';
         IF NOT EXISTS (SELECT 1 FROM Medico WHERE DNI = @DNI)
         BEGIN
             RAISERROR('La persona no está registrada como médico.', 16, 1);
@@ -271,6 +273,7 @@ BEGIN
         END
 
      
+        PRINT 'Antes de Carga';
         UPDATE Persona
         SET nombre = @Nombre,
             apellido = @Apellido,
@@ -283,7 +286,8 @@ BEGIN
 
       
         UPDATE Medico
-        SET idEspecialidad = @idEspecialidad
+        SET idEspecialidad = @idEspecialidad,
+			legajo = @Legajo
         WHERE DNI = @DNI;
 
     
@@ -295,7 +299,8 @@ BEGIN
         UPDATE Telefonos
         SET telefono = @Telefono
         WHERE idPersona = @DNI;
-
+		
+        PRINT 'Despues de Carga';
         COMMIT TRANSACTION;
         PRINT 'Médico modificado correctamente.';
     END TRY
