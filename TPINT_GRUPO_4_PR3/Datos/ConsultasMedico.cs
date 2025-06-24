@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entidades;
+using System.Web;
 
 namespace Datos
 {
@@ -83,12 +84,16 @@ namespace Datos
             return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);
         }
 
-        public int ModificarMedico(string nombreProcedimiento, Medico medico)
+        public int ModificarMedico(string nombreProcedimiento, Medico medico, string DNI_VIEJO, string LEGAJO_VIEJO)
         {
+            Debug.Print("Dni_Viejo: " + DNI_VIEJO);
+            Debug.Print("Legajo_Viejo: " + LEGAJO_VIEJO);
+            Debug.Print("Dni_Nuevo: " + medico.DNI);
+            Debug.Print("Legajo_Nuevo: " + medico.Legajo);
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@Legajo", medico.Legajo),
-                new SqlParameter("@DNI", medico.DNI),
+                new SqlParameter("@LEGAJO", LEGAJO_VIEJO),
+                new SqlParameter("@DNI", DNI_VIEJO),
                 new SqlParameter("@idEspecialidad", medico.idEspecialidad),
                 new SqlParameter("@Nombre", medico.nombre),
                 new SqlParameter("@Apellido", medico.apellido),
@@ -98,7 +103,9 @@ namespace Datos
                 new SqlParameter("@IdLocalidad", medico.Localidad),
                 new SqlParameter("@Telefono", medico.Telefono.ToString()),
                 new SqlParameter("@Direccion", medico.Direccion),
-                new SqlParameter("@Correo", medico.Correo)
+                new SqlParameter("@Correo", medico.Correo),
+                new SqlParameter("@DNI_NUEVO", medico.DNI),
+                new SqlParameter("@LEGAJO_NUEVO", medico.Legajo)
             };
             return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);
         }

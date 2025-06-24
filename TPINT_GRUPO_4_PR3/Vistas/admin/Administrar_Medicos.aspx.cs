@@ -14,6 +14,7 @@ namespace Vistas.admin
     {
 
         private GestorMedico gestorMedico = new GestorMedico();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -60,21 +61,21 @@ namespace Vistas.admin
 
         protected void btnMod_Click(object sender, EventArgs e)
         {
-            //recorro el gridview buscando el cbx seleccionado
             foreach (GridViewRow row in gvLecturaMedico.Rows)
             {
                 CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
 
-                //verifico que no sea null el valor y este tildado
                 if (chk != null && chk.Checked)
                 {
-                    //obtengo el DNI del seleccionado
                     string DNI = row.Cells[2].Text;
 
                     Medico medico = new Medico();
 
                     medico = gestorMedico.getMedicoPorID(DNI);
                     lblAddUserState0.Visible = false;
+
+                    Session["DNI_VIEJO"] = medico.DNI;
+                    Session["LEGAJO_VIEJO"] = medico.Legajo;
 
                     mvFormularios.ActiveViewIndex = 2;
 
@@ -164,6 +165,8 @@ namespace Vistas.admin
             medico.Direccion = txtbModMedicoDireccion.Text;
             medico.Telefono = txtbModMedicoTelefono.Text.Trim();
             medico.Correo = txtbModMedicoCorreo.Text;
+            string DNI_VIEJO = (Session["DNI_VIEJO"] as string).Trim();
+            string LEGAJO_VIEJO = (Session["LEGAJO_VIEJO"] as string).Trim();
 
             string nombreProcedimiento = "sp_ModificarMedico";
             //Validaciones anteriores a enviar los datos del Medico a modificar
@@ -185,7 +188,7 @@ namespace Vistas.admin
                 lblModificarMedico.Visible = true;
                 return;
             }
-            int filas = gestorMedico.ModificarMedico(nombreProcedimiento, medico);
+            int filas = gestorMedico.ModificarMedico(nombreProcedimiento, medico, DNI_VIEJO, LEGAJO_VIEJO);
             
             if(filas > 0) // Verificación final luego de llamar al sp
             {
