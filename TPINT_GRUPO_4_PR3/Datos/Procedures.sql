@@ -247,7 +247,10 @@ CREATE OR ALTER PROCEDURE sp_ModificarMedico --  Modificar Medico
     @IdLocalidad INT,
 	@Telefono VARCHAR(25),
 	@Direccion VARCHAR(50),
-	@Correo VARCHAR(50)
+	@Correo VARCHAR(50),
+	@DNI_NUEVO VARCHAR(50),
+	@LEGAJO_NUEVO VARCHAR(50)
+
 
 AS
 BEGIN
@@ -274,9 +277,35 @@ BEGIN
 
      
         PRINT 'Antes de Carga';
-        UPDATE Persona
-			
-        SET DNI = @DNI,
+       
+
+		UPDATE Usuario
+		SET DNI = @DNI_NUEVO
+		WHERE DNI = @DNI;
+      
+
+    
+        UPDATE Correos
+        SET idPersona = @DNI_NUEVO,
+			correo = @Correo
+        WHERE idPersona = @DNI;
+
+       
+        UPDATE Telefonos
+        SET idPersona = @DNI_NUEVO,
+			telefono = @Telefono
+        WHERE idPersona = @DNI;
+
+		UPDATE Jornadas
+		SET Legajo = @LEGAJO_NUEVO
+		WHERE Legajo = @Legajo;
+
+		UPDATE Turnos
+		SET Legajo = @LEGAJO_NUEVO
+		WHERE Legajo = @Legajo;
+
+		 UPDATE Persona
+        SET DNI = @DNI_NUEVO,
 			nombre = @Nombre,
             apellido = @Apellido,
             sexo = @Sexo,
@@ -285,22 +314,12 @@ BEGIN
             fechaNacimiento = @FechaNacimiento,
             nacionalidad = @Nacionalidad
         WHERE DNI = @DNI;
-
-      
+		
         UPDATE Medico
-        SET idEspecialidad = @idEspecialidad,
-		Legajo = @Legajo
+        SET DNI = @DNI_NUEVO,
+			idEspecialidad = @idEspecialidad,
+			legajo = @LEGAJO_NUEVO
         WHERE DNI = @DNI;
-
-    
-        UPDATE Correos
-        SET correo = @Correo
-        WHERE idPersona = @DNI;
-
-       
-        UPDATE Telefonos
-        SET telefono = @Telefono
-        WHERE idPersona = @DNI;
 		
         PRINT 'Despues de Carga';
         COMMIT TRANSACTION;
