@@ -68,7 +68,7 @@ namespace Vistas.admin
                     Paciente paciente = new Paciente();
 
                     paciente = gestorPaciente.getPacientePorID(DNI);
-                    Session["DNI_VIEJO"] = paciente.DNI;
+                    Session["DNI_VIEJO"] = paciente.DNI.Trim();
 
                     mvFormularios.ActiveViewIndex = 2;
 
@@ -80,7 +80,7 @@ namespace Vistas.admin
                     ddlModLocalidades.SelectedValue = paciente.Localidad.ToString();
                     ///ddlModProvincias.SelectedValue = paciente.Provincia.ToString();
                     DateTime fechaNac = paciente.fechaNacimiento.Date;
-                    txbModFechaNacimiento.Text = fechaNac.ToString("dd-MM-yyyy");
+                    txbModFechaNacimiento.Text = fechaNac.ToString("yyyy-MM-dd");
                     txbModDireccion.Text = paciente.Direccion;
                     ddlModObraSocial.SelectedValue = paciente.ObraSocial.ToString();
                     txbModTelefono.Text = paciente.Telefono.ToString();
@@ -164,9 +164,9 @@ namespace Vistas.admin
         {
             Paciente paciente = new Paciente();
 
+            paciente.DNI = txbModDni.Text.Trim();
             paciente.nombre = txbModNombre.Text.Trim();
             paciente.apellido = txbModApellido.Text.Trim();
-            paciente.DNI = txbModDni.Text.Trim();
             paciente.fechaNacimiento = Convert.ToDateTime(txbModFechaNacimiento.Text.Trim());
             paciente.ObraSocial = int.Parse(ddlModObraSocial.SelectedValue);
             paciente.genero = int.Parse(ddlModGenero.SelectedValue);
@@ -178,7 +178,7 @@ namespace Vistas.admin
             paciente.Direccion = txbModDireccion.Text.Trim();
             paciente.Correo = txbModCorreo.Text.Trim();
 
-            string DNI_VIEJO = (Session["DNI_VIEJO"] as string).Trim();
+            string DNI_VIEJO = (Session["DNI_VIEJO"] as string)?.Trim();
             string nombreProcedimiento = "sp_ModificarPaciente";
             int filas = gestorPaciente.ModificarPaciente(nombreProcedimiento, paciente, DNI_VIEJO);
             if (filas > 0)

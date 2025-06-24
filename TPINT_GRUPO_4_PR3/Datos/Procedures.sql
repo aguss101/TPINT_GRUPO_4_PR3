@@ -83,82 +83,88 @@ END;
 GO
 
 CREATE OR ALTER PROCEDURE sp_ModificarPaciente
+    @DNI_VIEJO VARCHAR(50),
     @DNI_NUEVO VARCHAR(50),
     @Nombre VARCHAR(50),
     @Apellido VARCHAR(50),
     @Nacionalidad VARCHAR(50),
     @FechaNacimiento DATE,
     @Sexo INT,
-    @IdLocalidad INT,    
+    @IdLocalidad INT,
     @Direccion VARCHAR(50),
     @ObraSocial INT,
-    @Correo VARCHAR(50),
-    @Telefono VARCHAR(25),
-    @DNI_VIEJO VARCHAR(50)
+    @Correo VARCHAR(50) = NULL,
+    @Telefono VARCHAR(25) = NULL
 AS
 BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        -- Validar que existe el paciente con el DNI antiguo
+        -- Validar que existe paciente viejo
         IF NOT EXISTS (SELECT 1 FROM Persona WHERE DNI = @DNI_VIEJO)
         BEGIN
-            RAISERROR('No existe una persona con ese DNI antiguo.', 16, 1);
+            RAISERROR('No existe persona con DNI viejo.', 16, 1);
             ROLLBACK TRANSACTION;
             RETURN;
         END
 
-        IF NOT EXISTS (SELECT 1 FROM Paciente WHERE DNI = @DNI_VIEJO)
+        -- Validar que NO existe DNI nuevo
+        IF EXISTS (SELECT 1 FROM Persona WHERE DNI = @DNI_NUEVO)
         BEGIN
-            RAISERROR('La persona no está registrada como paciente.', 16, 1);
+            RAISERROR('Ya existe persona con DNI nuevo.', 16, 1);
             ROLLBACK TRANSACTION;
             RETURN;
         END
-              
-        -- Actualizar Correos
-        UPDATE Correos
-        SET idPersona = @DNI_NUEVO, 
-            correo = @Correo
-        WHERE idPersona = @DNI_VIEJO;
 
-        -- Actualizar Turnos (FK DNI Paciente)
-        UPDATE Turnos
-        SET DNIPaciente = @DNI_NUEVO
-        WHERE DNIPaciente = @DNI_VIEJO;
-       
-        -- Actualizar Telefonos
-        UPDATE Telefonos
-        SET idPersona =  @DNI_NUEVO,
-            telefono = @Telefono
-        WHERE idPersona = @DNI_VIEJO;
-           
+        -- Insertar nuevo registro Persona (con DNI nuevo)
+        INSERT INTO Persona (DNI, nombre, apellido, sexo, direccion, idLocalidad, fechaNacimiento, nacionalidad, activo)
+        SELECT
+            @DNI_NUEVO,
+            @Nombre,
+            @Apellido,
+            @Sexo,
+            @Direccion,
+            @IdLocalidad,
+            @FechaNacimiento,
+            @Nacionalidad,
+            activo
+        FROM Persona WHERE DNI = @DNI_VIEJO;
 
-        -- Actualizar Persona
-        UPDATE Persona
-        SET DNI = @DNI_NUEVO, 
-            nombre = @Nombre,
-            apellido = @Apellido,
-            sexo = @Sexo,
-            direccion = @Direccion,
-            idLocalidad = @IdLocalidad,
-            fechaNacimiento = @FechaNacimiento,
-            nacionalidad = @Nacionalidad
-        WHERE DNI = @DNI_VIEJO;
-        -- Actualizar Paciente
-        UPDATE Paciente
-        SET DNI = @DNI_NUEVO, 
-            ObraSocial = @ObraSocial
-        WHERE DNI = @DNI_VIEJO;
+        -- Actualizar FK en Correos
+        UPDATE Correos SET idPersona = @DNI_NUEVO WHERE idPersona = @DNI_VIEJO;
+
+        -- Actualizar FK en Telefonos
+        UPDATE Telefonos SET idPersona = @DNI_NUEVO WHERE idPersona = @DNI_VIEJO;
+
+        -- Actualizar FK en Turnos
+        UPDATE Turnos SET DNIPaciente = @DNI_NUEVO WHERE DNIPaciente = @DNI_VIEJO;
+
+        -- Actualizar FK en Paciente
+        UPDATE Paciente SET DNI = @DNI_NUEVO, ObraSocial = @ObraSocial WHERE DNI = @DNI_VIEJO;
+
+        -- Eliminar registro viejo Persona
+        DELETE FROM Persona WHERE DNI = @DNI_VIEJO;
+
+        -- Actualizar Correos con nuevo correo si se pasó
+        IF @Correo IS NOT NULL
+        BEGIN
+            UPDATE Correos SET correo = @Correo WHERE idPersona = @DNI_NUEVO;
+        END
+
+        -- Actualizar Telefonos con nuevo teléfono si se pasó
+        IF @Telefono IS NOT NULL
+        BEGIN
+            UPDATE Telefonos SET telefono = @Telefono WHERE idPersona = @DNI_NUEVO;
+        END
 
         COMMIT TRANSACTION;
         PRINT 'Paciente modificado correctamente.';
     END TRY
     BEGIN CATCH
-        ROLLBACK TRANSACTION;
+        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
         PRINT 'Error: ' + ERROR_MESSAGE();
     END CATCH
 END;
-
 GO
 CREATE OR ALTER PROCEDURE sp_AltaMedico
     @Legajo VARCHAR(50),

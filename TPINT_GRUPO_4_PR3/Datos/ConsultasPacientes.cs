@@ -95,6 +95,7 @@ namespace Datos
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@DNI_NUEVO", paciente.DNI),
+                new SqlParameter("@DNI_VIEJO", DNI_VIEJO),
                 new SqlParameter("@Nombre", paciente.nombre),
                 new SqlParameter("@Apellido", paciente.apellido),
                 new SqlParameter("@Nacionalidad", paciente.nacionalidad),
@@ -104,8 +105,7 @@ namespace Datos
                 new SqlParameter("@ObraSocial", paciente.ObraSocial),
                 new SqlParameter("@Telefono", paciente.Telefono),
                 new SqlParameter("@Direccion", paciente.Direccion),
-                new SqlParameter("@Correo", paciente.Correo),
-                new SqlParameter("@DNI_VIEJO", DNI_VIEJO)
+                new SqlParameter("@Correo", paciente.Correo)
             };
             return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);
         }
@@ -121,7 +121,7 @@ namespace Datos
                 string query = "SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, O.idObraSocial, C.correo, T.telefono, L.idLocalidad FROM Paciente PA" +
                 " INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial " +
                 "INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad  " + " LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona " +
-                "WHERE activo = 1 AND PA.DNI = @id ";
+                "WHERE activo = 1 AND PE.DNI = @id ";
 
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@id", idPaciente);
