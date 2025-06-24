@@ -53,7 +53,7 @@ namespace Datos
             return medicos;
 
         }
-        public int InsertarMedico(string nombreprocedimiento, Medico medico)
+        public int InsertarMedico(string nombreprocedimiento, Medico medico, Usuario usuario)
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -68,7 +68,12 @@ namespace Datos
         new SqlParameter("@IdLocalidad", medico.Localidad),
         new SqlParameter("@Telefono", medico.Telefono),
         new SqlParameter("@Direccion", medico.Direccion),
-        new SqlParameter("@Correo", medico.Correo)
+        new SqlParameter("@Correo", medico.Correo),
+        new SqlParameter("@Usuario", usuario.NombreUsuario),
+        new SqlParameter("@Contrasenia", usuario.contrasenia),
+        new SqlParameter("@Alta", usuario.alta),
+        new SqlParameter("@UltimoIngreso", usuario.ultimoIngreso),
+        new SqlParameter("@IdRol", usuario.idRol)
             };
 
 
@@ -84,7 +89,7 @@ namespace Datos
             return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);
         }
 
-        public int ModificarMedico(string nombreProcedimiento, Medico medico, string DNI_VIEJO, string LEGAJO_VIEJO)
+        public int ModificarMedico(string nombreProcedimiento, Medico medico,Usuario usuario, string DNI_VIEJO, string LEGAJO_VIEJO)
         {
             Debug.Print("Dni_Viejo: " + DNI_VIEJO);
             Debug.Print("Legajo_Viejo: " + LEGAJO_VIEJO);
@@ -105,7 +110,9 @@ namespace Datos
                 new SqlParameter("@Direccion", medico.Direccion),
                 new SqlParameter("@Correo", medico.Correo),
                 new SqlParameter("@DNI_NUEVO", medico.DNI),
-                new SqlParameter("@LEGAJO_NUEVO", medico.Legajo)
+                new SqlParameter("@LEGAJO_NUEVO", medico.Legajo),
+                new SqlParameter("@Usuario", usuario.NombreUsuario),
+                new SqlParameter("@Contrasenia", usuario.contrasenia)
             };
             return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);
         }

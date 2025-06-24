@@ -178,7 +178,12 @@ CREATE OR ALTER PROCEDURE sp_AltaMedico
     @IdLocalidad INT,
 	@Telefono VARCHAR(50),
 	@Direccion VARCHAR(50),
-	@Correo VARCHAR(50)
+	@Correo VARCHAR(50),
+	@Usuario VARCHAR(25),
+	@Contrasenia VARCHAR(25),
+	@Alta DATETIME,
+	@ultimoIngreso DATETIME,
+	@IdRol INT
 	
 AS
 BEGIN
@@ -197,6 +202,9 @@ BEGIN
 
         INSERT INTO Medico(DNI, Legajo, idEspecialidad)
         VALUES (@DNI, @Legajo, @idEspecialidad);
+
+		INSERT INTO Usuario(DNI,nombreUsuario,idRol,contrasenia,alta,ultimoIngreso)
+		VALUES (@DNI,@Usuario,@IdRol,@Contrasenia,@Alta,@ultimoIngreso)
 
 		INSERT INTO Telefonos(idPersona,telefono)
 		VALUES (@DNI, @telefono)
@@ -264,7 +272,9 @@ CREATE OR ALTER PROCEDURE sp_ModificarMedico --  Modificar Medico
 	@Direccion VARCHAR(50),
 	@Correo VARCHAR(50),
 	@DNI_NUEVO VARCHAR(50),
-	@LEGAJO_NUEVO VARCHAR(50)
+	@LEGAJO_NUEVO VARCHAR(50),
+	@Usuario VARCHAR(25),
+	@Contrasenia VARCHAR(25)
 
 
 AS
@@ -295,7 +305,9 @@ BEGIN
        
 
 		UPDATE Usuario
-		SET DNI = @DNI_NUEVO
+		SET DNI = @DNI_NUEVO,
+			nombreUsuario = @Usuario,
+			contrasenia = @Contrasenia
 		WHERE DNI = @DNI;
       
 
@@ -348,3 +360,4 @@ END;
 
 SELECT * FROM Persona
 
+SELECT * FROM Usuario

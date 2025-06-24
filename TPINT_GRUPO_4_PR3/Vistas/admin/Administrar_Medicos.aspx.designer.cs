@@ -303,6 +303,24 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.TextBox txbTelefono;
 
         /// <summary>
+        /// Control txbUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbUsuario;
+
+        /// <summary>
+        /// Control txbContrasenia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbContrasenia;
+
+        /// <summary>
         /// Control btnRegistrarMedico.
         /// </summary>
         /// <remarks>
@@ -499,6 +517,24 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbModMedicoCorreo;
+
+        /// <summary>
+        /// Control txtbModMedicoUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbModMedicoUsuario;
+
+        /// <summary>
+        /// Control txtbModMedicoContrasenia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbModMedicoContrasenia;
 
         /// <summary>
         /// Control btnModificarMedico.

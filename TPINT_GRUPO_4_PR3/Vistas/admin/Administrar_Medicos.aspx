@@ -470,10 +470,18 @@
                                                 <td class="auto-style31"></td>
                                             </tr>
                                             <tr>
-                                                <td class="auto-style37"></td>
+                                                <td class="auto-style37">Usuario</td>
                                                 <td class="auto-style53">
+                                                    <asp:TextBox ID="txbUsuario" runat="server"></asp:TextBox>
                                                 </td>
                                                 <td class="auto-style36"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="auto-style37">Contrasenia</td>
+                                                <td class="auto-style53">
+                                                    <asp:TextBox ID="txbContrasenia" runat="server"></asp:TextBox>
+                                                </td>
+                                                <td class="auto-style36">&nbsp;</td>
                                             </tr>
                                             <tr>
                                                 <td class="auto-style32">
@@ -595,6 +603,20 @@
                                                     <td class="auto-style51">Correo:</td>
                                                     <td class="auto-style46">
                                                         <asp:TextBox ID="txtbModMedicoCorreo" runat="server"></asp:TextBox>
+                                                    </td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style51">Usuario:</td>
+                                                    <td class="auto-style46">
+                                                        <asp:TextBox ID="txtbModMedicoUsuario" runat="server"></asp:TextBox>
+                                                    </td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style51">Contrasenia:</td>
+                                                    <td class="auto-style46">
+                                                        <asp:TextBox ID="txtbModMedicoContrasenia" runat="server"></asp:TextBox>
                                                     </td>
                                                     <td>&nbsp;</td>
                                                 </tr>

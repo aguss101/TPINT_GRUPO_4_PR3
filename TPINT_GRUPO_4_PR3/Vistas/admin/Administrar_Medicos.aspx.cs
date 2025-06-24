@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Negocio;
 using Entidades;
 using System.Diagnostics;
+using System.Web.WebSockets;
 
 namespace Vistas.admin
 {
@@ -69,6 +70,8 @@ namespace Vistas.admin
                 {
                     string DNI = row.Cells[2].Text;
 
+                    Usuario usuario = new Usuario();
+
                     Medico medico = new Medico();
 
                     medico = gestorMedico.getMedicoPorID(DNI);
@@ -90,6 +93,8 @@ namespace Vistas.admin
                     txtbModMedicoDireccion.Text = medico.Direccion;
                     txtbModMedicoTelefono.Text = medico.Telefono.ToString();
                     txtbModMedicoCorreo.Text = medico.Correo;
+                    txtbModMedicoUsuario.Text = usuario.NombreUsuario;
+                    txtbModMedicoContrasenia.Text = usuario.contrasenia;
 
                     break;
                 }
@@ -112,6 +117,7 @@ namespace Vistas.admin
 
             try
             {
+                Usuario usuario = new Usuario();
                 Medico medico = new Medico();
 
                 medico.Legajo = txbLegajo.Text.Trim();
@@ -126,9 +132,14 @@ namespace Vistas.admin
                 medico.Localidad = int.Parse(ddlLocalidades.SelectedValue);
                 medico.Correo = txbCorreo.Text.Trim();
                 medico.Telefono = txbTelefono.Text.Trim();
+                usuario.NombreUsuario = txbUsuario.Text.Trim();
+                usuario.contrasenia = txbContrasenia.Text.Trim();
+                usuario.alta = Convert.ToDateTime(DateTime.Now);
+                usuario.ultimoIngreso = Convert.ToDateTime(DateTime.Now);
+                usuario.idRol = 2;
 
                 string nombreProcedimiento = "sp_AltaMedico";
-                int filas = gestorMedico.InsertarMedico(nombreProcedimiento, medico);
+                int filas = gestorMedico.InsertarMedico(nombreProcedimiento, medico, usuario);
 
                 if (filas > 0)
                 {
@@ -151,7 +162,7 @@ namespace Vistas.admin
         }
         protected void ModificarMedico()
         {
-         
+            Usuario usuario = new Usuario();
             Medico medico = new Medico();
 
             medico.DNI = txtbModMedicoDNI.Text.Trim();
@@ -166,6 +177,8 @@ namespace Vistas.admin
             medico.Direccion = txtbModMedicoDireccion.Text;
             medico.Telefono = txtbModMedicoTelefono.Text.Trim();
             medico.Correo = txtbModMedicoCorreo.Text;
+            usuario.NombreUsuario = txtbModMedicoUsuario.Text.Trim();
+            usuario.contrasenia = txtbModMedicoContrasenia.Text.Trim();
             string DNI_VIEJO = (Session["DNI_VIEJO"] as string).Trim();
             string LEGAJO_VIEJO = (Session["LEGAJO_VIEJO"] as string).Trim();
 
@@ -189,7 +202,7 @@ namespace Vistas.admin
                 lblModificarMedico.Visible = true;
                 return;
             }
-            int filas = gestorMedico.ModificarMedico(nombreProcedimiento, medico, DNI_VIEJO, LEGAJO_VIEJO);
+            int filas = gestorMedico.ModificarMedico(nombreProcedimiento, medico,usuario, DNI_VIEJO, LEGAJO_VIEJO);
             
             if(filas > 0) // Verificación final luego de llamar al sp
             {
