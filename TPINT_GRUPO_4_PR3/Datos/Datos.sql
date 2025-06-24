@@ -24,8 +24,8 @@ INSERT INTO Persona VALUES
 
 -- Usuarios (clave simple: 123)
 INSERT INTO Usuario VALUES 
-('12345678', 2, 'medico1', '123', GETDATE(), GETDATE()),
-('87654321', 3, 'paciente1', '123', GETDATE(), GETDATE());
+('12345678', 1, 'admin', '123', GETDATE(), GETDATE()),
+('87654321', 2, 'medico', '123', GETDATE(), GETDATE());
 
 -- Teléfonos
 INSERT INTO Telefonos VALUES 

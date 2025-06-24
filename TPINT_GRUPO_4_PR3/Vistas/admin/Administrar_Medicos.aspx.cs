@@ -101,7 +101,7 @@ namespace Vistas.admin
         protected void btnLectura_Click(object sender, EventArgs e)
         {
             lblAddUserState0.Visible = false;
-            lblModificarMedico.Visible = false;
+         
             mvFormularios.ActiveViewIndex = 3;
             loadGridMedicos();
 
@@ -151,7 +151,7 @@ namespace Vistas.admin
         }
         protected void ModificarMedico()
         {
-            lblModificarMedico.Visible = false;
+         
             Medico medico = new Medico();
 
             medico.DNI = txtbModMedicoDNI.Text.Trim();
