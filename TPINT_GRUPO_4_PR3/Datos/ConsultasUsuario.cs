@@ -18,7 +18,7 @@ namespace Datos
             List<Usuario> usuarios = new List<Usuario>();
             
 
-            string query = "SELECT * FROM Usuario";
+            string query = "SELECT U.DNI,U.IdRol,U.nombreUsuario,U.contrasenia,U.ultimoIngreso, U.alta FROM Usuario U";
             using (SqlConnection connection = conexion.AbrirConexion())
             {
                 using (SqlCommand command = new SqlCommand(query, connection))

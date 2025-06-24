@@ -28,23 +28,27 @@ namespace Vistas
                 if (usuario.NombreUsuario == txbUser.Text.Trim() && usuario.contrasenia == TxbPassword.Text.Trim())
                 {
                     Session["User"] = usuario.NombreUsuario;
+
                     if (usuario.idRol == 1)
                     {
                         Response.Redirect("Admin.aspx");
-                        return;
+                        
 
                     }
-                    Response.Redirect("Medico.aspx");
 
-                }
-                else
-                {
-                    lblError.Text = "Usuario o contraseña incorrectos.";
-                    lblError.Visible = true;
+                    else
+                    {
+                    Response.Redirect("Medico.aspx");
+                    }
                     return;
                 }
 
-            }
+           }
+            lblError.Text = "Usuario o contraseña incorrectos.";
+            lblError.Visible = true;
+
         }
+        
     }
+    
 }
