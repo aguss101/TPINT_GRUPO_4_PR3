@@ -24,9 +24,9 @@ namespace Negocio
         {
             return consultas.InsertarMedico(nombreprocedimiento, medico);
         }
-        public int ModificarMedico(string nombreprocedimiento, Medico medico)
+        public int ModificarMedico(string nombreprocedimiento, Medico medico, string DNI_VIEJO, string LEGAJO_VIEJO)
         {
-            return consultas.ModificarMedico(nombreprocedimiento, medico);
+            return consultas.ModificarMedico(nombreprocedimiento, medico, DNI_VIEJO, LEGAJO_VIEJO);
         }
         public int EliminarMedico(string nombreprocedimiento, string DNI)
         {

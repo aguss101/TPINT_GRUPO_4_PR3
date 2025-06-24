@@ -77,7 +77,7 @@ namespace Vistas.admin
                     ddlModGenero.SelectedValue = paciente.genero.ToString();
                     ddlModNacionalidad.SelectedValue = paciente.nacionalidad;
                     ddlModLocalidades.SelectedValue = paciente.Localidad.ToString();
-                    //ddlModProvincias.SelectedValue = paciente.//Provincia.ToString();
+                    ///ddlModProvincias.SelectedValue = paciente.Provincia.ToString();
                     DateTime fechaNac = paciente.fechaNacimiento.Date;
                     txbModFechaNacimiento.Text = fechaNac.ToString("dd-MM-yyyy");
                     txbModDireccion.Text = paciente.Direccion;

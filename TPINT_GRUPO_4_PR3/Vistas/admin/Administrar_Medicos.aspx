@@ -530,9 +530,9 @@
                                                 <tr>
                                                     <td class="auto-style49">Especialidad:</td>
                                                     <td class="auto-style50">
-                                                        <asp:DropDownList ID="ddlModEspecialidad" runat="server" DataSourceID="dbEspecialidades">
+                                                        <asp:DropDownList ID="ddlModEspecialidad" runat="server" DataSourceID="dbEspecialidades" DataTextField="descripcion" DataValueField="idEspecialidad">
                                                         </asp:DropDownList>
-                                                        <asp:SqlDataSource ID="dbespecialidad" runat="server"></asp:SqlDataSource>
+                                                        <asp:SqlDataSource ID="dbespecialidad" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT * FROM [Especialidades]"></asp:SqlDataSource>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -546,9 +546,9 @@
                                                 <tr>
                                                     <td class="auto-style51">Sexo:</td>
                                                     <td>
-                                                        <asp:DropDownList ID="ddlModGenero" runat="server">
+                                                        <asp:DropDownList ID="ddlModGenero" runat="server" DataSourceID="dbGenero" DataTextField="descripcion" DataValueField="idSexo">
                                                         </asp:DropDownList>
-                                                        <asp:SqlDataSource ID="dbModGenero" runat="server"></asp:SqlDataSource>
+                                                        <asp:SqlDataSource ID="dbModGenero" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT * FROM [Correos]"></asp:SqlDataSource>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -560,27 +560,27 @@
                                                 <tr>
                                                     <td class="auto-style51">Localidad:</td>
                                                     <td class="auto-style46">
-                                                        <asp:DropDownList ID="ddlModLocalidad" runat="server">
+                                                        <asp:DropDownList ID="ddlModLocalidad" runat="server" DataSourceID="dbLocalidades" DataTextField="nombreLocalidad" DataValueField="idLocalidad">
                                                         </asp:DropDownList>
-                                                        <asp:SqlDataSource ID="dbModLocalidad" runat="server"></asp:SqlDataSource>
+                                                        <asp:SqlDataSource ID="dbModLocalidad" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT * FROM [Correos]"></asp:SqlDataSource>
                                                     </td>
                                                     <td>&nbsp;</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style51">Provincia:</td>
                                                     <td class="auto-style46">
-                                                        <asp:DropDownList runat="server">
+                                                        <asp:DropDownList runat="server" DataSourceID="dbProvincias" DataTextField="nombreProvincia" DataValueField="idProvincia">
                                                         </asp:DropDownList>
-                                                        <asp:SqlDataSource ID="dbModProvincia" runat="server"></asp:SqlDataSource>
+                                                        <asp:SqlDataSource ID="dbModProvincia" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT * FROM [Correos]"></asp:SqlDataSource>
                                                     </td>
                                                     <td>&nbsp;</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style51">Nacionalidad:</td>
                                                     <td class="auto-style46">
-                                                        <asp:DropDownList ID="ddlModNacionalidad" runat="server">
+                                                        <asp:DropDownList ID="ddlModNacionalidad" runat="server" DataSourceID="dbNacionalidades" DataTextField="nombrePais" DataValueField="gentilicio">
                                                         </asp:DropDownList>
-                                                        <asp:SqlDataSource ID="dbModNacionalidades" runat="server"></asp:SqlDataSource>
+                                                        <asp:SqlDataSource ID="dbModNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT * FROM [Correos]"></asp:SqlDataSource>
                                                     </td>
                                                     <td>&nbsp;</td>
                                                 </tr>
@@ -603,7 +603,7 @@
                                                         <asp:Button ID="btnModificarMedico" runat="server" OnClick="btnModificarMedico_Click" Text="Modificar Medico" Width="188px" />
                                                     </td>
                                                     <td class="auto-style46">
-                                                        <asp:Label ID="lblModificarMedico0" runat="server" Text="Medico modificado con éxito" Visible="false"></asp:Label>
+                                                        <asp:Label ID="lblModificarMedico" runat="server" Text="Medico modificado con éxito" Visible="False"></asp:Label>
                                                     </td>
                                                     <td>&nbsp;</td>
                                                 </tr>
