@@ -121,7 +121,7 @@ namespace Datos
                 string query = "SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, O.idObraSocial, C.correo, T.telefono, L.idLocalidad FROM Paciente PA" +
                 " INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial " +
                 "INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad  " + " LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona " +
-                "WHERE activo = 1";
+                "WHERE activo = 1 AND PA.DNI = @id ";
 
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@id", idPaciente);
