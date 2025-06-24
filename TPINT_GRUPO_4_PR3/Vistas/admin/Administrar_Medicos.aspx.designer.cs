@@ -510,13 +510,13 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.Button btnModificarMedico;
 
         /// <summary>
-        /// Control lblModificarMedico0.
+        /// Control lblModificarMedico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblModificarMedico0;
+        protected global::System.Web.UI.WebControls.Label lblModificarMedico;
 
         /// <summary>
         /// Control vwLectura.

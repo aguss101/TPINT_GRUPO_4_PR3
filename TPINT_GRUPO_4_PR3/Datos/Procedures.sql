@@ -83,63 +83,72 @@ END;
 GO
 
 CREATE OR ALTER PROCEDURE sp_ModificarPaciente
-    @DNI VARCHAR(50),
+    @DNI_NUEVO VARCHAR(50),
     @Nombre VARCHAR(50),
     @Apellido VARCHAR(50),
     @Nacionalidad VARCHAR(50),
     @FechaNacimiento DATE,
     @Sexo INT,
-    @IdLocalidad INT,	
+    @IdLocalidad INT,    
     @Direccion VARCHAR(50),
     @ObraSocial INT,
     @Correo VARCHAR(50),
-    @Telefono VARCHAR(25)
+    @Telefono VARCHAR(25),
+    @DNI_VIEJO VARCHAR(50)
 AS
 BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-    
-        IF NOT EXISTS (SELECT 1 FROM Persona WHERE DNI = @DNI)
+        -- Validar que existe el paciente con el DNI antiguo
+        IF NOT EXISTS (SELECT 1 FROM Persona WHERE DNI = @DNI_VIEJO)
         BEGIN
-            RAISERROR('No existe una persona con ese DNI.', 16, 1);
+            RAISERROR('No existe una persona con ese DNI antiguo.', 16, 1);
             ROLLBACK TRANSACTION;
             RETURN;
         END
 
- 
-        IF NOT EXISTS (SELECT 1 FROM Paciente WHERE DNI = @DNI)
+        IF NOT EXISTS (SELECT 1 FROM Paciente WHERE DNI = @DNI_VIEJO)
         BEGIN
             RAISERROR('La persona no está registrada como paciente.', 16, 1);
             ROLLBACK TRANSACTION;
             RETURN;
         END
+              
+        -- Actualizar Correos
+        UPDATE Correos
+        SET idPersona = @DNI_NUEVO, 
+            correo = @Correo
+        WHERE idPersona = @DNI_VIEJO;
 
-     
+        -- Actualizar Turnos (FK DNI Paciente)
+        UPDATE Turnos
+        SET DNIPaciente = @DNI_NUEVO
+        WHERE DNIPaciente = @DNI_VIEJO;
+       
+        -- Actualizar Telefonos
+        UPDATE Telefonos
+        SET idPersona =  @DNI_NUEVO,
+            telefono = @Telefono
+        WHERE idPersona = @DNI_VIEJO;
+           
+
+        -- Actualizar Persona
         UPDATE Persona
-        SET nombre = @Nombre,
+        SET DNI = @DNI_NUEVO, 
+            nombre = @Nombre,
             apellido = @Apellido,
             sexo = @Sexo,
             direccion = @Direccion,
             idLocalidad = @IdLocalidad,
             fechaNacimiento = @FechaNacimiento,
             nacionalidad = @Nacionalidad
-        WHERE DNI = @DNI;
-
-      
+        WHERE DNI = @DNI_VIEJO;
+        -- Actualizar Paciente
         UPDATE Paciente
-        SET ObraSocial = @ObraSocial
-        WHERE DNI = @DNI;
-
-    
-        UPDATE Correos
-        SET correo = @Correo
-        WHERE idPersona = @DNI;
-
-       
-        UPDATE Telefonos
-        SET telefono = @Telefono
-        WHERE idPersona = @DNI;
+        SET DNI = @DNI_NUEVO, 
+            ObraSocial = @ObraSocial
+        WHERE DNI = @DNI_VIEJO;
 
         COMMIT TRANSACTION;
         PRINT 'Paciente modificado correctamente.';

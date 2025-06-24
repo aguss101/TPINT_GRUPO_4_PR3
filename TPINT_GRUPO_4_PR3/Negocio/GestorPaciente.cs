@@ -26,9 +26,9 @@ namespace Negocio
             return consultas.InsertarPaciente(nombreprocedimiento, paciente);
         }
 
-        public int ModificarPaciente(string nombreprocedimiento, Paciente paciente)
+        public int ModificarPaciente(string nombreprocedimiento, Paciente paciente, string DNI_VIEJO)
         {
-            return consultas.ModificarPaciente(nombreprocedimiento, paciente);
+            return consultas.ModificarPaciente(nombreprocedimiento, paciente, DNI_VIEJO);
         }
         public int EliminarPaciente(string nombreprocedimiento, string DNI)
         {

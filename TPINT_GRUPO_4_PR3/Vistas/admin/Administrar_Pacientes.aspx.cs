@@ -68,6 +68,7 @@ namespace Vistas.admin
                     Paciente paciente = new Paciente();
 
                     paciente = gestorPaciente.getPacientePorID(DNI);
+                    Session["DNI_VIEJO"] = paciente.DNI;
 
                     mvFormularios.ActiveViewIndex = 2;
 
@@ -177,9 +178,9 @@ namespace Vistas.admin
             paciente.Direccion = txbModDireccion.Text.Trim();
             paciente.Correo = txbModCorreo.Text.Trim();
 
-
+            string DNI_VIEJO = (Session["DNI_VIEJO"] as string).Trim();
             string nombreProcedimiento = "sp_ModificarPaciente";
-            int filas = gestorPaciente.ModificarPaciente(nombreProcedimiento, paciente);
+            int filas = gestorPaciente.ModificarPaciente(nombreProcedimiento, paciente, DNI_VIEJO);
             if (filas > 0)
             {
                 lblModUser.Text = "Se modifico correctamente el Paciente";

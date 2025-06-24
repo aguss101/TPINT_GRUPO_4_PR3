@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,11 +88,13 @@ namespace Datos
             return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);
         }
 
-        public int ModificarPaciente(string nombreProcedimiento, Paciente paciente)
+        public int ModificarPaciente(string nombreProcedimiento, Paciente paciente, string DNI_VIEJO)
         {
+            Debug.Print("DNI_VIEJO: " + DNI_VIEJO);
+            Debug.Print("DNI_NUEVO: " + paciente.DNI);
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@DNI", paciente.DNI),
+                new SqlParameter("@DNI_NUEVO", paciente.DNI),
                 new SqlParameter("@Nombre", paciente.nombre),
                 new SqlParameter("@Apellido", paciente.apellido),
                 new SqlParameter("@Nacionalidad", paciente.nacionalidad),
@@ -101,7 +104,8 @@ namespace Datos
                 new SqlParameter("@ObraSocial", paciente.ObraSocial),
                 new SqlParameter("@Telefono", paciente.Telefono),
                 new SqlParameter("@Direccion", paciente.Direccion),
-                new SqlParameter("@Correo", paciente.Correo)
+                new SqlParameter("@Correo", paciente.Correo),
+                new SqlParameter("@DNI_VIEJO", DNI_VIEJO)
             };
             return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);
         }
