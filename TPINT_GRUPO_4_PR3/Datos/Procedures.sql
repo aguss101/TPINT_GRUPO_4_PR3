@@ -2,19 +2,19 @@ USE ClinicaDB;
 GO
 
 CREATE OR ALTER PROCEDURE sp_AltaPaciente
-    @DNI VARCHAR(25),
-    @Nombre VARCHAR(50),
-    @Apellido VARCHAR(50),
-    @Nacionalidad VARCHAR(50),
+    @DNI VARCHAR(20),
+    @Nombre VARCHAR(25),
+    @Apellido VARCHAR(25),
+    @Nacionalidad VARCHAR(25),
     @FechaNacimiento DATE,
     @Sexo INT,
     @IdLocalidad INT,
     @ObraSocial INT,
     @UltimaAtencion DATETIME,
     @Alta DATETIME,
-	@Direccion varchar(50),
+	@Direccion varchar(60),
 	@Telefono VARCHAR(25),
-	@Correo VARCHAR(50)
+	@Correo VARCHAR(40)
 	
 AS
 BEGIN
@@ -52,7 +52,7 @@ END;
 GO
 
 CREATE OR ALTER PROCEDURE sp_EliminarPaciente
-    @DNI VARCHAR(50)
+    @DNI VARCHAR(20)
 AS
 BEGIN
     BEGIN TRY
@@ -83,17 +83,17 @@ END;
 GO
 
 CREATE OR ALTER PROCEDURE sp_ModificarPaciente
-    @DNI_VIEJO VARCHAR(50),
-    @DNI_NUEVO VARCHAR(50),
-    @Nombre VARCHAR(50),
-    @Apellido VARCHAR(50),
-    @Nacionalidad VARCHAR(50),
+    @DNI_VIEJO VARCHAR(20),
+    @DNI_NUEVO VARCHAR(20),
+    @Nombre VARCHAR(25),
+    @Apellido VARCHAR(25),
+    @Nacionalidad VARCHAR(25),
     @FechaNacimiento DATE,
     @Sexo INT,
     @IdLocalidad INT,
-    @Direccion VARCHAR(50),
+    @Direccion VARCHAR(60),
     @ObraSocial INT,
-    @Correo VARCHAR(50) = NULL,
+    @Correo VARCHAR(40) = NULL,
     @Telefono VARCHAR(25) = NULL
 AS
 BEGIN
@@ -167,18 +167,18 @@ BEGIN
 END;
 GO
 CREATE OR ALTER PROCEDURE sp_AltaMedico
-    @Legajo VARCHAR(50),
-	@DNI VARCHAR(50),
+    @Legajo VARCHAR(20),
+	@DNI VARCHAR(20),
 	@idEspecialidad INT,
-    @Nombre VARCHAR(50),
-    @Apellido VARCHAR(50),
-    @Nacionalidad VARCHAR(50),
+    @Nombre VARCHAR(25),
+    @Apellido VARCHAR(25),
+    @Nacionalidad VARCHAR(25),
     @FechaNacimiento DATE,
     @Sexo INT,
     @IdLocalidad INT,
-	@Telefono VARCHAR(50),
-	@Direccion VARCHAR(50),
-	@Correo VARCHAR(50),
+	@Telefono VARCHAR(25),
+	@Direccion VARCHAR(60),
+	@Correo VARCHAR(40),
 	@Usuario VARCHAR(25),
 	@Contrasenia VARCHAR(25),
 	@Alta DATETIME,
@@ -226,7 +226,7 @@ END;
 GO
 
 CREATE OR ALTER PROCEDURE sp_EliminarMedico
-    @DNI VARCHAR(50)
+    @DNI VARCHAR(20)
 AS
 BEGIN
     BEGIN TRY
@@ -259,20 +259,20 @@ END;
 GO
 
 CREATE OR ALTER PROCEDURE sp_ModificarMedico --  Modificar Medico
-	@Legajo VARCHAR(50),
-	@DNI VARCHAR(50),
+	@Legajo VARCHAR(20),
+	@DNI VARCHAR(20),
 	@idEspecialidad INT,
-    @Nombre VARCHAR(50),
-    @Apellido VARCHAR(50),
-    @Nacionalidad VARCHAR(50),
+    @Nombre VARCHAR(25),
+    @Apellido VARCHAR(25),
+    @Nacionalidad VARCHAR(25),
     @FechaNacimiento DATE,
     @Sexo INT,
     @IdLocalidad INT,
 	@Telefono VARCHAR(25),
-	@Direccion VARCHAR(50),
-	@Correo VARCHAR(50),
-	@DNI_NUEVO VARCHAR(50),
-	@LEGAJO_NUEVO VARCHAR(50),
+	@Direccion VARCHAR(60),
+	@Correo VARCHAR(40),
+	@DNI_NUEVO VARCHAR(20),
+	@LEGAJO_NUEVO VARCHAR(20),
 	@Usuario VARCHAR(25),
 	@Contrasenia VARCHAR(25)
 

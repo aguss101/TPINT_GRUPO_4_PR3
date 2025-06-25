@@ -75,7 +75,7 @@ CREATE TABLE Telefonos (
 -- Tabla: Correos
 CREATE TABLE Correos (
     idPersona VARCHAR(20),
-    correo VARCHAR(35),
+    correo VARCHAR(40),
     PRIMARY KEY (idPersona, correo),
     FOREIGN KEY (idPersona) REFERENCES Persona(DNI) ON UPDATE CASCADE
 );
@@ -88,8 +88,8 @@ CREATE TABLE Especialidades (
 
 -- Tabla: Medico
 CREATE TABLE Medico (
-    DNI VARCHAR(20),
     Legajo VARCHAR(20),
+    DNI VARCHAR(20),
     idEspecialidad INT,
     PRIMARY KEY (DNI, Legajo),
     UNIQUE (DNI),
