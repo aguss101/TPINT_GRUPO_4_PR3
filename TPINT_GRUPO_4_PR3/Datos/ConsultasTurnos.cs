@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using Entidades;
 
 namespace Datos
@@ -79,6 +80,32 @@ namespace Datos
 
         }
 
+        public int MarcarAsistenciaTurno(string nombreProcedimiento, Turno turno)
+        {
+
+            Debug.Print("Legajo: " + turno.Legajo);
+            Debug.Print("FechaPactada: " + turno.FechaPactada.ToString("s"));
+            Debug.Print("Estado: " + turno.Estado);
+            Debug.Print("Observacion: " + turno.Observacion);
+
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+        new SqlParameter("@Legajo",       turno.Legajo),
+        new SqlParameter("@FechaPactada", turno.FechaPactada),
+        new SqlParameter("@Estado",       turno.Estado),
+        new SqlParameter(
+            "@Observacion",
+            string.IsNullOrWhiteSpace(turno.Observacion)  //  Esto es para que no se rompa todo si se le ocurre no poner nada lo settea en null
+                ? (object)DBNull.Value
+                : turno.Observacion
+        )
+            };
+
+
+            return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);
+        }
+
 
 
 
@@ -101,6 +128,8 @@ namespace Datos
                 Especialidad = reader["Especialidad"].ToString()
             };
         }
+
+
 
     }
 

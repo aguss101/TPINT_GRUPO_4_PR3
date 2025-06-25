@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using Negocio;
 using Entidades;
-using System.Diagnostics;
-using System.Web.WebSockets;
+using Negocio;
 
 namespace Vistas.admin
 {
@@ -108,7 +103,7 @@ namespace Vistas.admin
         protected void btnLectura_Click(object sender, EventArgs e)
         {
             lblAddUserState0.Visible = false;
-         
+
             mvFormularios.ActiveViewIndex = 3;
             loadGridMedicos();
 
@@ -186,15 +181,17 @@ namespace Vistas.admin
             string LEGAJO_VIEJO = (Session["LEGAJO_VIEJO"] as string).Trim();
 
             string nombreProcedimiento = "sp_ModificarMedico";
+
             //Validaciones anteriores a enviar los datos del Medico a modificar
-            if (medico.DNI== "" || medico.Legajo == "" || medico.nombre == "" || medico.apellido == "")
+
+            if (medico.DNI == "" || medico.Legajo == "" || medico.nombre == "" || medico.apellido == "")
             {
                 lblModificarMedico.Text = "⚠️ Faltan datos obligatorios.";
                 lblModificarMedico.ForeColor = System.Drawing.Color.OrangeRed;
                 lblModificarMedico.Visible = true;
                 return;
             }
-            
+
             DateTime edadMinima = DateTime.Today.AddYears(-18);
             DateTime edadMaxima = DateTime.Today.AddYears(-120);
 
@@ -205,9 +202,9 @@ namespace Vistas.admin
                 lblModificarMedico.Visible = true;
                 return;
             }
-            int filas = gestorMedico.ModificarMedico(nombreProcedimiento, medico,medico.Usuario, DNI_VIEJO, LEGAJO_VIEJO);
-            
-            if(filas > 0) // Verificación final luego de llamar al sp
+            int filas = gestorMedico.ModificarMedico(nombreProcedimiento, medico, medico.Usuario, DNI_VIEJO, LEGAJO_VIEJO);
+
+            if (filas > 0) // Verificación final luego de llamar al sp
             {
                 lblModificarMedico.Text = "Se modifico correctamente el Medico.";
                 lblModificarMedico.ForeColor = System.Drawing.Color.Green;

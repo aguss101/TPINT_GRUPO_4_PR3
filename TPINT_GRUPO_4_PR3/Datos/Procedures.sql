@@ -688,5 +688,50 @@ CREATE OR ALTER PROCEDURE sp_ListarTurnosMedico
 		ORDER BY fechaPactada,Legajo,DNIPaciente
 
 	END
+
+
+CREATE OR ALTER PROCEDURE sp_MarcarAsistenciaTurno
+
+@Legajo        VARCHAR(20),
+    @FechaPactada  DATETIME,
+    @Estado        INT,                
+    @Observacion   VARCHAR(200)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        
+        IF NOT EXISTS (
+            SELECT 1
+              FROM Turnos
+             WHERE Legajo       = @Legajo
+               AND fechaPactada = @FechaPactada
+        )
+        BEGIN
+            RAISERROR('Turno no encontrado.', 16, 1);
+            ROLLBACK;
+            RETURN;
+        END
+
+      
+        UPDATE Turnos
+           SET estado      = @Estado,
+               observacion = @Observacion
+         WHERE Legajo       = @Legajo
+           AND fechaPactada = @FechaPactada;
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        DECLARE @ErrMsg NVARCHAR(4000) = ERROR_MESSAGE();
+        RAISERROR(@ErrMsg, 16, 1);
+    END CATCH
+END;
+
+GO
 		
 	

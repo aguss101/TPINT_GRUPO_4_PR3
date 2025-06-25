@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.UI.WebControls;
 using Negocio;
 
 namespace Vistas
@@ -21,6 +22,12 @@ namespace Vistas
             gvTurnos.DataSource = gestorturnos.GetTurnosMedico(Legajo);
             gvTurnos.DataBind();
 
+        }
+
+        protected void gvTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvTurnos.PageIndex = e.NewPageIndex;
+            cargarTurnos();
         }
     }
 }

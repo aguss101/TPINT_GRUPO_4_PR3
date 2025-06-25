@@ -254,14 +254,26 @@
                     </tr>
                     <tr>
                         <td class="auto-style29">
-                            &nbsp;</td>
-                        <td class="no-select"></td>
+                            <asp:Calendar ID="calendarMedico" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
+                                <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
+                                <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
+                                <OtherMonthDayStyle ForeColor="#999999" />
+                                <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                                <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
+                                <TodayDayStyle BackColor="#CCCCCC" />
+                            </asp:Calendar>
+                        </td>
+                        <td class="no-select">
+                            <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" CssClass="btn-td"/>
+                            <asp:Button ID="btnMod" runat="server" Text="Modificar" CssClass="btn-td"/>
+                            <asp:Button ID="btnLectura" runat="server" Text="Listar" CssClass="btn-td"/>
+                            </td>
                         <td class="auto-style28"></td>
                     </tr>
                     <tr>
                         <td class="auto-style29">
                             
-                            <asp:GridView ID="gvTurnos" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+                            <asp:GridView ID="gvTurnos" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" OnPageIndexChanging="gvTurnos_PageIndexChanging">
                                 <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                                 <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
                                 <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />

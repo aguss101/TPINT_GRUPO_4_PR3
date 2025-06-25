@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using Negocio;
 using Entidades;
-using System.Diagnostics;
+using Negocio;
 
 namespace Vistas.admin
 {
@@ -78,13 +74,13 @@ namespace Vistas.admin
                     ddlModGenero.SelectedValue = paciente.genero.ToString();
                     ddlModNacionalidad.SelectedValue = paciente.nacionalidad;
                     ddlModLocalidades.SelectedValue = paciente.Localidad.ToString();
-                    ///ddlModProvincias.SelectedValue = paciente.Provincia.ToString();
+                    ///ddlModProvincias.SelectedValue = paciente.Provincia.ToString(); /// FIX
                     DateTime fechaNac = paciente.fechaNacimiento.Date;
                     txbModFechaNacimiento.Text = fechaNac.ToString("yyyy-MM-dd");
                     txbModDireccion.Text = paciente.Direccion;
                     ddlModObraSocial.SelectedValue = paciente.ObraSocial.ToString();
                     txbModTelefono.Text = paciente.Telefono.ToString();
-                    txbModCorreo.Text = paciente.Correo;             
+                    txbModCorreo.Text = paciente.Correo;
 
                     break;
                 }
@@ -92,13 +88,13 @@ namespace Vistas.admin
 
             btnMod.Visible = false;
             btnBaja.Visible = false;
-        }    
+        }
 
         protected void btnLectura_Click(object sender, EventArgs e)
         {
             mvFormularios.ActiveViewIndex = 3;
             loadGridPacientes();
-            
+
 
         }
 
@@ -119,7 +115,7 @@ namespace Vistas.admin
 
             GridView2.DataSource = listaPacientes;
             GridView2.DataBind();
-           
+
         }
 
         protected void InsertarPacientes()
@@ -159,7 +155,7 @@ namespace Vistas.admin
             lblAddUserState.Visible = true;
 
         }
-      
+
         protected void ModificarPaciente()
         {
             Paciente paciente = new Paciente();
@@ -203,7 +199,7 @@ namespace Vistas.admin
 
         protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
         {
-            
+
             foreach (GridViewRow row in GridView2.Rows)
             {
                 CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
@@ -213,7 +209,7 @@ namespace Vistas.admin
                 }
             }
 
-          
+
             bool algunoMarcado = false;
             foreach (GridViewRow row in GridView2.Rows)
             {
@@ -221,7 +217,7 @@ namespace Vistas.admin
                 if (chk.Checked)
                 {
                     algunoMarcado = true;
-                   
+
                     break;
                 }
             }
@@ -229,9 +225,9 @@ namespace Vistas.admin
             btnMod.Visible = algunoMarcado;
             btnBaja.Visible = algunoMarcado;
         }
-          
 
-        
+
+
 
         protected void btnAdministrarMedico_Click(object sender, EventArgs e)
         {
