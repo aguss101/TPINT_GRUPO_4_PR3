@@ -365,7 +365,7 @@
                                             <tr>
                                                 <td class="auto-style32">Legajo:</td>
                                                 <td class="auto-style52">
-                                                    <asp:TextBox ID="txbLegajo" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txbLegajo" runat="server" ></asp:TextBox>
                                                 </td>
                                                 <td class="auto-style31">&nbsp;</td>
                                             </tr>
@@ -609,7 +609,7 @@
                                                 <tr>
                                                     <td class="auto-style51">Usuario:</td>
                                                     <td class="auto-style46">
-                                                        <asp:TextBox ID="txtbModMedicoUsuario" runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="txtbModMedicoUsuario" runat="server" ></asp:TextBox>
                                                     </td>
                                                     <td>&nbsp;</td>
                                                 </tr>
@@ -651,6 +651,8 @@
                                                 <asp:BoundField DataField="idEspecialidad" HeaderText="Especialidad" />
                                                 <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                                                 <asp:BoundField DataField="apellido" HeaderText="Apellido" />
+                                                <asp:BoundField DataField="Usuario.nombreUsuario" HeaderText="Usuario" />
+                                                <asp:BoundField DataField="Usuario.contrasenia" HeaderText="Contraseña" />
                                                 <asp:BoundField DataField="genero" HeaderText="Genero" />
                                                 <asp:BoundField DataField="nacionalidad" HeaderText="Nacionalidad" />
                                                 <asp:BoundField DataField="correo" HeaderText="Correo" />

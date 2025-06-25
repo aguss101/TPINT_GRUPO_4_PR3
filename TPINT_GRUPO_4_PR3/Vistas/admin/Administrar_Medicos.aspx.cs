@@ -22,6 +22,9 @@ namespace Vistas.admin
             {
                 btnMod.Visible = false;
                 btnBaja.Visible = false;
+                ///Crear funcion fuera del page load que cargue todos los place holder, luego llamarla dentro del page load.
+                txbLegajo.Attributes["placeholder"] = "Legajo del medico";
+                txbLegajo.Text = string.Empty;
             }
         }
 
@@ -70,9 +73,8 @@ namespace Vistas.admin
                 {
                     string DNI = row.Cells[2].Text;
 
-                    Usuario usuario = new Usuario();
-
                     Medico medico = new Medico();
+                    medico.Usuario = new Usuario();
 
                     medico = gestorMedico.getMedicoPorID(DNI);
                     lblAddUserState0.Visible = false;
@@ -93,8 +95,8 @@ namespace Vistas.admin
                     txtbModMedicoDireccion.Text = medico.Direccion;
                     txtbModMedicoTelefono.Text = medico.Telefono.ToString();
                     txtbModMedicoCorreo.Text = medico.Correo;
-                    txtbModMedicoUsuario.Text = usuario.NombreUsuario;
-                    txtbModMedicoContrasenia.Text = usuario.contrasenia;
+                    txtbModMedicoUsuario.Text = medico.Usuario.NombreUsuario;
+                    txtbModMedicoContrasenia.Text = medico.Usuario.contrasenia;
 
                     break;
                 }
@@ -162,8 +164,8 @@ namespace Vistas.admin
         }
         protected void ModificarMedico()
         {
-            Usuario usuario = new Usuario();
             Medico medico = new Medico();
+            medico.Usuario = new Usuario();
 
             medico.DNI = txtbModMedicoDNI.Text.Trim();
             medico.Legajo = txtbModMedicoLegajo.Text.Trim();
@@ -177,8 +179,9 @@ namespace Vistas.admin
             medico.Direccion = txtbModMedicoDireccion.Text;
             medico.Telefono = txtbModMedicoTelefono.Text.Trim();
             medico.Correo = txtbModMedicoCorreo.Text;
-            usuario.NombreUsuario = txtbModMedicoUsuario.Text.Trim();
-            usuario.contrasenia = txtbModMedicoContrasenia.Text.Trim();
+            medico.Usuario.NombreUsuario = txtbModMedicoUsuario.Text.Trim();
+            medico.Usuario.contrasenia = txtbModMedicoContrasenia.Text.Trim();
+
             string DNI_VIEJO = (Session["DNI_VIEJO"] as string).Trim();
             string LEGAJO_VIEJO = (Session["LEGAJO_VIEJO"] as string).Trim();
 
@@ -202,7 +205,7 @@ namespace Vistas.admin
                 lblModificarMedico.Visible = true;
                 return;
             }
-            int filas = gestorMedico.ModificarMedico(nombreProcedimiento, medico,usuario, DNI_VIEJO, LEGAJO_VIEJO);
+            int filas = gestorMedico.ModificarMedico(nombreProcedimiento, medico,medico.Usuario, DNI_VIEJO, LEGAJO_VIEJO);
             
             if(filas > 0) // Verificación final luego de llamar al sp
             {
@@ -283,7 +286,6 @@ namespace Vistas.admin
             mvFormularios.ActiveViewIndex = 1;
 
         }
-
     }
 
 }

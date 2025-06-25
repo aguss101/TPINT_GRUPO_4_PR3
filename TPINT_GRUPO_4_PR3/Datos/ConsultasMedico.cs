@@ -16,9 +16,10 @@ namespace Datos
         public List<Medico> GetMedicos()
         {
             List<Medico> medicos = new List<Medico>();
-            string query = "SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, C.correo, T.telefono, L.idLocalidad " +
-                "FROM Medico ME " + "INNER JOIN Persona PE ON ME.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo " + "INNER JOIN Localidades L ON PE.idLocalidad " +
-                "= L.idLocalidad" + "  LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona " +
+            string query = "SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, C.correo, T.telefono, L.idLocalidad," +
+                "U.nombreUsuario, U.contrasenia FROM Medico ME " + " INNER JOIN Persona PE ON ME.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo " + 
+                "INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad" + "  LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = " +
+                "T.idPersona  INNER JOIN Usuario U ON PE.DNI = U.DNI" +
                 " WHERE activo = 1 " ;
 
             using (SqlConnection connection = conexion.AbrirConexion())
@@ -31,7 +32,8 @@ namespace Datos
                         while (reader.Read())
                         {
                             Medico medico = new Medico();
-
+                            medico.Usuario = new Usuario();
+                            
                             medico.Legajo = (reader["Legajo"].ToString());
                             medico.DNI = (reader["DNI"].ToString());
                             medico.idEspecialidad = (Convert.ToInt32(reader["idEspecialidad"]));
@@ -44,7 +46,9 @@ namespace Datos
                             medico.nacionalidad = (reader["nacionalidad"].ToString());
                             medico.Correo = (reader["Correo"].ToString());
                             medico.Telefono = (reader["telefono"].ToString());
-
+                            medico.Usuario.NombreUsuario = reader["nombreUsuario"].ToString();
+                            medico.Usuario.contrasenia = reader["contrasenia"].ToString();
+                            
                             medicos.Add(medico);
                         }
                     }
@@ -89,7 +93,7 @@ namespace Datos
             return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);
         }
 
-        public int ModificarMedico(string nombreProcedimiento, Medico medico,Usuario usuario, string DNI_VIEJO, string LEGAJO_VIEJO)
+        public int ModificarMedico(string nombreProcedimiento, Medico medico, Usuario usuario, string DNI_VIEJO, string LEGAJO_VIEJO)
         {
             Debug.Print("Dni_Viejo: " + DNI_VIEJO);
             Debug.Print("Legajo_Viejo: " + LEGAJO_VIEJO);
@@ -123,9 +127,11 @@ namespace Datos
 
             using (SqlConnection connection = conexion.AbrirConexion())
             {
-                string query = "SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, C.correo, T.telefono, L.idLocalidad " +
-                "FROM Medico ME " + "INNER JOIN Persona PE ON ME.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo " + "INNER JOIN Localidades L ON PE.idLocalidad " +
-                "= L.idLocalidad" + "  INNER JOIN Correos C ON PE.DNI = C.idPersona  INNER JOIN Telefonos T ON PE.DNI = T.idPersona WHERE ME.DNI = @id";
+                string query = "SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, C.correo, T.telefono, L.idLocalidad, " +
+                "U.nombreUsuario, U.contrasenia FROM Medico ME " + "INNER JOIN Persona PE ON ME.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo " + 
+                "INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad" + "  LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = " +
+                " T.idPersona INNER JOIN Usuario U ON PE.DNI = U.DNI WHERE ME.DNI = @id";
+
 
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@id", idMedico);
@@ -136,7 +142,7 @@ namespace Datos
                 if (reader.Read())
                 {
                     medico = new Medico();
-
+                    medico.Usuario = new Usuario();
 
                     medico.Legajo = reader["Legajo"].ToString();
                     medico.DNI = (reader["DNI"].ToString());
@@ -150,7 +156,9 @@ namespace Datos
                     medico.nacionalidad = (reader["nacionalidad"].ToString());
                     medico.Correo = (reader["Correo"].ToString());
                     medico.Telefono = (reader["Telefono"].ToString());
-
+                    medico.Usuario.NombreUsuario = reader["nombreUsuario"].ToString();
+                    medico.Usuario.contrasenia = reader["contrasenia"].ToString();
+                    
                 }
 
                 reader.Close();
