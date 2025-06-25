@@ -1,43 +1,11 @@
---Orden
--- Sexos
-
--- Paises
-
--- Provincias
-
--- Localidades
-
--- ObraSocial
-
--- Especialidades
-
--- EstadoTurnos
-
--- Persona
-
--- Correos
-
--- Telefonos
-
--- Paciente
-
--- Roles
-
--- Usuario
-
--- Medico
-
--- Jornadas
-
--- Turnos
 USE ClinicaDB
 GO
 
-INSERT INTO Sexos (idSexo, descripcion) VALUES (1, 'Masculino');
+INSERT INTO Sexos (idSexo, descripcion) VALUES (1, 'Masculino'); -- SEXOS
 INSERT INTO Sexos (idSexo, descripcion) VALUES (2, 'Femenino');
 INSERT INTO Sexos (idSexo, descripcion) VALUES (3, 'Otro');
 
-INSERT INTO Paises (idPais, nombrePais, gentilicio) VALUES (1, 'Argentina', 'Argentino');
+INSERT INTO Paises (idPais, nombrePais, gentilicio) VALUES (1, 'Argentina', 'Argentino'); --PAISES
 INSERT INTO Paises (idPais, nombrePais, gentilicio) VALUES (2, 'Brasil', 'Brasileño');
 INSERT INTO Paises (idPais, nombrePais, gentilicio) VALUES (3, 'Chile', 'Chileno');
 INSERT INTO Paises (idPais, nombrePais, gentilicio) VALUES (4, 'Uruguay', 'Uruguayo');
@@ -58,7 +26,7 @@ INSERT INTO Paises (idPais, nombrePais, gentilicio) VALUES (18, 'Suecia', 'Sueco
 INSERT INTO Paises (idPais, nombrePais, gentilicio) VALUES (19, 'Noruega', 'Noruego');
 INSERT INTO Paises (idPais, nombrePais, gentilicio) VALUES (20, 'Suiza', 'Suizo');
 
-INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (1, 'Buenos Aires');
+INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (1, 'Buenos Aires'); --PROVINCIAS
 INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (2, 'Catamarca');
 INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (3, 'Chaco');
 INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (4, 'Chubut');
@@ -87,7 +55,7 @@ INSERT INTO Provincias (idProvincia, nombreProvincia) VALUES (25, 'Extranjero');
 
 --Localidades
 --Localidades Buenos Aires
-INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1, 'La Plata', 1);
+INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (1, 'La Plata', 1); --LOCALIDADES
 INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (2, 'Mar del Plata', 1);
 INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (3, 'Bahía Blanca', 1);
 INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (4, 'Tandil', 1);
@@ -348,7 +316,7 @@ INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (234,
 INSERT INTO Localidades (idLocalidad, nombreLocalidad, idProvincia) VALUES (235, 'Extranjero', 25);
 
 --Obra Social
-INSERT INTO ObraSocial (idObraSocial, nombre) VALUES (1, 'OSDE');
+INSERT INTO ObraSocial (idObraSocial, nombre) VALUES (1, 'OSDE'); --OBRA SOCIAL
 INSERT INTO ObraSocial (idObraSocial, nombre) VALUES (2, 'Swiss Medical');
 INSERT INTO ObraSocial (idObraSocial, nombre) VALUES (3, 'Galeno');
 INSERT INTO ObraSocial (idObraSocial, nombre) VALUES (4, 'Medifé');
@@ -359,7 +327,7 @@ INSERT INTO ObraSocial (idObraSocial, nombre) VALUES (8, 'OSECAC');
 INSERT INTO ObraSocial (idObraSocial, nombre) VALUES (9, 'PAMI');
 INSERT INTO ObraSocial (idObraSocial, nombre) VALUES (10, 'IOSFA');
 
-INSERT INTO Especialidades (idEspecialidad, descripcion) VALUES (1, 'Clínica Médica');
+INSERT INTO Especialidades (idEspecialidad, descripcion) VALUES (1, 'Clínica Médica'); --ESPECIALIDADES
 INSERT INTO Especialidades (idEspecialidad, descripcion) VALUES (2, 'Pediatría');
 INSERT INTO Especialidades (idEspecialidad, descripcion) VALUES (3, 'Ginecología');
 INSERT INTO Especialidades (idEspecialidad, descripcion) VALUES (4, 'Cardiología');
@@ -370,13 +338,13 @@ INSERT INTO Especialidades (idEspecialidad, descripcion) VALUES (8, 'Endocrinolo
 INSERT INTO Especialidades (idEspecialidad, descripcion) VALUES (9, 'Oftalmología');
 INSERT INTO Especialidades (idEspecialidad, descripcion) VALUES (10, 'Psiquiatría');
 
-INSERT INTO EstadoTurnos (idEstado, valorEstado, descripcion) VALUES (0, 0, 'AUSENTE');
+INSERT INTO EstadoTurnos (idEstado, valorEstado, descripcion) VALUES (0, 0, 'AUSENTE'); --ESTADO TURNOS
 INSERT INTO EstadoTurnos (idEstado, valorEstado, descripcion) VALUES (1, 1, 'PRESENTE');
 
 INSERT INTO Roles (idRol, descripcion) VALUES (1, 'Administrador');
 INSERT INTO Roles (idRol, descripcion) VALUES (2, 'Médico');
 
-INSERT INTO Persona (DNI, nombre, apellido, sexo, direccion, idLocalidad, fechaNacimiento, nacionalidad, activo) VALUES ('46877554', 'Agustin', 'Baied', 1, 'Barrio Administradores', 15, '04-08-2005', 'Argentino', 1);-- Agustin Baied
+INSERT INTO Persona (DNI, nombre, apellido, sexo, direccion, idLocalidad, fechaNacimiento, nacionalidad, activo) VALUES ('46877554', 'Agustin', 'Baied', 1, 'Barrio Administradores', 15, '04-08-2005', 'Argentino', 1);-- Agustin Baied	PERSONA
 INSERT INTO Persona (DNI, nombre, apellido, sexo, direccion, idLocalidad, fechaNacimiento, nacionalidad, activo) VALUES ('45905927', 'Luca', 'Gauna', 1, 'Barrio Administradores', 15, '07-07-2004', 'Argentino', 1);--Luca Gauna
 INSERT INTO Persona (DNI, nombre, apellido, sexo, direccion, idLocalidad, fechaNacimiento, nacionalidad, activo) VALUES ('46895255', 'Lautaro', 'Camejo', 1, 'Barrio Administradores', 15, '14-07-2005', 'Argentino', 1);--Lautaro Camejo
 INSERT INTO Persona (DNI, nombre, apellido, sexo, direccion, idLocalidad, fechaNacimiento, nacionalidad, activo) VALUES ('39342796', 'Franco', 'Gabriel', 1, 'Barrio Administradores', 15, '18-02-1996', 'Argentino', 1);--Franco Gabriel
@@ -583,7 +551,7 @@ INSERT INTO Persona (DNI, nombre, apellido, sexo, direccion, idLocalidad, fechaN
 INSERT INTO Persona (DNI, nombre, apellido, sexo, direccion, idLocalidad, fechaNacimiento, nacionalidad, activo) VALUES ('37736848', 'William', 'Gould', 1, '658 Stephanie Divide', 235, '21-03-1997', 'Portugués', 1);
 INSERT INTO Persona (DNI, nombre, apellido, sexo, direccion, idLocalidad, fechaNacimiento, nacionalidad, activo) VALUES ('46716844', 'Lawrence', 'Harrington', 1, '13556 Cassie Springs', 235, '31-01-1970', 'Uruguayo', 1);
 
-INSERT INTO Telefonos (idPersona, telefono) VALUES ('46877554', '11-1216-1137');
+INSERT INTO Telefonos (idPersona, telefono) VALUES ('46877554', '11-1216-1137'); --TELEFONOS
 INSERT INTO Telefonos (idPersona, telefono) VALUES ('45905927', '11-1921-4984');
 INSERT INTO Telefonos (idPersona, telefono) VALUES ('46895255', '11-3325-7656');
 INSERT INTO Telefonos (idPersona, telefono) VALUES ('39342796', '11-3234-1212');
@@ -795,7 +763,7 @@ INSERT INTO Telefonos (idPersona, telefono) VALUES ('23567342', '11-3390-1265');
 INSERT INTO Telefonos (idPersona, telefono) VALUES ('37736848', '11-6404-4768');
 INSERT INTO Telefonos (idPersona, telefono) VALUES ('46716844', '11-9005-9037');
 
-INSERT INTO Correos (idPersona, correo) VALUES ('46877554', 'agustin.baied@alumnos.frgp.utn.edu.ar');
+INSERT INTO Correos (idPersona, correo) VALUES ('46877554', 'agustin.baied@alumnos.frgp.utn.edu.ar'); --CORREOS
 INSERT INTO Correos (idPersona, correo) VALUES ('45905927', 'luca.gauna@alumnos.frgp.utn.edu.ar');
 INSERT INTO Correos (idPersona, correo) VALUES ('46895255', 'lautaro.camejo@alumnos.frgp.utn.edu.ar');
 INSERT INTO Correos (idPersona, correo) VALUES ('39342796', 'franco.gabriel@alumnos.frgp.utn.edu.ar');
@@ -1007,7 +975,7 @@ INSERT INTO Correos (idPersona, correo) VALUES ('23567342', 'millererica@gmail.c
 INSERT INTO Correos (idPersona, correo) VALUES ('37736848', 'gouldwilliam@gmail.com');
 INSERT INTO Correos (idPersona, correo) VALUES ('46716844', 'lawrence.harrington@gmail.com');
 
-INSERT INTO Usuario (DNI, idRol, nombreUsuario, contrasenia, ultimoIngreso, alta) VALUES ('46877554', 1, 'agus', '123', CONVERT(datetime, '2025-06-24 08:00:00', 120), CONVERT(datetime, '2025-06-10 08:00:00', 120));
+INSERT INTO Usuario (DNI, idRol, nombreUsuario, contrasenia, ultimoIngreso, alta) VALUES ('46877554', 1, 'agus', '123', CONVERT(datetime, '2025-06-24 08:00:00', 120), CONVERT(datetime, '2025-06-10 08:00:00', 120)); -- USUARIO
 INSERT INTO Usuario (DNI, idRol, nombreUsuario, contrasenia, ultimoIngreso, alta) VALUES ('45905927', 1, 'luca', '123', CONVERT(datetime, '2025-06-24 08:00:00', 120), CONVERT(datetime, '2025-06-10 08:00:00', 120));
 INSERT INTO Usuario (DNI, idRol, nombreUsuario, contrasenia, ultimoIngreso, alta) VALUES ('40283157', 1, 'lucas', '123', CONVERT(datetime, '2025-06-24 08:00:00', 120), CONVERT(datetime, '2025-06-10 08:00:00', 120));
 INSERT INTO Usuario (DNI, idRol, nombreUsuario, contrasenia, ultimoIngreso, alta) VALUES ('46895255', 1, 'lautaro', '123', CONVERT(datetime, '2025-06-24 08:00:00', 120), CONVERT(datetime, '2025-06-10 08:00:00', 120));
@@ -1039,7 +1007,7 @@ INSERT INTO Usuario (DNI, idRol, nombreUsuario, contrasenia, ultimoIngreso, alta
 INSERT INTO Usuario (DNI, idRol, nombreUsuario, contrasenia, ultimoIngreso, alta) VALUES ('37575276', 2, 'Carlos', 'noche', CONVERT(datetime, '2025-04-20 22:24:48', 120), CONVERT(datetime, '2025-06-15 12:34:37', 120));
 INSERT INTO Usuario (DNI, idRol, nombreUsuario, contrasenia, ultimoIngreso, alta) VALUES ('40926675', 2, 'James', 'arena', CONVERT(datetime, '2025-06-03 01:45:40', 120), CONVERT(datetime, '2025-03-08 17:56:33', 120));
 
-INSERT INTO Medico (DNI, Legajo, idEspecialidad) VALUES ('23464827', '1', 1);
+INSERT INTO Medico (DNI, Legajo, idEspecialidad) VALUES ('23464827', '1', 1); --MEDICO
 INSERT INTO Medico (DNI, Legajo, idEspecialidad) VALUES ('22767053', '2', 1);
 INSERT INTO Medico (DNI, Legajo, idEspecialidad) VALUES ('23215552', '3', 2);
 INSERT INTO Medico (DNI, Legajo, idEspecialidad) VALUES ('42298746', '4', 8);
@@ -1060,7 +1028,7 @@ INSERT INTO Medico (DNI, Legajo, idEspecialidad) VALUES ('43893819', '18', 6);
 INSERT INTO Medico (DNI, Legajo, idEspecialidad) VALUES ('37575276', '19', 5);
 INSERT INTO Medico (DNI, Legajo, idEspecialidad) VALUES ('40926675', '20', 2);
 
-INSERT INTO Jornadas (legajo, DiaSemana, rangoHorario) VALUES (6, 'Lunes', '08:00');
+INSERT INTO Jornadas (legajo, DiaSemana, rangoHorario) VALUES (6, 'Lunes', '08:00'); --JORNADAS
 INSERT INTO Jornadas (legajo, DiaSemana, rangoHorario) VALUES (6, 'Martes', '08:00');
 INSERT INTO Jornadas (legajo, DiaSemana, rangoHorario) VALUES (6, 'Miércoles', '08:00');
 INSERT INTO Jornadas (legajo, DiaSemana, rangoHorario) VALUES (6, 'Jueves', '08:00');
@@ -1161,7 +1129,7 @@ INSERT INTO Jornadas (legajo, DiaSemana, rangoHorario) VALUES (20, 'Jueves', '16
 INSERT INTO Jornadas (legajo, DiaSemana, rangoHorario) VALUES (20, 'Sábado', '16:00');
 INSERT INTO Jornadas (legajo, DiaSemana, rangoHorario) VALUES (20, 'Domingo', '16:00');
 
-INSERT INTO Paciente (DNI, ObraSocial, ultimaAtencion, alta) VALUES ('39711873', 9, CONVERT(datetime, '2025-04-05 19:43:08', 120), CONVERT(datetime, '2025-02-05 17:43:29', 120));
+INSERT INTO Paciente (DNI, ObraSocial, ultimaAtencion, alta) VALUES ('39711873', 9, CONVERT(datetime, '2025-04-05 19:43:08', 120), CONVERT(datetime, '2025-02-05 17:43:29', 120)); --PACIENTE
 INSERT INTO Paciente (DNI, ObraSocial, ultimaAtencion, alta) VALUES ('15999828', 9, CONVERT(datetime, '2025-05-05 15:02:55', 120), CONVERT(datetime, '2025-01-12 09:42:40', 120));
 INSERT INTO Paciente (DNI, ObraSocial, ultimaAtencion, alta) VALUES ('33832259', 9, CONVERT(datetime, '2025-01-07 13:37:48', 120), CONVERT(datetime, '2025-06-12 22:20:33', 120));
 INSERT INTO Paciente (DNI, ObraSocial, ultimaAtencion, alta) VALUES ('42159979', 2, CONVERT(datetime, '2025-06-08 20:08:14', 120), CONVERT(datetime, '2025-05-10 18:06:36', 120));
@@ -1362,7 +1330,7 @@ INSERT INTO Paciente (DNI, ObraSocial, ultimaAtencion, alta) VALUES ('23567342',
 INSERT INTO Paciente (DNI, ObraSocial, ultimaAtencion, alta) VALUES ('37736848', 10, CONVERT(datetime, '2025-05-14 19:35:43', 120), CONVERT(datetime, '2025-03-10 02:03:29', 120));
 INSERT INTO Paciente (DNI, ObraSocial, ultimaAtencion, alta) VALUES ('46716844', 10, CONVERT(datetime, '2025-05-03 20:55:29', 120), CONVERT(datetime, '2025-03-25 03:24:11', 120));
 
-INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('43181122', 12, 1, 'Hipertensión', 'Control en 15 días');
+INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('43181122', 12, 1, 'Hipertensión', 'Control en 15 días'); --TURNOS
 INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('34966364', 1, 1, 'Ansiedad', 'Se sugiere dieta');
 INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('21294225', 5, 1, 'Ansiedad', 'Derivado a especialista');
 INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('22106768', 5, 1, 'Dermatitis', 'Se sugiere dieta');
@@ -1377,7 +1345,7 @@ INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUE
 INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('20252363', 20, 1, 'Dolor lumbar', 'Indicado análisis complementarios');
 INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('36377977', 5, 1, 'Colesterol alto', 'Indicado análisis complementarios');
 INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('32335133', 8, 1, 'Dermatitis', 'Indicado análisis complementarios');
-INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('28812517', 1, 2, 'Hipertensión', 'Indicado análisis complementarios');
+INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('28812517', 1, 0, 'Hipertensión', 'Indicado análisis complementarios');
 INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('18129379', 1, 1, 'Infección urinaria', 'Requiere estudios');
 INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('41223637', 9, 1, 'Dolor lumbar', 'Indicado análisis complementarios');
 INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('34372723', 11, 1, 'Sinusitis', 'Indicado análisis complementarios');
@@ -1405,36 +1373,3 @@ INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUE
 INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('25553444', 16, 0, 'Hipertensión', 'No se evidencian complicaciones');
 INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('16908561', 1, 1, 'Alergia estacional', 'Observación ambulatoria');
 INSERT INTO Turnos (dniPaciente, Legajo, estado, diagnostico, observacion) VALUES ('41223637', 18, 1, 'Dolor lumbar', 'Derivado a especialista');
-
---Orden
--- Sexos
-
--- Paises
-
--- Provincias
-
--- Localidades
-
--- ObraSocial
-
--- Especialidades
-
--- EstadoTurnos
-
--- Persona
-
--- Correos
-
--- Telefonos
-
--- Paciente
-
--- Roles
-
--- Usuario
-
--- Medico
-
--- Jornadas
-
--- Turnos
