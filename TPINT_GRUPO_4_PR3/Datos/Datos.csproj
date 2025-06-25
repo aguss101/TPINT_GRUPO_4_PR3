@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ConsultasMedico.cs" />
     <Compile Include="ConsultasPacientes.cs" />
+    <Compile Include="ConsultasTurnos.cs" />
     <Compile Include="ConsultasUsuario.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

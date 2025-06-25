@@ -45,6 +45,7 @@
     <Compile Include="Paciente.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Turno.cs" />
     <Compile Include="Usuario\Rol.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>

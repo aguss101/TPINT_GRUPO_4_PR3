@@ -261,40 +261,18 @@
                     <tr>
                         <td class="auto-style29">
                             
-    <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
-    <asp:View ID="vwListadoTurnos" runat="server">
-        <h3>Listado de Turnos Asignados</h3>
-
-        <div style="margin-bottom: 15px;">
-            <asp:Label ID="lblBuscar" runat="server" Text="Buscar por Paciente: " />
-            <asp:TextBox ID="txtBuscar" runat="server" />
-            <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn-index" />
-        </div>
-
-        <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" 
-            CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" 
-            CssClass="table">
-            
-            <AlternatingRowStyle BackColor="White" />
-            <Columns>
-                <asp:BoundField DataField="idTurno" HeaderText="ID Turno" />
-                <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
-                <asp:BoundField DataField="Hora" HeaderText="Hora" />
-                <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
-                <asp:BoundField DataField="DNI" HeaderText="DNI" />
-                <asp:BoundField DataField="Estado" HeaderText="Estado" />
-                <asp:BoundField DataField="Observacion" HeaderText="Observación" />
-            </Columns>
-
-            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <RowStyle BackColor="#EFF3FB" />
-            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-        </asp:GridView>
-    </asp:View>
-    </asp:MultiView>
+                            <asp:GridView ID="gvTurnos" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+                                <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                                <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                                <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                                <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                                <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                                <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                                <SortedDescendingHeaderStyle BackColor="#242121" />
+                            </asp:GridView>
                         </td>
-                        <td class="no-select"></td>
+                        <td class="no-select">&nbsp;</td>
                         <td class="auto-style28"></td>
                     </tr>
                     <tr>

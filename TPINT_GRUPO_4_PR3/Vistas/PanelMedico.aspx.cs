@@ -1,29 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Negocio;
-using Entidades;
 
 namespace Vistas
 {
     public partial class PanelMedico : System.Web.UI.Page
     {
-        private GestorPaciente gestorPaciente = new GestorPaciente();
+        private GestorTurnos gestorturnos = new GestorTurnos();
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarPacientes();
+
+            cargarTurnos();
 
 
         }
-        protected void cargarPacientes()
+        protected void cargarTurnos()
         {
-            List<Paciente> pacientes = gestorPaciente.GetPacientes();
 
-            gvTurnos.DataSource = pacientes;
-           
+            string Legajo = Session["LegajoMedico"].ToString();
+            System.Diagnostics.Debug.WriteLine("Legajo" + Legajo);
+            gvTurnos.DataSource = gestorturnos.GetTurnosMedico(Legajo);
             gvTurnos.DataBind();
 
         }

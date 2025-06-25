@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Services.Description;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Entidades;
 using Negocio;
 namespace Vistas
 {
     public partial class Login : System.Web.UI.Page
     {
+        GestorMedico gestorMedico = new GestorMedico();
         private GestorUsuario gestorUsuario = new GestorUsuario();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,23 +28,28 @@ namespace Vistas
                     if (usuario.idRol == 1)
                     {
                         Response.Redirect("Admin.aspx");
-                        
+
 
                     }
 
                     else
                     {
-                    Response.Redirect("PanelMedico.aspx");
+
+                        Medico medico = gestorMedico.getMedicoPorID(usuario.DNI);
+                        string legajo = medico.Legajo;
+                        Session["LegajoMedico"] = legajo;
+
+                        Response.Redirect("PanelMedico.aspx");
                     }
                     return;
                 }
 
-           }
+            }
             lblError.Text = "Usuario o contraseña incorrectos.";
             lblError.Visible = true;
 
         }
-        
+
     }
-    
+
 }

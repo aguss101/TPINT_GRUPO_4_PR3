@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="GestorMedico.cs" />
     <Compile Include="GestorPaciente.cs" />
+    <Compile Include="GestorTurnos.cs" />
     <Compile Include="GestorUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
