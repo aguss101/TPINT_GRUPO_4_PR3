@@ -695,7 +695,8 @@ CREATE OR ALTER PROCEDURE sp_MarcarAsistenciaTurno
 @Legajo        VARCHAR(20),
     @FechaPactada  DATETIME,
     @Estado        INT,                
-    @Observacion   VARCHAR(200)
+    @Observacion   VARCHAR(200),
+	@Diagnostico VARCHAR(120)
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -718,7 +719,9 @@ BEGIN
       
         UPDATE Turnos
            SET estado      = @Estado,
-               observacion = @Observacion
+               observacion = @Observacion,
+			   diagnostico = @Diagnostico
+
          WHERE Legajo       = @Legajo
            AND fechaPactada = @FechaPactada;
 
