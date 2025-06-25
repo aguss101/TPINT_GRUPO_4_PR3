@@ -38,7 +38,7 @@ namespace Vistas
 
                     else
                     {
-                    Response.Redirect("Medico.aspx");
+                    Response.Redirect("PanelMedico.aspx");
                     }
                     return;
                 }

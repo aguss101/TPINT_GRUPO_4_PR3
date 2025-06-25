@@ -22,9 +22,9 @@ namespace Vistas
         {
             List<Paciente> pacientes = gestorPaciente.GetPacientes();
 
-            gvMedico.DataSource = pacientes;
+            gvTurnos.DataSource = pacientes;
            
-            gvMedico.DataBind();
+            gvTurnos.DataBind();
 
         }
     }

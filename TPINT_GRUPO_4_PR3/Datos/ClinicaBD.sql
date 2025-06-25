@@ -134,7 +134,7 @@ CREATE TABLE Paciente (
 CREATE TABLE Turnos(
     Legajo VARCHAR(20),
     DNIPaciente VARCHAR(20),
-    fechaPactada TIMESTAMP,
+    fechaPactada DATETIME,
     estado INT,
     observacion VARCHAR(200),
     diagnostico VARCHAR(50),
