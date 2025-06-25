@@ -94,13 +94,12 @@ namespace Datos
         new SqlParameter("@Legajo",       turno.Legajo),
         new SqlParameter("@FechaPactada", turno.FechaPactada),
         new SqlParameter("@Estado",       turno.Estado),
-        new SqlParameter(
-            "@Observacion",
-            string.IsNullOrWhiteSpace(turno.Observacion)  //  Esto es para que no se rompa todo si se le ocurre no poner nada lo settea en null
-                ? (object)DBNull.Value
-                : turno.Observacion
-        )
-            };
+        new SqlParameter( "@Observacion",string.IsNullOrWhiteSpace(turno.Observacion)  ? (object)DBNull.Value : turno.Observacion),
+        new SqlParameter("@Diagnostico", string.IsNullOrWhiteSpace(turno.Diagnostico) ? (object)DBNull.Value : turno.Diagnostico)
+
+
+
+        };
 
 
             return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);

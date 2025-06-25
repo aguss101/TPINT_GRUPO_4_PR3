@@ -29,5 +29,44 @@ namespace Vistas
             gvTurnos.PageIndex = e.NewPageIndex;
             cargarTurnos();
         }
+
+        protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in gvTurnos.Rows)
+            {
+                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
+                if (chk != sender)
+                {
+                    chk.Checked = false;
+                }
+
+
+            }
+            bool algunoMarcado = false;
+            foreach (GridViewRow row in gvTurnos.Rows)
+            {
+                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
+                if (chk.Checked)
+                {
+                    algunoMarcado = true;
+
+                    break;
+                }
+            }
+
+            btnCargar.Visible = algunoMarcado;
+
+
+        }
+
+        protected void btnCargar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnEstado_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
