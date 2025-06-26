@@ -74,5 +74,31 @@ namespace Vistas
         {
 
         }
+
+        protected void btnPorFecha_Click(object sender, EventArgs e)
+        {
+            mwVerTurnos.ActiveViewIndex = 0;
+        }
+
+        protected void btnVerTodos_Click(object sender, EventArgs e)
+        {
+            mwVerTurnos.ActiveViewIndex = 1;
+        }
+
+        protected void ddlBusqueda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (ddlBusqueda.SelectedIndex)
+            {
+                case 1:
+                    mwBusqueda.ActiveViewIndex = 0;
+                    break;
+                case 2:
+                    mwBusqueda.ActiveViewIndex = 1;
+                    break;
+                default:
+                    mwBusqueda.ActiveViewIndex = -1;
+                    break;
+            }
+        }
     }
 }
