@@ -36,17 +36,11 @@ namespace Datos
                             turnos.Add(MapearTurno(reader));
                         }
                     }
-
-
-
                 }
-
                 return turnos;
             }
-
         }
-
-        public List<Turno> GetTurnosMedico(string legajo)
+        public List<Turno> GetTurnosMedico(string legajo, DateTime fechaSelected)
         {
             List<Turno> turnos = new List<Turno>();
 
@@ -57,11 +51,14 @@ namespace Datos
                 {
 
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) // Le paso el legajo al procedimiento.
+                    cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) // Le paso el legajo y fecha seleccionada en el calendar al procedimiento.
                     {
                         Value = legajo
                     });
-
+                    cmd.Parameters.Add(new SqlParameter("@Fecha", SqlDbType.DateTime)
+                    {
+                        Value = fechaSelected.Date
+                    });
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -73,11 +70,7 @@ namespace Datos
                     }
                 }
                 return turnos;
-
-
             }
-
-
         }
 
         public int MarcarAsistenciaTurno(string nombreProcedimiento, Turno turno)
@@ -91,15 +84,12 @@ namespace Datos
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-        new SqlParameter("@Legajo",       turno.Legajo),
-        new SqlParameter("@FechaPactada", turno.FechaPactada),
-        new SqlParameter("@Estado",       turno.Estado),
-        new SqlParameter( "@Observacion",string.IsNullOrWhiteSpace(turno.Observacion)  ? (object)DBNull.Value : turno.Observacion),
-        new SqlParameter("@Diagnostico", string.IsNullOrWhiteSpace(turno.Diagnostico) ? (object)DBNull.Value : turno.Diagnostico)
-
-
-
-        };
+                new SqlParameter("@Legajo",       turno.Legajo),
+                new SqlParameter("@FechaPactada", turno.FechaPactada),
+                new SqlParameter("@Estado",       turno.Estado),
+                new SqlParameter( "@Observacion",string.IsNullOrWhiteSpace(turno.Observacion)  ? (object)DBNull.Value : turno.Observacion),
+                new SqlParameter("@Diagnostico", string.IsNullOrWhiteSpace(turno.Diagnostico) ? (object)DBNull.Value : turno.Diagnostico)
+            };
 
 
             return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);

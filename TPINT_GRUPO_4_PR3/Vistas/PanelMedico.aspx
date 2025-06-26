@@ -204,8 +204,8 @@
 
         .auto-style29 {
             user-select: none;
-            width: 430px;
-        }
+            }
+        .table {}
     </style>
 </head>
 <body>
@@ -270,20 +270,22 @@
                         </tr>
                         <tr>
                             <td class="auto-style29">
-                                <asp:Calendar ID="calendarMedico" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
-                                    <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                                    <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
+                                <asp:Calendar ID="calendarMedico" runat="server" BackColor="White" BorderColor="Black" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" Width="400px" DayNameFormat="Shortest" OnSelectionChanged="calendarMedico_SelectionChanged" TitleFormat="Month" SelectedDate="06/26/2025 16:42:26">
+                                    <DayHeaderStyle Font-Bold="True" Font-Size="7pt" BackColor="#CCCCCC" ForeColor="#333333" Height="10pt" />
+                                    <DayStyle Width="14%" />
+                                    <NextPrevStyle Font-Size="8pt" ForeColor="White" />
                                     <OtherMonthDayStyle ForeColor="#999999" />
-                                    <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                                    <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                                    <TodayDayStyle BackColor="#CCCCCC" />
+                                    <SelectedDayStyle BackColor="#CC3333" ForeColor="White" />
+                                    <SelectorStyle BackColor="#CCCCCC" Font-Bold="True" Font-Names="Verdana" Font-Size="8pt" ForeColor="#333333" Width="1%" />
+                                    <TitleStyle BackColor="Black" Font-Bold="True" Font-Size="13pt" ForeColor="White" Height="14pt" />
+                                    <TodayDayStyle BackColor="#CCCC99" />
                                 </asp:Calendar>
                             </td>
                             <td class="no-select">&nbsp;</td>
                             <td class="auto-style28"></td>
                         </tr>
                         <tr>
-                            <td class="auto-style29">
+                            <td class="auto-style29" colspan="2">
 
 
 
@@ -292,7 +294,7 @@
                                     AllowPaging="True"
                                     OnPageIndexChanging="gvTurnos_PageIndexChanging"
                                     DataKeyNames="Legajo,FechaPactada"
-                                    CssClass="table" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+                                    CssClass="table" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" Width="976px">
                                     <Columns>
 
                                         <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
@@ -336,9 +338,8 @@
                                     <SortedDescendingHeaderStyle BackColor="#242121" />
                                 </asp:GridView>
 
-                            </td>
-                            <td class="no-select">
                                 <asp:Button ID="btnCargar" runat="server" OnClick="btnCargar_Click" Text="Cargar Turno" />
+
                             </td>
                             <td class="auto-style28"></td>
                         </tr>

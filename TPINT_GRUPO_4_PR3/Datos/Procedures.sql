@@ -675,20 +675,21 @@ BEGIN
 
 END
 
-GO
+GO;
 
 
-CREATE OR ALTER PROCEDURE sp_ListarTurnosMedico
-	@Legajo VARCHAR(20)
+CREATE PROCEDURE sp_ListarTurnosMedico
+	@Legajo VARCHAR(20),
+	@Fecha DATETIME
 	AS
 	BEGIN
 		SELECT *
 		FROM vw_TurnosConDatos
-		WHERE @Legajo = Legajo
+		WHERE @Legajo = Legajo AND @Fecha = fechaPactada
 		ORDER BY fechaPactada,Legajo,DNIPaciente
 
-	END
-
+	END;
+	GO
 
 CREATE OR ALTER PROCEDURE sp_MarcarAsistenciaTurno
 

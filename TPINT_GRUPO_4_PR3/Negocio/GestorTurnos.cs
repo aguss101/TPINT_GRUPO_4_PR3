@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Datos;
 using Entidades;
+using System;
 
 namespace Negocio
 {
@@ -14,9 +15,9 @@ namespace Negocio
             return consultas.GetTurnosAdmin();
         }
 
-        public List<Turno> GetTurnosMedico(string legajo)
+        public List<Turno> GetTurnosMedico(string legajo, DateTime fechaSelected)
         {
-            return consultas.GetTurnosMedico(legajo);
+            return consultas.GetTurnosMedico(legajo, fechaSelected);
         }
     };
 }

@@ -9,17 +9,17 @@ namespace Vistas
         private GestorTurnos gestorturnos = new GestorTurnos();
         protected void Page_Load(object sender, EventArgs e)
         {
-
             cargarTurnos();
-
-
         }
         protected void cargarTurnos()
         {
 
             string Legajo = Session["LegajoMedico"].ToString();
+            DateTime fechaSelected = Session["fechaxCalendar"] != null
+                ? (DateTime)Session["fechaxCalendar"]
+                : DateTime.Today;
             System.Diagnostics.Debug.WriteLine("Legajo" + Legajo);
-            gvTurnos.DataSource = gestorturnos.GetTurnosMedico(Legajo);
+            gvTurnos.DataSource = gestorturnos.GetTurnosMedico(Legajo, fechaSelected);
             gvTurnos.DataBind();
 
         }
@@ -57,6 +57,12 @@ namespace Vistas
             btnCargar.Visible = algunoMarcado;
 
 
+        }
+
+        protected void calendarMedico_SelectionChanged(object sender, EventArgs e)
+        {
+            Session ["fechaxCalendar"] = calendarMedico.SelectedDate;
+            cargarTurnos();
         }
 
         protected void btnCargar_Click(object sender, EventArgs e)

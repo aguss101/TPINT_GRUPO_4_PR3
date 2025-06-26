@@ -128,7 +128,6 @@ CREATE TABLE Paciente (
     FOREIGN KEY (DNI) REFERENCES Persona(DNI) ON UPDATE CASCADE,
     FOREIGN KEY (ObraSocial) REFERENCES ObraSocial(idObraSocial)
 );
-
 -- Tabla: Turnos
 CREATE TABLE Turnos(
     Legajo VARCHAR(20),
