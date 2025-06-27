@@ -685,11 +685,13 @@ CREATE PROCEDURE sp_ListarTurnosMedico
 	BEGIN
 		SELECT *
 		FROM vw_TurnosConDatos
-		WHERE @Legajo = Legajo AND @Fecha = fechaPactada
+		WHERE @Legajo = Legajo
+			AND (@Fecha IS NULL OR CONVERT(date, fechaPactada) = CONVERT(date, @Fecha))
 		ORDER BY fechaPactada,Legajo,DNIPaciente
 
 	END;
 	GO
+
 
 CREATE OR ALTER PROCEDURE sp_MarcarAsistenciaTurno
 

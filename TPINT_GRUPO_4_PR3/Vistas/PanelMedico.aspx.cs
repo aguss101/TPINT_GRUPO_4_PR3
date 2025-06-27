@@ -9,25 +9,34 @@ namespace Vistas
         private GestorTurnos gestorturnos = new GestorTurnos();
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarTurnos();
+            cargarTurnosxFecha();
+            cargarTurnosAll();
         }
-        protected void cargarTurnos()
+        protected void cargarTurnosAll()
         {
+            if (mwVerTurnos.ActiveViewIndex == 1)
+            {
+                string Legajo = Session["LegajoMedico"].ToString();
+                DateTime ? fechaSelected = null;
 
+                gvTurnosAll.DataSource = gestorturnos.GetTurnosMedico(Legajo, fechaSelected);
+                gvTurnosAll.DataBind();
+            }
+        }
+        protected void cargarTurnosxFecha()
+        {
             string Legajo = Session["LegajoMedico"].ToString();
             DateTime fechaSelected = Session["fechaxCalendar"] != null
                 ? (DateTime)Session["fechaxCalendar"]
                 : DateTime.Today;
-            System.Diagnostics.Debug.WriteLine("Legajo" + Legajo);
             gvTurnos.DataSource = gestorturnos.GetTurnosMedico(Legajo, fechaSelected);
             gvTurnos.DataBind();
-
         }
 
         protected void gvTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvTurnos.PageIndex = e.NewPageIndex;
-            cargarTurnos();
+            cargarTurnosxFecha();
         }
 
         protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
@@ -62,7 +71,7 @@ namespace Vistas
         protected void calendarMedico_SelectionChanged(object sender, EventArgs e)
         {
             Session ["fechaxCalendar"] = calendarMedico.SelectedDate;
-            cargarTurnos();
+            cargarTurnosxFecha();
         }
 
         protected void btnCargar_Click(object sender, EventArgs e)
@@ -83,6 +92,7 @@ namespace Vistas
         protected void btnVerTodos_Click(object sender, EventArgs e)
         {
             mwVerTurnos.ActiveViewIndex = 1;
+
         }
 
         protected void ddlBusqueda_SelectedIndexChanged(object sender, EventArgs e)

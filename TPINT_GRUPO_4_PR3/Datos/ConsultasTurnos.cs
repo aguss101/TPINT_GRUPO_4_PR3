@@ -40,7 +40,7 @@ namespace Datos
                 return turnos;
             }
         }
-        public List<Turno> GetTurnosMedico(string legajo, DateTime fechaSelected)
+        public List<Turno> GetTurnosMedico(string legajo, DateTime? fechaSelected)
         {
             List<Turno> turnos = new List<Turno>();
 
@@ -57,9 +57,8 @@ namespace Datos
                     });
                     cmd.Parameters.Add(new SqlParameter("@Fecha", SqlDbType.DateTime)
                     {
-                        Value = fechaSelected.Date
+                        Value = fechaSelected.HasValue ? (object)fechaSelected.Value.Date : DBNull.Value
                     });
-
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())

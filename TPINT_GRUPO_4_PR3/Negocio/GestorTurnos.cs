@@ -15,7 +15,7 @@ namespace Negocio
             return consultas.GetTurnosAdmin();
         }
 
-        public List<Turno> GetTurnosMedico(string legajo, DateTime fechaSelected)
+        public List<Turno> GetTurnosMedico(string legajo, DateTime? fechaSelected)
         {
             return consultas.GetTurnosMedico(legajo, fechaSelected);
         }

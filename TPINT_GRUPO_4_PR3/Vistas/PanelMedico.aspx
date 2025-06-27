@@ -439,7 +439,39 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td colspan="2">Poner distintos Ordenes: Ej: Última atención</td>
+                                                    <td colspan="2">
+                                                        <asp:GridView ID="gvTurnosAll" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" CssClass="table" DataKeyNames="Legajo,FechaPactada" ForeColor="Black" GridLines="Horizontal" OnPageIndexChanging="gvTurnos_PageIndexChanging" Width="976px">
+                                                            <Columns>
+                                                                <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
+                                                                <asp:BoundField DataField="FechaPactada" DataFormatString="{0:dd/MM/yyyy HH:mm}" HeaderText="Fecha y Hora" />
+                                                                <asp:TemplateField HeaderText="Observación">
+                                                                    <ItemTemplate>
+                                                                        <asp:TextBox ID="txtObs0" runat="server" Width="100%" />
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:BoundField DataField="EstadoDescripcion" HeaderText="Estado" />
+                                                                <asp:TemplateField HeaderText="Diagnostico">
+                                                                    <ItemTemplate>
+                                                                        <asp:TextBox ID="txbDiagnostico0" runat="server" Width="100%" />
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Acciones">
+                                                                    <itemtemplate>
+                                                                        <asp:Button ID="btnPresente0" runat="server" CommandArgument="Presente" CssClass="btn-td" OnClick="btnEstado_Click" Text="Presente" />
+                                                                        <asp:Button ID="btnAusente0" runat="server" CommandArgument="Ausente" CssClass="btn-td" OnClick="btnEstado_Click" Text="Ausente" />
+                                                                    </itemtemplate>
+                                                                </asp:TemplateField>
+                                                            </Columns>
+                                                            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                                                            <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                                                            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                                                            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                                                            <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                                                            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                                                            <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                                                            <SortedDescendingHeaderStyle BackColor="#242121" />
+                                                        </asp:GridView>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2">&nbsp;</td>
