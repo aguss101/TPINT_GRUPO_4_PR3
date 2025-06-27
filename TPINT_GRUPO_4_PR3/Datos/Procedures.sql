@@ -678,7 +678,7 @@ END
 GO;
 
 
-CREATE PROCEDURE sp_ListarTurnosMedico
+CREATE OR ALTER PROCEDURE sp_ListarTurnosMedico
 	@Legajo VARCHAR(20),
 	@Fecha DATETIME
 	AS
@@ -692,6 +692,32 @@ CREATE PROCEDURE sp_ListarTurnosMedico
 	END;
 	GO
 
+CREATE OR ALTER PROCEDURE sp_ListarTurnosMedico_FiltradoApellido
+    @Legajo VARCHAR(20),
+    @ApellidoPaciente VARCHAR(25)
+
+AS
+BEGIN
+    SELECT *
+    FROM vw_TurnosConDatos
+    WHERE Legajo = @Legajo
+
+		AND (@ApellidoPaciente IS NULL OR ApellidoPaciente COLLATE Latin1_General_CI_AI LIKE '%' + @ApellidoPaciente + '%') 
+		--El collate es para que, por ej, a y á sean coincidencias--
+    ORDER BY fechaPactada, Legajo, DNIPaciente;
+END;
+
+CREATE OR ALTER PROCEDURE sp_ListarTurnosMedico_FiltradoDniPaciente
+    @Legajo VARCHAR(20),
+    @DNIPaciente VARCHAR(20)
+AS
+BEGIN
+    SELECT *
+    FROM vw_TurnosConDatos
+    WHERE Legajo = @Legajo
+		AND (@DNIPaciente IS NULL OR DNIPaciente LIKE '%' + @DNIPaciente + '%')
+    ORDER BY fechaPactada, Legajo, DNIPaciente;
+END;
 
 CREATE OR ALTER PROCEDURE sp_MarcarAsistenciaTurno
 

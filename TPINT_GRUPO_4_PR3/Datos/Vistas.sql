@@ -11,6 +11,7 @@ SELECT
     T.observacion,
     T.diagnostico,
     P_Pac.nombre + ' ' + P_Pac.apellido AS Paciente,
+	P_Pac.apellido AS ApellidoPaciente,						   -- PARA LA FUNC FiltrarPacientexApellido EN CONSULTASTURNOS.CS
     OS.nombre                        AS ObraSocial,
     P_Med.nombre + ' ' + P_Med.apellido AS Medico,
     M.idEspecialidad,

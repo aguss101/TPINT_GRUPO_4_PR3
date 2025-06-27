@@ -251,6 +251,9 @@
         .auto-style37 {
             width: 229px;
         }
+        .auto-style38 {
+            height: 25px;
+        }
     </style>
 </head>
 <body>
@@ -322,7 +325,7 @@
                                         <div>
                                         <table class="auto-style32">
                                             <tr>
-                                                <td>
+                                                <td class="auto-style38">
                                                     <h3>Fecha</h3>
                                                 </td>
                                             </tr>
@@ -348,6 +351,7 @@
                                                     <asp:GridView ID="gvTurnos" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" CssClass="table" DataKeyNames="Legajo,FechaPactada" ForeColor="Black" GridLines="Horizontal" OnPageIndexChanging="gvTurnos_PageIndexChanging" Width="976px">
                                                         <Columns>
                                                             <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
+                                                            <asp:BoundField DataField="DNIPaciente" HeaderText="DNI" />
                                                             <asp:BoundField DataField="FechaPactada" DataFormatString="{0:dd/MM/yyyy HH:mm}" HeaderText="Fecha y Hora" />
                                                             <asp:TemplateField HeaderText="Observación">
                                                                 <ItemTemplate>
@@ -398,7 +402,7 @@
                                                     <td class="auto-style34"><h3 class="auto-style35">Búsqueda por:</h3></td>
                                                     <td>
                                                         <asp:DropDownList ID="ddlBusqueda" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlBusqueda_SelectedIndexChanged">
-                                                            <asp:ListItem Text="Seleccione una búsqueda" Value="-1" Selected="True" />
+                                                            <asp:ListItem Text="--Seleccione una búsqueda--" Value="-1" Selected="True" />
                                                             <asp:ListItem>Apellido</asp:ListItem>
                                                             <asp:ListItem>DNI</asp:ListItem>
                                                         </asp:DropDownList>
@@ -414,7 +418,7 @@
                                                                         <tr>
                                                                             <td class="auto-style37">Ingrese apellido del paciente:</td>
                                                                             <td>
-                                                                                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                                                                                <asp:TextBox ID="txbPorApellido" runat="server" AutoPostBack="True" OnTextChanged="txbPorApellido_TextChanged"></asp:TextBox>
                                                                             </td>
                                                                         </tr>
                                                                     </table>
@@ -428,7 +432,7 @@
                                                                         <tr>
                                                                             <td class="auto-style36">Ingrese DNI del paciente:</td>
                                                                             <td>
-                                                                                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                                                                                <asp:TextBox ID="txbPorDNI" runat="server" OnTextChanged="txbPorDNI_TextChanged"></asp:TextBox>
                                                                             </td>
                                                                         </tr>
                                                                     </table>
@@ -443,6 +447,7 @@
                                                         <asp:GridView ID="gvTurnosAll" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" CssClass="table" DataKeyNames="Legajo,FechaPactada" ForeColor="Black" GridLines="Horizontal" OnPageIndexChanging="gvTurnos_PageIndexChanging" Width="976px">
                                                             <Columns>
                                                                 <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
+                                                                <asp:BoundField DataField="DNIPaciente" HeaderText="DNI" />
                                                                 <asp:BoundField DataField="FechaPactada" DataFormatString="{0:dd/MM/yyyy HH:mm}" HeaderText="Fecha y Hora" />
                                                                 <asp:TemplateField HeaderText="Observación">
                                                                     <ItemTemplate>

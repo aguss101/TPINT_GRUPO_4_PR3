@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -117,6 +118,68 @@ namespace Datos
             };
         }
 
+        public List<Turno> FiltrarPacientexApellido(string legajo, string apellido)
+        {
+            List<Turno> turnos = new List<Turno>();
+
+            using (SqlConnection con = conexion.AbrirConexion())
+            {
+
+                using (SqlCommand cmd = new SqlCommand("sp_ListarTurnosMedico_FiltradoApellido", con))
+                {
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) // Le paso el legajo y apellido del txb
+                    {
+                        Value = legajo
+                    });
+                    cmd.Parameters.Add(new SqlParameter("@ApellidoPaciente", SqlDbType.VarChar, 25)
+                    {
+                        Value = apellido
+                    });
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Uso el mapeo de Turno
+                            turnos.Add(MapearTurno(reader));
+                        }
+                    }
+                }
+                return turnos;
+            }
+        }
+        public List<Turno> FiltrarPacientexDNI(string legajo, string dniPaciente)
+        {
+            List<Turno> turnos = new List<Turno>();
+
+            using (SqlConnection con = conexion.AbrirConexion())
+            {
+
+                using (SqlCommand cmd = new SqlCommand("sp_ListarTurnosMedico_FiltradoDniPaciente", con))
+                {
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) // Le paso el legajo y apellido del txb
+                    {
+                        Value = legajo
+                    });
+                    cmd.Parameters.Add(new SqlParameter("@DNIPaciente", SqlDbType.VarChar, 20)
+                    {
+                        Value = dniPaciente
+                    });
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Uso el mapeo de Turno
+                            turnos.Add(MapearTurno(reader));
+                        }
+                    }
+                }
+                return turnos;
+            }
+        }
 
 
     }
