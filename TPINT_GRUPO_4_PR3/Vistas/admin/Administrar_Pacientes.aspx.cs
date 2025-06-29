@@ -242,5 +242,10 @@ namespace Vistas.admin
         {
             Response.Redirect("/admin/Administrar_Turnos.aspx");
         }
+
+        protected void ddlProvincias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlLocalidades.DataBind();
+        }
     }
 }
