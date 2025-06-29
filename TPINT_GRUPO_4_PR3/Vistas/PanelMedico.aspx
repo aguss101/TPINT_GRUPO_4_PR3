@@ -24,23 +24,23 @@
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
 
-            .sidebar h2 {
-                font-size: 18px;
-                margin-bottom: 20px;
-            }
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
 
-            .sidebar .btn {
-                display: block;
-                width: 100%;
-                margin-bottom: 10px;
-                padding: 10px;
-                background-color: #007bff;
-                color: white;
-                border: none;
-                cursor: pointer;
-                border-radius: 4px;
-                text-align: left;
-            }
+        .sidebar .btn {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: left;
+        }
 
         .containerCartel {
             display: flex;
@@ -181,33 +181,16 @@
             color: #00aaff;
             font-weight: bold;
         }
-        .botonera {
-            width: 100%;
-            padding: 0;
-        }
-
-        .botonera .btn-td {
-            display: inline;
-            width: 20%;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 6px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
+        .div-ddl {
+            display: flex;
+            align-items: center;
+            gap: 10px; /*separa visualmente el h3 y el DropDownList.*/
         }
 
         .auto-style10 {
             width: 100%;
             height: 100%;
             margin-top: 0px;
-        }
-
-        .auto-style20 {
-            width: 430px;
         }
 
         .auto-style22 {
@@ -236,14 +219,9 @@
         .auto-style32 {
             width: 100%;
         }
-        .auto-style33 {
-            height: 23px;
-        }
-        .auto-style34 {
-            width: 2px;
-        }
         .auto-style35 {
             width: 136px;
+            height: 20px;
         }
         .auto-style36 {
             width: 227px;
@@ -253,6 +231,18 @@
         }
         .auto-style38 {
             height: 25px;
+        }
+        .auto-style39 {
+            user-select: none;
+            height: 23px;
+            width: 913px;
+        }
+        .auto-style40 {
+            width: 913px;
+        }
+        .auto-style41 {
+            user-select: none;
+            width: 913px;
         }
     </style>
 </head>
@@ -307,111 +297,31 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="auto-style30"><h2>Ver Turnos</h2></td>
+                            <td class="auto-style39"><h2>Ver Turnos</h2>
+                            </td>
                             <td class="auto-style30"></td>
                             <td class="auto-style31"></td>
                         </tr>
                         <tr>
-                            <td class="botonera" colspan="2">
-                                <asp:Button ID="btnPorFecha" runat="server" Text="Por fecha" CssClass="btn-td" OnClick="btnPorFecha_Click"/>
-                                <asp:Button ID="btnVerTodos" runat="server" Text="Ver todos" CssClass="btn-td" OnClick="btnVerTodos_Click" />
-                            </td>
-                            <td class="auto-style31">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style20">
-                                <asp:MultiView ID="mwVerTurnos" runat="server">
-                                    <asp:view ID="vwPorFecha" runat="server">
-                                        <div>
-                                        <table class="auto-style32">
-                                            <tr>
-                                                <td class="auto-style38">
-                                                    <h3>Fecha</h3>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <asp:Calendar ID="calendarMedico" runat="server" BackColor="White" BorderColor="Black" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" OnSelectionChanged="calendarMedico_SelectionChanged" SelectedDate="06/26/2025 16:42:26" TitleFormat="Month" Width="400px">
-                                                        <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" ForeColor="#333333" Height="10pt" />
-                                                        <DayStyle Width="14%" />
-                                                        <NextPrevStyle Font-Size="8pt" ForeColor="White" />
-                                                        <OtherMonthDayStyle ForeColor="#999999" />
-                                                        <SelectedDayStyle BackColor="#CC3333" ForeColor="White" />
-                                                        <SelectorStyle BackColor="#CCCCCC" Font-Bold="True" Font-Names="Verdana" Font-Size="8pt" ForeColor="#333333" Width="1%" />
-                                                        <TitleStyle BackColor="Black" Font-Bold="True" Font-Size="13pt" ForeColor="White" Height="14pt" />
-                                                        <TodayDayStyle BackColor="#CCCC99" />
-                                                    </asp:Calendar>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="auto-style33">
-                                                    <asp:GridView ID="gvTurnos" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" CssClass="table" DataKeyNames="Legajo,FechaPactada" ForeColor="Black" GridLines="Horizontal" OnPageIndexChanging="gvTurnos_PageIndexChanging" Width="976px">
-                                                        <Columns>
-                                                            <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
-                                                            <asp:BoundField DataField="DNIPaciente" HeaderText="DNI" />
-                                                            <asp:BoundField DataField="FechaPactada" DataFormatString="{0:dd/MM/yyyy HH:mm}" HeaderText="Fecha y Hora" />
-                                                            <asp:TemplateField HeaderText="Observación">
-                                                                <ItemTemplate>
-                                                                    <asp:TextBox ID="txtObs" runat="server" Width="100%" />
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField DataField="EstadoDescripcion" HeaderText="Estado" />
-                                                            <asp:TemplateField HeaderText="Diagnostico">
-                                                                <ItemTemplate>
-                                                                    <asp:TextBox ID="txbDiagnostico" runat="server" Width="100%" />
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Acciones">
-                                                                <itemtemplate>
-                                                                    <asp:Button ID="btnPresente" runat="server" CommandArgument="Presente" CssClass="btn-td" OnClick="btnEstado_Click" Text="Presente" />
-                                                                    <asp:Button ID="btnAusente" runat="server" CommandArgument="Ausente" CssClass="btn-td" OnClick="btnEstado_Click" Text="Ausente" />
-                                                                </itemtemplate>
-                                                            </asp:TemplateField>
-                                                        </Columns>
-                                                        <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-                                                        <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
-                                                        <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
-                                                        <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-                                                        <SortedAscendingCellStyle BackColor="#F7F7F7" />
-                                                        <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-                                                        <SortedDescendingCellStyle BackColor="#E5E5E5" />
-                                                        <SortedDescendingHeaderStyle BackColor="#242121" />
-                                                    </asp:GridView>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    &nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <asp:Button ID="btnCargar" runat="server" OnClick="btnCargar_Click" Text="Cargar Turno" />
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        </div>
-                                    </asp:view>
-                                    <asp:View ID="vwVerTodos" runat="server">
-                                        <div>
-
-                                            <table class="auto-style32">
-                                                <tr>
-                                                    <td class="auto-style34"><h3 class="auto-style35">Búsqueda por:</h3></td>
-                                                    <td>
-                                                        <asp:DropDownList ID="ddlBusqueda" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlBusqueda_SelectedIndexChanged">
-                                                            <asp:ListItem Text="--Seleccione una búsqueda--" Value="-1" Selected="True" />
-                                                            <asp:ListItem>Apellido</asp:ListItem>
-                                                            <asp:ListItem>DNI</asp:ListItem>
-                                                        </asp:DropDownList>
+                                                    <td class="auto-style40">
+                                                        <div class="div-ddl">
+                                                            <h3 class="auto-style35" style="margin: 0;">Búsqueda por:</h3>
+                                                            <asp:DropDownList ID="ddlBusqueda" runat="server" AutoPostBack="True" 
+                                                                OnSelectedIndexChanged="ddlBusqueda_SelectedIndexChanged">
+                                                                <asp:ListItem Text="--Seleccione una búsqueda--" Value="-1" Selected="True" />
+                                                                <asp:ListItem>Apellido</asp:ListItem>
+                                                                <asp:ListItem>DNI</asp:ListItem>
+                                                                <asp:ListItem>Fecha</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </div>
                                                     </td>
+                                                    <td>
+                                                        &nbsp;</td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="auto-style33" colspan="2">
+                        <tr>
+                            <td class="botonera" colspan="2">
                                                         <asp:MultiView ID="mwBusqueda" runat="server">
-                                                            <asp:View ID="PorApellido" runat="server">
+                                                            <asp:View ID="vwPorApellido" runat="server">
                                                                 <div>
 
                                                                     <table class="auto-style32">
@@ -439,59 +349,89 @@
 
                                                                 </div>
                                                             </asp:View>
+                                                            <asp:view ID="vwPorFecha" runat="server">
+                                                                <div>
+                                                                <table class="auto-style32">
+                                                                    <tr>
+                                                                        <td class="auto-style38">
+                                                                            <h3>Fecha</h3>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <asp:Calendar ID="calendarMedico" runat="server" BackColor="White" BorderColor="Black" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" OnSelectionChanged="calendarMedico_SelectionChanged" SelectedDate="06/26/2025 16:42:26" TitleFormat="Month" Width="400px">
+                                                                                <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" ForeColor="#333333" Height="10pt" />
+                                                                                <DayStyle Width="14%" />
+                                                                                <NextPrevStyle Font-Size="8pt" ForeColor="White" />
+                                                                                <OtherMonthDayStyle ForeColor="#999999" />
+                                                                                <SelectedDayStyle BackColor="#CC3333" ForeColor="White" />
+                                                                                <SelectorStyle BackColor="#CCCCCC" Font-Bold="True" Font-Names="Verdana" Font-Size="8pt" ForeColor="#333333" Width="1%" />
+                                                                                <TitleStyle BackColor="Black" Font-Bold="True" Font-Size="13pt" ForeColor="White" Height="14pt" />
+                                                                                <TodayDayStyle BackColor="#CCCC99" />
+                                                                            </asp:Calendar>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>&nbsp;</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            &nbsp;</td>
+                                                                    </tr>
+                                                                </table>
+                                                                </div>
+                                                            </asp:view>
                                                         </asp:MultiView>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2">
-                                                        <asp:GridView ID="gvTurnosAll" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" CssClass="table" DataKeyNames="Legajo,FechaPactada" ForeColor="Black" GridLines="Horizontal" OnPageIndexChanging="gvTurnos_PageIndexChanging" Width="976px">
-                                                            <Columns>
-                                                                <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
-                                                                <asp:BoundField DataField="DNIPaciente" HeaderText="DNI" />
-                                                                <asp:BoundField DataField="FechaPactada" DataFormatString="{0:dd/MM/yyyy HH:mm}" HeaderText="Fecha y Hora" />
-                                                                <asp:TemplateField HeaderText="Observación">
-                                                                    <ItemTemplate>
-                                                                        <asp:TextBox ID="txtObs0" runat="server" Width="100%" />
-                                                                    </ItemTemplate>
-                                                                </asp:TemplateField>
-                                                                <asp:BoundField DataField="EstadoDescripcion" HeaderText="Estado" />
-                                                                <asp:TemplateField HeaderText="Diagnostico">
-                                                                    <ItemTemplate>
-                                                                        <asp:TextBox ID="txbDiagnostico0" runat="server" Width="100%" />
-                                                                    </ItemTemplate>
-                                                                </asp:TemplateField>
-                                                                <asp:TemplateField HeaderText="Acciones">
-                                                                    <itemtemplate>
-                                                                        <asp:Button ID="btnPresente0" runat="server" CommandArgument="Presente" CssClass="btn-td" OnClick="btnEstado_Click" Text="Presente" />
-                                                                        <asp:Button ID="btnAusente0" runat="server" CommandArgument="Ausente" CssClass="btn-td" OnClick="btnEstado_Click" Text="Ausente" />
-                                                                    </itemtemplate>
-                                                                </asp:TemplateField>
-                                                            </Columns>
-                                                            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-                                                            <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
-                                                            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
-                                                            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-                                                            <SortedAscendingCellStyle BackColor="#F7F7F7" />
-                                                            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-                                                            <SortedDescendingCellStyle BackColor="#E5E5E5" />
-                                                            <SortedDescendingHeaderStyle BackColor="#242121" />
-                                                        </asp:GridView>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2">&nbsp;</td>
-                                                </tr>
-                                            </table>
-
-                                        </div>
-                                    </asp:View>
-                                </asp:MultiView>
                             </td>
+                            <td class="auto-style31">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="botonera" colspan="2">
+                                                                            <asp:GridView ID="gvTurnos" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" CssClass="table" DataKeyNames="Legajo,FechaPactada" ForeColor="Black" GridLines="Horizontal" OnPageIndexChanging="gvTurnos_PageIndexChanging" Width="976px">
+                                                                                <Columns>
+                                                                                    <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
+                                                                                    <asp:BoundField DataField="DNIPaciente" HeaderText="DNI" />
+                                                                                    <asp:BoundField DataField="FechaPactada" DataFormatString="{0:dd/MM/yyyy HH:mm}" HeaderText="Fecha y Hora" />
+                                                                                    <asp:TemplateField HeaderText="Observación">
+                                                                                        <ItemTemplate>
+                                                                                            <asp:TextBox ID="txtObs" runat="server" Width="100%" />
+                                                                                        </ItemTemplate>
+                                                                                    </asp:TemplateField>
+                                                                                    <asp:BoundField DataField="EstadoDescripcion" HeaderText="Estado" />
+                                                                                    <asp:TemplateField HeaderText="Diagnostico">
+                                                                                        <ItemTemplate>
+                                                                                            <asp:TextBox ID="txbDiagnostico" runat="server" Width="100%" />
+                                                                                        </ItemTemplate>
+                                                                                    </asp:TemplateField>
+                                                                                    <asp:TemplateField HeaderText="Acciones">
+                                                                                        <itemtemplate>
+                                                                                            <asp:Button ID="btnPresente" runat="server" CommandArgument="Presente" CssClass="btn-td" OnClick="btnEstado_Click" Text="Presente" />
+                                                                                            <asp:Button ID="btnAusente" runat="server" CommandArgument="Ausente" CssClass="btn-td" OnClick="btnEstado_Click" Text="Ausente" />
+                                                                                        </itemtemplate>
+                                                                                    </asp:TemplateField>
+                                                                                </Columns>
+                                                                                <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                                                                                <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                                                                                <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                                                                                <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                                                                                <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                                                                                <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                                                                                <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                                                                                <SortedDescendingHeaderStyle BackColor="#242121" />
+                                                                            </asp:GridView>
+                            </td>
+                            <td class="auto-style31">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style40">
+                                &nbsp;</td>
                             <td class="no-select">&nbsp;</td>
                             <td class="auto-style28">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="auto-style29">
+                            <td class="auto-style41">
+                                
+                                                                            <asp:Button ID="btnCargar" runat="server" OnClick="btnCargar_Click" Text="Cargar Turno" />
                                 
                             </td>
                             <td class="no-select">&nbsp;</td>
@@ -504,17 +444,17 @@
                             <td class="auto-style28"></td>
                         </tr>
                         <tr>
-                            <td class="auto-style29">&nbsp;</td>
+                            <td class="auto-style41">&nbsp;</td>
                             <td class="no-select">&nbsp;</td>
                             <td class="auto-style28">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="auto-style29"></td>
+                            <td class="auto-style41"></td>
                             <td class="no-select"></td>
                             <td class="auto-style28"></td>
                         </tr>
                         <tr>
-                            <td class="auto-style29"></td>
+                            <td class="auto-style41"></td>
                             <td class="no-select"></td>
                             <td class="auto-style28"></td>
                         </tr>

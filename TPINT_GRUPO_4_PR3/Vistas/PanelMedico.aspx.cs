@@ -9,19 +9,17 @@ namespace Vistas
         private GestorTurnos gestorturnos = new GestorTurnos();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            
+            cargarTurnosAll();
+
         }
         protected void cargarTurnosAll()
         {
-            if (mwVerTurnos.ActiveViewIndex == 1)
-            {
                 string Legajo = Session["LegajoMedico"].ToString();
                 DateTime ? fechaSelected = null;
 
-                gvTurnosAll.DataSource = gestorturnos.GetTurnosMedico(Legajo, fechaSelected);
-                gvTurnosAll.DataBind();
-            }
+                gvTurnos.DataSource = gestorturnos.GetTurnosMedico(Legajo, fechaSelected);
+                gvTurnos.DataBind();
+            
         }
         protected void cargarTurnosxFecha()
         {
@@ -34,25 +32,19 @@ namespace Vistas
         }
         protected void cargarTurnosxApellido()
         {
-            if (mwVerTurnos.ActiveViewIndex == 1)
-            {
                 string Legajo = Session["LegajoMedico"].ToString();
                 string apellidoSelected = Session["apellidoPaciente"].ToString();
 
-                gvTurnosAll.DataSource = gestorturnos.FiltrarPacientexApellido(Legajo, apellidoSelected);
-                gvTurnosAll.DataBind();
-            }
+                gvTurnos.DataSource = gestorturnos.FiltrarPacientexApellido(Legajo, apellidoSelected);
+                gvTurnos.DataBind();
         }
         protected void cargarTurnosxDNI()
         {
-            if (mwVerTurnos.ActiveViewIndex == 1)
-            {
                 string Legajo = Session["LegajoMedico"].ToString();
                 string dniPaciente = Session["dniPaciente"].ToString();
 
-                gvTurnosAll.DataSource = gestorturnos.FiltrarPacientexDNI(Legajo, dniPaciente);
-                gvTurnosAll.DataBind();
-            }
+                gvTurnos.DataSource = gestorturnos.FiltrarPacientexDNI(Legajo, dniPaciente);
+                gvTurnos.DataBind();
         }
 
         protected void gvTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -108,14 +100,7 @@ namespace Vistas
 
         protected void btnPorFecha_Click(object sender, EventArgs e)
         {
-            mwVerTurnos.ActiveViewIndex = 0;
             cargarTurnosxFecha();
-        }
-
-        protected void btnVerTodos_Click(object sender, EventArgs e)
-        {
-            mwVerTurnos.ActiveViewIndex = 1;
-            cargarTurnosAll();
         }
 
         protected void ddlBusqueda_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,6 +112,9 @@ namespace Vistas
                     break;
                 case 2:
                     mwBusqueda.ActiveViewIndex = 1;
+                    break;
+                case 3:
+                    mwBusqueda.ActiveViewIndex= 2;
                     break;
                 default:
                     mwBusqueda.ActiveViewIndex = -1;
@@ -145,5 +133,6 @@ namespace Vistas
             Session["dniPaciente"] = txbPorDNI.Text;
             cargarTurnosxDNI();
         }
+
     }
 }
