@@ -33,7 +33,7 @@ namespace Vistas.admin
                     if (chk != null && chk.Checked)
                     {
                         string DNI = row.Cells[1].Text;
-                        gestorPaciente.EliminarPaciente("sp_EliminarPaciente", DNI);
+                        gestorPaciente.EliminarPaciente(DNI);
                     }
                 }
                 loadGridPacientes();
@@ -139,8 +139,7 @@ namespace Vistas.admin
             paciente.Telefono = txbTelefono.Text.Trim();
 
 
-            string nombreProcedimiento = "sp_AltaPaciente";
-            int filas = gestorPaciente.InsertarPaciente(nombreProcedimiento, paciente);
+            int filas = gestorPaciente.InsertarPaciente(paciente);
             if (filas > 0)
             {
                 lblAddUserState.Text = "Se agrego correctamente el Paciente";
@@ -175,8 +174,7 @@ namespace Vistas.admin
             paciente.Correo = txbModCorreo.Text.Trim();
 
             string DNI_VIEJO = (Session["DNI_VIEJO"] as string)?.Trim();
-            string nombreProcedimiento = "sp_ModificarPaciente";
-            int filas = gestorPaciente.ModificarPaciente(nombreProcedimiento, paciente, DNI_VIEJO);
+            int filas = gestorPaciente.ModificarPaciente(paciente, DNI_VIEJO);
             if (filas > 0)
             {
                 lblModUser.Text = "Se modifico correctamente el Paciente";

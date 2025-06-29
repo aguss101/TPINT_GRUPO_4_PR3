@@ -20,17 +20,20 @@ namespace Negocio
         {
             return consultas.getMedicoPorID(idMedico);
         }
-        public int InsertarMedico(string nombreprocedimiento, Medico medico, Usuario usuario)
+        // Inserta un médico
+        public int InsertarMedico(Medico medico, Usuario usuario)
         {
-            return consultas.InsertarMedico(nombreprocedimiento, medico, usuario);
+            return consultas.InsertarMedico(medico, usuario);
         }
-        public int ModificarMedico(string nombreprocedimiento, Medico medico,Usuario usuario, string DNI_VIEJO, string LEGAJO_VIEJO)
+        // Modifica un médico existente
+        public int ModificarMedico(Medico medico,Usuario usuario, string DNI_VIEJO, string LEGAJO_VIEJO)
         {
-            return consultas.ModificarMedico(nombreprocedimiento, medico,usuario, DNI_VIEJO, LEGAJO_VIEJO);
+            return consultas.ModificarMedico(medico,usuario, DNI_VIEJO, LEGAJO_VIEJO);
         }
-        public int EliminarMedico(string nombreprocedimiento, string DNI)
+        // Elimina lógicamente un médico
+        public int EliminarMedico(string DNI)
         {
-            return consultas.EliminarMedico(nombreprocedimiento, DNI);
+            return consultas.EliminarMedico(DNI);
         }
     }
 }

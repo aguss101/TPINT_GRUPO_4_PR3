@@ -56,58 +56,146 @@ namespace Datos
 
         }
 
-        public int InsertarPaciente(string nombreprocedimiento, Paciente paciente)
+        // Inserta un paciente sin procedimientos almacenados
+        public int InsertarPaciente(Paciente paciente)
         {
-            SqlParameter[] parametros = new SqlParameter[]
+            using (SqlConnection conn = conexion.AbrirConexion())
+            using (SqlTransaction tx = conn.BeginTransaction())
             {
-        new SqlParameter("@DNI", paciente.DNI),
-        new SqlParameter("@Nombre", paciente.nombre),
-        new SqlParameter("@Apellido", paciente.apellido),
-        new SqlParameter("@Nacionalidad", paciente.nacionalidad),
-        new SqlParameter("@FechaNacimiento", paciente.fechaNacimiento),
-        new SqlParameter("@Sexo", paciente.genero),
-        new SqlParameter("@IdLocalidad", paciente.Localidad),
-        new SqlParameter("@ObraSocial", paciente.ObraSocial),
-        new SqlParameter("@UltimaAtencion", paciente.ultimaAtencion),
-        new SqlParameter("@Alta", paciente.Alta),
-        new SqlParameter("@Telefono", paciente.Telefono),
-        new SqlParameter("@Direccion", paciente.Direccion),
-        new SqlParameter("@Correo", paciente.Correo)
-            };
+                try
+                {
+                    string qPersona = @"INSERT INTO Persona (DNI,nombre,apellido,sexo,direccion,idLocalidad,fechaNacimiento,nacionalidad)
+                                        VALUES (@DNI,@Nombre,@Apellido,@Sexo,@Direccion,@IdLocalidad,@FechaNacimiento,@Nacionalidad)";
+                    using (SqlCommand cmd = new SqlCommand(qPersona, conn, tx))
+                    {
+                        cmd.Parameters.AddWithValue("@DNI", paciente.DNI);
+                        cmd.Parameters.AddWithValue("@Nombre", paciente.nombre);
+                        cmd.Parameters.AddWithValue("@Apellido", paciente.apellido);
+                        cmd.Parameters.AddWithValue("@Sexo", paciente.genero);
+                        cmd.Parameters.AddWithValue("@Direccion", paciente.Direccion);
+                        cmd.Parameters.AddWithValue("@IdLocalidad", paciente.Localidad);
+                        cmd.Parameters.AddWithValue("@FechaNacimiento", paciente.fechaNacimiento);
+                        cmd.Parameters.AddWithValue("@Nacionalidad", paciente.nacionalidad);
+                        cmd.ExecuteNonQuery();
+                    }
 
-           
-            return conexion.EjecutarProcedimientoAlmacenado(nombreprocedimiento, parametros);
+                    string qPaciente = @"INSERT INTO Paciente (DNI,ObraSocial,ultimaAtencion,alta) VALUES (@DNI,@ObraSocial,@UltimaAtencion,@Alta)";
+                    using (SqlCommand cmd = new SqlCommand(qPaciente, conn, tx))
+                    {
+                        cmd.Parameters.AddWithValue("@DNI", paciente.DNI);
+                        cmd.Parameters.AddWithValue("@ObraSocial", paciente.ObraSocial);
+                        cmd.Parameters.AddWithValue("@UltimaAtencion", paciente.ultimaAtencion);
+                        cmd.Parameters.AddWithValue("@Alta", paciente.Alta);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    string qTel = @"INSERT INTO Telefonos (idPersona,telefono) VALUES (@DNI,@Telefono)";
+                    using (SqlCommand cmd = new SqlCommand(qTel, conn, tx))
+                    {
+                        cmd.Parameters.AddWithValue("@DNI", paciente.DNI);
+                        cmd.Parameters.AddWithValue("@Telefono", paciente.Telefono);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    string qCorreo = @"INSERT INTO Correos (idPersona,correo) VALUES (@DNI,@Correo)";
+                    using (SqlCommand cmd = new SqlCommand(qCorreo, conn, tx))
+                    {
+                        cmd.Parameters.AddWithValue("@DNI", paciente.DNI);
+                        cmd.Parameters.AddWithValue("@Correo", paciente.Correo);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    tx.Commit();
+                    return 1;
+                }
+                catch
+                {
+                    tx.Rollback();
+                    throw;
+                }
+            }
         }
 
-        public int EliminarPaciente(string nombreProcedimiento, string dni)
+        // Realiza la baja lógica de un paciente por DNI
+        public int EliminarPaciente(string dni)
         {
+            string q = "UPDATE Persona SET activo = 0 WHERE DNI = @DNI";
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@DNI", dni)
             };
-            return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);
+            return conexion.EjecutarComandoConParametros(q, parametros);
         }
 
-        public int ModificarPaciente(string nombreProcedimiento, Paciente paciente, string DNI_VIEJO)
+        // Modifica un paciente existente identificado por DNI_VIEJO
+        public int ModificarPaciente(Paciente paciente, string DNI_VIEJO)
         {
             Debug.Print("DNI_VIEJO: " + DNI_VIEJO);
             Debug.Print("DNI_NUEVO: " + paciente.DNI);
-            SqlParameter[] parametros = new SqlParameter[]
+            using (SqlConnection conn = conexion.AbrirConexion())
+            using (SqlTransaction tx = conn.BeginTransaction())
             {
-                new SqlParameter("@DNI_NUEVO", paciente.DNI),
-                new SqlParameter("@DNI_VIEJO", DNI_VIEJO),
-                new SqlParameter("@Nombre", paciente.nombre),
-                new SqlParameter("@Apellido", paciente.apellido),
-                new SqlParameter("@Nacionalidad", paciente.nacionalidad),
-                new SqlParameter("@FechaNacimiento", paciente.fechaNacimiento),
-                new SqlParameter("@Sexo", paciente.genero),
-                new SqlParameter("@IdLocalidad", paciente.Localidad),
-                new SqlParameter("@ObraSocial", paciente.ObraSocial),
-                new SqlParameter("@Telefono", paciente.Telefono),
-                new SqlParameter("@Direccion", paciente.Direccion),
-                new SqlParameter("@Correo", paciente.Correo)
-            };
-            return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);
+                try
+                {
+                    string qPersona = @"UPDATE Persona SET DNI=@DNI_NUEVO,nombre=@Nombre,apellido=@Apellido,sexo=@Sexo,direccion=@Direccion,idLocalidad=@IdLocalidad,fechaNacimiento=@FechaNacimiento,nacionalidad=@Nacionalidad WHERE DNI=@DNI_VIEJO";
+                    using (SqlCommand cmd = new SqlCommand(qPersona, conn, tx))
+                    {
+                        cmd.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
+                        cmd.Parameters.AddWithValue("@Nombre", paciente.nombre);
+                        cmd.Parameters.AddWithValue("@Apellido", paciente.apellido);
+                        cmd.Parameters.AddWithValue("@Sexo", paciente.genero);
+                        cmd.Parameters.AddWithValue("@Direccion", paciente.Direccion);
+                        cmd.Parameters.AddWithValue("@IdLocalidad", paciente.Localidad);
+                        cmd.Parameters.AddWithValue("@FechaNacimiento", paciente.fechaNacimiento);
+                        cmd.Parameters.AddWithValue("@Nacionalidad", paciente.nacionalidad);
+                        cmd.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    string qPaciente = @"UPDATE Paciente SET DNI=@DNI_NUEVO,ObraSocial=@ObraSocial WHERE DNI=@DNI_VIEJO";
+                    using (SqlCommand cmd = new SqlCommand(qPaciente, conn, tx))
+                    {
+                        cmd.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
+                        cmd.Parameters.AddWithValue("@ObraSocial", paciente.ObraSocial);
+                        cmd.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    string qTel = @"UPDATE Telefonos SET idPersona=@DNI_NUEVO, telefono=@Telefono WHERE idPersona=@DNI_VIEJO";
+                    using (SqlCommand cmd = new SqlCommand(qTel, conn, tx))
+                    {
+                        cmd.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
+                        cmd.Parameters.AddWithValue("@Telefono", paciente.Telefono);
+                        cmd.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    string qCorreo = @"UPDATE Correos SET idPersona=@DNI_NUEVO, correo=@Correo WHERE idPersona=@DNI_VIEJO";
+                    using (SqlCommand cmd = new SqlCommand(qCorreo, conn, tx))
+                    {
+                        cmd.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
+                        cmd.Parameters.AddWithValue("@Correo", paciente.Correo);
+                        cmd.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    string qTurnos = "UPDATE Turnos SET DNIPaciente=@DNI_NUEVO WHERE DNIPaciente=@DNI_VIEJO";
+                    using (SqlCommand cmd = new SqlCommand(qTurnos, conn, tx))
+                    {
+                        cmd.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
+                        cmd.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    tx.Commit();
+                    return 1;
+                }
+                catch
+                {
+                    tx.Rollback();
+                    throw;
+                }
+            }
         }
 
         public Paciente getPacientePorID(string idPaciente)

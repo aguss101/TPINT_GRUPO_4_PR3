@@ -21,18 +21,21 @@ namespace Negocio
             return consultas.getPacientePorID(idPaciente);
         }
 
-        public int InsertarPaciente(string nombreprocedimiento, Paciente paciente)
+        // Inserta un paciente en la base de datos
+        public int InsertarPaciente(Paciente paciente)
         {
-            return consultas.InsertarPaciente(nombreprocedimiento, paciente);
+            return consultas.InsertarPaciente(paciente);
         }
 
-        public int ModificarPaciente(string nombreprocedimiento, Paciente paciente, string DNI_VIEJO)
+        // Modifica un paciente
+        public int ModificarPaciente(Paciente paciente, string DNI_VIEJO)
         {
-            return consultas.ModificarPaciente(nombreprocedimiento, paciente, DNI_VIEJO);
+            return consultas.ModificarPaciente(paciente, DNI_VIEJO);
         }
-        public int EliminarPaciente(string nombreprocedimiento, string DNI)
+        // Elimina lógicamente un paciente
+        public int EliminarPaciente(string DNI)
         {
-            return consultas.EliminarPaciente(nombreprocedimiento, DNI);
+            return consultas.EliminarPaciente(DNI);
         }
     }
 }
