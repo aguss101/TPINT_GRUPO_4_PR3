@@ -274,15 +274,16 @@
                     <tr>
                         <td class="auto-style32">Especialidad</td>
                         <td class="auto-style30">
-                            <asp:DropDownList ID="DropDownList1" runat="server">
+                            <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" DataSourceID="dbEspecialidades" DataTextField="descripcion" DataValueField="idEspecialidad" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">
                             </asp:DropDownList>
+                            <asp:SqlDataSource ID="dbEspecialidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT * FROM [Especialidades]"></asp:SqlDataSource>
                         </td>
                         <td class="auto-style31"></td>
                     </tr>
                     <tr>
                         <td class="auto-style32">Médico</td>
                         <td class="auto-style30">
-                            <asp:DropDownList ID="DropDownList2" runat="server">
+                            <asp:DropDownList ID="ddlMedico" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged">
                             </asp:DropDownList>
                         </td>
                         <td class="auto-style31"></td>
@@ -290,7 +291,7 @@
                     <tr>
                         <td class="auto-style32">Fecha</td>
                         <td class="auto-style30">
-                            <asp:DropDownList ID="DropDownList3" runat="server">
+                            <asp:DropDownList ID="DropDownList3" runat="server" AutoPostBack="True">
                             </asp:DropDownList>
                         </td>
                         <td class="auto-style31"></td>
@@ -298,7 +299,7 @@
                     <tr>
                         <td class="auto-style32">Horario</td>
                         <td class="auto-style30">
-                            <asp:DropDownList ID="DropDownList4" runat="server">
+                            <asp:DropDownList ID="DropDownList4" runat="server" AutoPostBack="True">
                             </asp:DropDownList>
                         </td>
                         <td class="auto-style31"></td>
@@ -306,8 +307,9 @@
                     <tr>
                         <td class="auto-style32">Paciente</td>
                         <td class="auto-style30">
-                            <asp:DropDownList ID="DropDownList5" runat="server">
+                            <asp:DropDownList ID="DropDownList5" runat="server" AutoPostBack="True" DataSourceID="dbPaciente" DataTextField="Paciente" DataValueField="Paciente">
                             </asp:DropDownList>
+                            <asp:SqlDataSource ID="dbPaciente" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT P_Pac.nombre + ' ' + P_Pac.apellido AS Paciente FROM Persona P_Pac INNER JOIN Paciente PA ON PA.DNI        = P_Pac.DNI"></asp:SqlDataSource>
                         </td>
                         <td class="auto-style31"></td>
                     </tr>
@@ -319,7 +321,7 @@
                     </tr>
                     <tr>
                         <td class="auto-style32">
-                            <asp:Button ID="Button4" runat="server" Text="Registrar Turno" Width="188px" />
+                            <asp:Button ID="btnRegistrar" runat="server" Text="Registrar Turno" Width="188px" />
                         </td>
                         <td class="auto-style30">
                             &nbsp;</td>

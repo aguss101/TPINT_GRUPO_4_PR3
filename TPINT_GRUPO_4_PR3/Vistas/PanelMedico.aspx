@@ -226,9 +226,6 @@
         .auto-style36 {
             width: 227px;
         }
-        .auto-style37 {
-            width: 229px;
-        }
         .auto-style38 {
             height: 25px;
         }
@@ -326,7 +323,7 @@
 
                                                                     <table class="auto-style32">
                                                                         <tr>
-                                                                            <td class="auto-style37">Ingrese apellido del paciente:</td>
+                                                                            <td class="auto-style36">Ingrese apellido del paciente:</td>
                                                                             <td>
                                                                                 <asp:TextBox ID="txbPorApellido" runat="server" AutoPostBack="True" OnTextChanged="txbPorApellido_TextChanged"></asp:TextBox>
                                                                             </td>
@@ -354,7 +351,7 @@
                                                                 <table class="auto-style32">
                                                                     <tr>
                                                                         <td class="auto-style38">
-                                                                            <h3>Fecha</h3>
+                                                                            <h3>Seleccione una fecha</h3>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>

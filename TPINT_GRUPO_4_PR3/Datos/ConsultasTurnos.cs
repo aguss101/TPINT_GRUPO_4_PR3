@@ -180,7 +180,21 @@ namespace Datos
                 return turnos;
             }
         }
+        public DataTable ObtenerMedicosPorEspecialidad(int idEspecialidad)
+        {
+            string consulta = @"
+        SELECT M.Legajo, P.nombre + ' ' + P.apellido AS NombreCompleto
+        FROM Medico M
+        INNER JOIN Persona P ON M.DNI = P.DNI
+        WHERE M.idEspecialidad = @idEspecialidad";
 
+        SqlParameter[] parametros = new SqlParameter[]
+        {
+            new SqlParameter("@idEspecialidad", idEspecialidad)
+        };
+
+            return conexion.EjecutarConsultaConParametros(consulta, parametros);
+        }
 
     }
 

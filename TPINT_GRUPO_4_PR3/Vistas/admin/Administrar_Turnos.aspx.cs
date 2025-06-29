@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.UI.WebControls;
 using Negocio;
 
 namespace Vistas.admin
@@ -31,6 +32,32 @@ namespace Vistas.admin
 
             gvTurnos.DataSource = gestorturnos.GetTurnos();
             gvTurnos.DataBind();
+        }
+        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idEspecialidad;
+
+            if (int.TryParse(ddlEspecialidad.SelectedValue, out idEspecialidad) && idEspecialidad > 0)
+            {
+                GestorTurnos gestorTurnos = new GestorTurnos();
+                ddlMedico.DataSource = gestorTurnos.ObtenerMedicosPorEspecialidad(idEspecialidad);
+                ddlMedico.DataTextField = "NombreCompleto";
+                ddlMedico.DataValueField = "Legajo";
+                ddlMedico.DataBind();
+            }
+            else
+            {
+                // Limpia si se vuelve a la opción por defecto
+                ddlMedico.Items.Clear();
+            }
+
+            // Siempre agregar al principio el ítem por defecto
+            ddlMedico.Items.Insert(0, new ListItem("-- Seleccione un médico --", ""));
+        }
+
+        protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

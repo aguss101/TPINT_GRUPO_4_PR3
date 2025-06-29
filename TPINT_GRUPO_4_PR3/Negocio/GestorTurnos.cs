@@ -2,6 +2,7 @@
 using Datos;
 using Entidades;
 using System;
+using System.Data;
 
 namespace Negocio
 {
@@ -26,6 +27,10 @@ namespace Negocio
         public List<Turno> FiltrarPacientexDNI(string legajo, string dniPaciente)
         {
             return consultas.FiltrarPacientexDNI(legajo, dniPaciente);
+        }
+        public DataTable ObtenerMedicosPorEspecialidad(int idEspecialidad)
+        {
+            return consultas.ObtenerMedicosPorEspecialidad(idEspecialidad);
         }
     };
 }

@@ -64,6 +64,35 @@ namespace Datos
             }
             return dataTable;
         }
+        public DataTable EjecutarConsultaConParametros(string query, SqlParameter[] parametros)
+        {
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = AbrirConexion())
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    if (parametros != null)
+                    {
+                        command.Parameters.AddRange(parametros);
+                    }
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        try
+                        {
+                            adapter.Fill(dataTable);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("Error al ejecutar la consulta con parámetros: " + ex.Message);
+                        }
+                    }
+                }
+            }
+
+            return dataTable;
+        }
 
         public int EjecutarComando(string query)
         {
