@@ -9,6 +9,7 @@ namespace Vistas.admin
         GestorTurnos gestorturnos = new GestorTurnos();
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblUser.Text = Session["User"] as string;
             CargarTurnos();
         }
 

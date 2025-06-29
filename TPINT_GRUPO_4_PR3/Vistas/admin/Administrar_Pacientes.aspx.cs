@@ -14,6 +14,7 @@ namespace Vistas.admin
 
             if (!IsPostBack)
             {
+                lblUser.Text = Session["User"] as string;
                 btnMod.Visible = false;
                 btnBaja.Visible = false;
             }

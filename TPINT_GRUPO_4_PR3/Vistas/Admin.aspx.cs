@@ -11,7 +11,7 @@ namespace Vistas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblUser.Text = Session["User"] as string;
         }
 
         protected void btnAdministrarMedicos_Click(object sender, EventArgs e)

@@ -237,7 +237,7 @@
                     </tr>
                     <tr>
                         <td class="no-select"></td>
-                        <td class="no-select"></td>
+                        <td class="no-select">&nbsp;</td>
                         <td class="auto-style28"></td>
                     </tr>
                     <tr>
