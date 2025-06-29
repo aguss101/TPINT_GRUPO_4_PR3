@@ -41,7 +41,7 @@ namespace Vistas.admin
                     if (chk != null && chk.Checked)
                     {
                         string DNI = row.Cells[2].Text;
-                        gestorMedico.EliminarMedico("sp_EliminarMedico", DNI);
+                        gestorMedico.EliminarMedico(DNI);
                     }
                 }
                 loadGridMedicos();
@@ -135,8 +135,7 @@ namespace Vistas.admin
                 usuario.ultimoIngreso = Convert.ToDateTime(DateTime.Now);
                 usuario.idRol = 2;
 
-                string nombreProcedimiento = "sp_AltaMedico";
-                int filas = gestorMedico.InsertarMedico(nombreProcedimiento, medico, usuario);
+                int filas = gestorMedico.InsertarMedico(medico, usuario);
 
                 if (filas > 0)
                 {
@@ -180,8 +179,6 @@ namespace Vistas.admin
             string DNI_VIEJO = (Session["DNI_VIEJO"] as string).Trim();
             string LEGAJO_VIEJO = (Session["LEGAJO_VIEJO"] as string).Trim();
 
-            string nombreProcedimiento = "sp_ModificarMedico";
-
             //Validaciones anteriores a enviar los datos del Medico a modificar
 
             if (medico.DNI == "" || medico.Legajo == "" || medico.nombre == "" || medico.apellido == "")
@@ -202,7 +199,7 @@ namespace Vistas.admin
                 lblModificarMedico.Visible = true;
                 return;
             }
-            int filas = gestorMedico.ModificarMedico(nombreProcedimiento, medico, medico.Usuario, DNI_VIEJO, LEGAJO_VIEJO);
+            int filas = gestorMedico.ModificarMedico(medico, medico.Usuario, DNI_VIEJO, LEGAJO_VIEJO);
 
             if (filas > 0) // Verificación final luego de llamar al sp
             {

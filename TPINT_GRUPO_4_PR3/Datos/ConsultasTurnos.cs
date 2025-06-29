@@ -21,11 +21,8 @@ namespace Datos
             using (SqlConnection conection = conexion.AbrirConexion())
             {
 
-                using (SqlCommand command = new SqlCommand("sp_ListarTurnosAdmin", conection))
+                using (SqlCommand command = new SqlCommand("SELECT * FROM vw_TurnosConDatos ORDER BY FechaPactada,Legajo,DNIPaciente", conection))
                 {
-
-
-                    command.CommandType = CommandType.StoredProcedure;
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -48,11 +45,10 @@ namespace Datos
             using (SqlConnection con = conexion.AbrirConexion())
             {
 
-                using (SqlCommand cmd = new SqlCommand("sp_ListarTurnosMedico", con))
+                string q = "SELECT * FROM vw_TurnosConDatos WHERE @Legajo = Legajo AND (@Fecha IS NULL OR CONVERT(date, fechaPactada) = CONVERT(date, @Fecha)) ORDER BY fechaPactada,Legajo,DNIPaciente";
+                using (SqlCommand cmd = new SqlCommand(q, con))
                 {
-
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) // Le paso el legajo y fecha seleccionada en el calendar al procedimiento.
+                    cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25)
                     {
                         Value = legajo
                     });
@@ -73,7 +69,8 @@ namespace Datos
             }
         }
 
-        public int MarcarAsistenciaTurno(string nombreProcedimiento, Turno turno)
+        // Marca la asistencia de un turno sin procedimientos almacenados
+        public int MarcarAsistenciaTurno(Turno turno)
         {
 
             Debug.Print("Legajo: " + turno.Legajo);
@@ -82,17 +79,16 @@ namespace Datos
             Debug.Print("Observacion: " + turno.Observacion);
 
 
+            string q = "UPDATE Turnos SET estado=@Estado, observacion=@Observacion, diagnostico=@Diagnostico WHERE Legajo=@Legajo AND fechaPactada=@Fecha";
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@Legajo",       turno.Legajo),
-                new SqlParameter("@FechaPactada", turno.FechaPactada),
-                new SqlParameter("@Estado",       turno.Estado),
-                new SqlParameter( "@Observacion",string.IsNullOrWhiteSpace(turno.Observacion)  ? (object)DBNull.Value : turno.Observacion),
-                new SqlParameter("@Diagnostico", string.IsNullOrWhiteSpace(turno.Diagnostico) ? (object)DBNull.Value : turno.Diagnostico)
+                new SqlParameter("@Estado", turno.Estado),
+                new SqlParameter("@Observacion", string.IsNullOrWhiteSpace(turno.Observacion) ? (object)DBNull.Value : turno.Observacion),
+                new SqlParameter("@Diagnostico", string.IsNullOrWhiteSpace(turno.Diagnostico) ? (object)DBNull.Value : turno.Diagnostico),
+                new SqlParameter("@Legajo", turno.Legajo),
+                new SqlParameter("@Fecha", turno.FechaPactada)
             };
-
-
-            return conexion.EjecutarProcedimientoAlmacenado(nombreProcedimiento, parametros);
+            return conexion.EjecutarComandoConParametros(q, parametros);
         }
 
 
@@ -125,15 +121,14 @@ namespace Datos
             using (SqlConnection con = conexion.AbrirConexion())
             {
 
-                using (SqlCommand cmd = new SqlCommand("sp_ListarTurnosMedico_FiltradoApellido", con))
+                string q = "SELECT * FROM vw_TurnosConDatos WHERE Legajo = @Legajo AND (@Apellido IS NULL OR ApellidoPaciente COLLATE Latin1_General_CI_AI LIKE '%' + @Apellido + '%') ORDER BY fechaPactada, Legajo, DNIPaciente";
+                using (SqlCommand cmd = new SqlCommand(q, con))
                 {
-
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) // Le paso el legajo y apellido del txb
+                    cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25)
                     {
                         Value = legajo
                     });
-                    cmd.Parameters.Add(new SqlParameter("@ApellidoPaciente", SqlDbType.VarChar, 25)
+                    cmd.Parameters.Add(new SqlParameter("@Apellido", SqlDbType.VarChar, 25)
                     {
                         Value = apellido
                     });
@@ -156,15 +151,14 @@ namespace Datos
             using (SqlConnection con = conexion.AbrirConexion())
             {
 
-                using (SqlCommand cmd = new SqlCommand("sp_ListarTurnosMedico_FiltradoDniPaciente", con))
+                string q = "SELECT * FROM vw_TurnosConDatos WHERE Legajo = @Legajo AND (@DNI IS NULL OR DNIPaciente LIKE '%' + @DNI + '%') ORDER BY fechaPactada, Legajo, DNIPaciente";
+                using (SqlCommand cmd = new SqlCommand(q, con))
                 {
-
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) // Le paso el legajo y apellido del txb
+                    cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25)
                     {
                         Value = legajo
                     });
-                    cmd.Parameters.Add(new SqlParameter("@DNIPaciente", SqlDbType.VarChar, 20)
+                    cmd.Parameters.Add(new SqlParameter("@DNI", SqlDbType.VarChar, 20)
                     {
                         Value = dniPaciente
                     });
