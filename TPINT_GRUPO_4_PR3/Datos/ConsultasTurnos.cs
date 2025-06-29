@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -45,8 +44,8 @@ namespace Datos
             using (SqlConnection con = conexion.AbrirConexion())
             {
 
-                string q = "SELECT * FROM vw_TurnosConDatos WHERE @Legajo = Legajo AND (@Fecha IS NULL OR CONVERT(date, fechaPactada) = CONVERT(date, @Fecha)) ORDER BY fechaPactada,Legajo,DNIPaciente";
-                using (SqlCommand cmd = new SqlCommand(q, con))
+                string query = "SELECT * FROM vw_TurnosConDatos WHERE @Legajo = Legajo AND (@Fecha IS NULL OR CONVERT(date, fechaPactada) = CONVERT(date, @Fecha)) ORDER BY fechaPactada,Legajo,DNIPaciente";
+                using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25)
                     {
@@ -69,7 +68,7 @@ namespace Datos
             }
         }
 
-        // Marca la asistencia de un turno sin procedimientos almacenados
+
         public int MarcarAsistenciaTurno(Turno turno)
         {
 
@@ -182,12 +181,32 @@ namespace Datos
         INNER JOIN Persona P ON M.DNI = P.DNI
         WHERE M.idEspecialidad = @idEspecialidad";
 
-        SqlParameter[] parametros = new SqlParameter[]
-        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
             new SqlParameter("@idEspecialidad", idEspecialidad)
-        };
+            };
 
             return conexion.EjecutarConsultaConParametros(consulta, parametros);
+        }
+
+
+        public DataTable ObtenerFechasDisponibles(string legajo, DateTime fecha)
+        {
+            string query = @"
+                SELECT J.rangoHorario
+                FROM Jornadas J
+                LEFT JOIN Turnos T ON J.Legajo = T.Legajo
+                AND CAST(T.FechaPactada AS DATE) = CAST(@Fecha AS DATE)               
+                WHERE J.Legajo = @Legajo
+                AND J.DiaSemana = DATENAME(WEEKDAY, @Fecha)
+                
+                ";
+            SqlParameter[] parameteros = new SqlParameter[] {
+            new SqlParameter("@Legajo", legajo),
+            new SqlParameter("@Fecha", fecha)
+            };
+
+            return conexion.EjecutarConsultaConParametros(query, parameteros);
         }
 
     }
