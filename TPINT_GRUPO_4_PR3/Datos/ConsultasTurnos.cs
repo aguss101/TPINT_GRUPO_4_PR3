@@ -112,5 +112,26 @@ namespace Datos
             };
             return conexion.EjecutarConsultaConParametros(query, parametros);
         }
+
+
+        public DataTable ObtenerFechasDisponibles(string legajo, DateTime fecha)
+        {
+            string query = @"
+                SELECT J.rangoHorario
+                FROM Jornadas J
+                LEFT JOIN Turnos T ON J.Legajo = T.Legajo
+                AND CAST(T.FechaPactada AS DATE) = CAST(@Fecha AS DATE)               
+                WHERE J.Legajo = @Legajo
+                AND J.DiaSemana = DATENAME(WEEKDAY, @Fecha)
+                
+                ";
+            SqlParameter[] parameteros = new SqlParameter[] {
+            new SqlParameter("@Legajo", legajo),
+            new SqlParameter("@Fecha", fecha)
+            };
+
+            return conexion.EjecutarConsultaConParametros(query, parameteros);
+        }
+
     }
 }

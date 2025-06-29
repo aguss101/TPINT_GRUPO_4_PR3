@@ -1,7 +1,6 @@
 ﻿using Entidades;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 
 namespace Datos
 {
@@ -13,7 +12,7 @@ namespace Datos
             List<Paciente> pacientes = new List<Paciente>();
             string query = "SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, O.idObraSocial, C.correo, T.telefono, L.idLocalidad FROM Paciente PA" +
                 " INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial " +
-                "INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad  " + " LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona " + 
+                "INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad  " + " LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona " +
                 "WHERE activo = 1";
             try
             {
@@ -43,7 +42,6 @@ namespace Datos
                 
             } catch (Exception ex) { throw new Exception("Error al cargar usuarios: " + ex.Message); }
             return pacientes;
-        }
         public int InsertarPaciente(Paciente paciente)
         {
             string queryPersona = "INSERT INTO Persona (DNI,nombre,apellido,sexo,direccion,idLocalidad,fechaNacimiento,nacionalidad) VALUES(@DNI, @Nombre, @Apellido, @Sexo, @Direccion, @IdLocalidad, @FechaNacimiento, @Nacionalidad)";
