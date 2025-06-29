@@ -8,9 +8,7 @@ namespace Vistas.admin
 {
     public partial class Administrar_Medicos : System.Web.UI.Page
     {
-
         private GestorMedico gestorMedico = new GestorMedico();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -18,28 +16,23 @@ namespace Vistas.admin
                 lblUser.Text = Session["User"] as string;
                 btnMod.Visible = false;
                 btnBaja.Visible = false;
-                ///Crear funcion fuera del page load que cargue todos los place holder, luego llamarla dentro del page load.
                 txbLegajo.Attributes["placeholder"] = "Legajo del medico";
                 txbLegajo.Text = string.Empty;
             }
         }
-
         protected void btnAlta_Click(object sender, EventArgs e)
         {
             lblAddUserState0.Visible = false;
             mvFormularios.ActiveViewIndex = 0;
         }
-
         protected void btnBaja_Click(object sender, EventArgs e)
         {
             lblAddUserState0.Visible = false;
-
             try
             {
                 foreach (GridViewRow row in gvLecturaMedico.Rows)
                 {
-                    CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
-                    if (chk != null && chk.Checked)
+                    if(row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
                     {
                         string DNI = row.Cells[2].Text;
                         gestorMedico.EliminarMedico(DNI);
@@ -57,29 +50,18 @@ namespace Vistas.admin
             btnMod.Visible = false;
             btnBaja.Visible = false;
         }
-
-
         protected void btnMod_Click(object sender, EventArgs e)
         {
             foreach (GridViewRow row in gvLecturaMedico.Rows)
             {
-                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
-
-                if (chk != null && chk.Checked)
-                {
+                if(row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked){
                     string DNI = row.Cells[2].Text;
-
-                    Medico medico = new Medico();
-                    medico.Usuario = new Usuario();
-
+                    Medico medico = new Medico(){Usuario = new Usuario()};
                     medico = gestorMedico.getMedicoPorID(DNI);
                     lblAddUserState0.Visible = false;
-
                     Session["DNI_VIEJO"] = medico.DNI;
                     Session["LEGAJO_VIEJO"] = medico.Legajo;
-
                     mvFormularios.ActiveViewIndex = 2;
-
                     txtbModMedicoDNI.Text = medico.DNI;
                     txtbModMedicoLegajo.Text = medico.Legajo.ToString();
                     ddlModEspecialidad.SelectedValue = medico.idEspecialidad.ToString();
@@ -93,50 +75,48 @@ namespace Vistas.admin
                     txtbModMedicoCorreo.Text = medico.Correo;
                     txtbModMedicoUsuario.Text = medico.Usuario.NombreUsuario;
                     txtbModMedicoContrasenia.Text = medico.Usuario.contrasenia;
-
                     break;
                 }
             }
             btnMod.Visible = false;
             btnBaja.Visible = false;
         }
-
         protected void btnLectura_Click(object sender, EventArgs e)
         {
             lblAddUserState0.Visible = false;
-
             mvFormularios.ActiveViewIndex = 3;
             loadGridMedicos();
-
         }
         protected void InsertarMedicos()
         {
             lblAddUserState0.Visible = false;
-
             try
             {
-                Usuario usuario = new Usuario();
-                Medico medico = new Medico();
+                Medico medico = new Medico()
+                {
+                    Usuario = new Usuario()
+                    {
+                        NombreUsuario = txbUsuario.Text.Trim(),
+                        contrasenia = txbContrasenia.Text.Trim(),
+                        alta = Convert.ToDateTime(DateTime.Now),
+                        ultimoIngreso = Convert.ToDateTime(DateTime.Now),
+                        idRol = 2
+                    },
+                    Legajo = txbLegajo.Text.Trim(),
+                    DNI = txbDni.Text.Trim(),
+                    nombre = txbNombre.Text.Trim(),
+                    apellido = txbApellido.Text.Trim(),
+                    idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue),
+                    genero = int.Parse(ddlGenero.SelectedValue),
+                    nacionalidad = ddlNacionalidad.SelectedValue.ToString(),
+                    fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim()),
+                    Direccion = txbDireccion.Text.Trim(),
+                    Localidad = int.Parse(ddlLocalidades.SelectedValue),
+                    Correo = txbCorreo.Text.Trim(),
+                    Telefono = txbTelefono.Text.Trim()
+                };
 
-                medico.Legajo = txbLegajo.Text.Trim();
-                medico.DNI = txbDni.Text.Trim();
-                medico.nombre = txbNombre.Text.Trim();
-                medico.apellido = txbApellido.Text.Trim();
-                medico.idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue);
-                medico.genero = int.Parse(ddlGenero.SelectedValue);
-                medico.nacionalidad = ddlNacionalidad.SelectedValue.ToString();
-                medico.fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim());
-                medico.Direccion = txbDireccion.Text.Trim();
-                medico.Localidad = int.Parse(ddlLocalidades.SelectedValue);
-                medico.Correo = txbCorreo.Text.Trim();
-                medico.Telefono = txbTelefono.Text.Trim();
-                usuario.NombreUsuario = txbUsuario.Text.Trim();
-                usuario.contrasenia = txbContrasenia.Text.Trim();
-                usuario.alta = Convert.ToDateTime(DateTime.Now);
-                usuario.ultimoIngreso = Convert.ToDateTime(DateTime.Now);
-                usuario.idRol = 2;
-
-                int filas = gestorMedico.InsertarMedico(medico, usuario);
+                int filas = gestorMedico.InsertarMedico(medico, medico.Usuario);
 
                 if (filas > 0)
                 {
@@ -159,28 +139,26 @@ namespace Vistas.admin
         }
         protected void ModificarMedico()
         {
-            Medico medico = new Medico();
-            medico.Usuario = new Usuario();
-
-            medico.DNI = txtbModMedicoDNI.Text.Trim();
-            medico.Legajo = txtbModMedicoLegajo.Text.Trim();
-            medico.nombre = txtbModMedicoNombre.Text.Trim();
-            medico.apellido = txtbModMedicoApellido.Text.Trim();
-            medico.fechaNacimiento = Convert.ToDateTime(txtbModFechaNac.Text.Trim());
-            medico.idEspecialidad = int.Parse(ddlModEspecialidad.SelectedValue.Trim());
-            medico.genero = int.Parse(ddlModGenero.SelectedValue);
-            medico.Localidad = int.Parse(ddlModLocalidad.SelectedValue);
-            medico.nacionalidad = ddlModNacionalidad.SelectedValue;
-            medico.Direccion = txtbModMedicoDireccion.Text;
-            medico.Telefono = txtbModMedicoTelefono.Text.Trim();
-            medico.Correo = txtbModMedicoCorreo.Text;
-            medico.Usuario.NombreUsuario = txtbModMedicoUsuario.Text.Trim();
-            medico.Usuario.contrasenia = txtbModMedicoContrasenia.Text.Trim();
-
+            Medico medico = new Medico()
+            {
+                Usuario = new Usuario(){
+                    NombreUsuario = txtbModMedicoUsuario.Text.Trim(),
+                    contrasenia = txtbModMedicoContrasenia.Text.Trim()},
+                DNI = txtbModMedicoDNI.Text.Trim(),
+                Legajo = txtbModMedicoLegajo.Text.Trim(),
+                nombre = txtbModMedicoNombre.Text.Trim(),
+                apellido = txtbModMedicoApellido.Text.Trim(),
+                fechaNacimiento = Convert.ToDateTime(txtbModFechaNac.Text.Trim()),
+                idEspecialidad = int.Parse(ddlModEspecialidad.SelectedValue.Trim()),
+                genero = int.Parse(ddlModGenero.SelectedValue),
+                Localidad = int.Parse(ddlModLocalidad.SelectedValue),
+                nacionalidad = ddlModNacionalidad.SelectedValue,
+                Direccion = txtbModMedicoDireccion.Text,
+                Telefono = txtbModMedicoTelefono.Text.Trim(),
+                Correo = txtbModMedicoCorreo.Text
+            };
             string DNI_VIEJO = (Session["DNI_VIEJO"] as string).Trim();
             string LEGAJO_VIEJO = (Session["LEGAJO_VIEJO"] as string).Trim();
-
-            //Validaciones anteriores a enviar los datos del Medico a modificar
 
             if (medico.DNI == "" || medico.Legajo == "" || medico.nombre == "" || medico.apellido == "")
             {
@@ -217,9 +195,7 @@ namespace Vistas.admin
         }
         protected void loadGridMedicos()
         {
-            GestorMedico gestorMedico = new GestorMedico();
-            List<Medico> listaMedicos = gestorMedico.GetMedicos();
-
+            List<Medico> listaMedicos = new GestorMedico().GetMedicos();
             gvLecturaMedico.DataSource = listaMedicos;
             gvLecturaMedico.DataBind();
         }
@@ -231,57 +207,21 @@ namespace Vistas.admin
         {
             ModificarMedico();
         }
-        protected void btnAdministrarMedico_Click(object sender, EventArgs e)
+        protected void navigateButton_Click(object sender, CommandEventArgs e)
         {
-            Response.Redirect("/admin/Administrar_Medicos.aspx");
+            switch (e.CommandArgument.ToString())
+            {
+                case "Medicos": Response.Redirect("/admin/Administrar_Medicos.aspx");break;
+                case "Pacientes": Response.Redirect("/admin/Administrar_Pacientes.aspx");break;
+                case "Turnos": Response.Redirect("/admin/Administrar_Turnos.aspx");break;
+                default: break;
+            }
         }
-
-        protected void btnAdministrarPacientes_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/admin/Administrar_Pacientes.aspx");
-        }
-
-        protected void btnAdministrarTurnos_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/admin/Administrar_Turnos.aspx");
-        }
-
-
         protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in gvLecturaMedico.Rows)
-            {
-                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
-                if (chk != sender)
-                {
-                    chk.Checked = false;
-                }
-
-
-            }
-            bool algunoMarcado = false;
-            foreach (GridViewRow row in gvLecturaMedico.Rows)
-            {
-                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
-                if (chk.Checked)
-                {
-                    algunoMarcado = true;
-
-                    break;
-                }
-            }
-
-            btnMod.Visible = algunoMarcado;
-            btnBaja.Visible = algunoMarcado;
-
+            foreach (GridViewRow row in gvLecturaMedico.Rows){if(row.FindControl("chkSeleccionar") is CheckBox chk && chk != sender){chk.Checked = false;}}
+            btnMod.Visible = btnBaja.Visible = (sender as CheckBox)?.Checked == true;
         }
-
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-            mvFormularios.ActiveViewIndex = 1;
-
-        }
-        
+        protected void btnEliminar_Click(object sender, EventArgs e){mvFormularios.ActiveViewIndex = 1;}
     }
-
 }

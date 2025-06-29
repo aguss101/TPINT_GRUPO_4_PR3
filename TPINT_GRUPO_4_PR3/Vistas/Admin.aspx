@@ -192,84 +192,25 @@
         <tr>
             <td class="columnaIndex">
                 <table class="auto-style3">
-                    <tr>
-                        <td class="columnaIndex-PanelAdmin">Panel Admin</td>
-                    </tr>
-                    <tr>
-                        <td class="td-btn-index">
-                            <asp:Button runat="server" Text="Administrar Médicos" CssClass="btn-index" ID="btnAdministrarMedicos" OnClick="btnAdministrarMedicos_Click" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="td-btn-index">
-                            <asp:Button ID="Administrar_Pacientes" runat="server" Text=" Administrar Pacientes" CssClass="btn-index" OnClick="Administrar_Pacientes_Click" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="td-btn-index">
-                            <asp:Button ID="Administrar_Turnos" runat="server" Text="Administrar Turnos" CssClass="btn-index" OnClick="Administrar_Turnos_Click" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style4"></td>
-                    </tr>
-                    <tr>
-                        <td> &nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="hl-CerrarSesion">
-                            <asp:HyperLink ID="hlCerrarSesion" runat="server" NavigateUrl="~/Login.aspx">Cerrar Sesión</asp:HyperLink>
-                        </td>
-                    </tr>
+                    <tr><td class="columnaIndex-PanelAdmin">Panel Admin</td></tr>
+                    <tr><td class="td-btn-index"><asp:Button runat="server" Text="Administrar Médicos" CssClass="btn-index" ID="btnAdministrarMedicos" OnClick="btnAdministrarMedicos_Click" /></td></tr>
+                    <tr><td class="td-btn-index"><asp:Button ID="Administrar_Pacientes" runat="server" Text=" Administrar Pacientes" CssClass="btn-index" OnClick="Administrar_Pacientes_Click" /></td></tr>
+                    <tr><td class="td-btn-index"><asp:Button ID="Administrar_Turnos" runat="server" Text="Administrar Turnos" CssClass="btn-index" OnClick="Administrar_Turnos_Click" /></td></tr>
+                    <tr><td class="auto-style4"></td></tr>
+                    <tr><td> &nbsp;</td></tr>
+                    <tr><td class="hl-CerrarSesion"><asp:HyperLink ID="hlCerrarSesion" runat="server" NavigateUrl="~/Login.aspx">Cerrar Sesión</asp:HyperLink></td> </tr>
                 </table>
             </td>
             <td class="columnaBody">
                 <table class="auto-style10">
-                    <tr>
-                        <td class="auto-style22" colspan="3">
-                            <div class="titulo-con-nombre">
-                                <h2><span class="clinica">Clínica</span> <span class="frgp">FRGP</span></h2>
-                                <div class="sidebarUser">
-                                    <asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Names="Calibri" Text="Administrador"></asp:Label>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="no-select"></td>
-                        <td class="no-select">&nbsp;</td>
-                        <td class="auto-style28"></td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style20">Seleccioná una opción del menú para comenzar.</td>
-                        <td class="no-select">&nbsp;</td>
-                        <td class="auto-style28">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="no-select"></td>
-                        <td class="no-select"></td>
-                        <td class="auto-style28"></td>
-                    </tr>
-                    <tr>
-                        <td class="no-select">&nbsp;</td>
-                        <td class="no-select"></td>
-                        <td class="auto-style28"></td>
-                    </tr>
-                    <tr>
-                        <td class="no-select">&nbsp;</td>
-                        <td class="no-select">&nbsp;</td>
-                        <td class="auto-style28">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="no-select"></td>
-                        <td class="no-select"></td>
-                        <td class="auto-style28"></td>
-                    </tr>
-                    <tr>
-                        <td class="no-select"></td>
-                        <td class="no-select"></td>
-                        <td class="auto-style28"></td>
-                    </tr>
+                    <tr><td class="auto-style22" colspan="3"><div class="titulo-con-nombre"><h2><span class="clinica">Clínica</span> <span class="frgp">FRGP</span></h2><div class="sidebarUser"><asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Names="Calibri" Text="Administrador"></asp:Label></div></div> </td></tr>
+                    <tr><td class="no-select"></td><td class="no-select">&nbsp;</td><td class="auto-style28"></td></tr>
+                    <tr><td class="auto-style20">Seleccioná una opción del menú para comenzar.</td> <td class="no-select">&nbsp;</td><td class="auto-style28">&nbsp;</td></tr>
+                    <tr><td class="no-select"></td><td class="no-select"></td><td class="auto-style28"></td></tr>
+                    <tr><td class="no-select">&nbsp;</td><td class="no-select"></td><td class="auto-style28"></td></tr>
+                    <tr><td class="no-select">&nbsp;</td><td class="no-select">&nbsp;</td><td class="auto-style28">&nbsp;</td></tr>
+                    <tr><td class="no-select"></td><td class="no-select"></td><td class="auto-style28"></td></tr>
+                    <tr><td class="no-select"></td><td class="no-select"></td><td class="auto-style28"></td></tr>
                 </table>
             </td>
         </tr>

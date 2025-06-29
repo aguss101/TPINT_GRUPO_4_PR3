@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Entidades;
 
@@ -12,36 +9,29 @@ namespace Datos
     public class ConsultasUsuario
     {
         private DataAccess conexion = new DataAccess();
-
         public List<Usuario> getUsuarios()
         {
             List<Usuario> usuarios = new List<Usuario>();
-            
-
             string query = "SELECT U.DNI,U.IdRol,U.nombreUsuario,U.contrasenia,U.ultimoIngreso, U.alta FROM Usuario U";
-            using (SqlConnection connection = conexion.AbrirConexion())
+            try
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                SqlConnection connection = conexion.AbrirConexion();
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    Usuario usuario = new Usuario
                     {
-                        while (reader.Read())
-                        {
-                            Usuario usuario = new Usuario();
-
-                            usuario.DNI = (reader["DNI"].ToString());
-                            usuario.idRol = (Convert.ToInt32(reader["idRol"]));
-                            usuario.NombreUsuario = (reader["nombreUsuario"].ToString());
-                            usuario.contrasenia = (reader["contrasenia"].ToString());
-                            usuario.ultimoIngreso = (Convert.ToDateTime(reader["ultimoIngreso"]));
-                            usuario.alta = (Convert.ToDateTime(reader["alta"]));
-
-                            usuarios.Add(usuario);
-                        }
-                    }
+                        DNI = reader["DNI"].ToString(),
+                        idRol = Convert.ToInt32(reader["IdRol"]),
+                        NombreUsuario = reader["nombreUsuario"].ToString(),
+                        contrasenia = reader["contrasenia"].ToString(),
+                        ultimoIngreso = Convert.ToDateTime(reader["ultimoIngreso"]),
+                        alta = Convert.ToDateTime(reader["alta"])
+                    };
+                    usuarios.Add(usuario);
                 }
-            }
+            }catch(Exception ex) { throw new Exception("Error al cargar usuarios: " + ex.Message); }
             return usuarios;
         }
     }

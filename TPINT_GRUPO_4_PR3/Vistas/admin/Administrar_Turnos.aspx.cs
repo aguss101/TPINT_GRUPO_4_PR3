@@ -12,25 +12,18 @@ namespace Vistas.admin
             lblUser.Text = Session["User"] as string;
             CargarTurnos();
         }
-
-        protected void btnAdministrarMedicos_Click(object sender, EventArgs e)
+        protected void navigateButton_Click(object sender, CommandEventArgs e)
         {
-            Response.Redirect("/admin/Administrar_Medicos.aspx");
+            switch (e.CommandArgument.ToString())
+            {
+                case "Medicos": Response.Redirect("/admin/Administrar_Medicos.aspx"); break;
+                case "Pacientes": Response.Redirect("/admin/Administrar_Pacientes.aspx"); break;
+                case "Turnos": Response.Redirect("/admin/Administrar_Turnos.aspx"); break;
+                default: break;
+            }
         }
-
-        protected void btnAdministrarPacientes_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/admin/Administrar_Pacientes.aspx");
-        }
-
-        protected void btnAdministrarTurnos_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/admin/Administrar_Turnos.aspx");
-        }
-
         protected void CargarTurnos()
         {
-
             gvTurnos.DataSource = gestorturnos.GetTurnos();
             gvTurnos.DataBind();
         }
@@ -40,19 +33,15 @@ namespace Vistas.admin
 
             if (int.TryParse(ddlEspecialidad.SelectedValue, out idEspecialidad) && idEspecialidad > 0)
             {
-                GestorTurnos gestorTurnos = new GestorTurnos();
-                ddlMedico.DataSource = gestorTurnos.ObtenerMedicosPorEspecialidad(idEspecialidad);
+                ddlMedico.DataSource = new GestorTurnos().ObtenerMedicosPorEspecialidad(idEspecialidad);
                 ddlMedico.DataTextField = "NombreCompleto";
                 ddlMedico.DataValueField = "Legajo";
                 ddlMedico.DataBind();
             }
             else
             {
-                // Limpia si se vuelve a la opción por defecto
                 ddlMedico.Items.Clear();
             }
-
-            // Siempre agregar al principio el ítem por defecto
             ddlMedico.Items.Insert(0, new ListItem("-- Seleccione un médico --", ""));
         }
 

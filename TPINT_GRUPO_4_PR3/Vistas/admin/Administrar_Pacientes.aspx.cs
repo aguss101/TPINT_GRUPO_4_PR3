@@ -11,7 +11,6 @@ namespace Vistas.admin
         private GestorPaciente gestorPaciente = new GestorPaciente();
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
                 lblUser.Text = Session["User"] as string;
@@ -19,19 +18,14 @@ namespace Vistas.admin
                 btnBaja.Visible = false;
             }
         }
-        protected void btnAlta_Click(object sender, EventArgs e)
-        {
-            mvFormularios.ActiveViewIndex = 0;
-        }
-
+        protected void btnAlta_Click(object sender, EventArgs e){ mvFormularios.ActiveViewIndex = 0;}
         protected void btnBaja_Click(object sender, EventArgs e)
         {
             try
             {
                 foreach (GridViewRow row in GridView2.Rows)
                 {
-                    CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
-                    if (chk != null && chk.Checked)
+                    if(row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
                     {
                         string DNI = row.Cells[1].Text;
                         gestorPaciente.EliminarPaciente(DNI);
@@ -49,32 +43,23 @@ namespace Vistas.admin
             btnMod.Visible = false;
             btnBaja.Visible = false;
         }
-
         protected void btnMod_Click(object sender, EventArgs e)
         {
             foreach (GridViewRow row in GridView2.Rows)
             {
-                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
-
-                if (chk != null && chk.Checked)
+                if(row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
                 {
                     string DNI = row.Cells[1].Text;
-
-
-
                     Paciente paciente = new Paciente();
-
-                    paciente = gestorPaciente.getPacientePorID(DNI);
+                    paciente = gestorPaciente.getPacientePorID(DNI.Trim());
                     Session["DNI_VIEJO"] = paciente.DNI.Trim();
-
                     mvFormularios.ActiveViewIndex = 2;
-
                     txbModDni.Text = paciente.DNI;
                     txbModNombre.Text = paciente.nombre;
                     txbModApellido.Text = paciente.apellido;
                     ddlModGenero.SelectedValue = paciente.genero.ToString();
                     ddlModNacionalidad.SelectedValue = paciente.nacionalidad;
-                    ddlModLocalidades.SelectedValue = paciente.Localidad.ToString();
+                    //ddlModLocalidades.SelectedValue = paciente.Localidad.ToString();
                     ///ddlModProvincias.SelectedValue = paciente.Provincia.ToString(); /// FIX
                     DateTime fechaNac = paciente.fechaNacimiento.Date;
                     txbModFechaNacimiento.Text = fechaNac.ToString("yyyy-MM-dd");
@@ -82,64 +67,44 @@ namespace Vistas.admin
                     ddlModObraSocial.SelectedValue = paciente.ObraSocial.ToString();
                     txbModTelefono.Text = paciente.Telefono.ToString();
                     txbModCorreo.Text = paciente.Correo;
-
                     break;
                 }
             }
-
             btnMod.Visible = false;
             btnBaja.Visible = false;
         }
-
         protected void btnLectura_Click(object sender, EventArgs e)
         {
             mvFormularios.ActiveViewIndex = 3;
             loadGridPacientes();
-
-
         }
-
-        protected void btnRegistrarPaciente_Click(object sender, EventArgs e)
-        {
-            InsertarPacientes();
-        }
-        protected void btnModificarPaciente_Click(object sender, EventArgs e)
-        {
-            ModificarPaciente();
-        }
-
+        protected void btnRegistrarPaciente_Click(object sender, EventArgs e){InsertarPacientes();}
+        protected void btnModificarPaciente_Click(object sender, EventArgs e){ModificarPaciente();}
         protected void loadGridPacientes()
         {
-
-            GestorPaciente gestorPaciente = new GestorPaciente();
-            List<Paciente> listaPacientes = gestorPaciente.GetPacientes();
-
+            List<Paciente> listaPacientes = new GestorPaciente().GetPacientes();
             GridView2.DataSource = listaPacientes;
             GridView2.DataBind();
-
         }
-
         protected void InsertarPacientes()
         {
             lblAddUserState.Visible = false;
-
-            Paciente paciente = new Paciente();
-
-            paciente.DNI = txbDni.Text.Trim();
-            paciente.ObraSocial = int.Parse(ddlObraSocial.SelectedValue);
-            paciente.ultimaAtencion = DateTime.Now;
-            paciente.Alta = DateTime.Now;
-            paciente.nombre = txbNombre.Text.Trim();
-            paciente.apellido = txbApellido.Text.Trim();
-            paciente.genero = int.Parse(ddlGenero.SelectedValue);
-            paciente.fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim());
-            paciente.Direccion = txbDireccion.Text.Trim();
-            paciente.Localidad = int.Parse(ddlLocalidades.SelectedValue);
-            paciente.nacionalidad = ddlNacionalidad.SelectedValue.ToString();
-            paciente.Correo = txbCorreo.Text.Trim();
-            paciente.Telefono = txbTelefono.Text.Trim();
-
-
+            Paciente paciente = new Paciente()
+            {
+                DNI = txbDni.Text.Trim(),
+                ObraSocial = int.Parse(ddlObraSocial.SelectedValue),
+                ultimaAtencion = DateTime.Now,
+                Alta = DateTime.Now,
+                nombre = txbNombre.Text.Trim(),
+                apellido = txbApellido.Text.Trim(),
+                genero = int.Parse(ddlGenero.SelectedValue),
+                fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim()),
+                Direccion = txbDireccion.Text.Trim(),
+                //Localidad = int.Parse(ddlLocalidades.SelectedValue),
+                nacionalidad = ddlNacionalidad.SelectedValue.ToString(),
+                Correo = txbCorreo.Text.Trim(),
+                Telefono = txbTelefono.Text.Trim(),
+            };
             int filas = gestorPaciente.InsertarPaciente(paciente);
             if (filas > 0)
             {
@@ -153,27 +118,25 @@ namespace Vistas.admin
                 lblAddUserState.ForeColor = System.Drawing.Color.Red;
             }
             lblAddUserState.Visible = true;
-
         }
-
         protected void ModificarPaciente()
         {
-            Paciente paciente = new Paciente();
-
-            paciente.DNI = txbModDni.Text.Trim();
-            paciente.nombre = txbModNombre.Text.Trim();
-            paciente.apellido = txbModApellido.Text.Trim();
-            paciente.fechaNacimiento = Convert.ToDateTime(txbModFechaNacimiento.Text.Trim());
-            paciente.ObraSocial = int.Parse(ddlModObraSocial.SelectedValue);
-            paciente.genero = int.Parse(ddlModGenero.SelectedValue);
-            paciente.Localidad = int.Parse(ddlModLocalidades.SelectedValue);
-            paciente.ultimaAtencion = DateTime.Now;
-            paciente.Alta = DateTime.Now;
-            paciente.nacionalidad = ddlModNacionalidad.SelectedValue.ToString();
-            paciente.Telefono = txbModTelefono.Text.Trim();
-            paciente.Direccion = txbModDireccion.Text.Trim();
-            paciente.Correo = txbModCorreo.Text.Trim();
-
+            Paciente paciente = new Paciente()
+            {
+                DNI = txbModDni.Text.Trim(),
+                nombre = txbModNombre.Text.Trim(),
+                apellido = txbModApellido.Text.Trim(),
+                fechaNacimiento = Convert.ToDateTime(txbModFechaNacimiento.Text.Trim()),
+                ObraSocial = int.Parse(ddlModObraSocial.SelectedValue),
+                genero = int.Parse(ddlModGenero.SelectedValue),
+                //Localidad = int.Parse(ddlModLocalidades.SelectedValue),
+                ultimaAtencion = DateTime.Now,
+                Alta = DateTime.Now,
+                nacionalidad = ddlModNacionalidad.SelectedValue.ToString(),
+                Telefono = txbModTelefono.Text.Trim(),
+                Direccion = txbModDireccion.Text.Trim(),
+                Correo = txbModCorreo.Text.Trim()
+            };
             string DNI_VIEJO = (Session["DNI_VIEJO"] as string)?.Trim();
             int filas = gestorPaciente.ModificarPaciente(paciente, DNI_VIEJO);
             if (filas > 0)
@@ -183,69 +146,29 @@ namespace Vistas.admin
                 lblModUser.Visible = true;
             }
         }
-
-
-
         protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.FindControl("chkSeleccionar") is CheckBox chk)
             {
-                CheckBox chk = (CheckBox)e.Row.FindControl("chkSeleccionar");
                 chk.AutoPostBack = true;
                 chk.CheckedChanged += new EventHandler(chkSeleccionar_CheckedChanged);
             }
         }
-
         protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
         {
-
-            foreach (GridViewRow row in GridView2.Rows)
+            foreach (GridViewRow row in GridView2.Rows){if(row.FindControl("chkSeleccionar") is CheckBox chk && chk != sender){chk.Checked = false;}}
+            btnMod.Visible = btnBaja.Visible = (sender as CheckBox)?.Checked == true;
+        }
+        protected void navigateButton_Click(object sender, CommandEventArgs e)
+        {
+            switch (e.CommandArgument.ToString())
             {
-                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
-                if (chk != sender)
-                {
-                    chk.Checked = false;
-                }
+                case "Medicos": Response.Redirect("/admin/Administrar_Medicos.aspx"); break;
+                case "Pacientes": Response.Redirect("/admin/Administrar_Pacientes.aspx"); break;
+                case "Turnos": Response.Redirect("/admin/Administrar_Turnos.aspx"); break;
+                default: break;
             }
-
-
-            bool algunoMarcado = false;
-            foreach (GridViewRow row in GridView2.Rows)
-            {
-                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
-                if (chk.Checked)
-                {
-                    algunoMarcado = true;
-
-                    break;
-                }
-            }
-
-            btnMod.Visible = algunoMarcado;
-            btnBaja.Visible = algunoMarcado;
         }
-
-
-
-
-        protected void btnAdministrarMedico_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/admin/Administrar_Medicos.aspx");
-        }
-
-        protected void btnAdministrarPaciente_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/admin/Administrar_Pacientes.aspx");
-        }
-
-        protected void btnAdministrarTurnos_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/admin/Administrar_Turnos.aspx");
-        }
-
-        protected void ddlProvincias_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ddlLocalidades.DataBind();
-        }
+        protected void ddlProvincias_SelectedIndexChanged(object sender, EventArgs e){/*ddlLocalidades.DataBind();*/}
     }
 }
