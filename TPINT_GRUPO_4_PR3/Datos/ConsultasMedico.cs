@@ -8,6 +8,7 @@ namespace Datos
     public class ConsultasMedico
     {
         private DataAccess conexion = new DataAccess();
+
         public List<Medico> GetMedicos()
         {
             List<Medico> medicos = new List<Medico>();
@@ -48,8 +49,8 @@ namespace Datos
             }
             catch (Exception ex) { throw new Exception("Error al buscar medicos: " + ex.Message); }
             return medicos;
-
         }
+
         public int InsertarMedico(Medico medico, Usuario usuario)
         {
             string queryPersona = @"INSERT INTO Persona (DNI,nombre,apellido,sexo,direccion,idLocalidad,fechaNacimiento,nacionalidad) VALUES (@DNI,@Nombre,@Apellido,@Sexo,@Direccion,@IdLocalidad,@FechaNacimiento,@Nacionalidad)";
@@ -93,11 +94,11 @@ namespace Datos
                 command.Parameters.AddWithValue("@Correo", medico.Correo);
                 command.ExecuteNonQuery();
                 try { transaction.Commit(); return 1; } catch (Exception ex) { transaction.Rollback(); }
-
             }
             catch (Exception ex) { throw new Exception("Error al insertar medico: " + ex.Message); }
             return 0;
         }
+
         public int EliminarMedico(string dni)
         {
             string query = "UPDATE Persona SET activo = 0 WHERE DNI = @DNI";
@@ -107,6 +108,7 @@ namespace Datos
             };
             return conexion.EjecutarComandoConParametros(query, parametros);
         }
+
         public int ModificarMedico(Medico medico, Usuario usuario, string DNI_VIEJO, string LEGAJO_VIEJO)
         {
             string queryUsuario = @"UPDATE Usuario SET DNI=@DNI_NUEVO,nombreUsuario=@Usuario,contrasenia=@Contrasenia WHERE DNI=@DNI";
@@ -166,6 +168,7 @@ namespace Datos
             catch (Exception ex) { throw new Exception("Error al modificar medico: " + ex.Message); }
             return 0;
         }
+
         public Medico getMedicoPorID(string idMedico)
         {
             Medico medico = null;

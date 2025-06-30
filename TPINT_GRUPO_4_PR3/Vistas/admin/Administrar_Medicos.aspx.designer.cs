@@ -222,31 +222,22 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.Label lblCondiciones;
 
         /// <summary>
-        /// Control txbDireccion.
+        /// Control ddlNacionalidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbDireccion;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNacionalidad;
 
         /// <summary>
-        /// Control ddlLocalidades.
+        /// Control dbNacionalidades.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLocalidades;
-
-        /// <summary>
-        /// Control dbLocalidades.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dbLocalidades;
+        protected global::System.Web.UI.WebControls.SqlDataSource dbNacionalidades;
 
         /// <summary>
         /// Control ddlProvincia.
@@ -267,22 +258,31 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.SqlDataSource dbProvincias;
 
         /// <summary>
-        /// Control ddlNacionalidad.
+        /// Control ddlLocalidades.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlNacionalidad;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocalidades;
 
         /// <summary>
-        /// Control dbNacionalidades.
+        /// Control dbLocalidades.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dbNacionalidades;
+        protected global::System.Web.UI.WebControls.SqlDataSource dbLocalidades;
+
+        /// <summary>
+        /// Control txbDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbDireccion;
 
         /// <summary>
         /// Control txbCorreo.
@@ -447,13 +447,40 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.SqlDataSource dbModGenero;
 
         /// <summary>
-        /// Control txtbModMedicoDireccion.
+        /// Control ddlModNacionalidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbModMedicoDireccion;
+        protected global::System.Web.UI.WebControls.DropDownList ddlModNacionalidad;
+
+        /// <summary>
+        /// Control dbModNacionalidades.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dbModNacionalidades;
+
+        /// <summary>
+        /// Control ddlModProvincia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlModProvincia;
+
+        /// <summary>
+        /// Control dbModProvincia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dbModProvincia;
 
         /// <summary>
         /// Control ddlModLocalidad.
@@ -474,31 +501,13 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.SqlDataSource dbModLocalidad;
 
         /// <summary>
-        /// Control dbModProvincia.
+        /// Control txtbModMedicoDireccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dbModProvincia;
-
-        /// <summary>
-        /// Control ddlModNacionalidad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlModNacionalidad;
-
-        /// <summary>
-        /// Control dbModNacionalidades.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dbModNacionalidades;
+        protected global::System.Web.UI.WebControls.TextBox txtbModMedicoDireccion;
 
         /// <summary>
         /// Control txtbModMedicoTelefono.

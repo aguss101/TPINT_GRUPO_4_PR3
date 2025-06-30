@@ -27,12 +27,12 @@ namespace Datos
         {
             var turnos = new List<Turno>();
             string query = @"
-        SELECT *
-          FROM vw_TurnosConDatos
-         WHERE Legajo = @Legajo
-           AND (@Fecha IS NULL OR CONVERT(date, fechaPactada) = @Fecha)
-         ORDER BY fechaPactada, Legajo, DNIPaciente;
-    ";
+                    SELECT *
+                      FROM vw_TurnosConDatos
+                     WHERE Legajo = @Legajo
+                       AND (@Fecha IS NULL OR CONVERT(date, fechaPactada) = @Fecha)
+                     ORDER BY fechaPactada, Legajo, DNIPaciente;
+                ";
 
 
             using (SqlConnection connection = conexion.AbrirConexion())
@@ -89,15 +89,16 @@ namespace Datos
         public List<Turno> FiltrarPacientexApellido(string legajo, string apellido)
         {
             List<Turno> turnos = new List<Turno>();
-            string query = "SELECT * FROM vw_TurnosConDatos WHERE Legajo = @Legajo AND (@Apellido IS NULL OR ApellidoPaciente COLLATE Latin1_General_CI_AI LIKE '%' + @Apellido + '%') ORDER BY fechaPactada, Legajo, DNIPaciente";
+                string query = "SELECT * FROM vw_TurnosConDatos WHERE Legajo = @Legajo AND (@Apellido IS NULL OR ApellidoPaciente COLLATE Latin1_General_CI_AI LIKE '%' + @Apellido + '%') ORDER BY fechaPactada, Legajo, DNIPaciente";
             try
             {
-                SqlConnection connection = conexion.AbrirConexion();
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                command.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) { Value = legajo });
-                command.Parameters.Add(new SqlParameter("@Apellido", SqlDbType.VarChar, 25) { Value = legajo });
-                while (reader.Read()) { turnos.Add(MapearTurno(reader)); }
+                using (SqlConnection con = conexion.AbrirConexion())
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) { Value = legajo });
+                    cmd.Parameters.Add(new SqlParameter("@Apellido", SqlDbType.VarChar, 25) { Value = apellido });
+                    using (SqlDataReader reader = cmd.ExecuteReader()) {while (reader.Read()) { turnos.Add(MapearTurno(reader)); }}
+                }
             }
             catch (Exception ex) { throw new Exception("Error al cargar turnos por apellido: " + ex.Message); }
             return turnos;
@@ -108,12 +109,13 @@ namespace Datos
             string query = "SELECT * FROM vw_TurnosConDatos WHERE Legajo = @Legajo AND (@DNI IS NULL OR DNIPaciente LIKE '%' + @DNI + '%') ORDER BY fechaPactada, Legajo, DNIPaciente";
             try
             {
-                SqlConnection connection = conexion.AbrirConexion();
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                command.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) { Value = legajo });
-                command.Parameters.Add(new SqlParameter("@DNI", SqlDbType.VarChar, 25) { Value = legajo });
-                while (reader.Read()) { turnos.Add(MapearTurno(reader)); }
+                using (SqlConnection con = conexion.AbrirConexion())
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) { Value = legajo });
+                    cmd.Parameters.Add(new SqlParameter("@DNI", SqlDbType.VarChar, 25) { Value = dniPaciente });
+                    using (SqlDataReader reader = cmd.ExecuteReader()) { while (reader.Read()) { turnos.Add(MapearTurno(reader)); }}
+                }
             }
             catch (Exception ex) { throw new Exception("Error al cargar turnos por DNI: " + ex.Message); }
             return turnos;
