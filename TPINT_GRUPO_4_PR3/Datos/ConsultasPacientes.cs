@@ -1,6 +1,8 @@
-﻿using Entidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+
+using Entidades;
 
 namespace Datos
 {
@@ -39,9 +41,11 @@ namespace Datos
                     };
                     pacientes.Add(paciente);
                 }
-                
-            } catch (Exception ex) { throw new Exception("Error al cargar usuarios: " + ex.Message); }
+
+            }
+            catch (Exception ex) { throw new Exception("Error al cargar usuarios: " + ex.Message); }
             return pacientes;
+        }
         public int InsertarPaciente(Paciente paciente)
         {
             string queryPersona = "INSERT INTO Persona (DNI,nombre,apellido,sexo,direccion,idLocalidad,fechaNacimiento,nacionalidad) VALUES(@DNI, @Nombre, @Apellido, @Sexo, @Direccion, @IdLocalidad, @FechaNacimiento, @Nacionalidad)";
@@ -76,8 +80,9 @@ namespace Datos
                 command.Parameters.AddWithValue("@DNI", paciente.DNI);
                 command.Parameters.AddWithValue("@Correo", paciente.Correo);
                 command.ExecuteNonQuery();
-                try { transaction.Commit(); return 1; }catch(Exception ex) { transaction.Rollback(); }
-            } catch (Exception ex) { throw new Exception("Error al insertar paciente: " + ex.Message); }
+                try { transaction.Commit(); return 1; } catch (Exception ex) { transaction.Rollback(); }
+            }
+            catch (Exception ex) { throw new Exception("Error al insertar paciente: " + ex.Message); }
             return 0;
         }
         public int EliminarPaciente(string dni)
@@ -130,8 +135,9 @@ namespace Datos
                 command.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
                 command.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
                 command.ExecuteNonQuery();
-                try { transaction.Commit();return 1; }catch(Exception ex) { transaction.Rollback(); }
-            } catch (Exception ex) { throw new Exception("Error al modificar paciente: " + ex.Message); }
+                try { transaction.Commit(); return 1; } catch (Exception ex) { transaction.Rollback(); }
+            }
+            catch (Exception ex) { throw new Exception("Error al modificar paciente: " + ex.Message); }
             return 0;
         }
         public Paciente getPacientePorID(string idPaciente)
@@ -147,7 +153,8 @@ namespace Datos
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", idPaciente);
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read()) {
+                if (reader.Read())
+                {
                     paciente = new Paciente()
                     {
                         DNI = reader["DNI"].ToString(),
@@ -165,7 +172,8 @@ namespace Datos
                         Telefono = reader["Telefono"].ToString()
                     };
                 }
-            }catch(Exception ex) { throw new Exception("Error al buscar paciente por ID: " + ex.Message); }
+            }
+            catch (Exception ex) { throw new Exception("Error al buscar paciente por ID: " + ex.Message); }
             return paciente;
         }
     }

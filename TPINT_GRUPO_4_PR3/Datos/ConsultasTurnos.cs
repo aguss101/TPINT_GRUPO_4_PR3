@@ -33,7 +33,7 @@ namespace Datos
                 SqlCommand command = new SqlCommand(query, connection);
                 SqlDataReader reader = command.ExecuteReader();
                 command.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) { Value = legajo });
-                command.Parameters.Add(new SqlParameter("@Fecha", SqlDbType.DateTime) { Value = fechaSelected.HasValue ? (object)fechaSelected.Value.Date : DBNull.Value});
+                command.Parameters.Add(new SqlParameter("@Fecha", SqlDbType.DateTime) { Value = fechaSelected.HasValue ? (object)fechaSelected.Value.Date : DBNull.Value });
                 while (reader.Read()) { turnos.Add(MapearTurno(reader)); }
             }
             catch (Exception ex) { throw new Exception("Error al cargar turnos: " + ex.Message); }
@@ -114,24 +114,33 @@ namespace Datos
         }
 
 
-        public DataTable ObtenerFechasDisponibles(string legajo, DateTime fecha)
+        public DataTable ObtenerHorasDisponibles(string legajo, DateTime fecha)
         {
             string query = @"
                 SELECT J.rangoHorario
                 FROM Jornadas J
                 LEFT JOIN Turnos T ON J.Legajo = T.Legajo
-                AND CAST(T.FechaPactada AS DATE) = CAST(@Fecha AS DATE)               
+                AND CAST(T.FechaPactada AS DATE) = CAST(@Fecha AS DATE)    
+                AND CONVERT(TIME, T.FechaPactada) = J.rangoHorario
                 WHERE J.Legajo = @Legajo
                 AND J.DiaSemana = DATENAME(WEEKDAY, @Fecha)
+                AND T.Legajo IS NULL
+                ORDER BY J.rangoHorario
                 
                 ";
             SqlParameter[] parameteros = new SqlParameter[] {
             new SqlParameter("@Legajo", legajo),
-            new SqlParameter("@Fecha", fecha)
+            new SqlParameter("@Fecha", fecha.Date)
             };
 
             return conexion.EjecutarConsultaConParametros(query, parameteros);
         }
+
+
+
+
+
+
 
     }
 }

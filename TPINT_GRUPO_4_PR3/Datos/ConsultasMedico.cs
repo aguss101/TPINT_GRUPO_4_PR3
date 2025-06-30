@@ -12,10 +12,10 @@ namespace Datos
         {
             List<Medico> medicos = new List<Medico>();
             string query = "SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, C.correo, T.telefono, L.idLocalidad," +
-                "U.nombreUsuario, U.contrasenia FROM Medico ME " + " INNER JOIN Persona PE ON ME.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo " + 
+                "U.nombreUsuario, U.contrasenia FROM Medico ME " + " INNER JOIN Persona PE ON ME.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo " +
                 "INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad" + "  LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = " +
                 "T.idPersona  INNER JOIN Usuario U ON PE.DNI = U.DNI" +
-                " WHERE activo = 1 " ;
+                " WHERE activo = 1 ";
             try
             {
                 SqlConnection connection = conexion.AbrirConexion();
@@ -45,7 +45,8 @@ namespace Datos
                     };
                     medicos.Add(medico);
                 }
-            }catch(Exception ex) { throw new Exception("Error al buscar medicos: " + ex.Message); }
+            }
+            catch (Exception ex) { throw new Exception("Error al buscar medicos: " + ex.Message); }
             return medicos;
 
         }
@@ -91,9 +92,10 @@ namespace Datos
                 command.Parameters.AddWithValue("@DNI", medico.DNI);
                 command.Parameters.AddWithValue("@Correo", medico.Correo);
                 command.ExecuteNonQuery();
-                try { transaction.Commit(); return 1; }catch(Exception ex) { transaction.Rollback(); }
-                
-            } catch (Exception ex) { throw new Exception("Error al insertar medico: " + ex.Message); }
+                try { transaction.Commit(); return 1; } catch (Exception ex) { transaction.Rollback(); }
+
+            }
+            catch (Exception ex) { throw new Exception("Error al insertar medico: " + ex.Message); }
             return 0;
         }
         public int EliminarMedico(string dni)
@@ -159,8 +161,9 @@ namespace Datos
                 command.Parameters.AddWithValue("@LegajoNuevo", medico.Legajo);
                 command.Parameters.AddWithValue("@DNI", DNI_VIEJO);
                 command.ExecuteNonQuery();
-                try { transaction.Commit();return 1; }catch(Exception ex) { transaction.Rollback(); }
-            }catch(Exception ex) { throw new Exception("Error al modificar medico: " + ex.Message); }
+                try { transaction.Commit(); return 1; } catch (Exception ex) { transaction.Rollback(); }
+            }
+            catch (Exception ex) { throw new Exception("Error al modificar medico: " + ex.Message); }
             return 0;
         }
         public Medico getMedicoPorID(string idMedico)
@@ -199,7 +202,8 @@ namespace Datos
                         Telefono = reader["Telefono"].ToString()
                     };
                 }
-            }catch(Exception ex) { throw new Exception("Error al buscar medico por ID: " + ex.Message); }
+            }
+            catch (Exception ex) { throw new Exception("Error al buscar medico por ID: " + ex.Message); }
             return medico;
         }
     }

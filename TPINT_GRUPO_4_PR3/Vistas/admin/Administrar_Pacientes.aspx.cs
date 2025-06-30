@@ -18,14 +18,14 @@ namespace Vistas.admin
                 btnBaja.Visible = false;
             }
         }
-        protected void btnAlta_Click(object sender, EventArgs e){ mvFormularios.ActiveViewIndex = 0;}
+        protected void btnAlta_Click(object sender, EventArgs e) { mvFormularios.ActiveViewIndex = 0; }
         protected void btnBaja_Click(object sender, EventArgs e)
         {
             try
             {
                 foreach (GridViewRow row in GridView2.Rows)
                 {
-                    if(row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
+                    if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
                     {
                         string DNI = row.Cells[1].Text;
                         gestorPaciente.EliminarPaciente(DNI);
@@ -47,7 +47,7 @@ namespace Vistas.admin
         {
             foreach (GridViewRow row in GridView2.Rows)
             {
-                if(row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
+                if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
                 {
                     string DNI = row.Cells[1].Text;
                     Paciente paciente = new Paciente();
@@ -78,8 +78,8 @@ namespace Vistas.admin
             mvFormularios.ActiveViewIndex = 3;
             loadGridPacientes();
         }
-        protected void btnRegistrarPaciente_Click(object sender, EventArgs e){InsertarPacientes();}
-        protected void btnModificarPaciente_Click(object sender, EventArgs e){ModificarPaciente();}
+        protected void btnRegistrarPaciente_Click(object sender, EventArgs e) { InsertarPacientes(); }
+        protected void btnModificarPaciente_Click(object sender, EventArgs e) { ModificarPaciente(); }
         protected void loadGridPacientes()
         {
             List<Paciente> listaPacientes = new GestorPaciente().GetPacientes();
@@ -156,7 +156,7 @@ namespace Vistas.admin
         }
         protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in GridView2.Rows){if(row.FindControl("chkSeleccionar") is CheckBox chk && chk != sender){chk.Checked = false;}}
+            foreach (GridViewRow row in GridView2.Rows) { if (row.FindControl("chkSeleccionar") is CheckBox chk && chk != sender) { chk.Checked = false; } }
             btnMod.Visible = btnBaja.Visible = (sender as CheckBox)?.Checked == true;
         }
         protected void navigateButton_Click(object sender, CommandEventArgs e)
@@ -169,6 +169,6 @@ namespace Vistas.admin
                 default: break;
             }
         }
-        protected void ddlProvincias_SelectedIndexChanged(object sender, EventArgs e){/*ddlLocalidades.DataBind();*/}
+        protected void ddlProvincias_SelectedIndexChanged(object sender, EventArgs e) {/*ddlLocalidades.DataBind();*/}
     }
 }
