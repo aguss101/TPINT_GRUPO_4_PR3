@@ -379,7 +379,7 @@
                             </asp:DropDownList>
                             <asp:DropDownList ID="ddlModHorario" runat="server" AutoPostBack="True">
                             </asp:DropDownList>
-                            <asp:Button ID="btnModAceptar" runat="server" Text="Aceptar Cambios" OnClick="btnModAplicarCambios_click" />
+                            <asp:Button runat="server" Text="Aceptar Cambios" OnClick="btnModAplicarCambios_click" ID="btnModAplicarCambios" />
                         </asp:View>
                     </asp:MultiView>
                 </td>

@@ -140,10 +140,10 @@ namespace Vistas.admin
         }
 
         ///FALTA TERMINAR LA PARTE DE APLICACION EN LA MOFIFICACION DE TURNOS FINAL PARA QUE SE SOBREESCRIBA! HECHO POR LATO!
-        /*
         protected void btnModAplicarCambios_click(object sender, EventArgs e)
         {
 
+        /*
             string legajo = Session["Legajo"].ToString();
             DateTime fechaPactada = DateTime.Parse(ddlFecha.SelectedValue);
 
@@ -175,10 +175,10 @@ namespace Vistas.admin
             {
                 lblMensaje.Text = "No se encontró el turno a modificar.";
             }
+        */
 
         }
 
-        */
 
         protected void ModificarTurno()
         {

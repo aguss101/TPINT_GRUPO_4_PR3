@@ -222,12 +222,12 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.DropDownList ddlModHorario;
 
         /// <summary>
-        /// btnModAceptar control.
+        /// btnModAplicarCambios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModAcepta;
+        protected global::System.Web.UI.WebControls.Button btnModAplicarCambios;
     }
 }
