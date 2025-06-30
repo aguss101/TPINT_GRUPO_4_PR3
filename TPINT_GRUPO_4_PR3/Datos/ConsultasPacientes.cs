@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -18,28 +19,33 @@ namespace Datos
                 "WHERE activo = 1";
             try
             {
-                SqlConnection connection = conexion.AbrirConexion();
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection con = conexion.AbrirConexion())
+                using (SqlCommand cmd = new SqlCommand(query, con))
                 {
-                    Paciente paciente = new Paciente
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        DNI = reader["DNI"].ToString(),
-                        ObraSocial = Convert.ToInt32(reader["idObraSocial"]),
-                        nombre = reader["nombre"].ToString(),
-                        apellido = reader["apellido"].ToString(),
-                        ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),
-                        Alta = Convert.ToDateTime(reader["alta"]),
-                        genero = Convert.ToInt32(reader["idSexo"]),
-                        fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
-                        Direccion = reader["Direccion"].ToString(),
-                        Localidad = Convert.ToInt32(reader["idLocalidad"]),
-                        nacionalidad = reader["nacionalidad"].ToString(),
-                        Correo = reader["Correo"].ToString(),
-                        Telefono = reader["telefono"].ToString()
-                    };
-                    pacientes.Add(paciente);
+                        while (reader.Read())
+                        {
+
+                            Paciente paciente = new Paciente
+                            {
+                                DNI = reader["DNI"].ToString(),
+                                ObraSocial = Convert.ToInt32(reader["idObraSocial"]),
+                                nombre = reader["nombre"].ToString(),
+                                apellido = reader["apellido"].ToString(),
+                                ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),
+                                Alta = Convert.ToDateTime(reader["alta"]),
+                                genero = Convert.ToInt32(reader["idSexo"]),
+                                fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
+                                Direccion = reader["Direccion"].ToString(),
+                                Localidad = Convert.ToInt32(reader["idLocalidad"]),
+                                nacionalidad = reader["nacionalidad"].ToString(),
+                                Correo = reader["Correo"].ToString(),
+                                Telefono = reader["telefono"].ToString()
+                            };
+                            pacientes.Add(paciente);
+                        }
+                    }
                 }
 
             }
@@ -54,36 +60,50 @@ namespace Datos
             string queryCorreo = @"INSERT INTO Correos (idPersona,correo) VALUES (@DNI,@Correo)";
             try
             {
-                SqlConnection connection = conexion.AbrirConexion();
-                SqlTransaction transaction = connection.BeginTransaction();
-                SqlCommand command = new SqlCommand(queryPersona, connection, transaction);
-                command.Parameters.AddWithValue("@DNI", paciente.DNI);
-                command.Parameters.AddWithValue("@Nombre", paciente.nombre);
-                command.Parameters.AddWithValue("@Apellido", paciente.apellido);
-                command.Parameters.AddWithValue("@Sexo", paciente.genero);
-                command.Parameters.AddWithValue("@Direccion", paciente.Direccion);
-                command.Parameters.AddWithValue("@IdLocalidad", paciente.Localidad);
-                command.Parameters.AddWithValue("@FechaNacimiento", paciente.fechaNacimiento);
-                command.Parameters.AddWithValue("@Nacionalidad", paciente.nacionalidad);
-                command.ExecuteNonQuery();
-                command = new SqlCommand(queryPaciente, connection, transaction);
-                command.Parameters.AddWithValue("@DNI", paciente.DNI);
-                command.Parameters.AddWithValue("@ObraSocial", paciente.ObraSocial);
-                command.Parameters.AddWithValue("@UltimaAtencion", paciente.ultimaAtencion);
-                command.Parameters.AddWithValue("@Alta", paciente.Alta);
-                command.ExecuteNonQuery();
-                command = new SqlCommand(queryTelefono, connection, transaction);
-                command.Parameters.AddWithValue("@DNI", paciente.DNI);
-                command.Parameters.AddWithValue("@Telefono", paciente.Telefono);
-                command.ExecuteNonQuery();
-                command = new SqlCommand(queryCorreo, connection, transaction);
-                command.Parameters.AddWithValue("@DNI", paciente.DNI);
-                command.Parameters.AddWithValue("@Correo", paciente.Correo);
-                command.ExecuteNonQuery();
-                try { transaction.Commit(); return 1; } catch (Exception ex) { transaction.Rollback(); }
+                using (SqlConnection con = conexion.AbrirConexion())
+                {
+                    SqlTransaction transaction = con.BeginTransaction();
+                    try
+                    {
+                        using (SqlCommand cmd = new SqlCommand(queryPersona, con, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@DNI", paciente.DNI);
+                            cmd.Parameters.AddWithValue("@Nombre", paciente.nombre);
+                            cmd.Parameters.AddWithValue("@Apellido", paciente.apellido);
+                            cmd.Parameters.AddWithValue("@Sexo", paciente.genero);
+                            cmd.Parameters.AddWithValue("@Direccion", paciente.Direccion);
+                            cmd.Parameters.AddWithValue("@IdLocalidad", paciente.Localidad);
+                            cmd.Parameters.AddWithValue("@FechaNacimiento", paciente.fechaNacimiento);
+                            cmd.Parameters.AddWithValue("@Nacionalidad", paciente.nacionalidad);
+                            cmd.ExecuteNonQuery();
+                        }
+                        using (SqlCommand cmd = new SqlCommand(queryPaciente, con, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@DNI", paciente.DNI);
+                            cmd.Parameters.AddWithValue("@ObraSocial", paciente.ObraSocial);
+                            cmd.Parameters.AddWithValue("@UltimaAtencion", paciente.ultimaAtencion);
+                            cmd.Parameters.AddWithValue("@Alta", paciente.Alta);
+                            cmd.ExecuteNonQuery();
+                        }
+                        using (SqlCommand cmd = new SqlCommand(queryTelefono, con, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@DNI", paciente.DNI);
+                            cmd.Parameters.AddWithValue("@Telefono", paciente.Telefono);
+                            cmd.ExecuteNonQuery();
+                        }
+                        using (SqlCommand cmd = new SqlCommand(queryCorreo, con, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@DNI", paciente.DNI);
+                            cmd.Parameters.AddWithValue("@Correo", paciente.Correo);
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                        return 1;
+                    }
+                    catch (Exception ex) { transaction.Rollback();  throw new Exception("Error durante la transacción: " + ex.Message); }
+                }
             }
             catch (Exception ex) { throw new Exception("Error al insertar paciente: " + ex.Message); }
-            return 0;
         }
         public int EliminarPaciente(string dni)
         {
@@ -103,42 +123,58 @@ namespace Datos
             string queryTurnos = "UPDATE Turnos SET DNIPaciente=@DNI_NUEVO WHERE DNIPaciente=@DNI_VIEJO";
             try
             {
-                SqlConnection connection = conexion.AbrirConexion();
-                SqlTransaction transaction = connection.BeginTransaction();
-                SqlCommand command = new SqlCommand(queryPersona, connection, transaction);
-                command.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
-                command.Parameters.AddWithValue("@Nombre", paciente.nombre);
-                command.Parameters.AddWithValue("@Apellido", paciente.apellido);
-                command.Parameters.AddWithValue("@Sexo", paciente.genero);
-                command.Parameters.AddWithValue("@Direccion", paciente.Direccion);
-                command.Parameters.AddWithValue("@IdLocalidad", paciente.Localidad);
-                command.Parameters.AddWithValue("@FechaNacimiento", paciente.fechaNacimiento);
-                command.Parameters.AddWithValue("@Nacionalidad", paciente.nacionalidad);
-                command.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
-                command.ExecuteNonQuery();
-                command = new SqlCommand(queryPaciente, connection, transaction);
-                command.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
-                command.Parameters.AddWithValue("@ObraSocial", paciente.ObraSocial);
-                command.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
-                command.ExecuteNonQuery();
-                command = new SqlCommand(queryTelefono, connection, transaction);
-                command.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
-                command.Parameters.AddWithValue("@Telefono", paciente.Telefono);
-                command.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
-                command.ExecuteNonQuery();
-                command = new SqlCommand(queryCorreo, connection, transaction);
-                command.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
-                command.Parameters.AddWithValue("@Correo", paciente.Correo);
-                command.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
-                command.ExecuteNonQuery();
-                command = new SqlCommand(queryTurnos, connection, transaction);
-                command.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
-                command.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
-                command.ExecuteNonQuery();
-                try { transaction.Commit(); return 1; } catch (Exception ex) { transaction.Rollback(); }
+                using (SqlConnection con = conexion.AbrirConexion())
+                {
+                    SqlTransaction transaction = con.BeginTransaction();
+                    try
+                    {
+                        using (SqlCommand cmd = new SqlCommand(queryPersona, con, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
+                            cmd.Parameters.AddWithValue("@Nombre", paciente.nombre);
+                            cmd.Parameters.AddWithValue("@Apellido", paciente.apellido);
+                            cmd.Parameters.AddWithValue("@Sexo", paciente.genero);
+                            cmd.Parameters.AddWithValue("@Direccion", paciente.Direccion);
+                            cmd.Parameters.AddWithValue("@IdLocalidad", paciente.Localidad);
+                            cmd.Parameters.AddWithValue("@FechaNacimiento", paciente.fechaNacimiento);
+                            cmd.Parameters.AddWithValue("@Nacionalidad", paciente.nacionalidad);
+                            cmd.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
+                            cmd.ExecuteNonQuery();
+                        }
+                        using (SqlCommand cmd = new SqlCommand(queryPaciente, con, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
+                            cmd.Parameters.AddWithValue("@ObraSocial", paciente.ObraSocial);
+                            cmd.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
+                            cmd.ExecuteNonQuery();
+                        }
+                        using (SqlCommand cmd = new SqlCommand(queryTelefono, con, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
+                            cmd.Parameters.AddWithValue("@Telefono", paciente.Telefono);
+                            cmd.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
+                            cmd.ExecuteNonQuery();
+                        }
+                        using (SqlCommand cmd = new SqlCommand(queryCorreo, con, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
+                            cmd.Parameters.AddWithValue("@Correo", paciente.Correo);
+                            cmd.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
+                            cmd.ExecuteNonQuery();
+                        }
+                        using (SqlCommand cmd = new SqlCommand(queryTurnos, con, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
+                            cmd.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                        return 1;
+                    }
+                    catch (Exception ex) { transaction.Rollback(); throw new Exception("Error durante la transacción: " + ex.Message); }
+                }
             }
             catch (Exception ex) { throw new Exception("Error al modificar paciente: " + ex.Message); }
-            return 0;
         }
         public Paciente getPacientePorID(string idPaciente)
         {
@@ -149,28 +185,34 @@ namespace Datos
             "WHERE activo = 1 AND PE.DNI = @id ";
             try
             {
-                SqlConnection connection = conexion.AbrirConexion();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@id", idPaciente);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
+                using (SqlConnection con = conexion.AbrirConexion())
                 {
-                    paciente = new Paciente()
+                    using (SqlCommand cmd = new SqlCommand(query, con))
                     {
-                        DNI = reader["DNI"].ToString(),
-                        ObraSocial = Convert.ToInt32(reader["idObraSocial"]),
-                        nombre = reader["nombre"].ToString(),
-                        apellido = reader["apellido"].ToString(),
-                        ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),
-                        Alta = Convert.ToDateTime(reader["alta"]),
-                        genero = Convert.ToInt32(reader["idSexo"]),
-                        fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
-                        Direccion = reader["direccion"].ToString(),
-                        Localidad = Convert.ToInt32(reader["idLocalidad"]),
-                        nacionalidad = reader["nacionalidad"].ToString(),
-                        Correo = reader["Correo"].ToString(),
-                        Telefono = reader["Telefono"].ToString()
-                    };
+                        cmd.Parameters.AddWithValue("@id", idPaciente);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                paciente = new Paciente()
+                                {
+                                    DNI = reader["DNI"].ToString(),
+                                    ObraSocial = Convert.ToInt32(reader["idObraSocial"]),
+                                    nombre = reader["nombre"].ToString(),
+                                    apellido = reader["apellido"].ToString(),
+                                    ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),
+                                    Alta = Convert.ToDateTime(reader["alta"]),
+                                    genero = Convert.ToInt32(reader["idSexo"]),
+                                    fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
+                                    Direccion = reader["direccion"].ToString(),
+                                    Localidad = Convert.ToInt32(reader["idLocalidad"]),
+                                    nacionalidad = reader["nacionalidad"].ToString(),
+                                    Correo = reader["Correo"].ToString(),
+                                    Telefono = reader["Telefono"].ToString()
+                                };
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex) { throw new Exception("Error al buscar paciente por ID: " + ex.Message); }
