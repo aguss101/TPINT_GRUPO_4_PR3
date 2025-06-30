@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Web.UI.WebControls;
+using Entidades;
 using Negocio;
 
 namespace Vistas.admin
@@ -22,6 +24,9 @@ namespace Vistas.admin
                 ddlFecha.Items.Clear();
                 ddlHora.Items.Clear();
 
+
+                btnMod.Visible = false;
+                btnBaja.Visible = false;
             }
 
         }
@@ -118,7 +123,62 @@ namespace Vistas.admin
                 }
             }
         }
+        protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in gvTurnos.Rows) { if (row.FindControl("chkSeleccionar") is CheckBox chk && chk != sender) { chk.Checked = false; } }
+            btnMod.Visible = btnBaja.Visible = (sender as CheckBox)?.Checked == true;
+        }
 
+
+        protected void btnMod_Click(object sender, EventArgs e)
+        {
+            ModificarTurno();
+        }
+
+        protected void ModificarTurno()
+        {
+            foreach (GridViewRow row in gvTurnos.Rows)
+            {
+                if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
+                {
+
+
+                    string legajo = row.Cells[1].Text;
+                    string auxFechaPactada = row.Cells[3].Text.Trim();
+                    DateTime fechaPactada = DateTime.ParseExact(auxFechaPactada, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+
+                    List <Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
+
+
+                    
+                    txtBoxPrueba.Text = fechaPactada.ToString();
+
+
+
+                    /*
+                    //turno = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
+                    Session["DNI_VIEJO"] = paciente.DNI.Trim();
+                    mvFormularios.ActiveViewIndex = 2;
+                    txbModDni.Text = paciente.DNI;
+                    txbModNombre.Text = paciente.nombre;
+                    txbModApellido.Text = paciente.apellido;
+                    ddlModGenero.SelectedValue = paciente.genero.ToString();
+                    ddlModNacionalidad.SelectedValue = paciente.nacionalidad;
+                    //ddlModLocalidades.SelectedValue = paciente.Localidad.ToString();
+                    ///ddlModProvincias.SelectedValue = paciente.Provincia.ToString(); /// FIX
+                    DateTime fechaNac = paciente.fechaNacimiento.Date;
+                    txbModFechaNacimiento.Text = fechaNac.ToString("yyyy-MM-dd");
+                    txbModDireccion.Text = paciente.Direccion;
+                    ddlModObraSocial.SelectedValue = paciente.ObraSocial.ToString();
+                    txbModTelefono.Text = paciente.Telefono.ToString();
+                    txbModCorreo.Text = paciente.Correo;
+                    */
+                    break;
+                }
+            }
+            btnMod.Visible = false;
+            btnBaja.Visible = false;
+        }
         protected void navigateButton_Click(object sender, CommandEventArgs e)
         {
 

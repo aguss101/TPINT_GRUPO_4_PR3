@@ -332,13 +332,20 @@
                         <tr>
                             <td class="auto-style32">
                                 <asp:Button ID="btnRegistrar" runat="server" Text="Registrar Turno" Width="188px" /></td>
-                            <td class="auto-style30">&nbsp;</td>
+                            <td class="auto-style30">
+                                <asp:Button ID="btnMod" runat="server" Text="Modificar Turno" OnClick="btnMod_Click" Width="188px" />
+                                <asp:Button ID="btnBaja" runat="server" Text="Dar de baja"  Width="188px" />
+                                <asp:TextBox ID="txtBoxPrueba" runat="server"></asp:TextBox>
+                            </td>
                             <td class="auto-style31">&nbsp;</td>
                         </tr>
                         <tr>
                             <td class="no-select"></td>
                             <td class="no-select">
                                 <asp:GridView ID="gvTurnos" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Seleccionar"><ItemTemplate><asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True"  OnCheckedChanged="chkSeleccionar_CheckedChanged"/></ItemTemplate></asp:TemplateField>
+                                    </Columns>
                                     <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                                     <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
                                     <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
