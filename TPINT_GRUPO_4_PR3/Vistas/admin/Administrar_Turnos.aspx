@@ -184,7 +184,7 @@
 
         .auto-style10 {
             width: 100%;
-            height: 100%;
+            height: 93%;
             margin-top: 0px;
         }
 
@@ -236,13 +236,24 @@
             user-select: none;
             height: 25px;
         }
+        .auto-style37 {
+            width: 157px;
+            background-color: #ffffff;
+            height: 108%;
+        }
+        .auto-style38 {
+            background-color: #e6e6e6;
+            padding: 0px 30px 30px 30px;
+            font-weight: normal;
+            height: 108%;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <table class="tablaDiv">
             <tr>
-                <td class="columnaIndex">
+                <td class="auto-style37">
                     <table class="auto-style3">
                         <tr>
                             <td class="columnaIndex-PanelAdmin">Panel Admin</td>
@@ -271,8 +282,11 @@
                         </tr>
                     </table>
                 </td>
-                <td class="columnaBody">
-                    <table class="auto-style10">
+                <td class="auto-style38">
+
+                    <asp:MultiView ID="mvAsignarTurnos" runat="server">
+                        <asp:View ID="vwAsignar" runat="server">
+                                                <table class="auto-style10">
                         <tr>
                             <td class="auto-style22" colspan="3">
                                 <div class="titulo-con-nombre">
@@ -359,6 +373,15 @@
                             <td class="auto-style28"></td>
                         </tr>
                     </table>
+                        </asp:View>
+                        <asp:View ID="vwModificar" runat="server">
+                            <asp:DropDownList ID="ddlModFecha" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlModFecha_SelectedIndexChanged">
+                            </asp:DropDownList>
+                            <asp:DropDownList ID="ddlModHorario" runat="server" AutoPostBack="True">
+                            </asp:DropDownList>
+                            <asp:TextBox ID="txtPrueba" runat="server"></asp:TextBox>
+                        </asp:View>
+                    </asp:MultiView>
                 </td>
             </tr>
         </table>

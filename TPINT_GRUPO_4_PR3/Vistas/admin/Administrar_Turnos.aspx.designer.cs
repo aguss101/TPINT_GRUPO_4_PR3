@@ -60,6 +60,24 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.HyperLink hlCerrarSesion;
 
         /// <summary>
+        /// mvAsignarTurnos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView mvAsignarTurnos;
+
+        /// <summary>
+        /// vwAsignar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vwAsignar;
+
+        /// <summary>
         /// lblUser control.
         /// </summary>
         /// <remarks>
@@ -175,5 +193,41 @@ namespace Vistas.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvTurnos;
+
+        /// <summary>
+        /// vwModificar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vwModificar;
+
+        /// <summary>
+        /// ddlModFecha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlModFecha;
+
+        /// <summary>
+        /// ddlModHorario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlModHorario;
+
+        /// <summary>
+        /// txtPrueba control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPrueba;
     }
 }

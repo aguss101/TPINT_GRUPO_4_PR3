@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
 using System.Web.UI.WebControls;
 using Entidades;
@@ -15,6 +16,7 @@ namespace Vistas.admin
         {
             if (!IsPostBack)
             {
+                mvAsignarTurnos.ActiveViewIndex = 0;
 
                 lblUser.Text = Session["User"] as string;
 
@@ -132,6 +134,7 @@ namespace Vistas.admin
 
         protected void btnMod_Click(object sender, EventArgs e)
         {
+            
             ModificarTurno();
         }
 
@@ -144,14 +147,37 @@ namespace Vistas.admin
 
 
                     string legajo = row.Cells[1].Text;
+                    Session["Legajo"] = legajo;
                     string auxFechaPactada = row.Cells[3].Text.Trim();
                     DateTime fechaPactada = DateTime.ParseExact(auxFechaPactada, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
 
                     List <Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
 
+                    gvTurnos.DataSource = turnos;
+                    gvTurnos.DataBind();
+                    mvAsignarTurnos.ActiveViewIndex = 1;
+
+
+
+
+                    DateTime fechaHoy = DateTime.Today;
+                    List<DateTime> fechas = gestorturnos.ObtenerFechasDisponibles(legajo, fechaHoy, fechaHoy.AddDays(14));
+                    //txtBoxPrueba.Text = fechaHoy.ToString("yyyy-MM-dd");
+
+                    ddlModFecha.Items.Clear();
+                    ddlModFecha.Items.Add(new ListItem("--Seleccione Fecha--", ""));
+
 
                     
-                    txtBoxPrueba.Text = fechaPactada.ToString();
+                    foreach (DateTime fecha in fechas)
+                    {
+                        ddlModFecha.Items.Add(new ListItem(
+                            fecha.ToString("dddd dd/MM/yyyy"),
+                            fecha.ToString("yyyy-MM-dd")
+                        ));
+                    }
+                    
+
 
 
 
@@ -178,6 +204,26 @@ namespace Vistas.admin
             }
             btnMod.Visible = false;
             btnBaja.Visible = false;
+        }
+
+
+
+        protected void ddlModFecha_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlModHorario.Items.Clear();
+            if(!string.IsNullOrEmpty(ddlModFecha.SelectedValue)){
+                string legajo = Session["Legajo"].ToString();
+                DateTime fechaSeleccionada = DateTime.Parse(ddlModFecha.SelectedValue);
+
+                DataTable dtHorariosDisponibles = gestorturnos.ObtenerHorasDisponibles(legajo, fechaSeleccionada);
+
+                ddlModHorario.Items.Add(new ListItem("--Seleccione hora--", ""));
+                foreach (DataRow row in dtHorariosDisponibles.Rows)
+                {
+                    string hora = row["rangoHorario"].ToString();
+                    ddlModHorario.Items.Add(new ListItem(hora, hora));
+                }
+            }
         }
         protected void navigateButton_Click(object sender, CommandEventArgs e)
         {
