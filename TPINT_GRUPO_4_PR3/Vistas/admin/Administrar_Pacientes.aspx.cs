@@ -1,3 +1,4 @@
+﻿
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
@@ -162,7 +163,7 @@ namespace Vistas.admin
                 default: break;
             }
         }
-        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e) {ddlLocalidades.DataBind();}
-        protected void ddlModProvincias_SelectedIndexChanged(object sender, EventArgs e) {ddlModLocalidades.DataBind();}
+        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e) { ddlLocalidades.DataBind(); }
+        protected void ddlModProvincias_SelectedIndexChanged(object sender, EventArgs e) { ddlModLocalidades.DataBind(); }
     }
 }

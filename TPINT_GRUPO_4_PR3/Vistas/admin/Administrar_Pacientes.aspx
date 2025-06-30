@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Administrar_Pacientes.aspx.cs" Inherits="Vistas.admin.Administrar_Pacientes" %>
+﻿
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Administrar_Pacientes.aspx.cs" Inherits="Vistas.admin.Administrar_Pacientes" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -334,7 +335,8 @@
                                 <div class="titulo-con-nombre">
                                     <h2><span class="clinica">Clínica</span> <span class="frgp">FRGP</span></h2>
                                     <div class="sidebarUser">
-                                        <asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Names="Calibri" Text="Administrador"></asp:Label></div>
+                                        <asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Names="Calibri" Text="Administrador"></asp:Label>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
@@ -399,70 +401,71 @@
                                                     </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
-                                                    <tr>
-                                                        <td class="auto-style32">Provincia:</td>
-                                                        <td class="auto-style30">
-                                                            <asp:DropDownList 
+                                                <tr>
+                                                    <td class="auto-style32">Provincia:</td>
+                                                    <td class="auto-style30">
+                                                        <asp:DropDownList
                                                             ID="ddlProvincia" runat="server" AutoPostBack="True" DataSourceID="dbProvincias" DataTextField="nombreProvincia" DataValueField="idProvincia" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged">
                                                         </asp:DropDownList>
-                                                            <asp:SqlDataSource ID="dbProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT idProvincia, nombreProvincia FROM Provincias"></asp:SqlDataSource>
-                                                        </td>
-                                                        <td class="auto-style31"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="auto-style32">Localidad:</td>
-                                                        <td class="auto-style30">
-                                                            <asp:DropDownList ID="ddlLocalidades" runat="server" DataSourceID="dbLocalidades" DataTextField="nombreLocalidad" DataValueField="idLocalidad">
-                                                            </asp:DropDownList>
-                                                            <asp:SqlDataSource ID="dbLocalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT idLocalidad, nombreLocalidad FROM Localidades WHERE idProvincia = @idProvincia">
-                                                                <SelectParameters>
-                                                                    <asp:ControlParameter ControlID="ddlProvincia" Name="idProvincia" PropertyName="SelectedValue" />
-                                                                </SelectParameters>
-                                                            </asp:SqlDataSource>
-                                                        </td>
-                                                        <td class="auto-style31">&nbsp;</td>
-                                                    </tr>
-                                                        <tr>
-                                                            <td class="auto-style32">Dirección</td>
-                                                            <td class="auto-style30">
-                                                                <asp:TextBox ID="txbDireccion" runat="server"></asp:TextBox>
-                                                            </td>
-                                                            <td class="auto-style31">&nbsp;</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="auto-style32">Obra Social</td>
-                                                            <td class="auto-style30">
-                                                                <asp:DropDownList ID="ddlObraSocial" runat="server" AutoPostBack="True" DataSourceID="dbObraSocial" DataTextField="nombre" DataValueField="idObraSocial">
-                                                                </asp:DropDownList>
-                                                                <asp:SqlDataSource ID="dbObraSocial" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT [nombre], [idObraSocial] FROM [ObraSocial]"></asp:SqlDataSource>
-                                                            </td>
-                                                            <td class="auto-style31">&nbsp;</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="auto-style32">Teléfono</td>
-                                                            <td class="auto-style30">
-                                                                <asp:TextBox ID="txbTelefono" runat="server"></asp:TextBox>
-                                                            </td>
-                                                            <td class="auto-style31"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="auto-style37">Correo</td>
-                                                            <td class="no-select">
-                                                                <asp:TextBox ID="txbCorreo" runat="server"></asp:TextBox>
-                                                            </td>
-                                                            <td class="auto-style36"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="auto-style32">
-                                                                <asp:Button ID="btnRegistrarPaciente" runat="server" OnClick="btnRegistrarPaciente_Click" Text="Registrar paciente" Width="188px" />
-                                                            </td>
-                                                            <td class="auto-style30">
-                                                                <asp:Label ID="lblAddUserState" runat="server" Visible="False"></asp:Label>
-                                                            </td>
-                                                            <td class="auto-style31">&nbsp;</td>
-                                                        </tr>
-                                                    </caption>
+                                                        <asp:SqlDataSource ID="dbProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT idProvincia, nombreProvincia FROM Provincias"></asp:SqlDataSource>
+                                                    </td>
+                                                    <td class="auto-style31"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">Localidad:</td>
+                                                    <td class="auto-style30">
+                                                        <asp:DropDownList ID="ddlLocalidades" runat="server" DataSourceID="dbLocalidades" DataTextField="nombreLocalidad" DataValueField="idLocalidad">
+                                                        </asp:DropDownList>
+                                                        <asp:SqlDataSource ID="dbLocalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT idLocalidad, nombreLocalidad FROM Localidades WHERE idProvincia = @idProvincia">
+                                                            <SelectParameters>
+                                                                <asp:ControlParameter ControlID="ddlProvincia" Name="idProvincia" PropertyName="SelectedValue" />
+                                                            </SelectParameters>
+                                                        </asp:SqlDataSource>
+                                                    </td>
+                                                    <td class="auto-style31">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">Dirección</td>
+                                                    <td class="auto-style30">
+                                                        <asp:TextBox ID="txbDireccion" runat="server"></asp:TextBox>
+                                                    </td>
+                                                    <td class="auto-style31">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">Obra Social</td>
+                                                    <td class="auto-style30">
+                                                        <asp:DropDownList ID="ddlObraSocial" runat="server" AutoPostBack="True" DataSourceID="dbObraSocial" DataTextField="nombre" DataValueField="idObraSocial">
+                                                        </asp:DropDownList>
+                                                        <asp:SqlDataSource ID="dbObraSocial" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT [nombre], [idObraSocial] FROM [ObraSocial]"></asp:SqlDataSource>
+                                                    </td>
+                                                    <td class="auto-style31">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">Teléfono</td>
+                                                    <td class="auto-style30">
+                                                        <asp:TextBox ID="txbTelefono" runat="server"></asp:TextBox>
+                                                    </td>
+                                                    <td class="auto-style31"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style37">Correo</td>
+                                                    <td class="no-select">
+                                                        <asp:TextBox ID="txbCorreo" runat="server"></asp:TextBox>
+                                                    </td>
+                                                    <td class="auto-style36"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="auto-style32">
+                                                        <asp:Button ID="btnRegistrarPaciente" runat="server" OnClick="btnRegistrarPaciente_Click" Text="Registrar paciente" Width="188px" />
+                                                    </td>
+                                                    <td class="auto-style30">
+                                                        <asp:Label ID="lblAddUserState" runat="server" Visible="False"></asp:Label>
+                                                    </td>
+                                                    <td class="auto-style31">&nbsp;</td>
+                                                </tr>
                                                 </caption>
+                                                </caption>
+                                           
                                             </table>
                                         </div>
                                     </asp:View>
@@ -509,21 +512,24 @@
                                                 </tr>
 
                                                 <tr>
-                                                    <td class="auto-style32">Nacionalidad</td><td class="auto-style30">
-                                                    <asp:DropDownList ID="ddlModNacionalidad" runat="server" DataSourceID="dbModNacionalidades" DataTextField="gentilicio" DataValueField="gentilicio">
-                                                    </asp:DropDownList>
-                                                    <asp:SqlDataSource ID="dbModNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT [idPais], [gentilicio] FROM [Paises]"></asp:SqlDataSource>
-                                                    </td><td class="auto-style31">&nbsp;</td></tr>
+                                                    <td class="auto-style32">Nacionalidad</td>
+                                                    <td class="auto-style30">
+                                                        <asp:DropDownList ID="ddlModNacionalidad" runat="server" DataSourceID="dbModNacionalidades" DataTextField="gentilicio" DataValueField="gentilicio">
+                                                        </asp:DropDownList>
+                                                        <asp:SqlDataSource ID="dbModNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT [idPais], [gentilicio] FROM [Paises]"></asp:SqlDataSource>
+                                                    </td>
+                                                    <td class="auto-style31">&nbsp;</td>
+                                                </tr>
                                                 -->
+                                               
                                                 <tr>
                                                     <td class="auto-style32">Provincia</td>
                                                     <td class="auto-style30">
-                                                        <asp:DropDownList 
+                                                        <asp:DropDownList
                                                             ID="ddlModProvincias" runat="server" AutoPostBack="True" DataSourceID="dbModProvincias" DataTextField="nombreProvincia" DataValueField="idProvincia" OnSelectedIndexChanged="ddlModProvincias_SelectedIndexChanged">
                                                         </asp:DropDownList>
-                                                        <asp:SqlDataSource 
-                                                            ID="dbModProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT idProvincia, nombreProvincia FROM Provincias">
-                                                        </asp:SqlDataSource>
+                                                        <asp:SqlDataSource
+                                                            ID="dbModProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT idProvincia, nombreProvincia FROM Provincias"></asp:SqlDataSource>
                                                     </td>
                                                     <td class="auto-style31">&nbsp;</td>
                                                 </tr>
@@ -531,11 +537,11 @@
                                                 <tr>
                                                     <td class="auto-style32">Localidad</td>
                                                     <td class="auto-style30">
-                                                        <asp:DropDownList 
+                                                        <asp:DropDownList
                                                             ID="ddlModLocalidades" runat="server" DataSourceID="dbModLocalidades" DataTextField="nombreLocalidad" DataValueField="idLocalidad">
                                                         </asp:DropDownList>
 
-                                                        <asp:SqlDataSource 
+                                                        <asp:SqlDataSource
                                                             ID="dbModLocalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT idLocalidad, nombreLocalidad FROM Localidades WHERE idProvincia = @idProvincia">
                                                             <SelectParameters>
                                                                 <asp:ControlParameter Name="idProvincia" ControlID="ddlModProvincias" PropertyName="SelectedValue" />
@@ -590,7 +596,8 @@
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Seleccionar">
                                                         <ItemTemplate>
-                                                            <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccionar_CheckedChanged" /></ItemTemplate>
+                                                            <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccionar_CheckedChanged" />
+                                                        </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:BoundField DataField="DNI" HeaderText="DNI" />
                                                     <asp:BoundField DataField="obraSocial" HeaderText="Obra Social" />
