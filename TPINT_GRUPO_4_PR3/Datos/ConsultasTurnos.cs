@@ -25,18 +25,34 @@ namespace Datos
         }
         public List<Turno> GetTurnosMedico(string legajo, DateTime? fechaSelected)
         {
-            List<Turno> turnos = new List<Turno>();
-            string query = "SELECT * FROM vw_TurnosConDatos WHERE @Legajo = Legajo AND (@Fecha IS NULL OR CONVERT(date, fechaPactada) = CONVERT(date, @Fecha)) ORDER BY fechaPactada,Legajo,DNIPaciente";
-            try
+            var turnos = new List<Turno>();
+            string query = @"
+        SELECT *
+          FROM vw_TurnosConDatos
+         WHERE Legajo = @Legajo
+           AND (@Fecha IS NULL OR CONVERT(date, fechaPactada) = @Fecha)
+         ORDER BY fechaPactada, Legajo, DNIPaciente;
+    ";
+
+
+            using (SqlConnection connection = conexion.AbrirConexion())
+            using (SqlCommand command = new SqlCommand(query, connection))
             {
-                SqlConnection connection = conexion.AbrirConexion();
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
+
                 command.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) { Value = legajo });
-                command.Parameters.Add(new SqlParameter("@Fecha", SqlDbType.DateTime) { Value = fechaSelected.HasValue ? (object)fechaSelected.Value.Date : DBNull.Value });
-                while (reader.Read()) { turnos.Add(MapearTurno(reader)); }
+
+                command.Parameters.Add(new SqlParameter("@Fecha", SqlDbType.Date) { Value = fechaSelected.HasValue ? (object)fechaSelected.Value.Date : DBNull.Value });
+
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        turnos.Add(MapearTurno(reader));
+                    }
+                }
             }
-            catch (Exception ex) { throw new Exception("Error al cargar turnos: " + ex.Message); }
+
             return turnos;
         }
         public int MarcarAsistenciaTurno(Turno turno)
