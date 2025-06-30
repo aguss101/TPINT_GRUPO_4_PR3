@@ -123,22 +123,23 @@ namespace Vistas.admin
         }
         protected void ModificarPaciente()
         {
-            Paciente paciente = new Paciente();
+            Paciente paciente = new Paciente()
+            {
 
-            paciente.DNI = txbModDni.Text.Trim();
-            paciente.nombre = txbModNombre.Text.Trim();
-            paciente.apellido = txbModApellido.Text.Trim();
-            paciente.fechaNacimiento = Convert.ToDateTime(txbModFechaNacimiento.Text.Trim());
-            paciente.ObraSocial = int.Parse(ddlModObraSocial.SelectedValue);
-            paciente.genero = int.Parse(ddlModGenero.SelectedValue);
-            paciente.ultimaAtencion = DateTime.Now;
-            paciente.Alta = DateTime.Now;
-            paciente.nacionalidad = ddlModNacionalidad.SelectedValue.ToString();
-            paciente.Localidad = int.Parse(ddlModLocalidades.SelectedValue);
-            paciente.Direccion = txbModDireccion.Text.Trim();
-            paciente.Telefono = txbModTelefono.Text.Trim();
-            paciente.Correo = txbModCorreo.Text.Trim();
-
+                DNI = txbModDni.Text.Trim(),
+                nombre = txbModNombre.Text.Trim(),
+                apellido = txbModApellido.Text.Trim(),
+                fechaNacimiento = Convert.ToDateTime(txbModFechaNacimiento.Text.Trim()),
+                ObraSocial = int.Parse(ddlModObraSocial.SelectedValue),
+                genero = int.Parse(ddlModGenero.SelectedValue),
+                ultimaAtencion = DateTime.Now,
+                Alta = DateTime.Now,
+                nacionalidad = ddlModNacionalidad.SelectedValue.ToString(),
+                Localidad = int.Parse(ddlModLocalidades.SelectedValue),
+                Direccion = txbModDireccion.Text.Trim(),
+                Telefono = txbModTelefono.Text.Trim(),
+                Correo = txbModCorreo.Text.Trim()
+            };
             string DNI_VIEJO = (Session["DNI_VIEJO"] as string)?.Trim();
             int filas = gestorPaciente.ModificarPaciente(paciente, DNI_VIEJO);
             if (filas > 0)
@@ -164,6 +165,6 @@ namespace Vistas.admin
             }
         }
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e) { ddlLocalidades.DataBind(); }
-        protected void ddlModProvincias_SelectedIndexChanged(object sender, EventArgs e) { ddlModLocalidades.DataBind(); }
+        protected void ddlModProvincia_SelectedIndexChanged(object sender, EventArgs e) { ddlModLocalidades.DataBind(); }
     }
 }

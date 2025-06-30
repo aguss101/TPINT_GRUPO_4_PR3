@@ -154,8 +154,8 @@ namespace Vistas.admin
                 fechaNacimiento = Convert.ToDateTime(txtbModFechaNac.Text.Trim()),
                 idEspecialidad = int.Parse(ddlModEspecialidad.SelectedValue.Trim()),
                 genero = int.Parse(ddlModGenero.SelectedValue),
-                Localidad = int.Parse(ddlModLocalidad.SelectedValue),
                 nacionalidad = ddlModNacionalidad.SelectedValue,
+                Localidad = int.Parse(ddlModLocalidad.SelectedValue),
                 Direccion = txtbModMedicoDireccion.Text,
                 Telefono = txtbModMedicoTelefono.Text.Trim(),
                 Correo = txtbModMedicoCorreo.Text
@@ -226,13 +226,7 @@ namespace Vistas.admin
             btnMod.Visible = btnBaja.Visible = (sender as CheckBox)?.Checked == true;
         }
         protected void btnEliminar_Click(object sender, EventArgs e) { mvFormularios.ActiveViewIndex = 1; }
-        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ddlLocalidades.DataBind();
-        }
-        protected void ddlModProvincia_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ddlModLocalidad.DataBind();
-        }
+        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e) { ddlLocalidades.DataBind(); }
+        protected void ddlModProvincia_SelectedIndexChanged(object sender, EventArgs e) { ddlModLocalidad.DataBind(); }
     }
 }

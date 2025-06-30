@@ -624,8 +624,7 @@
                                                     <td class="auto-style51">Provincia:</td>
                                                     <td class="auto-style46">
                                                         <asp:DropDownList ID="ddlModProvincia" runat="server" AutoPostBack="True" DataSourceID="dbModProvincia" DataTextField="nombreProvincia" DataValueField="idProvincia" OnSelectedIndexChanged="ddlModProvincia_SelectedIndexChanged"></asp:DropDownList>
-                                                        <asp:SqlDataSource ID="dbModProvincia" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT idProvincia, nombreProvincia FROM Provincias">
-                                                        </asp:SqlDataSource>
+                                                        <asp:SqlDataSource ID="dbModProvincia" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT idProvincia, nombreProvincia FROM Provincias"></asp:SqlDataSource>
                                                     </td>
                                                     <td>&nbsp;</td>
                                                 </tr>
@@ -639,6 +638,7 @@
                                                                 <asp:ControlParameter Name="idProvincia" ControlID="ddlModProvincia" PropertyName="SelectedValue" />
                                                             </SelectParameters>
                                                         </asp:SqlDataSource>
+                                                        
                                                     </td>
                                                     <td>&nbsp;</td>
                                                 </tr>
