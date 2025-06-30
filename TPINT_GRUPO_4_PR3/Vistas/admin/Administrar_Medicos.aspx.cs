@@ -32,7 +32,7 @@ namespace Vistas.admin
             {
                 foreach (GridViewRow row in gvLecturaMedico.Rows)
                 {
-                    if(row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
+                    if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
                     {
                         string DNI = row.Cells[2].Text;
                         gestorMedico.EliminarMedico(DNI);
@@ -54,9 +54,10 @@ namespace Vistas.admin
         {
             foreach (GridViewRow row in gvLecturaMedico.Rows)
             {
-                if(row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked){
+                if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
+                {
                     string DNI = row.Cells[2].Text;
-                    Medico medico = new Medico(){Usuario = new Usuario()};
+                    Medico medico = new Medico() { Usuario = new Usuario() };
                     medico = gestorMedico.getMedicoPorID(DNI);
                     lblAddUserState0.Visible = false;
                     Session["DNI_VIEJO"] = medico.DNI;
@@ -141,9 +142,11 @@ namespace Vistas.admin
         {
             Medico medico = new Medico()
             {
-                Usuario = new Usuario(){
+                Usuario = new Usuario()
+                {
                     NombreUsuario = txtbModMedicoUsuario.Text.Trim(),
-                    contrasenia = txtbModMedicoContrasenia.Text.Trim()},
+                    contrasenia = txtbModMedicoContrasenia.Text.Trim()
+                },
                 DNI = txtbModMedicoDNI.Text.Trim(),
                 Legajo = txtbModMedicoLegajo.Text.Trim(),
                 nombre = txtbModMedicoNombre.Text.Trim(),
@@ -211,17 +214,25 @@ namespace Vistas.admin
         {
             switch (e.CommandArgument.ToString())
             {
-                case "Medicos": Response.Redirect("/admin/Administrar_Medicos.aspx");break;
-                case "Pacientes": Response.Redirect("/admin/Administrar_Pacientes.aspx");break;
-                case "Turnos": Response.Redirect("/admin/Administrar_Turnos.aspx");break;
+                case "Medicos": Response.Redirect("/admin/Administrar_Medicos.aspx"); break;
+                case "Pacientes": Response.Redirect("/admin/Administrar_Pacientes.aspx"); break;
+                case "Turnos": Response.Redirect("/admin/Administrar_Turnos.aspx"); break;
                 default: break;
             }
         }
         protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in gvLecturaMedico.Rows){if(row.FindControl("chkSeleccionar") is CheckBox chk && chk != sender){chk.Checked = false;}}
+            foreach (GridViewRow row in gvLecturaMedico.Rows) { if (row.FindControl("chkSeleccionar") is CheckBox chk && chk != sender) { chk.Checked = false; } }
             btnMod.Visible = btnBaja.Visible = (sender as CheckBox)?.Checked == true;
         }
-        protected void btnEliminar_Click(object sender, EventArgs e){mvFormularios.ActiveViewIndex = 1;}
+        protected void btnEliminar_Click(object sender, EventArgs e) { mvFormularios.ActiveViewIndex = 1; }
+        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlLocalidades.DataBind();
+        }
+        protected void ddlModProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlModLocalidad.DataBind();
+        }
     }
 }
