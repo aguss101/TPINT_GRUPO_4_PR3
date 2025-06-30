@@ -17,5 +17,8 @@ namespace Entidades
         public string Medico { get; set; }
         public int IdEspecialidad { get; set; }
         public string Especialidad { get; set; }
+
+        //Extras para logica como reemplazo del IdTurno el cual no tenemos
+        public DateTime FechaOriginal { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -40,7 +41,6 @@ namespace Datos
             {
 
                 command.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) { Value = legajo });
-
                 command.Parameters.Add(new SqlParameter("@Fecha", SqlDbType.Date) { Value = fechaSelected.HasValue ? (object)fechaSelected.Value.Date : DBNull.Value });
 
 
@@ -152,6 +152,32 @@ namespace Datos
             };
 
             return conexion.EjecutarConsultaConParametros(query, parameteros);
+        }
+        public bool ModificarTurno(Turno turno)
+        {
+            string query = "UPDATE Turnos " +
+            "SET fechaPactada = @FechaNueva," + 
+                "observacion = @Observacion," +
+                "diagnostico = @Diagnostico" +
+            "WHERE Legajo = @Legajo " +
+              "AND DNIPaciente = @DNIPaciente" +
+              "AND fechaPactada = @FechaOriginal";
+
+            using (SqlConnection con = conexion.AbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@FechaNueva", turno.FechaPactada);
+                    cmd.Parameters.AddWithValue("@Observacion", turno.Observacion ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Diagnostico", turno.Diagnostico ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Legajo", turno.Legajo);
+                    cmd.Parameters.AddWithValue("@DNIPaciente", turno.DNIPaciente);
+                    cmd.Parameters.AddWithValue("@FechaOriginal", turno.FechaOriginal);
+
+                    con.Open();
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
         }
 
     }

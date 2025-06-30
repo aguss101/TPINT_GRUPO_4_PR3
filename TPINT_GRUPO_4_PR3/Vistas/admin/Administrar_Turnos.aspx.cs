@@ -106,6 +106,7 @@ namespace Vistas.admin
                 ddlFecha.Items.Add(new ListItem(
                     fecha.ToString("dddd dd/MM/yyyy"),
                     fecha.ToString("yyyy-MM-dd")
+
                 ));
             }
         }
@@ -142,44 +143,52 @@ namespace Vistas.admin
         ///FALTA TERMINAR LA PARTE DE APLICACION EN LA MOFIFICACION DE TURNOS FINAL PARA QUE SE SOBREESCRIBA! HECHO POR LATO!
         protected void btnModAplicarCambios_click(object sender, EventArgs e)
         {
-
-        /*
             string legajo = Session["Legajo"].ToString();
-            DateTime fechaPactada = DateTime.Parse(ddlFecha.SelectedValue);
 
+            string valorFecha = ddlFecha.SelectedValue;
 
-            DateTime fechaNueva = DateTime.ParseExact(ddlModFecha.SelectedValue, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            if (string.IsNullOrEmpty(valorFecha) || valorFecha == "--Seleccione Fecha--")
+            {
+                lblMensaje.Text = "Debe seleccionar una fecha válida.";
+                return;
+            }
+
+            DateTime fechaPactada = DateTime.ParseExact(valorFecha, "yyyy/MM/dd", CultureInfo.InvariantCulture);
+
+            if (string.IsNullOrEmpty(ddlModFecha.SelectedValue) || ddlModFecha.SelectedValue == "--Seleccione Fecha--")
+            {
+                lblMensaje.Text = "Debe seleccionar una nueva fecha válida.";
+                return;
+            }
+
+            if (string.IsNullOrEmpty(ddlModHorario.SelectedValue))
+            {
+                lblMensaje.Text = "Debe seleccionar un horario válido.";
+                return;
+            }
+            DateTime fechaNueva = DateTime.ParseExact(ddlModFecha.SelectedValue, "yyyy/MM/dd", CultureInfo.InvariantCulture);
             TimeSpan horaNueva = TimeSpan.Parse(ddlModHorario.SelectedValue);
             DateTime fechaHoraNueva = fechaNueva.Add(horaNueva);
 
+            string observacion = txtObservacion.Text.Trim();
+            string diagnostico = txtDiagnostico.Text.Trim();
 
             List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
-
-            // Selecciono el unico turno que existe en la lista Turnos
             Turno turnoSeleccionado = turnos.FirstOrDefault();
 
             if (turnoSeleccionado != null)
             {
+                turnoSeleccionado.FechaOriginal = turnoSeleccionado.FechaPactada;
                 turnoSeleccionado.FechaPactada = fechaHoraNueva;
                 bool exito = gestorturnos.ModificarTurno(turnoSeleccionado);
-                if (exito)
-                {
-                    lblMensaje.Text = "Turno actualizado con éxito.";
-                }
-                else
-                {
-                    lblMensaje.Text = "No se pudo actualizar el turno.";
-                }
+
+                lblMensaje.Text = exito ? "Turno actualizado con éxito." : "No se pudo actualizar el turno.";
             }
             else
             {
                 lblMensaje.Text = "No se encontró el turno a modificar.";
             }
-        */
-
         }
-
-
         protected void ModificarTurno()
         {
             foreach (GridViewRow row in gvTurnos.Rows)

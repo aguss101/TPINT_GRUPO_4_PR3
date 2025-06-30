@@ -17,6 +17,10 @@ namespace Negocio
         public List<Turno> FiltrarPacientexDNI(string legajo, string dniPaciente) { return consultas.FiltrarPacientexDNI(legajo, dniPaciente); }
         public DataTable ObtenerMedicosPorEspecialidad(int idEspecialidad) { return consultas.ObtenerMedicosPorEspecialidad(idEspecialidad); }
         public DataTable ObtenerHorasDisponibles(string legajo, DateTime fecha) { return consultas.ObtenerHorasDisponibles(legajo, fecha); }
+        public bool ModificarTurno(Turno turno)
+        {
+            return consultas.ModificarTurno(turno);
+        }
 
         public List<DateTime> ObtenerFechasDisponibles(string legajo, DateTime desde, DateTime hasta)
         {
@@ -36,21 +40,15 @@ namespace Negocio
                     }
                     else if (dia == DateTime.Today)
                     {
-                        //Tomo los horarios actuales para saber cuales vencieron...
                         TimeSpan horaActual = DateTime.Now.TimeOfDay;
 
-
-
-                        //AsEnumerable convierte un dataTable en una coleccion enumerable de filas
                         var filasValidas = dtHoras.AsEnumerable()
-                        //Consulto si algun turno de hoy, cuenta con un horario mayor al actual, para poder efectuar la modificacion y no este vencido el horario
                         .Where(row =>
                         {
                             
                             TimeSpan horaTurno = TimeSpan.Parse(row["RangoHorario"].ToString());
                             return horaTurno > horaActual;
                         });
-                        //.Any verifica si al menos hay alguna coincidencia, en caso de ser asi, retorna el bool de filas validas, y agrega el horario de hoy disponible
                         if (filasValidas.Any())
                         {
                             fechas.Add(dia);
@@ -63,8 +61,5 @@ namespace Negocio
             return fechas;
 
         }
-
-
- 
     }
 }
