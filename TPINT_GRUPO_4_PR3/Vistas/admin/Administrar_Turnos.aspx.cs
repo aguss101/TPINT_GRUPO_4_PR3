@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Web.UI.WebControls;
 using Entidades;
 using Negocio;
@@ -93,7 +94,7 @@ namespace Vistas.admin
         {
             ddlFecha.Items.Clear();
             ddlHora.Items.Clear();
-            DateTime hoy = DateTime.Today;
+            DateTime hoy = DateTime.Now;
             DateTime fin = hoy.AddDays(14);
 
             List<DateTime> fechas = gestorturnos.ObtenerFechasDisponibles(legajo, hoy, fin);
@@ -134,9 +135,50 @@ namespace Vistas.admin
 
         protected void btnMod_Click(object sender, EventArgs e)
         {
-            
+
             ModificarTurno();
         }
+
+        ///FALTA TERMINAR LA PARTE DE APLICACION EN LA MOFIFICACION DE TURNOS FINAL PARA QUE SE SOBREESCRIBA! HECHO POR LATO!
+        /*
+        protected void btnModAplicarCambios_click(object sender, EventArgs e)
+        {
+
+            string legajo = Session["Legajo"].ToString();
+            DateTime fechaPactada = DateTime.Parse(ddlFecha.SelectedValue);
+
+
+            DateTime fechaNueva = DateTime.ParseExact(ddlModFecha.SelectedValue, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            TimeSpan horaNueva = TimeSpan.Parse(ddlModHorario.SelectedValue);
+            DateTime fechaHoraNueva = fechaNueva.Add(horaNueva);
+
+
+            List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
+
+            // Selecciono el unico turno que existe en la lista Turnos
+            Turno turnoSeleccionado = turnos.FirstOrDefault();
+
+            if (turnoSeleccionado != null)
+            {
+                turnoSeleccionado.FechaPactada = fechaHoraNueva;
+                bool exito = gestorturnos.ModificarTurno(turnoSeleccionado);
+                if (exito)
+                {
+                    lblMensaje.Text = "Turno actualizado con éxito.";
+                }
+                else
+                {
+                    lblMensaje.Text = "No se pudo actualizar el turno.";
+                }
+            }
+            else
+            {
+                lblMensaje.Text = "No se encontró el turno a modificar.";
+            }
+
+        }
+
+        */
 
         protected void ModificarTurno()
         {
@@ -151,7 +193,7 @@ namespace Vistas.admin
                     string auxFechaPactada = row.Cells[3].Text.Trim();
                     DateTime fechaPactada = DateTime.ParseExact(auxFechaPactada, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
 
-                    List <Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
+                    List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
 
                     gvTurnos.DataSource = turnos;
                     gvTurnos.DataBind();
@@ -160,15 +202,15 @@ namespace Vistas.admin
 
 
 
-                    DateTime fechaHoy = DateTime.Today;
+                    DateTime fechaHoy = DateTime.Now;
                     List<DateTime> fechas = gestorturnos.ObtenerFechasDisponibles(legajo, fechaHoy, fechaHoy.AddDays(14));
-                    //txtBoxPrueba.Text = fechaHoy.ToString("yyyy-MM-dd");
+
 
                     ddlModFecha.Items.Clear();
                     ddlModFecha.Items.Add(new ListItem("--Seleccione Fecha--", ""));
 
 
-                    
+
                     foreach (DateTime fecha in fechas)
                     {
                         ddlModFecha.Items.Add(new ListItem(
@@ -176,29 +218,12 @@ namespace Vistas.admin
                             fecha.ToString("yyyy-MM-dd")
                         ));
                     }
-                    
 
 
 
 
-                    /*
-                    //turno = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
-                    Session["DNI_VIEJO"] = paciente.DNI.Trim();
-                    mvFormularios.ActiveViewIndex = 2;
-                    txbModDni.Text = paciente.DNI;
-                    txbModNombre.Text = paciente.nombre;
-                    txbModApellido.Text = paciente.apellido;
-                    ddlModGenero.SelectedValue = paciente.genero.ToString();
-                    ddlModNacionalidad.SelectedValue = paciente.nacionalidad;
-                    //ddlModLocalidades.SelectedValue = paciente.Localidad.ToString();
-                    ///ddlModProvincias.SelectedValue = paciente.Provincia.ToString(); /// FIX
-                    DateTime fechaNac = paciente.fechaNacimiento.Date;
-                    txbModFechaNacimiento.Text = fechaNac.ToString("yyyy-MM-dd");
-                    txbModDireccion.Text = paciente.Direccion;
-                    ddlModObraSocial.SelectedValue = paciente.ObraSocial.ToString();
-                    txbModTelefono.Text = paciente.Telefono.ToString();
-                    txbModCorreo.Text = paciente.Correo;
-                    */
+
+
                     break;
                 }
             }
@@ -211,9 +236,16 @@ namespace Vistas.admin
         protected void ddlModFecha_SelectedIndexChanged(object sender, EventArgs e)
         {
             ddlModHorario.Items.Clear();
-            if(!string.IsNullOrEmpty(ddlModFecha.SelectedValue)){
+            if (!string.IsNullOrEmpty(ddlModFecha.SelectedValue))
+            {
                 string legajo = Session["Legajo"].ToString();
                 DateTime fechaSeleccionada = DateTime.Parse(ddlModFecha.SelectedValue);
+
+
+                if (fechaSeleccionada == DateTime.Now)
+                {
+                    fechaSeleccionada = DateTime.Now;
+                }
 
                 DataTable dtHorariosDisponibles = gestorturnos.ObtenerHorasDisponibles(legajo, fechaSeleccionada);
 

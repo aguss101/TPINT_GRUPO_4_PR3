@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
+using System.Linq;
 using Datos;
 using Entidades;
 
@@ -20,18 +22,49 @@ namespace Negocio
         {
             List<DateTime> fechas = new List<DateTime>();
             DateTime dia = desde.Date;
+
             while (dia <= hasta.Date)
             {
                 DataTable dtHoras = consultas.ObtenerHorasDisponibles(legajo, dia);
 
                 if (dtHoras.Rows.Count > 0)
                 {
-                    fechas.Add(dia);
+
+                    if (dia > DateTime.Today)
+                    {
+                        fechas.Add(dia);
+                    }
+                    else if (dia == DateTime.Today)
+                    {
+                        //Tomo los horarios actuales para saber cuales vencieron...
+                        TimeSpan horaActual = DateTime.Now.TimeOfDay;
+
+
+
+                        //AsEnumerable convierte un dataTable en una coleccion enumerable de filas
+                        var filasValidas = dtHoras.AsEnumerable()
+                        //Consulto si algun turno de hoy, cuenta con un horario mayor al actual, para poder efectuar la modificacion y no este vencido el horario
+                        .Where(row =>
+                        {
+                            
+                            TimeSpan horaTurno = TimeSpan.Parse(row["RangoHorario"].ToString());
+                            return horaTurno > horaActual;
+                        });
+                        //.Any verifica si al menos hay alguna coincidencia, en caso de ser asi, retorna el bool de filas validas, y agrega el horario de hoy disponible
+                        if (filasValidas.Any())
+                        {
+                            fechas.Add(dia);
+                        }
+
+                    }
                 }
                 dia = dia.AddDays(1);
             }
             return fechas;
 
         }
+
+
+ 
     }
 }
