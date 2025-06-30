@@ -204,22 +204,13 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.SqlDataSource dbNacionalidades;
 
         /// <summary>
-        /// Control txbDireccion.
+        /// Control ddlProvincia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbDireccion;
-
-        /// <summary>
-        /// Control ddlProvincias.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProvincias;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProvincia;
 
         /// <summary>
         /// Control dbProvincias.
@@ -247,6 +238,15 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource dbLocalidades;
+
+        /// <summary>
+        /// Control txbDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbDireccion;
 
         /// <summary>
         /// Control ddlObraSocial.
@@ -366,6 +366,15 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.SqlDataSource dbModGenero;
 
         /// <summary>
+        /// Control txbModFechaNacimiento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbModFechaNacimiento;
+
+        /// <summary>
         /// Control ddlModNacionalidad.
         /// </summary>
         /// <remarks>
@@ -382,24 +391,6 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource dbModNacionalidades;
-
-        /// <summary>
-        /// Control txbModFechaNacimiento.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbModFechaNacimiento;
-
-        /// <summary>
-        /// Control txbModDireccion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbModDireccion;
 
         /// <summary>
         /// Control ddlModProvincias.
@@ -436,6 +427,15 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource dbModLocalidades;
+
+        /// <summary>
+        /// Control txbModDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbModDireccion;
 
         /// <summary>
         /// Control ddlModObraSocial.
