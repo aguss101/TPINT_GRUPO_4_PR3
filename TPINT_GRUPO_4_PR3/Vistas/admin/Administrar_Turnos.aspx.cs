@@ -186,12 +186,11 @@ namespace Vistas.admin
             {
                 if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
                 {
-
-
                     string legajo = row.Cells[1].Text;
                     Session["Legajo"] = legajo;
                     string auxFechaPactada = row.Cells[3].Text.Trim();
-                    DateTime fechaPactada = DateTime.ParseExact(auxFechaPactada, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+                    Debug.WriteLine(auxFechaPactada, "Fecha");
+                    DateTime fechaPactada = DateTime.ParseExact(auxFechaPactada, "d/M/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
 
                     List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
 
@@ -199,17 +198,12 @@ namespace Vistas.admin
                     gvTurnos.DataBind();
                     mvAsignarTurnos.ActiveViewIndex = 1;
 
-
-
-
-                    DateTime fechaHoy = DateTime.Now;
+                    DateTime fechaHoy = DateTime.Today;
                     List<DateTime> fechas = gestorturnos.ObtenerFechasDisponibles(legajo, fechaHoy, fechaHoy.AddDays(14));
 
 
                     ddlModFecha.Items.Clear();
                     ddlModFecha.Items.Add(new ListItem("--Seleccione Fecha--", ""));
-
-
 
                     foreach (DateTime fecha in fechas)
                     {
@@ -218,21 +212,12 @@ namespace Vistas.admin
                             fecha.ToString("yyyy-MM-dd")
                         ));
                     }
-
-
-
-
-
-
                     break;
                 }
             }
             btnMod.Visible = false;
             btnBaja.Visible = false;
         }
-
-
-
         protected void ddlModFecha_SelectedIndexChanged(object sender, EventArgs e)
         {
             ddlModHorario.Items.Clear();
@@ -268,7 +253,5 @@ namespace Vistas.admin
                 default: break;
             }
         }
-
-
     }
 }
