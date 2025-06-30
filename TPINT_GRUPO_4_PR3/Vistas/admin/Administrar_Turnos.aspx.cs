@@ -28,6 +28,7 @@ namespace Vistas.admin
                 ddlHora.Items.Clear();
 
 
+
             }
 
         }
@@ -77,8 +78,7 @@ namespace Vistas.admin
 
         protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ddlFecha.Items.Clear();
-            ddlHora.Items.Clear();
+
 
 
             string legajo = ddlMedico.SelectedValue;
@@ -94,11 +94,13 @@ namespace Vistas.admin
 
         private void CargarFechas(string legajo)
         {
-
+            ddlFecha.Items.Clear();
+            ddlHora.Items.Clear();
             DateTime hoy = DateTime.Today;
             DateTime fin = hoy.AddDays(14);
 
             List<DateTime> fechas = gestorturnos.ObtenerFechasDisponibles(legajo, hoy, fin);
+            System.Diagnostics.Debug.WriteLine($"DEBUG ▶ ObtenerFechasDisponibles devolvió {fechas.Count} fechas");
 
             ddlFecha.Items.Clear();
             ddlFecha.Items.Add(new ListItem("--Seleccione Fecha--", ""));
@@ -139,5 +141,7 @@ namespace Vistas.admin
                 default: break;
             }
         }
+
+
     }
 }

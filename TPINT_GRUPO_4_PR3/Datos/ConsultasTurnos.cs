@@ -123,7 +123,7 @@ namespace Datos
                 AND CAST(T.FechaPactada AS DATE) = CAST(@Fecha AS DATE)    
                 AND CONVERT(TIME, T.FechaPactada) = J.rangoHorario
                 WHERE J.Legajo = @Legajo
-                AND J.DiaSemana = DATENAME(WEEKDAY, @Fecha)
+                AND J.DiaSemana = FORMAT(@Fecha, 'dddd', 'es-AR')
                 AND T.Legajo IS NULL
                 ORDER BY J.rangoHorario
                 
