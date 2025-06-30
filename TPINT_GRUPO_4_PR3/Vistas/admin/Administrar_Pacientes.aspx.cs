@@ -146,6 +146,9 @@ namespace Vistas.admin
                 lblModUser.Visible = true;
             }
         }
+
+       ///BORRAR ESTO
+        /*
         protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow && e.Row.FindControl("chkSeleccionar") is CheckBox chk)
@@ -154,6 +157,7 @@ namespace Vistas.admin
                 chk.CheckedChanged += new EventHandler(chkSeleccionar_CheckedChanged);
             }
         }
+        */
         protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
         {
             foreach (GridViewRow row in GridView2.Rows) { if (row.FindControl("chkSeleccionar") is CheckBox chk && chk != sender) { chk.Checked = false; } }
