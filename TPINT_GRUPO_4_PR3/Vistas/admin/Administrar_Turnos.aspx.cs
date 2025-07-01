@@ -27,6 +27,8 @@ namespace Vistas.admin
                 ddlFecha.Items.Clear();
                 ddlHora.Items.Clear();
 
+                txtObservacion.Attributes["placeholder"] = "Observación";
+                txtDiagnostico.Attributes["placeholder"] = "Diagnóstico";
 
                 btnMod.Visible = false;
                 btnBaja.Visible = false;
@@ -135,12 +137,7 @@ namespace Vistas.admin
 
 
         protected void btnMod_Click(object sender, EventArgs e)
-        {
-
-            ModificarTurno();
-        }
-
-        ///FALTA TERMINAR LA PARTE DE APLICACION EN LA MOFIFICACION DE TURNOS FINAL PARA QUE SE SOBREESCRIBA! HECHO POR LATO!
+        { ModificarTurno(); }
         protected void btnModAplicarCambios_click(object sender, EventArgs e)
         {
             string legajo = Session["Legajo"].ToString();
@@ -162,6 +159,9 @@ namespace Vistas.admin
             DateTime fechaNueva = DateTime.ParseExact(ddlModFecha.SelectedValue, "yyyy-MM-dd", CultureInfo.InvariantCulture);
             TimeSpan horaNueva = TimeSpan.Parse(ddlModHorario.SelectedValue);
             DateTime fechaHoraNueva = fechaNueva.Add(horaNueva);
+
+            string observacion = txtObservacion.Text.Trim();
+            string diagnostico = txtDiagnostico.Text.Trim();
 
             List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
             Turno turnoSeleccionado = turnos.FirstOrDefault();

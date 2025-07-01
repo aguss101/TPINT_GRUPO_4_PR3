@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Entidades;
 using Datos;
-using Entidades;
 
 namespace Negocio
 {

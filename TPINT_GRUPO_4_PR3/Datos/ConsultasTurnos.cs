@@ -155,22 +155,22 @@ namespace Datos
         public bool ModificarTurno(Turno turno)
         {
             string query = @"
-    UPDATE Turnos 
-    SET fechaPactada = @FechaNueva
-    WHERE Legajo = @Legajo 
-      AND DNIPaciente = @DNIPaciente
-      AND CONVERT(date, fechaPactada) = CONVERT(date, @FechaOriginal)";
+            UPDATE Turnos 
+            SET fechaPactada = @FechaNueva
+            WHERE Legajo = @Legajo 
+            AND DNIPaciente = @DNIPaciente
+            AND CONVERT(date, fechaPactada) = CONVERT(date, @FechaOriginal)";
 
             using (SqlConnection con = conexion.AbrirConexion())
             {
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@FechaNueva", turno.FechaPactada);
-                    //cmd.Parameters.AddWithValue("@Observacion", turno.Observacion ?? (object)DBNull.Value);
-                    //cmd.Parameters.AddWithValue("@Diagnostico", turno.Diagnostico ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@FechaOriginal", turno.FechaOriginal);
+                    cmd.Parameters.AddWithValue("@Observacion", turno.Observacion ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Diagnostico", turno.Diagnostico ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@Legajo", turno.Legajo);
                     cmd.Parameters.AddWithValue("@DNIPaciente", turno.DNIPaciente);
-                    cmd.Parameters.AddWithValue("@FechaOriginal", turno.FechaOriginal);
 
 
                     return cmd.ExecuteNonQuery() > 0;
