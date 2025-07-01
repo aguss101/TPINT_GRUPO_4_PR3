@@ -144,34 +144,26 @@ namespace Vistas.admin
         protected void btnModAplicarCambios_click(object sender, EventArgs e)
         {
             string legajo = Session["Legajo"].ToString();
-
             string valorFecha = Session["FechaVieja"].ToString();
 
-
-
-            Debug.WriteLine(valorFecha, "fecha");
             DateTime fechaPactada = DateTime.ParseExact(valorFecha, "d/M/yyyy H:mm:ss", CultureInfo.InvariantCulture);
-            Debug.WriteLine(fechaPactada, "fecha");
 
             if (string.IsNullOrEmpty(ddlModFecha.SelectedValue) || ddlModFecha.SelectedValue == "--Seleccione Fecha--")
             {
-                lblMensaje.Text = "Debe seleccionar una nueva fecha válida.";
+                lblMensaje.Text = "Debe seleccionar una fecha válida.";
                 return;
             }
 
             if (string.IsNullOrEmpty(ddlModHorario.SelectedValue))
             {
-                lblMensaje.Text = "Debe seleccionar un horario válido.";
+                lblMensaje.Text = "Debe seleccionar un horario.";
                 return;
             }
             DateTime fechaNueva = DateTime.ParseExact(ddlModFecha.SelectedValue, "yyyy-MM-dd", CultureInfo.InvariantCulture);
             TimeSpan horaNueva = TimeSpan.Parse(ddlModHorario.SelectedValue);
             DateTime fechaHoraNueva = fechaNueva.Add(horaNueva);
 
-
-
             List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
-            Debug.WriteLine("turnos", turnos);
             Turno turnoSeleccionado = turnos.FirstOrDefault();
 
             if (turnoSeleccionado != null)
@@ -196,7 +188,6 @@ namespace Vistas.admin
                     string legajo = row.Cells[1].Text;
                     Session["Legajo"] = legajo;
                     string auxFechaPactada = row.Cells[3].Text.Trim();
-                    Debug.WriteLine(auxFechaPactada, "Fecha");
                     Session["FechaVieja"] = auxFechaPactada;
                     DateTime fechaPactada = DateTime.ParseExact(auxFechaPactada, "d/M/yyyy H:mm:ss", CultureInfo.InvariantCulture);
 
