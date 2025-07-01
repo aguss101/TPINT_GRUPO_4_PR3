@@ -181,7 +181,7 @@ namespace Datos
         {
             string query = @"
             UPDATE Turnos 
-            SET fechaPactada = @FechaNueva
+            SET fechaPactada = @FechaNueva,
             observacion = @Observacion,
             diagnostico = @Diagnostico
             WHERE Legajo = @Legajo 
