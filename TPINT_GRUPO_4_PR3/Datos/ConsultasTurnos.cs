@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -89,7 +88,7 @@ namespace Datos
         public List<Turno> FiltrarPacientexApellido(string legajo, string apellido)
         {
             List<Turno> turnos = new List<Turno>();
-                string query = "SELECT * FROM vw_TurnosConDatos WHERE Legajo = @Legajo AND (@Apellido IS NULL OR ApellidoPaciente COLLATE Latin1_General_CI_AI LIKE '%' + @Apellido + '%') ORDER BY fechaPactada, Legajo, DNIPaciente";
+            string query = "SELECT * FROM vw_TurnosConDatos WHERE Legajo = @Legajo AND (@Apellido IS NULL OR ApellidoPaciente COLLATE Latin1_General_CI_AI LIKE '%' + @Apellido + '%') ORDER BY fechaPactada, Legajo, DNIPaciente";
             try
             {
                 using (SqlConnection con = conexion.AbrirConexion())
@@ -97,7 +96,7 @@ namespace Datos
                 {
                     cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) { Value = legajo });
                     cmd.Parameters.Add(new SqlParameter("@Apellido", SqlDbType.VarChar, 25) { Value = apellido });
-                    using (SqlDataReader reader = cmd.ExecuteReader()) {while (reader.Read()) { turnos.Add(MapearTurno(reader)); }}
+                    using (SqlDataReader reader = cmd.ExecuteReader()) { while (reader.Read()) { turnos.Add(MapearTurno(reader)); } }
                 }
             }
             catch (Exception ex) { throw new Exception("Error al cargar turnos por apellido: " + ex.Message); }
@@ -114,7 +113,7 @@ namespace Datos
                 {
                     cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) { Value = legajo });
                     cmd.Parameters.Add(new SqlParameter("@DNI", SqlDbType.VarChar, 25) { Value = dniPaciente });
-                    using (SqlDataReader reader = cmd.ExecuteReader()) { while (reader.Read()) { turnos.Add(MapearTurno(reader)); }}
+                    using (SqlDataReader reader = cmd.ExecuteReader()) { while (reader.Read()) { turnos.Add(MapearTurno(reader)); } }
                 }
             }
             catch (Exception ex) { throw new Exception("Error al cargar turnos por DNI: " + ex.Message); }
@@ -155,26 +154,25 @@ namespace Datos
         }
         public bool ModificarTurno(Turno turno)
         {
-            string query = "UPDATE Turnos " +
-            "SET fechaPactada = @FechaNueva," + 
-                "observacion = @Observacion," +
-                "diagnostico = @Diagnostico" +
-            "WHERE Legajo = @Legajo " +
-              "AND DNIPaciente = @DNIPaciente" +
-              "AND fechaPactada = @FechaOriginal";
+            string query = @"
+    UPDATE Turnos 
+    SET fechaPactada = @FechaNueva
+    WHERE Legajo = @Legajo 
+      AND DNIPaciente = @DNIPaciente
+      AND CONVERT(date, fechaPactada) = CONVERT(date, @FechaOriginal)";
 
             using (SqlConnection con = conexion.AbrirConexion())
             {
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@FechaNueva", turno.FechaPactada);
-                    cmd.Parameters.AddWithValue("@Observacion", turno.Observacion ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Diagnostico", turno.Diagnostico ?? (object)DBNull.Value);
+                    //cmd.Parameters.AddWithValue("@Observacion", turno.Observacion ?? (object)DBNull.Value);
+                    //cmd.Parameters.AddWithValue("@Diagnostico", turno.Diagnostico ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@Legajo", turno.Legajo);
                     cmd.Parameters.AddWithValue("@DNIPaciente", turno.DNIPaciente);
                     cmd.Parameters.AddWithValue("@FechaOriginal", turno.FechaOriginal);
 
-                    con.Open();
+
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }

@@ -145,15 +145,13 @@ namespace Vistas.admin
         {
             string legajo = Session["Legajo"].ToString();
 
-            string valorFecha = ddlFecha.SelectedValue;
+            string valorFecha = Session["FechaVieja"].ToString();
 
-            if (string.IsNullOrEmpty(valorFecha) || valorFecha == "--Seleccione Fecha--")
-            {
-                lblMensaje.Text = "Debe seleccionar una fecha válida.";
-                return;
-            }
 
-            DateTime fechaPactada = DateTime.ParseExact(valorFecha, "yyyy/MM/dd", CultureInfo.InvariantCulture);
+
+            Debug.WriteLine(valorFecha, "fecha");
+            DateTime fechaPactada = DateTime.ParseExact(valorFecha, "d/M/yyyy H:mm:ss", CultureInfo.InvariantCulture);
+            Debug.WriteLine(fechaPactada, "fecha");
 
             if (string.IsNullOrEmpty(ddlModFecha.SelectedValue) || ddlModFecha.SelectedValue == "--Seleccione Fecha--")
             {
@@ -166,14 +164,14 @@ namespace Vistas.admin
                 lblMensaje.Text = "Debe seleccionar un horario válido.";
                 return;
             }
-            DateTime fechaNueva = DateTime.ParseExact(ddlModFecha.SelectedValue, "yyyy/MM/dd", CultureInfo.InvariantCulture);
+            DateTime fechaNueva = DateTime.ParseExact(ddlModFecha.SelectedValue, "yyyy-MM-dd", CultureInfo.InvariantCulture);
             TimeSpan horaNueva = TimeSpan.Parse(ddlModHorario.SelectedValue);
             DateTime fechaHoraNueva = fechaNueva.Add(horaNueva);
 
-            string observacion = txtObservacion.Text.Trim();
-            string diagnostico = txtDiagnostico.Text.Trim();
+
 
             List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
+            Debug.WriteLine("turnos", turnos);
             Turno turnoSeleccionado = turnos.FirstOrDefault();
 
             if (turnoSeleccionado != null)
@@ -199,7 +197,8 @@ namespace Vistas.admin
                     Session["Legajo"] = legajo;
                     string auxFechaPactada = row.Cells[3].Text.Trim();
                     Debug.WriteLine(auxFechaPactada, "Fecha");
-                    DateTime fechaPactada = DateTime.ParseExact(auxFechaPactada, "d/M/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                    Session["FechaVieja"] = auxFechaPactada;
+                    DateTime fechaPactada = DateTime.ParseExact(auxFechaPactada, "d/M/yyyy H:mm:ss", CultureInfo.InvariantCulture);
 
                     List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
 
@@ -217,7 +216,7 @@ namespace Vistas.admin
                     foreach (DateTime fecha in fechas)
                     {
                         ddlModFecha.Items.Add(new ListItem(
-                            fecha.ToString("dddd dd/MM/yyyy"),
+                            fecha.ToString("dd/MM/yyyy"),
                             fecha.ToString("yyyy-MM-dd")
                         ));
                     }
