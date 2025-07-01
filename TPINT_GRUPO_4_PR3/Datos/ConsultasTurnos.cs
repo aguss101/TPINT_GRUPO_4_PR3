@@ -23,6 +23,31 @@ namespace Datos
             catch (Exception ex) { throw new Exception("Error al cargar turnos: " + ex.Message); }
             return turnos;
         }
+        /*public List<Turno> GetTurnosObs_Dia(string observacion, string diagnostico)
+        {
+            var turnos = new List<Turno>();
+            string query = @"
+                    SELECT *
+                      FROM vw_TurnosConDatos
+            ";
+
+            using (SqlConnection connection = conexion.AbrirConexion())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.Add(new SqlParameter("@observacion", SqlDbType.VarChar, 200) { Value = observacion });
+                command.Parameters.Add(new SqlParameter("@diagnostico", SqlDbType.VarChar, 50) { Value = diagnostico });
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        turnos.Add(MapearTurno(reader));
+                    }
+                }
+            }
+
+            return turnos;
+        }*/
         public List<Turno> GetTurnosMedico(string legajo, DateTime? fechaSelected)
         {
             var turnos = new List<Turno>();
@@ -32,7 +57,7 @@ namespace Datos
                      WHERE Legajo = @Legajo
                        AND (@Fecha IS NULL OR CONVERT(date, fechaPactada) = @Fecha)
                      ORDER BY fechaPactada, Legajo, DNIPaciente;
-                ";
+            ";
 
 
             using (SqlConnection connection = conexion.AbrirConexion())
@@ -152,14 +177,17 @@ namespace Datos
 
             return conexion.EjecutarConsultaConParametros(query, parameteros);
         }
-        public bool ModificarTurno(Turno turno)
+        public bool ModificarTurnoG(Turno turno)
         {
             string query = @"
             UPDATE Turnos 
             SET fechaPactada = @FechaNueva
+            observacion = @Observacion,
+            diagnostico = @Diagnostico
             WHERE Legajo = @Legajo 
             AND DNIPaciente = @DNIPaciente
             AND CONVERT(date, fechaPactada) = CONVERT(date, @FechaOriginal)";
+
 
             using (SqlConnection con = conexion.AbrirConexion())
             {

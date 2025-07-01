@@ -69,13 +69,7 @@ namespace Vistas.admin
                 ddlMedico.DataValueField = "Legajo";
                 ddlMedico.DataBind();
             }
-            else
-            {
-
-                ddlMedico.Items.Clear();
-            }
-
-
+            else { ddlMedico.Items.Clear(); } 
             ddlMedico.Items.Insert(0, new ListItem("-- Seleccione un médico --", ""));
         }
 
@@ -83,12 +77,7 @@ namespace Vistas.admin
         {
             string legajo = ddlMedico.SelectedValue;
             if (string.IsNullOrEmpty(legajo))
-            {
-                ddlFecha.Items.Add(new ListItem("--Seleccione Fecha--", ""));
-                return;
-            }
-
-
+            { ddlFecha.Items.Add(new ListItem("--Seleccione Fecha--", "")); return; }
             CargarFechas(legajo);
         }
 
@@ -140,6 +129,9 @@ namespace Vistas.admin
         { ModificarTurno(); }
         protected void btnModAplicarCambios_click(object sender, EventArgs e)
         {
+            string observacion = Session["observacionViejo"].ToString();
+            string diagnostico = Session["diagnosticoViejo"].ToString();
+
             string legajo = Session["Legajo"].ToString();
             string valorFecha = Session["FechaVieja"].ToString();
 
@@ -160,8 +152,8 @@ namespace Vistas.admin
             TimeSpan horaNueva = TimeSpan.Parse(ddlModHorario.SelectedValue);
             DateTime fechaHoraNueva = fechaNueva.Add(horaNueva);
 
-            string observacion = txtObservacion.Text.Trim();
-            string diagnostico = txtDiagnostico.Text.Trim();
+            observacion = txtObservacion.Text.Trim();
+            diagnostico = txtDiagnostico.Text.Trim();
 
             List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
             Turno turnoSeleccionado = turnos.FirstOrDefault();
@@ -170,7 +162,9 @@ namespace Vistas.admin
             {
                 turnoSeleccionado.FechaOriginal = turnoSeleccionado.FechaPactada;
                 turnoSeleccionado.FechaPactada = fechaHoraNueva;
-                bool exito = gestorturnos.ModificarTurno(turnoSeleccionado);
+                turnoSeleccionado.Observacion = observacion;
+                turnoSeleccionado.Diagnostico = diagnostico;
+                bool exito = gestorturnos.ModificarTurnoG(turnoSeleccionado);
 
                 lblMensaje.Text = exito ? "Turno actualizado con éxito." : "No se pudo actualizar el turno.";
             }
@@ -185,12 +179,21 @@ namespace Vistas.admin
             {
                 if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
                 {
+                    string observacion = row.Cells[6].Text.Trim();
+                    Session["observacionViejo"] = observacion;
+                    string diagnostico = row.Cells[7].Text.Trim();
+                    Session["diagnosticoViejo"] = diagnostico;
+
+
                     string legajo = row.Cells[1].Text;
                     Session["Legajo"] = legajo;
                     string auxFechaPactada = row.Cells[3].Text.Trim();
                     Session["FechaVieja"] = auxFechaPactada;
+                    
                     DateTime fechaPactada = DateTime.ParseExact(auxFechaPactada, "d/M/yyyy H:mm:ss", CultureInfo.InvariantCulture);
 
+                    //List<Turno> turnosD = gestorturnos.GetTurnosObs_Dia(observacion, diagnostico);
+                    
                     List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
 
                     gvTurnos.DataSource = turnos;
