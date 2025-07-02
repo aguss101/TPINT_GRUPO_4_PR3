@@ -342,5 +342,50 @@ namespace Vistas.admin
 
             CargarTurnos();
         }
+
+        protected void ddlFiltrarTurnosPor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            filtrarFechaPor(ddlFiltrarTurnosPor.SelectedValue);
+        }
+        protected void filtrarFechaPor(String parametroDeFiltro)
+        {
+            string query = null;
+
+            switch (parametroDeFiltro)
+            {
+                case "MedicoASC":
+                    query = @"SELECT * FROM vw_TurnosConDatos ORDER BY CAST(Legajo AS INT), fechaPactada, DNIPaciente;";
+                    break;
+                case "MedicoDES":
+                    query = "SELECT * FROM vw_TurnosConDatos ORDER BY CAST(Legajo AS INT) DESC, fechaPactada, DNIPaciente;";
+                    break;
+                case "FechaASC":
+                    query = "SELECT * FROM vw_TurnosConDatos ORDER BY fechaPactada, CAST(Legajo AS INT), DNIPaciente;";
+                    break;
+                case "FechaDES":
+                    query = "SELECT * FROM vw_TurnosConDatos ORDER BY fechaPactada DESC, CAST(Legajo AS INT), DNIPaciente";
+                    break;
+                case "DNIPacienteASC":
+                    query = "SELECT * FROM vw_TurnosConDatos ORDER BY DNIPaciente, fechaPactada, CAST(Legajo AS INT);";
+                    break;
+                case "DNIPacienteDES":
+                    query = "SELECT * FROM vw_TurnosConDatos ORDER BY DNIPaciente DESC, fechaPactada, CAST(Legajo AS INT);";
+                    break;
+                default:
+                    lblMensaje.Text = "Error";
+                    break;
+            }
+            ;
+
+            List<Turno> turnos = gestorturnos.GetTurnosOrdX(query);
+            gvTurnos.DataSource = turnos;
+            gvTurnos.DataBind();
+
+
+
+            //gvTurnos.DataSource = personas;
+            //GridView1.DataBind();
+
+        }
     }
 }

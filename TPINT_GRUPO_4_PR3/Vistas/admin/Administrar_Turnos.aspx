@@ -236,11 +236,13 @@
             user-select: none;
             height: 25px;
         }
+
         .auto-style37 {
             width: 157px;
             background-color: #ffffff;
             height: 108%;
         }
+
         .auto-style38 {
             background-color: #e6e6e6;
             padding: 0px 30px 30px 30px;
@@ -286,93 +288,111 @@
 
                     <asp:MultiView ID="mvAsignarTurnos" runat="server">
                         <asp:View ID="vwAsignar" runat="server">
-                                                <table class="auto-style10">
-                        <tr>
-                            <td class="auto-style22" colspan="3">
-                                <div class="titulo-con-nombre">
-                                    <h2><span class="clinica">Clínica</span> <span class="frgp">FRGP</span></h2>
-                                    <div class="sidebarUser">
-                                        <asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Names="Calibri" Text="Administrador"></asp:Label></div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style33">
-                                <h3>Asignación de Turnos</h3>
-                            </td>
-                            <td class="auto-style34"></td>
-                            <td class="auto-style35"></td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style32">Especialidad</td>
-                            <td class="auto-style30">
-                                <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" DataSourceID="dbEspecialidades" DataTextField="descripcion" DataValueField="idEspecialidad" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">
-                                </asp:DropDownList>
-                                <asp:SqlDataSource ID="dbEspecialidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT * FROM [Especialidades]"></asp:SqlDataSource>
-                            </td>
-                            <td class="auto-style31"></td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style32">Médico</td>
-                            <td class="auto-style30">
-                                <asp:DropDownList ID="ddlMedico" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged"></asp:DropDownList></td>
-                            <td class="auto-style31"></td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style32">Fecha</td>
-                            <td class="auto-style30">
-                                <asp:DropDownList ID="ddlFecha" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFecha_SelectedIndexChanged"></asp:DropDownList></td>
-                            <td class="auto-style31"></td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style32">Horario</td>
-                            <td class="auto-style30">
-                                <asp:DropDownList ID="ddlHora" runat="server" AutoPostBack="True"></asp:DropDownList></td>
-                            <td class="auto-style31"></td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style32">Paciente</td>
-                            <td class="auto-style30">
-                                <asp:DropDownList ID="ddlPaciente" runat="server" AutoPostBack="True" DataSourceID="dbPaciente" DataTextField="Paciente" DataValueField="DNI"></asp:DropDownList>
-                                <asp:SqlDataSource ID="dbPaciente" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT PA.DNI, P_Pac.nombre + ' ' + P_Pac.apellido AS Paciente FROM Persona P_Pac INNER JOIN Paciente PA ON PA.DNI        = P_Pac.DNI"></asp:SqlDataSource>
-                            </td>
-                            <td class="auto-style31"></td>
-                        </tr>
-                        <tr>
-                            <td class="no-select"></td>
-                            <td class="no-select"></td>
-                            <td class="auto-style36"></td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style32">
-                                <asp:Button ID="btnRegistrar" runat="server" Text="Registrar Turno" Width="188px" OnClick="btnRegistrar_Click" /></td>
-                            <td class="auto-style30">
-                                <asp:Button ID="btnMod" runat="server" Text="Modificar Turno" OnClick="btnMod_Click" Width="188px" />
-                                <asp:Button ID="btnBaja" runat="server" Text="Dar de baja"  Width="188px" OnClick="btnBaja_Click" />
-                                <asp:TextBox ID="txtBoxPrueba" runat="server"></asp:TextBox>
-                            </td>
-                            <td class="auto-style31">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td class="no-select"></td>
-                            <td class="no-select">
-                                <asp:GridView ID="gvTurnos" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="Seleccionar"><ItemTemplate><asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True"  OnCheckedChanged="chkSeleccionar_CheckedChanged"/></ItemTemplate></asp:TemplateField>
-                                    </Columns>
-                                    <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-                                    <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
-                                    <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
-                                    <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-                                    <SortedAscendingCellStyle BackColor="#F7F7F7" />
-                                    <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-                                    <SortedDescendingCellStyle BackColor="#E5E5E5" />
-                                    <SortedDescendingHeaderStyle BackColor="#242121" />
-                                </asp:GridView>
-                            </td>
-                            <td class="auto-style28"></td>
-                        </tr>
-                    </table>
+                            <table class="auto-style10">
+                                <tr>
+                                    <td class="auto-style22" colspan="3">
+                                        <div class="titulo-con-nombre">
+                                            <h2><span class="clinica">Clínica</span> <span class="frgp">FRGP</span></h2>
+                                            <div class="sidebarUser">
+                                                <asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Names="Calibri" Text="Administrador"></asp:Label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="auto-style33">
+                                        <h3>Asignación de Turnos</h3>
+                                    </td>
+                                    <td class="auto-style34"></td>
+                                    <td class="auto-style35"></td>
+                                </tr>
+                                <tr>
+                                    <td class="auto-style32">Especialidad</td>
+                                    <td class="auto-style30">
+                                        <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" DataSourceID="dbEspecialidades" DataTextField="descripcion" DataValueField="idEspecialidad" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">
+                                        </asp:DropDownList>
+                                        <asp:SqlDataSource ID="dbEspecialidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT * FROM [Especialidades]"></asp:SqlDataSource>
+                                    </td>
+                                    <td class="auto-style31"></td>
+                                </tr>
+                                <tr>
+                                    <td class="auto-style32">Médico</td>
+                                    <td class="auto-style30">
+                                        <asp:DropDownList ID="ddlMedico" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged"></asp:DropDownList></td>
+                                    <td class="auto-style31"></td>
+                                </tr>
+                                <tr>
+                                    <td class="auto-style32">Fecha</td>
+                                    <td class="auto-style30">
+                                        <asp:DropDownList ID="ddlFecha" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFecha_SelectedIndexChanged"></asp:DropDownList></td>
+                                    <td class="auto-style31"></td>
+                                </tr>
+                                <tr>
+                                    <td class="auto-style32">Horario</td>
+                                    <td class="auto-style30">
+                                        <asp:DropDownList ID="ddlHora" runat="server" AutoPostBack="True"></asp:DropDownList></td>
+                                    <td class="auto-style31"></td>
+                                </tr>
+                                <tr>
+                                    <td class="auto-style32">Paciente</td>
+                                    <td class="auto-style30">
+                                        <asp:DropDownList ID="ddlPaciente" runat="server" AutoPostBack="True" DataSourceID="dbPaciente" DataTextField="Paciente" DataValueField="DNI"></asp:DropDownList>
+                                        <asp:SqlDataSource ID="dbPaciente" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT PA.DNI, P_Pac.nombre + ' ' + P_Pac.apellido AS Paciente FROM Persona P_Pac INNER JOIN Paciente PA ON PA.DNI        = P_Pac.DNI"></asp:SqlDataSource>
+                                    </td>
+                                    <td class="auto-style31"></td>
+                                </tr>
+                                <tr>
+                                    <td class="no-select"></td>
+                                    <td class="no-select"></td>
+                                    <td class="auto-style36"></td>
+                                </tr>
+                                <tr>
+                                    <td class="auto-style32">
+                                        <asp:Button ID="btnRegistrar" runat="server" Text="Registrar Turno" Width="188px" OnClick="btnRegistrar_Click" /></td>
+                                    <td class="auto-style30">
+                                        <asp:Button ID="btnMod" runat="server" Text="Modificar Turno" OnClick="btnMod_Click" Width="188px" />
+                                        <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" Width="188px" OnClick="btnBaja_Click" />
+                                        <asp:TextBox ID="txtBoxPrueba" runat="server"></asp:TextBox>
+                                        <asp:DropDownList ID="ddlFiltrarTurnosPor" runat="server" AutoPostBack="true" Height="16px" OnSelectedIndexChanged="ddlFiltrarTurnosPor_SelectedIndexChanged" Style="margin-bottom: 0px; margin-top: 0px;" Width="465px">
+                                            <asp:ListItem Value="FechaASC">Fecha A</asp:ListItem>
+                                            <asp:ListItem Value="FechaDES">Fecha D</asp:ListItem>
+                                            <asp:ListItem Value="MedicoASC">Medico A</asp:ListItem>
+                                            <asp:ListItem Value="MedicoDES">Medico D</asp:ListItem>
+                                            <asp:ListItem Value="DNIPacienteASC">DNI Paciente A</asp:ListItem>
+                                            <asp:ListItem Value="DNIPacienteDES">DNI Paciente D</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </td>
+
+
+                                    <tr>
+                                        <td class="no-select"></td>
+                                        <td class="no-select">&nbsp;</td>
+                                        <td class="no-select"></td>
+                                    <td class="auto-style31">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="no-select"></td>
+                                    <td class="no-select">
+                                        <asp:GridView ID="gvTurnos" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Seleccionar">
+                                                    <ItemTemplate>
+                                                        <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccionar_CheckedChanged" /></ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                                            <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                                            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                                            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                                            <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                                            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                                            <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                                            <SortedDescendingHeaderStyle BackColor="#242121" />
+                                        </asp:GridView>
+                                    </td>
+                                    <td class="auto-style28"></td>
+                                </tr>
+                            </table>
                         </asp:View>
                         <asp:View ID="vwModificar" runat="server">
                             <asp:DropDownList ID="ddlModFecha" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlModFecha_SelectedIndexChanged">
@@ -392,11 +412,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="auto-style37">
-                    &nbsp;</td>
-                <td class="auto-style38">
-
-                    &nbsp;</td>
+                <td class="auto-style37">&nbsp;</td>
+                <td class="auto-style38">&nbsp;</td>
             </tr>
         </table>
     </form>

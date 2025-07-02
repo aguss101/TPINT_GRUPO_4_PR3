@@ -253,5 +253,27 @@ namespace Datos
             return conexion.EjecutarComandoConParametros(query, parametros);
 
         }
+
+        //Sobrecargo el metodo de GetTurnosMedico, para que me traiga los turnos ordenados segun el legajo, sin importar la fecha
+
+        public List<Turno> GetTurnosOrdX(string query)
+        {
+            var turnos = new List<Turno>();
+
+
+            using (SqlConnection connection = conexion.AbrirConexion())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        turnos.Add(MapearTurno(reader));
+                    }
+                }
+            }
+
+            return turnos;
+        }
     }
 }
