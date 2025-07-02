@@ -14,10 +14,10 @@ namespace Datos
         {
             List<Turno> turnos = new List<Turno>();
             string query = @"SELECT * FROM vw_TurnosConDatos
-            ORDER BY FechaPactada,Legajo,DNIPaciente";
+                             ORDER BY FechaPactada,Legajo,DNIPaciente";
             try
             {
-                using (SqlConnection con = conexion.AbrirConexion())
+                    using (SqlConnection con = conexion.AbrirConexion())
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {using (SqlDataReader reader = cmd.ExecuteReader())
                         { while (reader.Read()) { turnos.Add(MapearTurno(reader)); } }}
@@ -132,9 +132,9 @@ namespace Datos
         {
             List<Turno> turnos = new List<Turno>();
             string query = @"SELECT * FROM vw_TurnosConDatos 
-            WHERE Legajo = @Legajo 
-            AND (@DNI IS NULL OR DNIPaciente LIKE '%' + @DNI + '%')
-            ORDER BY fechaPactada, Legajo, DNIPaciente";
+                            WHERE Legajo = @Legajo 
+                            AND (@DNI IS NULL OR DNIPaciente LIKE '%' + @DNI + '%')
+                            ORDER BY fechaPactada, Legajo, DNIPaciente";
             try
             {
                 using (SqlConnection con = conexion.AbrirConexion())
