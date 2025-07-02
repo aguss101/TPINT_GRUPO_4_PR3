@@ -13,13 +13,14 @@ namespace Datos
         public List<Turno> GetTurnosAdmin()
         {
             List<Turno> turnos = new List<Turno>();
-            string query = "SELECT * FROM vw_TurnosConDatos ORDER BY FechaPactada,Legajo,DNIPaciente";
+            string query = @"SELECT * FROM vw_TurnosConDatos
+            ORDER BY FechaPactada,Legajo,DNIPaciente";
             try
             {
-                SqlConnection connection = conexion.AbrirConexion();
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read()) { turnos.Add(MapearTurno(reader)); }
+                using (SqlConnection con = conexion.AbrirConexion())
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {using (SqlDataReader reader = cmd.ExecuteReader())
+                        { while (reader.Read()) { turnos.Add(MapearTurno(reader)); } }}
             }
             catch (Exception ex) { throw new Exception("Error al cargar turnos: " + ex.Message); }
             return turnos;
@@ -39,53 +40,44 @@ namespace Datos
             using (SqlConnection connection = conexion.AbrirConexion())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-
                 command.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 25) { Value = legajo });
                 command.Parameters.Add(new SqlParameter("@Fecha", SqlDbType.Date) { Value = fechaSelected.HasValue ? (object)fechaSelected.Value.Date : DBNull.Value });
 
-
                 using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        turnos.Add(MapearTurno(reader));
-                    }
-                }
+                { while (reader.Read()){ turnos.Add(MapearTurno(reader)); }}
             }
-
             return turnos;
         }
         public bool ModificarTurnoG(Turno turno)
         {
             string query = @"
             UPDATE Turnos 
-            SET fechaPactada = @FechaNueva,
-            observacion = @Observacion,
-            diagnostico = @Diagnostico
+            SET fechaPactada = @FechaNueva, observacion = @Observacion, diagnostico = @Diagnostico
             WHERE Legajo = @Legajo 
             AND DNIPaciente = @DNIPaciente
             AND CONVERT(date, fechaPactada) = CONVERT(date, @FechaOriginal)";
 
 
             using (SqlConnection con = conexion.AbrirConexion())
+            using (SqlCommand cmd = new SqlCommand(query, con))
             {
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    cmd.Parameters.AddWithValue("@FechaNueva", turno.FechaPactada);
-                    cmd.Parameters.AddWithValue("@FechaOriginal", turno.FechaOriginal);
-                    cmd.Parameters.AddWithValue("@Observacion", turno.Observacion ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Diagnostico", turno.Diagnostico ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Legajo", turno.Legajo);
-                    cmd.Parameters.AddWithValue("@DNIPaciente", turno.DNIPaciente);
+                cmd.Parameters.AddWithValue("@FechaNueva", turno.FechaPactada);
+                cmd.Parameters.AddWithValue("@FechaOriginal", turno.FechaOriginal);
+                cmd.Parameters.AddWithValue("@Observacion", turno.Observacion ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@Diagnostico", turno.Diagnostico ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@Legajo", turno.Legajo);
+                cmd.Parameters.AddWithValue("@DNIPaciente", turno.DNIPaciente);
 
-
-                    return cmd.ExecuteNonQuery() > 0;
-                }
+                return cmd.ExecuteNonQuery() > 0;
             }
         }
         public int MarcarAsistenciaTurno(Turno turno)
         {
-            string query = "UPDATE Turnos SET estado=@Estado, observacion=@Observacion, diagnostico=@Diagnostico WHERE Legajo=@Legajo AND fechaPactada=@Fecha";
+            string query = @"
+                UPDATE Turnos
+                SET estado=@Estado, observacion=@Observacion, diagnostico=@Diagnostico 
+                WHERE Legajo=@Legajo AND fechaPactada=@Fecha";
+
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@Estado", turno.Estado),
@@ -117,7 +109,12 @@ namespace Datos
         public List<Turno> FiltrarPacientexApellido(string legajo, string apellido)
         {
             List<Turno> turnos = new List<Turno>();
-            string query = "SELECT * FROM vw_TurnosConDatos WHERE Legajo = @Legajo AND (@Apellido IS NULL OR ApellidoPaciente COLLATE Latin1_General_CI_AI LIKE '%' + @Apellido + '%') ORDER BY fechaPactada, Legajo, DNIPaciente";
+            string query = @"
+            SELECT * FROM vw_TurnosConDatos 
+            WHERE Legajo = @Legajo 
+            AND (@Apellido IS NULL OR ApellidoPaciente 
+            COLLATE Latin1_General_CI_AI LIKE '%' + @Apellido + '%') 
+            ORDER BY fechaPactada, Legajo, DNIPaciente";
             try
             {
                 using (SqlConnection con = conexion.AbrirConexion())
@@ -134,7 +131,10 @@ namespace Datos
         public List<Turno> FiltrarPacientexDNI(string legajo, string dniPaciente)
         {
             List<Turno> turnos = new List<Turno>();
-            string query = "SELECT * FROM vw_TurnosConDatos WHERE Legajo = @Legajo AND (@DNI IS NULL OR DNIPaciente LIKE '%' + @DNI + '%') ORDER BY fechaPactada, Legajo, DNIPaciente";
+            string query = @"SELECT * FROM vw_TurnosConDatos 
+            WHERE Legajo = @Legajo 
+            AND (@DNI IS NULL OR DNIPaciente LIKE '%' + @DNI + '%')
+            ORDER BY fechaPactada, Legajo, DNIPaciente";
             try
             {
                 using (SqlConnection con = conexion.AbrirConexion())
@@ -174,9 +174,10 @@ namespace Datos
                 ORDER BY J.rangoHorario
                 
                 ";
-            SqlParameter[] parameteros = new SqlParameter[] {
-            new SqlParameter("@Legajo", legajo),
-            new SqlParameter("@Fecha", fecha.Date)
+            SqlParameter[] parameteros = new SqlParameter[] 
+            {
+                new SqlParameter("@Legajo", legajo),
+                new SqlParameter("@Fecha", fecha.Date)
             };
 
             return conexion.EjecutarConsultaConParametros(query, parameteros);
@@ -187,32 +188,20 @@ namespace Datos
             DateTime dia = desde.Date;
 
             while (dia <= hasta.Date)
-            {
-                DataTable dtHoras = ObtenerHorasDisponibles(legajo, dia);
-
+            {DataTable dtHoras = ObtenerHorasDisponibles(legajo, dia);
                 if (dtHoras.Rows.Count > 0)
                 {
-
-                    if (dia > DateTime.Today)
-                    {
-                        fechas.Add(dia);
-                    }
+                    if (dia > DateTime.Today) { fechas.Add(dia); }
                     else if (dia == DateTime.Today)
-                    {
-                        TimeSpan horaActual = DateTime.Now.TimeOfDay;
+                    {TimeSpan horaActual = DateTime.Now.TimeOfDay;
 
                         var filasValidas = dtHoras.AsEnumerable()
                         .Where(row =>
                         {
-
                             TimeSpan horaTurno = TimeSpan.Parse(row["RangoHorario"].ToString());
                             return horaTurno > horaActual;
                         });
-                        if (filasValidas.Any())
-                        {
-                            fechas.Add(dia);
-                        }
-
+                        if (filasValidas.Any()) { fechas.Add(dia); }
                     }
                 }
                 dia = dia.AddDays(1);
