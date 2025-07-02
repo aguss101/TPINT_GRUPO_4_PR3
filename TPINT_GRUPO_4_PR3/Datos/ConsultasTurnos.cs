@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using Entidades;
 
 namespace Datos
@@ -23,31 +24,6 @@ namespace Datos
             catch (Exception ex) { throw new Exception("Error al cargar turnos: " + ex.Message); }
             return turnos;
         }
-        /*public List<Turno> GetTurnosObs_Dia(string observacion, string diagnostico)
-        {
-            var turnos = new List<Turno>();
-            string query = @"
-                    SELECT *
-                      FROM vw_TurnosConDatos
-            ";
-
-            using (SqlConnection connection = conexion.AbrirConexion())
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                command.Parameters.Add(new SqlParameter("@observacion", SqlDbType.VarChar, 200) { Value = observacion });
-                command.Parameters.Add(new SqlParameter("@diagnostico", SqlDbType.VarChar, 50) { Value = diagnostico });
-
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        turnos.Add(MapearTurno(reader));
-                    }
-                }
-            }
-
-            return turnos;
-        }*/
         public List<Turno> GetTurnosMedico(string legajo, DateTime? fechaSelected)
         {
             var turnos = new List<Turno>();
@@ -78,6 +54,34 @@ namespace Datos
             }
 
             return turnos;
+        }
+        public bool ModificarTurnoG(Turno turno)
+        {
+            string query = @"
+            UPDATE Turnos 
+            SET fechaPactada = @FechaNueva,
+            observacion = @Observacion,
+            diagnostico = @Diagnostico
+            WHERE Legajo = @Legajo 
+            AND DNIPaciente = @DNIPaciente
+            AND CONVERT(date, fechaPactada) = CONVERT(date, @FechaOriginal)";
+
+
+            using (SqlConnection con = conexion.AbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@FechaNueva", turno.FechaPactada);
+                    cmd.Parameters.AddWithValue("@FechaOriginal", turno.FechaOriginal);
+                    cmd.Parameters.AddWithValue("@Observacion", turno.Observacion ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Diagnostico", turno.Diagnostico ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Legajo", turno.Legajo);
+                    cmd.Parameters.AddWithValue("@DNIPaciente", turno.DNIPaciente);
+
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
         }
         public int MarcarAsistenciaTurno(Turno turno)
         {
@@ -177,33 +181,43 @@ namespace Datos
 
             return conexion.EjecutarConsultaConParametros(query, parameteros);
         }
-        public bool ModificarTurnoG(Turno turno)
+        public List<DateTime> ObtenerFechasDisponibles(string legajo, DateTime desde, DateTime hasta)
         {
-            string query = @"
-            UPDATE Turnos 
-            SET fechaPactada = @FechaNueva,
-            observacion = @Observacion,
-            diagnostico = @Diagnostico
-            WHERE Legajo = @Legajo 
-            AND DNIPaciente = @DNIPaciente
-            AND CONVERT(date, fechaPactada) = CONVERT(date, @FechaOriginal)";
+            List<DateTime> fechas = new List<DateTime>();
+            DateTime dia = desde.Date;
 
-
-            using (SqlConnection con = conexion.AbrirConexion())
+            while (dia <= hasta.Date)
             {
-                using (SqlCommand cmd = new SqlCommand(query, con))
+                DataTable dtHoras = ObtenerHorasDisponibles(legajo, dia);
+
+                if (dtHoras.Rows.Count > 0)
                 {
-                    cmd.Parameters.AddWithValue("@FechaNueva", turno.FechaPactada);
-                    cmd.Parameters.AddWithValue("@FechaOriginal", turno.FechaOriginal);
-                    cmd.Parameters.AddWithValue("@Observacion", turno.Observacion ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Diagnostico", turno.Diagnostico ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Legajo", turno.Legajo);
-                    cmd.Parameters.AddWithValue("@DNIPaciente", turno.DNIPaciente);
 
+                    if (dia > DateTime.Today)
+                    {
+                        fechas.Add(dia);
+                    }
+                    else if (dia == DateTime.Today)
+                    {
+                        TimeSpan horaActual = DateTime.Now.TimeOfDay;
 
-                    return cmd.ExecuteNonQuery() > 0;
+                        var filasValidas = dtHoras.AsEnumerable()
+                        .Where(row =>
+                        {
+
+                            TimeSpan horaTurno = TimeSpan.Parse(row["RangoHorario"].ToString());
+                            return horaTurno > horaActual;
+                        });
+                        if (filasValidas.Any())
+                        {
+                            fechas.Add(dia);
+                        }
+
+                    }
                 }
+                dia = dia.AddDays(1);
             }
+            return fechas;
         }
 
     }

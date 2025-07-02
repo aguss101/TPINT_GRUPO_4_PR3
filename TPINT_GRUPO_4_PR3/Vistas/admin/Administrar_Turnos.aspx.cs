@@ -129,9 +129,30 @@ namespace Vistas.admin
         { ModificarTurno(); }
         protected void btnModAplicarCambios_click(object sender, EventArgs e)
         {
-            string observacion = Session["observacionViejo"].ToString();
-            string diagnostico = Session["diagnosticoViejo"].ToString();
+            string observacion;
+            string diagnostico;
 
+            string auxObs = txtObservacion.Text.Trim();
+            string auxDiag = txtDiagnostico.Text.Trim();
+            
+            
+            if (auxObs == "")
+            {
+                observacion = Session["observacionViejo"].ToString();
+            }
+            else 
+            {
+                observacion = auxObs;
+            }
+                        
+            if (auxDiag == "")
+            {
+                diagnostico = Session["diagnosticoViejo"].ToString();
+            }
+            else 
+            {
+                diagnostico = auxDiag;
+            }
             string legajo = Session["Legajo"].ToString();
             string valorFecha = Session["FechaVieja"].ToString();
 
@@ -139,11 +160,11 @@ namespace Vistas.admin
 
             if (string.IsNullOrEmpty(ddlModFecha.SelectedValue) || ddlModFecha.SelectedValue == "--Seleccione Fecha--")
             {
-                lblMensaje.Text = "Debe seleccionar una fecha válida.";
+                lblMensaje.Text = "Debe seleccionar una fecha.";
                 return;
             }
 
-            if (string.IsNullOrEmpty(ddlModHorario.SelectedValue))
+            if (string.IsNullOrEmpty(ddlModHorario.SelectedValue) || (ddlModHorario.SelectedValue == "--Seleccione Fecha--"))
             {
                 lblMensaje.Text = "Debe seleccionar un horario.";
                 return;
@@ -152,8 +173,6 @@ namespace Vistas.admin
             TimeSpan horaNueva = TimeSpan.Parse(ddlModHorario.SelectedValue);
             DateTime fechaHoraNueva = fechaNueva.Add(horaNueva);
 
-            observacion = txtObservacion.Text.Trim();
-            diagnostico = txtDiagnostico.Text.Trim();
 
             List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
             Turno turnoSeleccionado = turnos.FirstOrDefault();
@@ -179,10 +198,10 @@ namespace Vistas.admin
             {
                 if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
                 {
-                    string observacion = row.Cells[6].Text.Trim();
-                    Session["observacionViejo"] = observacion;
-                    string diagnostico = row.Cells[7].Text.Trim();
-                    Session["diagnosticoViejo"] = diagnostico;
+                    string observacionV = Server.HtmlDecode(row.Cells[5].Text.Trim());
+                    Session["observacionViejo"] = observacionV;
+                    string diagnosticoV = Server.HtmlDecode(row.Cells[6].Text.Trim());
+                    Session["diagnosticoViejo"] = diagnosticoV;
 
 
                     string legajo = row.Cells[1].Text;
@@ -191,8 +210,6 @@ namespace Vistas.admin
                     Session["FechaVieja"] = auxFechaPactada;
                     
                     DateTime fechaPactada = DateTime.ParseExact(auxFechaPactada, "d/M/yyyy H:mm:ss", CultureInfo.InvariantCulture);
-
-                    //List<Turno> turnosD = gestorturnos.GetTurnosObs_Dia(observacion, diagnostico);
                     
                     List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
 
