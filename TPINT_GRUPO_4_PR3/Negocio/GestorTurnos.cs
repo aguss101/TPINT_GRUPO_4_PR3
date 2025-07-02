@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
-using System.Linq;
 using Datos;
 using Entidades;
 
@@ -17,9 +15,13 @@ namespace Negocio
         public List<Turno> FiltrarPacientexDNI(string legajo, string dniPaciente) { return consultas.FiltrarPacientexDNI(legajo, dniPaciente); }
         public DataTable ObtenerMedicosPorEspecialidad(int idEspecialidad) { return consultas.ObtenerMedicosPorEspecialidad(idEspecialidad); }
         public DataTable ObtenerHorasDisponibles(string legajo, DateTime fecha) { return consultas.ObtenerHorasDisponibles(legajo, fecha); }
-        public bool ModificarTurnoG( Turno turno ) { return consultas.ModificarTurnoG(turno); }
+        public bool ModificarTurno(Turno turno) { return consultas.ModificarTurno(turno); }
+
+        public int EliminarTurno(string legajo, DateTime fechapactada) { return consultas.EliminarTurno(legajo, fechapactada); }
+
+        public int InsertarTurno(Turno turno) { return consultas.InsertarTurno(turno); }
 
         public List<DateTime> ObtenerFechasDisponibles(string legajo, DateTime desde, DateTime hasta) { return consultas.ObtenerFechasDisponibles(legajo, desde, hasta); }
-    
+
     }
 }

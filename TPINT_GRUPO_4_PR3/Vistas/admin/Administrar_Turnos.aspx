@@ -333,8 +333,8 @@
                         <tr>
                             <td class="auto-style32">Paciente</td>
                             <td class="auto-style30">
-                                <asp:DropDownList ID="DropDownList5" runat="server" AutoPostBack="True" DataSourceID="dbPaciente" DataTextField="Paciente" DataValueField="Paciente"></asp:DropDownList>
-                                <asp:SqlDataSource ID="dbPaciente" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT P_Pac.nombre + ' ' + P_Pac.apellido AS Paciente FROM Persona P_Pac INNER JOIN Paciente PA ON PA.DNI        = P_Pac.DNI"></asp:SqlDataSource>
+                                <asp:DropDownList ID="ddlPaciente" runat="server" AutoPostBack="True" DataSourceID="dbPaciente" DataTextField="Paciente" DataValueField="DNI"></asp:DropDownList>
+                                <asp:SqlDataSource ID="dbPaciente" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT PA.DNI, P_Pac.nombre + ' ' + P_Pac.apellido AS Paciente FROM Persona P_Pac INNER JOIN Paciente PA ON PA.DNI        = P_Pac.DNI"></asp:SqlDataSource>
                             </td>
                             <td class="auto-style31"></td>
                         </tr>
@@ -345,10 +345,10 @@
                         </tr>
                         <tr>
                             <td class="auto-style32">
-                                <asp:Button ID="btnRegistrar" runat="server" Text="Registrar Turno" Width="188px" /></td>
+                                <asp:Button ID="btnRegistrar" runat="server" Text="Registrar Turno" Width="188px" OnClick="btnRegistrar_Click" /></td>
                             <td class="auto-style30">
                                 <asp:Button ID="btnMod" runat="server" Text="Modificar Turno" OnClick="btnMod_Click" Width="188px" />
-                                <asp:Button ID="btnBaja" runat="server" Text="Dar de baja"  Width="188px" />
+                                <asp:Button ID="btnBaja" runat="server" Text="Dar de baja"  Width="188px" OnClick="btnBaja_Click" />
                                 <asp:TextBox ID="txtBoxPrueba" runat="server"></asp:TextBox>
                             </td>
                             <td class="auto-style31">&nbsp;</td>

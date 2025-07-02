@@ -69,7 +69,7 @@ namespace Vistas.admin
                 ddlMedico.DataValueField = "Legajo";
                 ddlMedico.DataBind();
             }
-            else { ddlMedico.Items.Clear(); } 
+            else { ddlMedico.Items.Clear(); }
             ddlMedico.Items.Insert(0, new ListItem("-- Seleccione un médico --", ""));
         }
 
@@ -134,22 +134,22 @@ namespace Vistas.admin
 
             string auxObs = txtObservacion.Text.Trim();
             string auxDiag = txtDiagnostico.Text.Trim();
-            
-            
+
+
             if (auxObs == "")
             {
                 observacion = Session["observacionViejo"].ToString();
             }
-            else 
+            else
             {
                 observacion = auxObs;
             }
-                        
+
             if (auxDiag == "")
             {
                 diagnostico = Session["diagnosticoViejo"].ToString();
             }
-            else 
+            else
             {
                 diagnostico = auxDiag;
             }
@@ -183,7 +183,7 @@ namespace Vistas.admin
                 turnoSeleccionado.FechaPactada = fechaHoraNueva;
                 turnoSeleccionado.Observacion = observacion;
                 turnoSeleccionado.Diagnostico = diagnostico;
-                bool exito = gestorturnos.ModificarTurnoG(turnoSeleccionado);
+                bool exito = gestorturnos.ModificarTurno(turnoSeleccionado);
 
                 lblMensaje.Text = exito ? "Turno actualizado con éxito." : "No se pudo actualizar el turno.";
             }
@@ -208,9 +208,9 @@ namespace Vistas.admin
                     Session["Legajo"] = legajo;
                     string auxFechaPactada = row.Cells[3].Text.Trim();
                     Session["FechaVieja"] = auxFechaPactada;
-                    
+
                     DateTime fechaPactada = DateTime.ParseExact(auxFechaPactada, "d/M/yyyy H:mm:ss", CultureInfo.InvariantCulture);
-                    
+
                     List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
 
                     gvTurnos.DataSource = turnos;
@@ -271,6 +271,76 @@ namespace Vistas.admin
                 case "Turnos": Response.Redirect("/admin/Administrar_Turnos.aspx"); break;
                 default: break;
             }
+        }
+
+        protected void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            string legajo = ddlMedico.SelectedValue;
+            string dniPaciente = ddlPaciente.SelectedValue;
+            string fechaSeleccionada = ddlFecha.SelectedValue;
+            string horaSeleccionada = ddlHora.SelectedValue;
+
+            if (string.IsNullOrEmpty(legajo) || string.IsNullOrEmpty(dniPaciente) ||
+                string.IsNullOrEmpty(fechaSeleccionada) || string.IsNullOrEmpty(horaSeleccionada))
+            {
+                lblMensaje.Text = "Todos los campos deben estar completos.";
+                return;
+            }
+
+            try
+            {
+                DateTime fecha = DateTime.Parse(fechaSeleccionada);
+                TimeSpan hora = TimeSpan.Parse(horaSeleccionada);
+                DateTime fechaPactada = fecha.Add(hora);
+
+                Turno nuevoTurno = new Turno
+                {
+                    Legajo = legajo,
+                    DNIPaciente = dniPaciente,
+                    FechaPactada = fechaPactada,
+                    Observacion = txtObservacion.Text.Trim(),
+                    Diagnostico = txtDiagnostico.Text.Trim()
+                };
+
+                int filasAfectadas = gestorturnos.InsertarTurno(nuevoTurno);
+                lblMensaje.Text = filasAfectadas > 0 ? "Turno registrado correctamente." : "No se pudo registrar el turno.";
+
+                if (filasAfectadas > 0)
+                {
+                    CargarTurnos();
+                    ddlFecha.ClearSelection();
+                    ddlHora.ClearSelection();
+                }
+            }
+            catch (FormatException)
+            {
+                lblMensaje.Text = "Formato de fecha u hora inválido.";
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Text = "Error al registrar turno: " + ex.Message;
+            }
+        }
+
+        protected void btnBaja_Click(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in gvTurnos.Rows)
+            {
+                if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
+                {
+                    string legajo = row.Cells[1].Text;
+                    Debug.WriteLine(legajo, "legajo");
+                    DateTime fechaPactada = DateTime.Parse(row.Cells[3].Text);
+                    Debug.WriteLine(fechaPactada, "fechapactada");
+
+
+                    int eliminado = gestorturnos.EliminarTurno(legajo, fechaPactada);
+                    lblMensaje.Text = eliminado > 0 ? "Turno eliminado correctamente." : "No se pudo eliminar el turno.";
+                    break;
+                }
+            }
+
+            CargarTurnos();
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Datos
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 adapter.Fill(dataTable);
             }
-            catch(Exception ex) { throw new Exception("Error al ejecutar la consulta: " + ex.Message); }
+            catch (Exception ex) { throw new Exception("Error al ejecutar la consulta: " + ex.Message); }
             return dataTable;
         }
         public DataTable EjecutarConsultaConParametros(string query, SqlParameter[] parametros)
@@ -68,7 +68,7 @@ namespace Datos
             {
                 SqlConnection connection = AbrirConexion();
                 SqlCommand command = new SqlCommand(query, connection);
-                if(parametros?.Length > 0) { command.Parameters.AddRange(parametros); }
+                if (parametros?.Length > 0) { command.Parameters.AddRange(parametros); }
                 filasAfectadas = command.ExecuteNonQuery();
             }
             catch (Exception ex) { throw new Exception("Error al ejecutar el comando con parametros: " + ex.Message); }
