@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Negocio;
 
 namespace Vistas
 {
@@ -25,8 +26,14 @@ namespace Vistas
         }
 
         protected void Administrar_Turnos_Click(object sender, EventArgs e)
+        { Response.Redirect("/admin/Administrar_Turnos.aspx"); }
+
+        protected void ddlReportes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Response.Redirect("/admin/Administrar_Turnos.aspx");
+                ddlCategoria.DataSource =
+                ddlCategoria.DataTextField = "NombreCompleto";
+                ddlCategoria.DataValueField = "Legajo";
+                ddlCategoria.DataBind();
         }
     }
 }

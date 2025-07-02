@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="Vistas.Admin" %>
 
+<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -204,10 +206,34 @@
             <td class="columnaBody">
                 <table class="auto-style10">
                     <tr><td class="auto-style22" colspan="3"><div class="titulo-con-nombre"><h2><span class="clinica">Clínica</span> <span class="frgp">FRGP</span></h2><div class="sidebarUser"><asp:Label ID="lblUser" runat="server" Font-Bold="True" Font-Names="Calibri" Text="Administrador"></asp:Label></div></div> </td></tr>
-                    <tr><td class="no-select"></td><td class="no-select">&nbsp;</td><td class="auto-style28"></td></tr>
-                    <tr><td class="auto-style20">Seleccioná una opción del menú para comenzar.</td> <td class="no-select">&nbsp;</td><td class="auto-style28">&nbsp;</td></tr>
-                    <tr><td class="no-select"></td><td class="no-select"></td><td class="auto-style28"></td></tr>
-                    <tr><td class="no-select">&nbsp;</td><td class="no-select"></td><td class="auto-style28"></td></tr>
+                    <tr><td class="no-select">REPORTES</td><td class="no-select">&nbsp;</td><td class="auto-style28"></td></tr>
+                    <tr><td class="auto-style20">&nbsp;</td> <td class="no-select">&nbsp;</td><td class="auto-style28">&nbsp;</td></tr>
+                    <tr><td class="no-select">
+                        <asp:DropDownList ID="ddlReportes" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlReportes_SelectedIndexChanged">
+                            <asp:ListItem Value="0">--Seleccione--</asp:ListItem>
+                            <asp:ListItem Value="1">Medico</asp:ListItem>
+                            <asp:ListItem Value="2">Paciente</asp:ListItem>
+                            <asp:ListItem Value="3">Turno</asp:ListItem>
+                        </asp:DropDownList>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:DropDownList ID="ddlCategoria" runat="server" AutoPostBack="True">
+                            <asp:ListItem Value="0">--Seleccione--</asp:ListItem>
+                            <asp:ListItem Value="1">Coca</asp:ListItem>
+                            <asp:ListItem Value="2">Azucar</asp:ListItem>
+                        </asp:DropDownList>
+                        </td><td class="no-select"></td><td class="auto-style28"></td></tr>
+                    <tr><td class="no-select">&nbsp;</td><td class="no-select">
+                        <asp:Chart ID="Chart1" runat="server">
+                            <series>
+                                <asp:Series Name="Series1">
+                                </asp:Series>
+                            </series>
+                            <chartareas>
+                                <asp:ChartArea Name="ChartArea1">
+                                </asp:ChartArea>
+                            </chartareas>
+                        </asp:Chart>
+                        </td><td class="auto-style28"></td></tr>
                     <tr><td class="no-select">&nbsp;</td><td class="no-select">&nbsp;</td><td class="auto-style28">&nbsp;</td></tr>
                     <tr><td class="no-select"></td><td class="no-select"></td><td class="auto-style28"></td></tr>
                     <tr><td class="no-select"></td><td class="no-select"></td><td class="auto-style28"></td></tr>
