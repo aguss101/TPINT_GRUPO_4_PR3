@@ -14,7 +14,7 @@ namespace Datos
         {
             List<Paciente> pacientes = new List<Paciente>();
             string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, 
-            S.idSexo, S.descripcion AS genero, O.idObraSocial, O.nombre, C.correo, T.telefono, L.idLocalidad
+            S.idSexo, S.descripcion AS genero, O.idObraSocial, O.nombre AS nombreObraSocial, C.correo, T.telefono, L.idLocalidad
             FROM Paciente PA
             INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo 
             INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad 
@@ -38,7 +38,7 @@ namespace Datos
                                 sexos = new Sexos() { descripcion = (reader["genero"].ToString())},
                                 ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),
                                 Alta = Convert.ToDateTime(reader["alta"]),
-                                ObraSocial  = new ObraSocial() {nombre = (reader["nombre"].ToString())},
+                                ObraSocial  = new ObraSocial() { Onombre = (reader["nombreObraSocial"].ToString())},
                                 fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
                                 nacionalidad = reader["nacionalidad"].ToString(),
                                 Localidad = Convert.ToInt32(reader["idLocalidad"]),
@@ -87,7 +87,7 @@ namespace Datos
                     using (SqlCommand cmd = new SqlCommand(queryPaciente, con, transaction))
                     {
                         cmd.Parameters.AddWithValue("@DNI", paciente.DNI);
-                        cmd.Parameters.AddWithValue("@ObraSocial", paciente.ObraSocial.nombre);
+                        cmd.Parameters.AddWithValue("@ObraSocial", paciente.ObraSocial.idObraSocial);
                         cmd.Parameters.AddWithValue("@UltimaAtencion", paciente.ultimaAtencion);
                         cmd.Parameters.AddWithValue("@Alta", paciente.Alta);
                         cmd.ExecuteNonQuery();
@@ -153,7 +153,7 @@ namespace Datos
                     using (SqlCommand cmd = new SqlCommand(queryPaciente, con, transaction))
                     {
                             cmd.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
-                            cmd.Parameters.AddWithValue("@ObraSocial", paciente.ObraSocial.nombre);
+                            cmd.Parameters.AddWithValue("@ObraSocial", paciente.ObraSocial.idObraSocial);
                             cmd.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
                             cmd.ExecuteNonQuery();
                     }
@@ -188,7 +188,7 @@ namespace Datos
         {
             Paciente paciente = null;
             string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, 
-            S.idSexo, S.descripcion AS genero, O.idObraSocial, O.nombre, C.correo, T.telefono, L.idLocalidad
+            S.idSexo, S.descripcion AS genero, O.idObraSocial, O.nombre AS nombreObraSocial, C.correo, T.telefono, L.idLocalidad
             FROM Paciente PA
             INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo 
             INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad 
@@ -207,7 +207,7 @@ namespace Datos
                             paciente = new Paciente()
                             {
                                 DNI = reader["DNI"].ToString(),
-                                ObraSocial = new ObraSocial { idObraSocial = Convert.ToInt32(reader["idObraSocial"]), nombre = reader["nombre"].ToString()},
+                                ObraSocial = new ObraSocial { idObraSocial = Convert.ToInt32(reader["idObraSocial"]), Onombre = reader["nombreObraSocial"].ToString()},
                                 nombre = reader["nombre"].ToString(),
                                 apellido = reader["apellido"].ToString(),
                                 ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),

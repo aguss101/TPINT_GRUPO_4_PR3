@@ -9,6 +9,6 @@ namespace Entidades
     public class ObraSocial
     {
         public int idObraSocial { get; set; }
-        public string nombre { get; set; }
+        public string Onombre { get; set; } // La "O" detras de "nombre" es para evitar confusiones con el nombre del paciente
     }
 }

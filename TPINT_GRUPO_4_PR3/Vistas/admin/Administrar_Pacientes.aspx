@@ -521,7 +521,6 @@
                                                     <td class="auto-style31">&nbsp;</td>
                                                 </tr>
                                                 <caption>
-                                                    --&gt;
                                                     <tr>
                                                         <td class="auto-style32">Provincia</td>
                                                         <td class="auto-style30">
@@ -597,10 +596,10 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:BoundField DataField="DNI" HeaderText="DNI" />
-                                                    <asp:BoundField DataField="ObraSocial.nombre" HeaderText="Obra Social" />
                                                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                                                     <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
                                                     <asp:BoundField DataField="Sexos.descripcion" HeaderText="Genero" />
+                                                    <asp:BoundField DataField="ObraSocial.Onombre" HeaderText="Obra Social" />
                                                     <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
                                                     <asp:BoundField DataField="Localidad" HeaderText="Localidad" />
                                                     <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
