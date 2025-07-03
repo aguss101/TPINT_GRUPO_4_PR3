@@ -13,7 +13,7 @@ namespace Entidades
         public string DNI { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
-        public int genero { get; set; }
+        public string genero { get; set; }
         public int Localidad { get; set; }
         public DateTime fechaNacimiento { get; set; }
         public string nacionalidad { get; set; }

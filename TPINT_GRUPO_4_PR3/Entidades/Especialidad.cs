@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Medico : Persona
+    public class Especialidad
     {
-        public Usuario Usuario { get; set; }
-        public string Legajo { get; set; }
-        public Especialidad Especialidad { get; set; }
         public int idEspecialidad { get; set; }
+        public string descripcion { get; set; }
     }
 }

@@ -605,6 +605,7 @@
                                                     <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
                                                     <asp:BoundField HeaderText="Correo" DataField="correo" />
                                                     <asp:BoundField DataField="telefono" HeaderText="Telefono" />
+                                                    <asp:BoundField DataField="genero.descripcion" HeaderText="Genero" />
                                                 </Columns>
                                                 <EditRowStyle BackColor="#2461BF" />
                                                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

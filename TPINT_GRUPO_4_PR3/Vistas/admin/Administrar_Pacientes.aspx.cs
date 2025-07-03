@@ -99,7 +99,7 @@ namespace Vistas.admin
             paciente.Alta = DateTime.Now;
             paciente.nombre = txbNombre.Text.Trim();
             paciente.apellido = txbApellido.Text.Trim();
-            paciente.genero = int.Parse(ddlGenero.SelectedValue);
+            paciente.genero = ddlGenero.SelectedValue.ToString();
             paciente.fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim());
             paciente.nacionalidad = ddlNacionalidad.SelectedValue.ToString();
             paciente.Localidad = int.Parse(ddlLocalidades.SelectedValue);
@@ -131,7 +131,7 @@ namespace Vistas.admin
                 apellido = txbModApellido.Text.Trim(),
                 fechaNacimiento = Convert.ToDateTime(txbModFechaNacimiento.Text.Trim()),
                 ObraSocial = int.Parse(ddlModObraSocial.SelectedValue),
-                genero = int.Parse(ddlModGenero.SelectedValue),
+                genero = ddlModGenero.SelectedValue.ToString(),
                 ultimaAtencion = DateTime.Now,
                 Alta = DateTime.Now,
                 nacionalidad = ddlModNacionalidad.SelectedValue.ToString(),

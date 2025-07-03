@@ -13,7 +13,7 @@ namespace Datos
         public List<Paciente> GetPacientes()
         {
             List<Paciente> pacientes = new List<Paciente>();
-            string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, O.idObraSocial, C.correo, T.telefono, L.idLocalidad 
+            string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, O.idObraSocial, C.correo, T.telefono, L.idLocalidad, S.descripcion AS genero
                             FROM Paciente PA
                             INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial
                             INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
@@ -36,7 +36,7 @@ namespace Datos
                                 apellido = reader["apellido"].ToString(),
                                 ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),
                                 Alta = Convert.ToDateTime(reader["alta"]),
-                                genero = Convert.ToInt32(reader["idSexo"]),
+                                genero = reader["genero"].ToString(),
                                 fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
                                 Direccion = reader["Direccion"].ToString(),
                                 Localidad = Convert.ToInt32(reader["idLocalidad"]),
@@ -185,7 +185,7 @@ namespace Datos
         public Paciente getPacientePorID(string idPaciente)
         {
             Paciente paciente = null;
-            string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, O.idObraSocial, C.correo, T.telefono, L.idLocalidad 
+            string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, O.idObraSocial, C.correo, T.telefono, L.idLocalidad, S.descripcion AS genero
             FROM Paciente PA
             INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial
             INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
@@ -208,7 +208,7 @@ namespace Datos
                                 apellido = reader["apellido"].ToString(),
                                 ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),
                                 Alta = Convert.ToDateTime(reader["alta"]),
-                                genero = Convert.ToInt32(reader["idSexo"]),
+                                genero = reader["genero"].ToString(),
                                 fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
                                 Direccion = reader["direccion"].ToString(),
                                 Localidad = Convert.ToInt32(reader["idLocalidad"]),
