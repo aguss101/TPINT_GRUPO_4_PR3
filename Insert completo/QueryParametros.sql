@@ -91,9 +91,9 @@ INNER JOIN Especialidades E ON E.idEspecialidad = Sub.idEspecialidad
 GROUP BY E.descripcion
 ORDER BY PromediosTurnosxEspecialidad
 
-
+--  ESTADO DE TURNOS
 SELECT
-  ET.descripcion     AS Estado,   -- Pacientes x estado
+  ET.descripcion     AS Estado,   
   COUNT(*)           AS CantidadTurnos
 FROM Turnos T
 JOIN EstadoTurnos ET
