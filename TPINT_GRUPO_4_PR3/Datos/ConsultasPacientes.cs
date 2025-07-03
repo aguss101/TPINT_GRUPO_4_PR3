@@ -13,11 +13,13 @@ namespace Datos
         public List<Paciente> GetPacientes()
         {
             List<Paciente> pacientes = new List<Paciente>();
-            string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, S.descripcion AS genero, O.idObraSocial, C.correo, T.telefono, L.idLocalidad
-                            FROM Paciente PA
-                            INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial
-                            INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
-                            WHERE activo = 1;";
+            string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, 
+            S.idSexo, S.descripcion AS genero, O.idObraSocial, O.nombre, C.correo, T.telefono, L.idLocalidad
+            FROM Paciente PA
+            INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo 
+            INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad 
+            LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
+            WHERE activo = 1;";
             try
             {
                 using (SqlConnection con = conexion.AbrirConexion())
@@ -31,16 +33,16 @@ namespace Datos
                             Paciente paciente = new Paciente
                             {
                                 DNI = reader["DNI"].ToString(),
-                                ObraSocial = Convert.ToInt32(reader["idObraSocial"]),
                                 nombre = reader["nombre"].ToString(),
                                 apellido = reader["apellido"].ToString(),
+                                sexos = new Sexos() { descripcion = (reader["genero"].ToString())},
                                 ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),
                                 Alta = Convert.ToDateTime(reader["alta"]),
-                                sexos = new Sexos() { descripcion = (reader["genero"].ToString()) },
+                                ObraSocial  = new ObraSocial() {nombre = (reader["nombre"].ToString())},
                                 fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
-                                Direccion = reader["Direccion"].ToString(),
-                                Localidad = Convert.ToInt32(reader["idLocalidad"]),
                                 nacionalidad = reader["nacionalidad"].ToString(),
+                                Localidad = Convert.ToInt32(reader["idLocalidad"]),
+                                Direccion = reader["Direccion"].ToString(),
                                 Correo = reader["Correo"].ToString(),
                                 Telefono = reader["telefono"].ToString()
                             };
@@ -85,7 +87,7 @@ namespace Datos
                     using (SqlCommand cmd = new SqlCommand(queryPaciente, con, transaction))
                     {
                         cmd.Parameters.AddWithValue("@DNI", paciente.DNI);
-                        cmd.Parameters.AddWithValue("@ObraSocial", paciente.ObraSocial);
+                        cmd.Parameters.AddWithValue("@ObraSocial", paciente.ObraSocial.nombre);
                         cmd.Parameters.AddWithValue("@UltimaAtencion", paciente.ultimaAtencion);
                         cmd.Parameters.AddWithValue("@Alta", paciente.Alta);
                         cmd.ExecuteNonQuery();
@@ -151,7 +153,7 @@ namespace Datos
                     using (SqlCommand cmd = new SqlCommand(queryPaciente, con, transaction))
                     {
                             cmd.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
-                            cmd.Parameters.AddWithValue("@ObraSocial", paciente.ObraSocial);
+                            cmd.Parameters.AddWithValue("@ObraSocial", paciente.ObraSocial.nombre);
                             cmd.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
                             cmd.ExecuteNonQuery();
                     }
@@ -185,10 +187,12 @@ namespace Datos
         public Paciente getPacientePorID(string idPaciente)
         {
             Paciente paciente = null;
-            string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, S.descripcion AS genero, O.idObraSocial, C.correo, T.telefono, L.idLocalidad
+            string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, 
+            S.idSexo, S.descripcion AS genero, O.idObraSocial, O.nombre, C.correo, T.telefono, L.idLocalidad
             FROM Paciente PA
-            INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial
-            INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
+            INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo 
+            INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad 
+            LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
             WHERE activo = 1 AND PE.DNI = @id ";
             try
             {
@@ -203,12 +207,12 @@ namespace Datos
                             paciente = new Paciente()
                             {
                                 DNI = reader["DNI"].ToString(),
-                                ObraSocial = Convert.ToInt32(reader["idObraSocial"]),
+                                ObraSocial = new ObraSocial { idObraSocial = Convert.ToInt32(reader["idObraSocial"]), nombre = reader["nombre"].ToString()},
                                 nombre = reader["nombre"].ToString(),
                                 apellido = reader["apellido"].ToString(),
                                 ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),
                                 Alta = Convert.ToDateTime(reader["alta"]),
-                                sexos = new Sexos { idSexo = Convert.ToInt32(reader["idSexo"]), descripcion = reader["genero"].ToString() },
+                                sexos = new Sexos { idSexo = Convert.ToInt32(reader["idSexo"]), descripcion = reader["genero"].ToString()},
                                 fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
                                 Direccion = reader["direccion"].ToString(),
                                 Localidad = Convert.ToInt32(reader["idLocalidad"]),

@@ -70,8 +70,10 @@ namespace Vistas.admin
                     DateTime fechaNac = medico.fechaNacimiento.Date;
                     txtbModFechaNac.Text = fechaNac.ToString("dd-MM-yyyy");
                     ddlModNacionalidad.SelectedValue = medico.nacionalidad;
-                    if (ddlModEspecialidad.Items.FindByValue(medico.idEspecialidad.ToString()) != null)  { ddlModEspecialidad.SelectedValue = medico.idEspecialidad.ToString(); }
-                    if (ddlGenero.Items.FindByValue(medico.sexos.idSexo.ToString()) != null)  { ddlGenero.SelectedValue = medico.sexos.idSexo.ToString(); }
+                    if (ddlModEspecialidad.Items.FindByValue(medico.Especialidad.idEspecialidad.ToString()) != null)  { ddlModEspecialidad.SelectedValue = medico.Especialidad.idEspecialidad.ToString(); }
+                    //ddlModEspecialidad.SelectedValue = medico.Especialidad.idEspecialidad.ToString();
+                    ddlModGenero.SelectedValue = medico.sexos.idSexo.ToString();
+                    //if (ddlModGenero.Items.FindByValue(medico.sexos.idSexo.ToString()) != null)  { ddlGenero.SelectedValue = medico.sexos.idSexo.ToString(); }
                     txtbModMedicoDireccion.Text = medico.Direccion;
                     txtbModMedicoTelefono.Text = medico.Telefono.ToString();
                     txtbModMedicoCorreo.Text = medico.Correo;
@@ -108,7 +110,7 @@ namespace Vistas.admin
                     DNI = txbDni.Text.Trim(),
                     nombre = txbNombre.Text.Trim(),
                     apellido = txbApellido.Text.Trim(),
-                    idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue),
+                    Especialidad = new Especialidad { idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue), descripcion = ddlEspecialidad.SelectedItem.Text.Trim() },
                     sexos = new Sexos { idSexo = int.Parse(ddlGenero.SelectedValue), descripcion = ddlGenero.SelectedItem.Text },
                     nacionalidad = ddlNacionalidad.SelectedValue.ToString(),
                     fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim()),
@@ -143,18 +145,14 @@ namespace Vistas.admin
         {
             Medico medico = new Medico()
             {
-                Usuario = new Usuario()
-                {
-                    NombreUsuario = txtbModMedicoUsuario.Text.Trim(),
-                    contrasenia = txtbModMedicoContrasenia.Text.Trim()
-                },
+                Usuario = new Usuario() { NombreUsuario = txtbModMedicoUsuario.Text.Trim(), contrasenia = txtbModMedicoContrasenia.Text.Trim() },
                 DNI = txtbModMedicoDNI.Text.Trim(),
                 Legajo = txtbModMedicoLegajo.Text.Trim(),
                 nombre = txtbModMedicoNombre.Text.Trim(),
                 apellido = txtbModMedicoApellido.Text.Trim(),
                 fechaNacimiento = Convert.ToDateTime(txtbModFechaNac.Text.Trim()),
-                idEspecialidad = int.Parse(ddlModEspecialidad.SelectedValue.Trim()),
-                sexos = new Sexos { idSexo = int.Parse(ddlGenero.SelectedValue), descripcion = ddlGenero.SelectedItem.Text },
+                Especialidad = new Especialidad { idEspecialidad = int.Parse(ddlModEspecialidad.SelectedValue), descripcion = ddlModEspecialidad.SelectedItem.Text.Trim() },
+                sexos = new Sexos { idSexo = int.Parse(ddlModGenero.SelectedValue), descripcion = ddlModGenero.SelectedItem.Text.Trim()},
                 nacionalidad = ddlModNacionalidad.SelectedValue,
                 Localidad = int.Parse(ddlModLocalidad.SelectedValue),
                 Direccion = txtbModMedicoDireccion.Text,
@@ -184,7 +182,7 @@ namespace Vistas.admin
             }
             int filas = gestorMedico.ModificarMedico(medico, medico.Usuario, DNI_VIEJO, LEGAJO_VIEJO);
 
-            if (filas > 0) // Verificación final luego de llamar al sp
+            if (filas > 0)
             {
                 lblModificarMedico.Text = "Se modifico correctamente el Medico.";
                 lblModificarMedico.ForeColor = System.Drawing.Color.Green;

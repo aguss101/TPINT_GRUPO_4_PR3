@@ -8,9 +8,8 @@ namespace Entidades
 {
     public class Paciente : Persona
     {
-       public int ObraSocial { get; set; }
+        public ObraSocial ObraSocial { get; set; }
         public DateTime ultimaAtencion { get; set; }
-
         public DateTime Alta { get; set; }
 
     }

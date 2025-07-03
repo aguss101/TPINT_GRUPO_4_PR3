@@ -101,7 +101,7 @@ namespace Datos
                         {
                             cmd.Parameters.AddWithValue("@DNI", medico.DNI);
                             cmd.Parameters.AddWithValue("@Legajo", medico.Legajo);
-                            cmd.Parameters.AddWithValue("@idEspecialidad", medico.idEspecialidad);
+                            cmd.Parameters.AddWithValue("@idEspecialidad", medico.Especialidad.idEspecialidad);
                             cmd.ExecuteNonQuery();
                         }
                         using (SqlCommand cmd = new SqlCommand(queryUsuario, con, transaction))
@@ -216,7 +216,7 @@ namespace Datos
                         using (SqlCommand cmd = new SqlCommand(queryMedico, con, transaction))
                         {
                             cmd.Parameters.AddWithValue("@DNI_NUEVO", medico.DNI);
-                            cmd.Parameters.AddWithValue("@idEspecialidad", medico.idEspecialidad);
+                            cmd.Parameters.AddWithValue("@idEspecialidad", medico.Especialidad.idEspecialidad);
                             cmd.Parameters.AddWithValue("@LegajoNuevo", medico.Legajo);
                             cmd.Parameters.AddWithValue("@DNI", DNI_VIEJO);
                             cmd.ExecuteNonQuery();

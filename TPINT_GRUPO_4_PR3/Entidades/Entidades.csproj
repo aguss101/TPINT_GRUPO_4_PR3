@@ -43,12 +43,13 @@
   <ItemGroup>
     <Compile Include="Especialidad.cs" />
     <Compile Include="Medico.cs" />
+    <Compile Include="ObraSocial.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sexos.cs" />
     <Compile Include="Turno.cs" />
-    <Compile Include="Usuario\Rol.cs" />
+    <Compile Include="Rol.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup />

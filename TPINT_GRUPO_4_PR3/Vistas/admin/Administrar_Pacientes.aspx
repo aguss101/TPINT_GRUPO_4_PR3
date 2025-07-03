@@ -597,7 +597,7 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:BoundField DataField="DNI" HeaderText="DNI" />
-                                                    <asp:BoundField DataField="obraSocial" HeaderText="Obra Social" />
+                                                    <asp:BoundField DataField="ObraSocial.nombre" HeaderText="Obra Social" />
                                                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                                                     <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
                                                     <asp:BoundField DataField="Sexos.descripcion" HeaderText="Genero" />

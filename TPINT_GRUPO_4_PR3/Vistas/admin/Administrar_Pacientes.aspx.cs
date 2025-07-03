@@ -60,11 +60,11 @@ namespace Vistas.admin
                     txbModDni.Text = paciente.DNI;
                     txbModNombre.Text = paciente.nombre;
                     txbModApellido.Text = paciente.apellido;
-                    ddlModGenero.SelectedValue = paciente.sexos.idSexo.ToString();
                     ddlModNacionalidad.SelectedValue = paciente.nacionalidad;
                     ddlModLocalidades.SelectedValue = paciente.Localidad.ToString();
-                    ddlModObraSocial.SelectedValue = paciente.ObraSocial.ToString();
-                    if (ddlGenero.Items.FindByValue(paciente.sexos.idSexo.ToString()) != null) { ddlGenero.SelectedValue = paciente.sexos.idSexo.ToString(); }
+                    if (ddlModObraSocial.Items.FindByValue(paciente.ObraSocial.idObraSocial.ToString()) != null) { ddlModObraSocial.SelectedValue = paciente.ObraSocial.idObraSocial.ToString(); }
+                    ddlModGenero.SelectedValue = paciente.sexos.idSexo.ToString();
+                    // if (ddlModGenero.Items.FindByValue(paciente.sexos.idSexo.ToString()) != null) { ddlGenero.SelectedValue = paciente.sexos.idSexo.ToString(); }
                     DateTime fechaNac = paciente.fechaNacimiento.Date;
                     txbModFechaNacimiento.Text = fechaNac.ToString("yyyy-MM-dd");
                     txbModDireccion.Text = paciente.Direccion;
@@ -98,13 +98,13 @@ namespace Vistas.admin
                 Paciente paciente = new Paciente()
                 {
                     DNI = txbDni.Text.Trim(),
-                    ObraSocial = int.Parse(ddlObraSocial.SelectedValue),
-                    ultimaAtencion = DateTime.Now,
-                    Alta = DateTime.Now,
                     nombre = txbNombre.Text.Trim(),
                     apellido = txbApellido.Text.Trim(),
-                    sexos = new Sexos { idSexo = int.Parse(ddlGenero.SelectedValue), descripcion = ddlGenero.SelectedItem.Text },
                     fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim()),
+                    ultimaAtencion = DateTime.Now,
+                    Alta = DateTime.Now,
+                    ObraSocial = new ObraSocial { idObraSocial = int.Parse(ddlObraSocial.SelectedValue), nombre = ddlObraSocial.SelectedItem.Text.Trim() },                    
+                    sexos = new Sexos { idSexo = int.Parse(ddlGenero.SelectedValue), descripcion = ddlGenero.SelectedItem.Text },
                     nacionalidad = ddlNacionalidad.SelectedValue.ToString(),
                     Localidad = int.Parse(ddlLocalidades.SelectedValue),
                     Direccion = txbDireccion.Text.Trim(),
@@ -142,8 +142,8 @@ namespace Vistas.admin
                 nombre = txbModNombre.Text.Trim(),
                 apellido = txbModApellido.Text.Trim(),
                 fechaNacimiento = Convert.ToDateTime(txbModFechaNacimiento.Text.Trim()),
-                ObraSocial = int.Parse(ddlModObraSocial.SelectedValue),
-                sexos = new Sexos { idSexo = int.Parse(ddlGenero.SelectedValue), descripcion = ddlGenero.SelectedItem.Text },
+                ObraSocial = new ObraSocial { idObraSocial = int.Parse(ddlModObraSocial.SelectedValue), nombre = ddlModObraSocial.SelectedItem.Text.Trim()},
+                sexos = new Sexos { idSexo = int.Parse(ddlModGenero.SelectedValue), descripcion = ddlModGenero.SelectedItem.Text.Trim()},
                 ultimaAtencion = DateTime.Now,
                 Alta = DateTime.Now,
                 nacionalidad = ddlModNacionalidad.SelectedValue.ToString(),
