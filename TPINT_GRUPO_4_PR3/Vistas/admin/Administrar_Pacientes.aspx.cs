@@ -60,13 +60,14 @@ namespace Vistas.admin
                     txbModDni.Text = paciente.DNI;
                     txbModNombre.Text = paciente.nombre;
                     txbModApellido.Text = paciente.apellido;
-                    ddlModGenero.SelectedValue = paciente.genero.ToString();
+                    ddlModGenero.SelectedValue = paciente.sexos.idSexo.ToString();
                     ddlModNacionalidad.SelectedValue = paciente.nacionalidad;
                     ddlModLocalidades.SelectedValue = paciente.Localidad.ToString();
+                    ddlModObraSocial.SelectedValue = paciente.ObraSocial.ToString();
+                    if (ddlGenero.Items.FindByValue(paciente.sexos.idSexo.ToString()) != null) { ddlGenero.SelectedValue = paciente.sexos.idSexo.ToString(); }
                     DateTime fechaNac = paciente.fechaNacimiento.Date;
                     txbModFechaNacimiento.Text = fechaNac.ToString("yyyy-MM-dd");
                     txbModDireccion.Text = paciente.Direccion;
-                    ddlModObraSocial.SelectedValue = paciente.ObraSocial.ToString();
                     txbModTelefono.Text = paciente.Telefono.ToString();
                     txbModCorreo.Text = paciente.Correo;
                     break;
@@ -91,35 +92,46 @@ namespace Vistas.admin
         protected void InsertarPacientes()
         {
             lblAddUserState.Visible = false;
-            Paciente paciente = new Paciente();
-
-            paciente.DNI = txbDni.Text.Trim();
-            paciente.ObraSocial = int.Parse(ddlObraSocial.SelectedValue);
-            paciente.ultimaAtencion = DateTime.Now;
-            paciente.Alta = DateTime.Now;
-            paciente.nombre = txbNombre.Text.Trim();
-            paciente.apellido = txbApellido.Text.Trim();
-            paciente.genero = ddlGenero.SelectedValue.ToString();
-            paciente.fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim());
-            paciente.nacionalidad = ddlNacionalidad.SelectedValue.ToString();
-            paciente.Localidad = int.Parse(ddlLocalidades.SelectedValue);
-            paciente.Direccion = txbDireccion.Text.Trim();
-            paciente.Correo = txbCorreo.Text.Trim();
-            paciente.Telefono = txbTelefono.Text.Trim();
-
-            int filas = gestorPaciente.InsertarPaciente(paciente);
-            if (filas > 0)
+            try
             {
-                lblAddUserState.Text = "Se agrego correctamente el Paciente";
-                lblAddUserState.ForeColor = System.Drawing.Color.Green;
+
+                Paciente paciente = new Paciente()
+                {
+                    DNI = txbDni.Text.Trim(),
+                    ObraSocial = int.Parse(ddlObraSocial.SelectedValue),
+                    ultimaAtencion = DateTime.Now,
+                    Alta = DateTime.Now,
+                    nombre = txbNombre.Text.Trim(),
+                    apellido = txbApellido.Text.Trim(),
+                    sexos = new Sexos { idSexo = int.Parse(ddlGenero.SelectedValue), descripcion = ddlGenero.SelectedItem.Text },
+                    fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim()),
+                    nacionalidad = ddlNacionalidad.SelectedValue.ToString(),
+                    Localidad = int.Parse(ddlLocalidades.SelectedValue),
+                    Direccion = txbDireccion.Text.Trim(),
+                    Correo = txbCorreo.Text.Trim(),
+                    Telefono = txbTelefono.Text.Trim(),
+                };
+
+                int filas = gestorPaciente.InsertarPaciente(paciente);
+                if (filas > 0)
+                {
+                    lblAddUserState.Text = "Se agrego correctamente el Paciente";
+                    lblAddUserState.ForeColor = System.Drawing.Color.Green;
+                    lblAddUserState.Visible = true;
+                }
+                else
+                {
+                    lblAddUserState.Text = "Hubo un error durante la carga (no se insertó ninguna fila)";
+                    lblAddUserState.ForeColor = System.Drawing.Color.Red;
+                }
                 lblAddUserState.Visible = true;
             }
-            else
+            catch (Exception ex)
             {
-                lblAddUserState.Text = "Hubo un error durante la carga (no se insertó ninguna fila)";
+                lblAddUserState.Text = "❌ Error: " + ex.Message;
                 lblAddUserState.ForeColor = System.Drawing.Color.Red;
+                lblAddUserState.Visible = true;
             }
-            lblAddUserState.Visible = true;
         }
         protected void ModificarPaciente()
         {
@@ -131,7 +143,7 @@ namespace Vistas.admin
                 apellido = txbModApellido.Text.Trim(),
                 fechaNacimiento = Convert.ToDateTime(txbModFechaNacimiento.Text.Trim()),
                 ObraSocial = int.Parse(ddlModObraSocial.SelectedValue),
-                genero = ddlModGenero.SelectedValue.ToString(),
+                sexos = new Sexos { idSexo = int.Parse(ddlGenero.SelectedValue), descripcion = ddlGenero.SelectedItem.Text },
                 ultimaAtencion = DateTime.Now,
                 Alta = DateTime.Now,
                 nacionalidad = ddlModNacionalidad.SelectedValue.ToString(),

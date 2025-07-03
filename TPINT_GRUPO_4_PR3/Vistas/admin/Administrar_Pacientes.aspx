@@ -600,12 +600,12 @@
                                                     <asp:BoundField DataField="obraSocial" HeaderText="Obra Social" />
                                                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                                                     <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
+                                                    <asp:BoundField DataField="Sexos.descripcion" HeaderText="Genero" />
                                                     <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
                                                     <asp:BoundField DataField="Localidad" HeaderText="Localidad" />
                                                     <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
                                                     <asp:BoundField HeaderText="Correo" DataField="correo" />
                                                     <asp:BoundField DataField="telefono" HeaderText="Telefono" />
-                                                    <asp:BoundField DataField="genero.descripcion" HeaderText="Genero" />
                                                 </Columns>
                                                 <EditRowStyle BackColor="#2461BF" />
                                                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

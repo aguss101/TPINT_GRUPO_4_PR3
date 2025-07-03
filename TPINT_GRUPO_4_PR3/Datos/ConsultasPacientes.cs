@@ -13,7 +13,7 @@ namespace Datos
         public List<Paciente> GetPacientes()
         {
             List<Paciente> pacientes = new List<Paciente>();
-            string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, O.idObraSocial, C.correo, T.telefono, L.idLocalidad, S.descripcion AS genero
+            string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, S.descripcion AS genero, O.idObraSocial, C.correo, T.telefono, L.idLocalidad
                             FROM Paciente PA
                             INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial
                             INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
@@ -36,7 +36,7 @@ namespace Datos
                                 apellido = reader["apellido"].ToString(),
                                 ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),
                                 Alta = Convert.ToDateTime(reader["alta"]),
-                                genero = reader["genero"].ToString(),
+                                sexos = new Sexos() { descripcion = (reader["genero"].ToString()) },
                                 fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
                                 Direccion = reader["Direccion"].ToString(),
                                 Localidad = Convert.ToInt32(reader["idLocalidad"]),
@@ -75,7 +75,7 @@ namespace Datos
                         cmd.Parameters.AddWithValue("@DNI", paciente.DNI);
                         cmd.Parameters.AddWithValue("@Nombre", paciente.nombre);
                         cmd.Parameters.AddWithValue("@Apellido", paciente.apellido);
-                        cmd.Parameters.AddWithValue("@Sexo", paciente.genero);
+                        cmd.Parameters.AddWithValue("@Sexo", paciente.sexos.idSexo);
                         cmd.Parameters.AddWithValue("@Direccion", paciente.Direccion);
                         cmd.Parameters.AddWithValue("@IdLocalidad", paciente.Localidad);
                         cmd.Parameters.AddWithValue("@FechaNacimiento", paciente.fechaNacimiento);
@@ -140,7 +140,7 @@ namespace Datos
                             cmd.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
                             cmd.Parameters.AddWithValue("@Nombre", paciente.nombre);
                             cmd.Parameters.AddWithValue("@Apellido", paciente.apellido);
-                            cmd.Parameters.AddWithValue("@Sexo", paciente.genero);
+                            cmd.Parameters.AddWithValue("@Sexo", paciente.sexos.idSexo);
                             cmd.Parameters.AddWithValue("@Direccion", paciente.Direccion);
                             cmd.Parameters.AddWithValue("@IdLocalidad", paciente.Localidad);
                             cmd.Parameters.AddWithValue("@FechaNacimiento", paciente.fechaNacimiento);
@@ -185,7 +185,7 @@ namespace Datos
         public Paciente getPacientePorID(string idPaciente)
         {
             Paciente paciente = null;
-            string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, O.idObraSocial, C.correo, T.telefono, L.idLocalidad, S.descripcion AS genero
+            string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, S.descripcion AS genero, O.idObraSocial, C.correo, T.telefono, L.idLocalidad
             FROM Paciente PA
             INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial
             INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
@@ -208,7 +208,7 @@ namespace Datos
                                 apellido = reader["apellido"].ToString(),
                                 ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),
                                 Alta = Convert.ToDateTime(reader["alta"]),
-                                genero = reader["genero"].ToString(),
+                                sexos = new Sexos { idSexo = Convert.ToInt32(reader["idSexo"]), descripcion = reader["genero"].ToString() },
                                 fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
                                 Direccion = reader["direccion"].ToString(),
                                 Localidad = Convert.ToInt32(reader["idLocalidad"]),

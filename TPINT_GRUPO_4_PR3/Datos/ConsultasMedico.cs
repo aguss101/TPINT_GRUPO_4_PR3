@@ -13,8 +13,8 @@ namespace Datos
         public List<Medico> GetMedicos()
         {
             List<Medico> medicos = new List<Medico>();
-            string query = @"SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, C.correo, T.telefono, L.idLocalidad,
-                U.nombreUsuario, U.contrasenia, E.descripcion AS Especialidad, S.descripcion AS genero
+            string query = @"SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, S.descripcion AS genero, C.correo, T.telefono, L.idLocalidad,
+                U.nombreUsuario, U.contrasenia, E.descripcion AS Especialidad
                 FROM Medico ME
                 INNER JOIN Persona PE ON ME.DNI = PE.DNI
                 INNER JOIN Sexos S ON PE.sexo = S.idSexo
@@ -45,7 +45,7 @@ namespace Datos
                                 Especialidad = new Especialidad() { descripcion = reader["Especialidad"].ToString() },
                                 nombre = reader["nombre"].ToString(),
                                 apellido = reader["apellido"].ToString(),
-                                genero = reader["genero"].ToString(),
+                                sexos = new Sexos() { descripcion = (reader["genero"].ToString()) },
                                 fechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]),
                                 Direccion = reader["Direccion"].ToString(),
                                 Localidad = Convert.ToInt32(reader["idLocalidad"]),
@@ -90,7 +90,7 @@ namespace Datos
                             cmd.Parameters.AddWithValue("@DNI", medico.DNI);
                             cmd.Parameters.AddWithValue("@Nombre", medico.nombre);
                             cmd.Parameters.AddWithValue("@Apellido", medico.apellido);
-                            cmd.Parameters.AddWithValue("@Sexo", medico.genero);
+                            cmd.Parameters.AddWithValue("@Sexo", medico.sexos.idSexo);
                             cmd.Parameters.AddWithValue("@Direccion", medico.Direccion);
                             cmd.Parameters.AddWithValue("@IdLocalidad", medico.Localidad);
                             cmd.Parameters.AddWithValue("@FechaNacimiento", medico.fechaNacimiento);
@@ -205,7 +205,7 @@ namespace Datos
                             cmd.Parameters.AddWithValue("@DNI_NUEVO", medico.DNI);
                             cmd.Parameters.AddWithValue("@Nombre", medico.nombre);
                             cmd.Parameters.AddWithValue("@Apellido", medico.apellido);
-                            cmd.Parameters.AddWithValue("@Sexo", medico.genero);
+                            cmd.Parameters.AddWithValue("@Sexo", medico.sexos.idSexo);
                             cmd.Parameters.AddWithValue("@Direccion", medico.Direccion);
                             cmd.Parameters.AddWithValue("@IdLocalidad", medico.Localidad);
                             cmd.Parameters.AddWithValue("@FechaNacimiento", medico.fechaNacimiento);
@@ -232,14 +232,16 @@ namespace Datos
         public Medico getMedicoPorID(string idMedico)
         {
             Medico medico = null;
-            string query = @"SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, C.correo, T.telefono, L.idLocalidad, U.nombreUsuario, U.contrasenia 
+            string query = @"SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, S.descripcion AS genero, C.correo, T.telefono,
+                L.idLocalidad, U.nombreUsuario, U.contrasenia, E.descripcion AS Especialidad
                 FROM Medico ME 
                 INNER JOIN Persona PE ON ME.DNI = PE.DNI 
                 INNER JOIN Sexos S ON PE.sexo = S.idSexo
                 INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad 
                 LEFT JOIN Correos C ON PE.DNI = C.idPersona 
                 LEFT JOIN Telefonos T ON PE.DNI = T.idPersona 
-                INNER JOIN Usuario U ON PE.DNI = U.DNI 
+                INNER JOIN Usuario U ON PE.DNI = U.DNI
+                INNER JOIN Especialidades E ON ME.idEspecialidad = E.idEspecialidad
                 WHERE ME.DNI = @id";
             try
             {
@@ -263,7 +265,7 @@ namespace Datos
                                 Especialidad = new Especialidad() { descripcion = reader["Especialidad"].ToString() },
                                 nombre = reader["nombre"].ToString(),
                                 apellido = reader["apellido"].ToString(),
-                                genero = reader["genero"].ToString(),
+                                sexos = new Sexos { idSexo = Convert.ToInt32(reader["idSexo"]), descripcion = reader["genero"].ToString() },
                                 fechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]),
                                 Direccion = reader["Direccion"].ToString(),
                                 Localidad = Convert.ToInt32(reader["idLocalidad"]),

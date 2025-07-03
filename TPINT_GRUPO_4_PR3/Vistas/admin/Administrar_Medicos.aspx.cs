@@ -65,12 +65,13 @@ namespace Vistas.admin
                     mvFormularios.ActiveViewIndex = 2;
                     txtbModMedicoDNI.Text = medico.DNI;
                     txtbModMedicoLegajo.Text = medico.Legajo.ToString();
-                    ddlModEspecialidad.SelectedValue = medico.idEspecialidad.ToString();
                     txtbModMedicoNombre.Text = medico.nombre;
                     txtbModMedicoApellido.Text = medico.apellido;
                     DateTime fechaNac = medico.fechaNacimiento.Date;
                     txtbModFechaNac.Text = fechaNac.ToString("dd-MM-yyyy");
                     ddlModNacionalidad.SelectedValue = medico.nacionalidad;
+                    if (ddlModEspecialidad.Items.FindByValue(medico.idEspecialidad.ToString()) != null)  { ddlModEspecialidad.SelectedValue = medico.idEspecialidad.ToString(); }
+                    if (ddlGenero.Items.FindByValue(medico.sexos.idSexo.ToString()) != null)  { ddlGenero.SelectedValue = medico.sexos.idSexo.ToString(); }
                     txtbModMedicoDireccion.Text = medico.Direccion;
                     txtbModMedicoTelefono.Text = medico.Telefono.ToString();
                     txtbModMedicoCorreo.Text = medico.Correo;
@@ -108,7 +109,7 @@ namespace Vistas.admin
                     nombre = txbNombre.Text.Trim(),
                     apellido = txbApellido.Text.Trim(),
                     idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue),
-                    genero = ddlNacionalidad.SelectedValue.ToString(),
+                    sexos = new Sexos { idSexo = int.Parse(ddlGenero.SelectedValue), descripcion = ddlGenero.SelectedItem.Text },
                     nacionalidad = ddlNacionalidad.SelectedValue.ToString(),
                     fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim()),
                     Direccion = txbDireccion.Text.Trim(),
@@ -153,7 +154,7 @@ namespace Vistas.admin
                 apellido = txtbModMedicoApellido.Text.Trim(),
                 fechaNacimiento = Convert.ToDateTime(txtbModFechaNac.Text.Trim()),
                 idEspecialidad = int.Parse(ddlModEspecialidad.SelectedValue.Trim()),
-                genero = ddlModGenero.SelectedValue,
+                sexos = new Sexos { idSexo = int.Parse(ddlGenero.SelectedValue), descripcion = ddlGenero.SelectedItem.Text },
                 nacionalidad = ddlModNacionalidad.SelectedValue,
                 Localidad = int.Parse(ddlModLocalidad.SelectedValue),
                 Direccion = txtbModMedicoDireccion.Text,
