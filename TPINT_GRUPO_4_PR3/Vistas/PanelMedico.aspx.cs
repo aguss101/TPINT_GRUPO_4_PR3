@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Web.UI.WebControls;
+using System.Collections.Generic;
 using Negocio;
+using Entidades;
+using System.Linq;
 
 namespace Vistas
 {
@@ -9,7 +12,12 @@ namespace Vistas
         private GestorTurnos gestorturnos = new GestorTurnos();
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (!IsPostBack)
+            {
             cargarTurnosAll();
+
+            }
 
         }
         protected void cargarTurnosAll()
@@ -77,7 +85,7 @@ namespace Vistas
                 }
             }
 
-            btnCargar.Visible = algunoMarcado;
+            //btnMod.Visible = algunoMarcado;
 
 
         }
@@ -88,13 +96,17 @@ namespace Vistas
             cargarTurnosxFecha();
         }
 
-        protected void btnCargar_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void btnEstado_Click(object sender, EventArgs e)
         {
+            Button boton = (Button)sender;
+            
+
+            
+            string estado = boton.CommandArgument; // "Presente" o "Ausente"
+
+            //boton.BackColor = estado == "Presente" ? System.Drawing.Color.Green : System.Drawing.Color.Red;
+
 
         }
 
@@ -134,5 +146,43 @@ namespace Vistas
             cargarTurnosxDNI();
         }
 
+
+        protected void btnEnviarDiagnostico_Click(object sender,EventArgs e) {
+
+            Button boton = (Button)sender;
+            GridViewRow fila = (GridViewRow)boton.NamingContainer;
+
+            TextBox txtDiagnostico = (TextBox)fila.FindControl("txbDiagnostico");
+            TextBox txtObs = (TextBox)fila.FindControl("txtObs");
+
+            string diagnostico = txtDiagnostico != null ? txtDiagnostico.Text : "";
+            string observacion = txtObs != null ? txtObs.Text : "";
+
+            // También podés obtener valores de columnas de tipo BoundField
+
+            DateTime fechaPactada = Convert.ToDateTime( fila.Cells[2].Text);
+
+
+            DropDownList ddlEstado = (DropDownList)fila.FindControl("ddlEstado");
+            int estadoSeleccionado = Convert.ToInt32(ddlEstado.SelectedValue);
+
+            List<Turno> turnoViejo = gestorturnos.GetTurnosMedico(Session["LegajoMedico"].ToString(), fechaPactada);
+
+            ///Turno turno = turnoViejo.First();
+            TextBox1.Text = Session["LegajoMedico"].ToString();
+            TextBox2.Text = txtDiagnostico.Text;
+            TextBox3.Text = ddlEstado.SelectedValue;
+
+            //if (turno != null)
+            //{
+            //    turno.Diagnostico = txtDiagnostico?.Text;
+            //    turno.Observacion = txtObs?.Text;
+            //    turno.Estado = estadoSeleccionado;
+            //    gestorturnos.ModificarTurno(turno);
+            //}
+
+
+
+        }
     }
 }

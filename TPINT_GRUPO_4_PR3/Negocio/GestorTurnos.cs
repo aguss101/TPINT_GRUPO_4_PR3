@@ -18,7 +18,6 @@ namespace Negocio
         public DataTable ObtenerMedicosPorEspecialidad(int idEspecialidad) { return consultas.ObtenerMedicosPorEspecialidad(idEspecialidad); }
         public DataTable ObtenerHorasDisponibles(string legajo, DateTime fecha) { return consultas.ObtenerHorasDisponibles(legajo, fecha); }
         public bool ModificarTurno(Turno turno) { return consultas.ModificarTurno(turno); }
-
         public int EliminarTurno(string legajo, DateTime fechapactada) { return consultas.EliminarTurno(legajo, fechapactada); }
 
         public int InsertarTurno(Turno turno) { return consultas.InsertarTurno(turno); }
