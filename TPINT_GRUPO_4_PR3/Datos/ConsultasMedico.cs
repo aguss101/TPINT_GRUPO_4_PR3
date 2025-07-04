@@ -13,7 +13,7 @@ namespace Datos
         public List<Medico> GetMedicos()
         {
             List<Medico> medicos = new List<Medico>();
-            string query = @"SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, S.descripcion AS genero, C.correo, T.telefono, L.idLocalidad,
+            string query = @"SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, S.descripcion AS genero, C.correo, T.telefono, L.idLocalidad,L.nombreLocalidad,
                 U.nombreUsuario, U.contrasenia, E.descripcion AS Especialidad
                 FROM Medico ME
                 INNER JOIN Persona PE ON ME.DNI = PE.DNI
@@ -49,6 +49,11 @@ namespace Datos
                                 fechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]),
                                 Direccion = reader["Direccion"].ToString(),
                                 Localidad = Convert.ToInt32(reader["idLocalidad"]),
+                                Localidades = new Localidades
+                                {
+                                    idLocalidad = Convert.ToInt32(reader["idLocalidad"]),
+                                    nombreLocalidad = reader["nombreLocalidad"].ToString()
+                                },
                                 nacionalidad = reader["nacionalidad"].ToString(),
                                 Correo = reader["Correo"].ToString(),
                                 Telefono = reader["telefono"].ToString()
@@ -233,7 +238,7 @@ namespace Datos
         {
             Medico medico = null;
             string query = @"SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, S.descripcion AS genero, C.correo, T.telefono,
-                L.idLocalidad, U.nombreUsuario, U.contrasenia, E.descripcion AS Especialidad
+                L.idLocalidad,L.nombreLocalidad, U.nombreUsuario, U.contrasenia, E.descripcion AS Especialidad
                 FROM Medico ME 
                 INNER JOIN Persona PE ON ME.DNI = PE.DNI 
                 INNER JOIN Sexos S ON PE.sexo = S.idSexo
@@ -268,7 +273,12 @@ namespace Datos
                                 sexos = new Sexos { idSexo = Convert.ToInt32(reader["idSexo"]), descripcion = reader["genero"].ToString() },
                                 fechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]),
                                 Direccion = reader["Direccion"].ToString(),
-                                Localidad = Convert.ToInt32(reader["idLocalidad"]),
+                                Localidad = Convert.ToInt32(reader["idLocalidad"]), // NO BORRAR
+                                Localidades = new Localidades
+                                {
+                                    idLocalidad = Convert.ToInt32(reader["idLocalidad"]),
+                                    nombreLocalidad = reader["nombreLocalidad"].ToString()
+                                },
                                 nacionalidad = reader["nacionalidad"].ToString(),
                                 Correo = reader["Correo"].ToString(),
                                 Telefono = reader["Telefono"].ToString()

@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
 
 namespace Entidades
 {
@@ -16,6 +10,9 @@ namespace Entidades
         public Sexos sexos { get; set; }
         public string generoDescripcion { get; set; }
         public int Localidad { get; set; }
+
+        public Localidades Localidades { get; set; }
+
         public DateTime fechaNacimiento { get; set; }
         public string nacionalidad { get; set; }
 
