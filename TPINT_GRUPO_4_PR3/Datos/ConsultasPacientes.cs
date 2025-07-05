@@ -13,10 +13,12 @@ namespace Datos
         {
             List<Paciente> pacientes = new List<Paciente>();
             string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, 
-            S.idSexo, S.descripcion AS genero, O.idObraSocial, O.nombre AS nombreObraSocial, C.correo, T.telefono, L.idLocalidad, L.nombreLocalidad
+            S.idSexo, S.descripcion AS genero, O.idObraSocial, O.nombre AS nombreObraSocial, C.correo, T.telefono, L.idLocalidad, L.nombreLocalidad, P.idProvincia, P.nombreProvincia
             FROM Paciente PA
             INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo 
-            INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad 
+            INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial 
+            INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad 
+            INNER JOIN Provincias P ON L.idProvincia = P.idProvincia
             LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
             WHERE activo = 1;";
             try
@@ -40,6 +42,12 @@ namespace Datos
                                 ObraSocial = new ObraSocial() { Onombre = (reader["nombreObraSocial"].ToString()) },
                                 fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
                                 nacionalidad = reader["nacionalidad"].ToString(),
+                                Provincia = Convert.ToInt32(reader["idProvincia"]),
+                                Provincias = new Provincias
+                                {
+                                    idProvincia = Convert.ToInt32(reader["idProvincia"]),
+                                    nombreProvincia = reader["nombreProvincia"].ToString()
+                                },
                                 Localidad = Convert.ToInt32(reader["idLocalidad"]),
                                 Localidades = new Localidades
                                 {
@@ -82,10 +90,10 @@ namespace Datos
                             cmd.Parameters.AddWithValue("@Nombre", paciente.nombre);
                             cmd.Parameters.AddWithValue("@Apellido", paciente.apellido);
                             cmd.Parameters.AddWithValue("@Sexo", paciente.sexos.idSexo);
-                            cmd.Parameters.AddWithValue("@Direccion", paciente.Direccion);
-                            cmd.Parameters.AddWithValue("@IdLocalidad", paciente.Localidad);
                             cmd.Parameters.AddWithValue("@FechaNacimiento", paciente.fechaNacimiento);
                             cmd.Parameters.AddWithValue("@Nacionalidad", paciente.nacionalidad);
+                            cmd.Parameters.AddWithValue("@IdLocalidad", paciente.Localidad);
+                            cmd.Parameters.AddWithValue("@Direccion", paciente.Direccion);
                             cmd.ExecuteNonQuery();
                         }
                         using (SqlCommand cmd = new SqlCommand(queryPaciente, con, transaction))
@@ -144,14 +152,14 @@ namespace Datos
                         using (SqlCommand cmd = new SqlCommand(queryPersona, con, transaction))
                         {
                             cmd.Parameters.AddWithValue("@DNI_NUEVO", paciente.DNI);
+                            cmd.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
                             cmd.Parameters.AddWithValue("@Nombre", paciente.nombre);
                             cmd.Parameters.AddWithValue("@Apellido", paciente.apellido);
                             cmd.Parameters.AddWithValue("@Sexo", paciente.sexos.idSexo);
-                            cmd.Parameters.AddWithValue("@Direccion", paciente.Direccion);
-                            cmd.Parameters.AddWithValue("@IdLocalidad", paciente.Localidad);
                             cmd.Parameters.AddWithValue("@FechaNacimiento", paciente.fechaNacimiento);
                             cmd.Parameters.AddWithValue("@Nacionalidad", paciente.nacionalidad);
-                            cmd.Parameters.AddWithValue("@DNI_VIEJO", DNI_VIEJO);
+                            cmd.Parameters.AddWithValue("@IdLocalidad", paciente.Localidad);
+                            cmd.Parameters.AddWithValue("@Direccion", paciente.Direccion);
                             cmd.ExecuteNonQuery();
                         }
                         using (SqlCommand cmd = new SqlCommand(queryPaciente, con, transaction))
@@ -192,10 +200,12 @@ namespace Datos
         {
             Paciente paciente = null;
             string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, 
-            S.idSexo, S.descripcion AS genero, O.idObraSocial, O.nombre AS nombreObraSocial, C.correo, T.telefono, L.idLocalidad, L.nombreLocalidad
+            S.idSexo, S.descripcion AS genero, O.idObraSocial, O.nombre AS nombreObraSocial, C.correo, T.telefono, L.idLocalidad, L.nombreLocalidad, P.idProvincia, P.nombreProvincia
             FROM Paciente PA
             INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo 
-            INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad 
+            INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial
+            INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad 
+            INNER JOIN Provincias P ON L.idProvincia = P.idProvincia
             LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
             WHERE activo = 1 AND PE.DNI = @id ";
             try
@@ -211,21 +221,27 @@ namespace Datos
                             paciente = new Paciente()
                             {
                                 DNI = reader["DNI"].ToString(),
-                                ObraSocial = new ObraSocial { idObraSocial = Convert.ToInt32(reader["idObraSocial"]), Onombre = reader["nombreObraSocial"].ToString() },
                                 nombre = reader["nombre"].ToString(),
                                 apellido = reader["apellido"].ToString(),
+                                ObraSocial = new ObraSocial { idObraSocial = Convert.ToInt32(reader["idObraSocial"]), Onombre = reader["nombreObraSocial"].ToString() },
                                 ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),
                                 Alta = Convert.ToDateTime(reader["alta"]),
                                 sexos = new Sexos { idSexo = Convert.ToInt32(reader["idSexo"]), descripcion = reader["genero"].ToString() },
                                 fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
-                                Direccion = reader["direccion"].ToString(),
+                                nacionalidad = reader["nacionalidad"].ToString(),
+                                Provincia = Convert.ToInt32(reader["idProvincia"]),
+                                Provincias = new Provincias
+                                {
+                                    idProvincia = Convert.ToInt32(reader["idProvincia"]),
+                                    nombreProvincia = reader["nombreProvincia"].ToString()
+                                },
                                 Localidad = Convert.ToInt32(reader["idLocalidad"]),
                                 Localidades = new Localidades
                                 {
                                     idLocalidad = Convert.ToInt32(reader["idLocalidad"]),
                                     nombreLocalidad = reader["nombreLocalidad"].ToString()
                                 },
-                                nacionalidad = reader["nacionalidad"].ToString(),
+                                Direccion = reader["direccion"].ToString(),
                                 Correo = reader["Correo"].ToString(),
                                 Telefono = reader["Telefono"].ToString()
                             };

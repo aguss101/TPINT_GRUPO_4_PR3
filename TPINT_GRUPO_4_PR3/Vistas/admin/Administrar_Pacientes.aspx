@@ -601,6 +601,7 @@
                                                     <asp:BoundField DataField="Sexos.descripcion" HeaderText="Genero" />
                                                     <asp:BoundField DataField="ObraSocial.Onombre" HeaderText="Obra Social" />
                                                     <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
+                                                    <asp:BoundField DataField="Provincias.nombreProvincia" HeaderText="Provincia" />
                                                     <asp:BoundField DataField="Localidades.nombreLocalidad" HeaderText="Localidad" />
                                                     <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
                                                     <asp:BoundField HeaderText="Correo" DataField="correo" />

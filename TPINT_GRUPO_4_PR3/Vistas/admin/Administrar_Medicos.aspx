@@ -696,13 +696,15 @@
                                                     </asp:TemplateField>
                                                     <asp:BoundField DataField="Legajo" HeaderText="Legajo" />
                                                     <asp:BoundField DataField="DNI" HeaderText="DNI" />
-                                                    <asp:BoundField DataField="Especialidad.descripcion" HeaderText="Especialidad" />
                                                     <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                                                     <asp:BoundField DataField="apellido" HeaderText="Apellido" />
                                                     <asp:BoundField DataField="Usuario.nombreUsuario" HeaderText="Usuario" />
                                                     <asp:BoundField DataField="Usuario.contrasenia" HeaderText="Contraseña" />
                                                     <asp:BoundField DataField="Sexos.descripcion" HeaderText="Genero" />
+                                                    <asp:BoundField DataField="Especialidad.descripcion" HeaderText="Especialidad" />
                                                     <asp:BoundField DataField="nacionalidad" HeaderText="Nacionalidad" />
+                                                    <asp:BoundField DataField="Provincias.nombreProvincia" HeaderText="Provincia" />
+                                                    <asp:BoundField DataField="Localidades.nombreLocalidad" HeaderText="Localidad" />
                                                     <asp:BoundField DataField="correo" HeaderText="Correo" />
                                                     <asp:BoundField DataField="telefono" HeaderText="Telefono" />
                                                 </Columns>

@@ -61,6 +61,7 @@ namespace Vistas.admin
                     txbModNombre.Text = paciente.nombre;
                     txbModApellido.Text = paciente.apellido;
                     ddlModNacionalidad.SelectedValue = paciente.nacionalidad;
+                    ddlModProvincia.SelectedValue = paciente.Provincia.ToString();
                     ddlModLocalidades.SelectedValue = paciente.Localidad.ToString();
                     ddlModObraSocial.SelectedValue = paciente.ObraSocial.idObraSocial.ToString();
                     ddlModGenero.SelectedValue = paciente.sexos.idSexo.ToString();
@@ -106,6 +107,7 @@ namespace Vistas.admin
                     ObraSocial = new ObraSocial { idObraSocial = int.Parse(ddlObraSocial.SelectedValue), Onombre = ddlObraSocial.SelectedItem.Text.Trim() },
                     sexos = new Sexos { idSexo = int.Parse(ddlGenero.SelectedValue), descripcion = ddlGenero.SelectedItem.Text },
                     nacionalidad = ddlNacionalidad.SelectedValue.ToString(),
+                    Provincia = int.Parse(ddlProvincia.SelectedValue),
                     Localidad = int.Parse(ddlLocalidades.SelectedValue),
                     Direccion = txbDireccion.Text.Trim(),
                     Correo = txbCorreo.Text.Trim(),
@@ -147,6 +149,7 @@ namespace Vistas.admin
                 ultimaAtencion = DateTime.Now,
                 Alta = DateTime.Now,
                 nacionalidad = ddlModNacionalidad.SelectedValue.ToString(),
+                Provincia = int.Parse(ddlModProvincia.SelectedValue),
                 Localidad = int.Parse(ddlModLocalidades.SelectedValue),
                 Direccion = txbModDireccion.Text.Trim(),
                 Telefono = txbModTelefono.Text.Trim(),
