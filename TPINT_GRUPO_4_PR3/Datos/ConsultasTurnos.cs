@@ -32,10 +32,10 @@ namespace Datos
             var turnos = new List<Turno>();
             string query = @"
                     SELECT *
-                      FROM vw_TurnosConDatos
-                     WHERE Legajo = @Legajo
-                       AND (@Fecha IS NULL OR CONVERT(date, fechaPactada) = @Fecha)
-                     ORDER BY fechaPactada, Legajo, DNIPaciente;
+                    FROM vw_TurnosConDatos
+                    WHERE Legajo = @Legajo
+                    AND (@Fecha IS NULL OR CONVERT(date, fechaPactada) = @Fecha)
+                    ORDER BY fechaPactada, Legajo, DNIPaciente;
             ";
 
 

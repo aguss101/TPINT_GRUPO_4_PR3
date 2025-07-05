@@ -362,9 +362,7 @@
                                             <asp:ListItem Value="DNIPacienteDES">DNI Paciente D</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
-
-
-                                    <tr>
+                                <tr>
                                         <td class="no-select"></td>
                                         <td class="no-select">&nbsp;</td>
                                         <td class="no-select"></td>
@@ -373,13 +371,27 @@
                                 <tr>
                                     <td class="no-select"></td>
                                     <td class="no-select">
-                                        <asp:GridView ID="gvTurnos" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+                                        <asp:GridView ID="gvTurnos" runat="server" 
+                                            BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" 
+                                            CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="False">
+    
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Seleccionar">
                                                     <ItemTemplate>
-                                                        <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccionar_CheckedChanged" /></ItemTemplate>
+                                                        <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccionar_CheckedChanged" />
+                                                    </ItemTemplate>
                                                 </asp:TemplateField>
+
+                                                <asp:BoundField DataField="Legajo" HeaderText="Legajo" />
+                                                <asp:BoundField DataField="DNIPaciente" HeaderText="DNI-Paciente" />
+                                                <asp:BoundField DataField="FechaPactada" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy HH:mm}" HtmlEncode="false" />
+                                                <asp:BoundField DataField="EstadoDescripcion" HeaderText="Estado" />
+                                                <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
+                                                <asp:BoundField DataField="ObraSocial" HeaderText="ObraSocial" />
+                                                <asp:BoundField DataField="Medico" HeaderText="Medico" />
+                                                <asp:BoundField DataField="Especialidad" HeaderText="Especialidad" />
                                             </Columns>
+
                                             <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                                             <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
                                             <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
@@ -388,7 +400,8 @@
                                             <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
                                             <SortedDescendingCellStyle BackColor="#E5E5E5" />
                                             <SortedDescendingHeaderStyle BackColor="#242121" />
-                                        </asp:GridView>
+                                    </asp:GridView>
+
                                     </td>
                                     <td class="auto-style28"></td>
                                 </tr>

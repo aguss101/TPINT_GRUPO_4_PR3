@@ -10,38 +10,33 @@
             font-family: Arial, sans-serif;
             height: 100%;
         }
-
         .container {
             display: flex;
             height: 100vh;
             border-radius: 25px;
         }
-
         .sidebar {
             width: 200px;
             background-color: #f4f4f4;
             padding: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
-
-            .sidebar h2 {
-                font-size: 18px;
-                margin-bottom: 20px;
-            }
-
-            .sidebar .btn {
-                display: block;
-                width: 100%;
-                margin-bottom: 10px;
-                padding: 10px;
-                background-color: #007bff;
-                color: white;
-                border: none;
-                cursor: pointer;
-                border-radius: 4px;
-                text-align: left;
-            }
-
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .sidebar .btn {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: left;
+        }
         .containerCartel {
             display: flex;
             flex-direction: row;
@@ -66,29 +61,24 @@
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
             margin-top: 4px;
         }
-
         .titulo-con-nombre {
             display: flex;
             flex-direction: column;
             align-items: flex-end; /* Alinea todo a la derecha */
         }
-
         .sidebar .btn:hover {
             background-color: #0056b3;
         }
-
         .main-content {
             flex-grow: 1;
             padding: 30px;
             background-color: #fff;
         }
-
         .header {
             font-size: 22px;
             font-weight: bold;
             margin-bottom: 20px;
         }
-
         .content-box {
             padding: 20px;
             border: 1px solid #ddd;
@@ -96,32 +86,26 @@
             background-color: #fafafa;
             min-height: 300px;
         }
-
         .tablaDiv {
             width: 100%;
             height: 100%;
         }
-
         .no-select {
             user-select: none;
         }
-
         .columnaIndex {
             width: 157px;
             background-color: #ffffff;
             height: 100%;
         }
-
         .auto-style3 {
             width: 100%;
             height: 100%;
         }
-
         .auto-style4 {
             width: 151px;
             height: 310px;
         }
-
         .columnaIndex-PanelAdmin {
             width: 151px;
             text-align: center;
@@ -129,14 +113,12 @@
             font-weight: bold;
             height: 80px;
         }
-
         .columnaBody {
             background-color: #e6e6e6;
             padding: 0px 30px 30px 30px;
             font-weight: normal;
             height: 100%;
         }
-
         .btn-index {
             background-color: white;
             color: #595959;
@@ -150,161 +132,132 @@
             height: 100%;
             transition: background-color 0.3s, color 0.3s;
         }
-
         .td-btn-index {
             width: 151px;
             height: 10px;
         }
-
         .btn-index:hover {
             background-color: #4da9ff;
             color: white;
             border-color: #4da9ff;
         }
-
         .hl-CerrarSesion {
             width: 151px;
             height: 26px;
             text-align: center;
         }
-
         .nombre-clinica {
             text-align: right;
         }
-
         .clinica {
             color: #666666;
             font-weight: bold;
         }
-
         .frgp {
             color: #00aaff;
             font-weight: bold;
         }
-
         .botonera {
             width: 100%;
             padding: 0;
         }
-
-            .botonera .btn-td {
-                display: inline;
-                width: 20%;
-                margin-bottom: 10px; /* espacio entre botones */
-                box-sizing: border-box;
-                padding: 10px;
-                font-size: 16px;
-                border-radius: 6px;
-                border: none;
-                background-color: #007bff;
-                color: white;
-                cursor: pointer;
-            }
-
-                .botonera .btn-td:hover {
-                    background-color: #0056b3;
-                }
-
+        .botonera .btn-td {
+            display: inline;
+            width: 20%;
+            margin-bottom: 10px; /* espacio entre botones */
+            box-sizing: border-box;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        .botonera .btn-td:hover {
+            background-color: #0056b3;
+        }
         .auto-style10 {
             width: 100%;
             height: 100%;
             margin-top: 0px;
         }
-
         .auto-style22 {
             text-align: right;
             height: 26px;
         }
-
         .auto-style28 {
             user-select: none;
             width: 34px;
         }
-
         .auto-style31 {
             user-select: none;
             width: 34px;
             height: 24px;
         }
-
         .auto-style32 {
             user-select: none;
             height: 24px;
             width: 196px;
         }
-
         .auto-style33 {
             user-select: none;
             width: 196px;
             height: 34px;
         }
-
         .auto-style34 {
             user-select: none;
             height: 51px;
         }
-
         .auto-style35 {
             user-select: none;
             width: 34px;
             height: 51px;
         }
-
         .auto-style37 {
             user-select: none;
             width: 196px;
         }
-
         .auto-style38 {
             user-select: none;
             height: 34px;
         }
-
         .auto-style39 {
             user-select: none;
             width: 34px;
             height: 34px;
         }
-
         .auto-style41 {
             user-select: none;
             width: 34px;
             height: 18px;
         }
-
         .auto-style43 {
             width: 100%;
             padding: 0;
             height: 18px;
         }
-
         .auto-style44 {
             width: 100%;
         }
-
         .auto-style46 {
             width: 1397px;
         }
-
         .auto-style49 {
             width: 190px;
             height: 22px;
         }
-
         .auto-style50 {
             height: 22px;
         }
-
         .auto-style51 {
             width: 190px;
         }
-
         .auto-style52 {
             user-select: none;
             height: 24px;
             width: 1136px;
         }
-
         .auto-style56 {
             user-select: none;
             height: 29px;
@@ -572,13 +525,13 @@
                                                 <tr>
                                                     <td class="auto-style51">Legajo:</td>
                                                     <td class="auto-style46">
-                                                        <asp:TextBox ID="txtbModMedicoLegajo" runat="server"></asp:TextBox></td>
+                                                        <asp:TextBox ID="txtbModMedicoLegajo" Enabled="false" runat="server"></asp:TextBox></td>
                                                     <td>&nbsp;</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style51">DNI:</td>
                                                     <td class="auto-style46">
-                                                        <asp:TextBox ID="txtbModMedicoDNI" runat="server"></asp:TextBox></td>
+                                                        <asp:TextBox ID="txtbModMedicoDNI" Enabled="false" runat="server"></asp:TextBox></td>
                                                     <td>&nbsp;</td>
                                                 </tr>
                                                 <tr>
