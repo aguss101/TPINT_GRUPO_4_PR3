@@ -136,27 +136,15 @@ namespace Vistas.admin
             string auxDiag = txtDiagnostico.Text.Trim();
 
 
-            if (auxObs == "")
-            {
-                observacion = Session["observacionViejo"].ToString();
-            }
-            else
-            {
-                observacion = auxObs;
-            }
+            if (auxObs == "") { observacion = Session["observacionViejo"].ToString(); }
+            else {observacion = auxObs;}
 
-            if (auxDiag == "")
-            {
-                diagnostico = Session["diagnosticoViejo"].ToString();
-            }
-            else
-            {
-                diagnostico = auxDiag;
-            }
+            if (auxDiag == "") { diagnostico = Session["diagnosticoViejo"].ToString(); }
+            else { diagnostico = auxDiag; }
             string legajo = Session["Legajo"].ToString();
             string valorFecha = Session["FechaVieja"].ToString();
 
-            DateTime fechaPactada = DateTime.ParseExact(valorFecha, "d/M/yyyy H:mm:ss", CultureInfo.InvariantCulture);
+            DateTime fechaPactada = DateTime.ParseExact(valorFecha, "d/M/yyyy HH:mm", CultureInfo.InvariantCulture);
 
             if (string.IsNullOrEmpty(ddlModFecha.SelectedValue) || ddlModFecha.SelectedValue == "--Seleccione Fecha--")
             {
@@ -209,7 +197,7 @@ namespace Vistas.admin
                     string auxFechaPactada = row.Cells[3].Text.Trim();
                     Session["FechaVieja"] = auxFechaPactada;
 
-                    DateTime fechaPactada = DateTime.ParseExact(auxFechaPactada, "d/M/yyyy H:mm:ss", CultureInfo.InvariantCulture);
+                    DateTime fechaPactada = DateTime.ParseExact(auxFechaPactada, "d/M/yyyy HH:mm", CultureInfo.InvariantCulture);
 
                     List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
 
@@ -329,10 +317,7 @@ namespace Vistas.admin
                 if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
                 {
                     string legajo = row.Cells[1].Text;
-                    Debug.WriteLine(legajo, "legajo");
                     DateTime fechaPactada = DateTime.Parse(row.Cells[3].Text);
-                    Debug.WriteLine(fechaPactada, "fechapactada");
-
 
                     int eliminado = gestorturnos.EliminarTurno(legajo, fechaPactada);
                     lblMensaje.Text = eliminado > 0 ? "Turno eliminado correctamente." : "No se pudo eliminar el turno.";
@@ -380,11 +365,6 @@ namespace Vistas.admin
             List<Turno> turnos = gestorturnos.GetTurnosOrdX(query);
             gvTurnos.DataSource = turnos;
             gvTurnos.DataBind();
-
-
-
-            //gvTurnos.DataSource = personas;
-            //GridView1.DataBind();
 
         }
     }

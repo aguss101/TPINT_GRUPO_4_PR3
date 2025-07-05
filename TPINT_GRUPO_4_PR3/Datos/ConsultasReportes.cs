@@ -13,10 +13,8 @@ namespace Datos
     {
         DataAccess conexion = new DataAccess();
 
-        //REPORTES DE MEDICOS
         public DataTable GetCantidadMedicosxEspecialidad()
         {
-
             DataTable dtMedicosxEspecialidad = new DataTable();
             string query = @"SELECT E.descripcion AS Especialidad, COUNT(ME.Legajo ) AS CantMedicos FROM Especialidades E LEFT JOIN Medico ME ON ME.idEspecialidad = E.idEspecialidad GROUP BY E.descripcion ORDER BY CantMedicos DESC";
             using (SqlConnection con = conexion.AbrirConexion())
@@ -27,10 +25,7 @@ namespace Datos
                 }
 
                 return dtMedicosxEspecialidad;
-
             }
-
-
 
         }
         public DataTable GetMedicosxEdad()
@@ -66,8 +61,6 @@ namespace Datos
             return dtCantidadTurnosxMedico;
         }
 
-
-        //REPORTES DE PACIENTES
         public DataTable GetPacientesxEdad()
         {
             DataTable dtPacientesxEdad = new DataTable();
@@ -109,7 +102,7 @@ namespace Datos
                 return dtPacientesxSexo;
             }
         }
-        //Trae reportes de la cantidad de ausentes en el mes actual
+
         public DataTable GetPacientesxAusentesMes()
         {
             DataTable dtPacientesxAusentesMes = new DataTable();
@@ -128,7 +121,6 @@ namespace Datos
             
         }
 
-        //REPORTES DE TURNOS
         public DataTable GetPromedioTurnosxEspecialidad()
         {
             DataTable dtPromedioTurnosxEspecialidad = new DataTable();
@@ -143,8 +135,6 @@ namespace Datos
             }
         }
 
-
-
         public DataTable GetTurnosxEstado()
         {
             DataTable dtTurnosxEstado = new DataTable();
@@ -158,7 +148,6 @@ namespace Datos
                 return dtTurnosxEstado;
             }
         }
-
 
     }
 }

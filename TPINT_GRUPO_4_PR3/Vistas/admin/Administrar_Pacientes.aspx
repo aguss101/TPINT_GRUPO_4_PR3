@@ -480,7 +480,7 @@
                                                 <tr>
                                                     <td class="auto-style32">DNI</td>
                                                     <td class="auto-style30">
-                                                        <asp:TextBox ID="txbModDni" runat="server"></asp:TextBox></td>
+                                                        <asp:TextBox ID="txbModDni" enabled="false" runat="server"></asp:TextBox></td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>

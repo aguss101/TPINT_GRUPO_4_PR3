@@ -11,7 +11,5 @@ namespace Entidades
         public Usuario Usuario { get; set; }
         public string Legajo { get; set; }
         public Especialidad Especialidad { get; set; }
-
-        
     }
 }
