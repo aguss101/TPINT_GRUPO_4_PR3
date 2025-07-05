@@ -1,6 +1,7 @@
 USE ClinicaDB
 GO
 
+SET DATEFORMAT dmy;
 INSERT INTO Sexos (idSexo, descripcion) VALUES (1, 'Masculino'); -- SEXOS
 INSERT INTO Sexos (idSexo, descripcion) VALUES (2, 'Femenino');
 INSERT INTO Sexos (idSexo, descripcion) VALUES (3, 'Otro');
