@@ -275,5 +275,24 @@ namespace Datos
 
             return turnos;
         }
+
+
+        public int MarcarAsistenciaTurnoMedico(Turno turno) // Turno Medico
+        {
+            string query = @"
+                UPDATE Turnos
+                SET estado=@Estado, observacion=@Observacion, diagnostico=@Diagnostico 
+                WHERE Legajo=@Legajo AND fechaPactada=@Fecha";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@Estado", turno.Estado),
+                new SqlParameter("@Observacion", turno.Observacion),
+                new SqlParameter("@Diagnostico",  turno.Diagnostico),
+                new SqlParameter("@Legajo", turno.Legajo),
+                new SqlParameter("@Fecha", turno.FechaPactada)
+            };
+            return conexion.EjecutarComandoConParametros(query, parametros);
+        }
     }
 }
