@@ -480,7 +480,8 @@
                                                 <tr>
                                                     <td class="auto-style32">DNI</td>
                                                     <td class="auto-style30">
-                                                        <asp:TextBox ID="txbModDni" enabled="false" runat="server"></asp:TextBox></td>
+                                                        <asp:TextBox ID="txbDni" runat="server" ValidationGroup="AltaMedico"></asp:TextBox>
+                                                        <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="txbDni" ValidationExpression="^\d{8}$" ErrorMessage="* Obligatorio - 8 digitos" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
                                                     <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>

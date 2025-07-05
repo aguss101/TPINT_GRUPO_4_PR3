@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.UI.WebControls;
+using Entidades;
 using Negocio;
 
 namespace Vistas
@@ -60,32 +61,37 @@ namespace Vistas
 
         protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
         {
+            CheckBox chkClicked = (CheckBox)sender;
+            cargarTurnosAll();
+
             foreach (GridViewRow row in gvTurnos.Rows)
             {
+
                 CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
-                if (chk != sender)
-                {
-                    chk.Checked = false;
-                }
+                TextBox txtDiag = (TextBox)row.FindControl("txbDiagnostico");
+                TextBox txtObs = (TextBox)row.FindControl("txbObs");
+                DropDownList ddlEstado = (DropDownList)row.FindControl("ddlEstado");
+                Button btnEnviar = (Button)row.FindControl("btnEnviarDiagnostico");
+
+
+
+                bool esSeleccionada = chk == chkClicked && chk.Checked;
+
+                chk.Checked = esSeleccionada;
+                txtDiag.Enabled = esSeleccionada;
+                txtObs.Enabled = esSeleccionada;
+                ddlEstado.Visible = esSeleccionada;
+                btnEnviar.Visible = esSeleccionada;
 
 
             }
-            bool algunoMarcado = false;
-            foreach (GridViewRow row in gvTurnos.Rows)
-            {
-                CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
-                if (chk.Checked)
-                {
-                    algunoMarcado = true;
-
-                    break;
-                }
-            }
-
-            algunoMarcado = false;
 
 
         }
+
+
+
+
 
         protected void calendarMedico_SelectionChanged(object sender, EventArgs e)
         {
@@ -96,13 +102,7 @@ namespace Vistas
 
         protected void btnEstado_Click(object sender, EventArgs e)
         {
-            Button boton = (Button)sender;
 
-
-
-            string estado = boton.CommandArgument; // "Presente" o "Ausente"
-
-            //boton.BackColor = estado == "Presente" ? System.Drawing.Color.Green : System.Drawing.Color.Red;
 
 
         }
@@ -147,11 +147,45 @@ namespace Vistas
         protected void btnEnviarDiagnostico_Click(object sender, EventArgs e)
         {
 
+            foreach (GridViewRow row in gvTurnos.Rows)
+            {
+
+                if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
+                {
+                    string legajom = Session["LegajoMedico"] as string;
+                    DateTime fechaPactada = DateTime.Parse(row.Cells[3].Text);
+
+                    TextBox txtDiag = (TextBox)row.FindControl("txbDiagnostico");
+                    TextBox txtObs = (TextBox)row.FindControl("txbObs");
+                    DropDownList ddlEstado = (DropDownList)row.FindControl("ddlEstado");
+
+                    string diagnostico = txtDiag.Text;
+                    string observacion = txtObs.Text;
+                    int estado = ddlEstado.SelectedIndex;
 
 
 
+                    Turno turno = new Turno()
+                    {
+                        Legajo = legajom,
+                        FechaPactada = fechaPactada,
+                        Diagnostico = diagnostico,
+                        Estado = estado,
+                        Observacion = observacion
+
+                    };
+
+                    int filas = gestorturnos.MarcarAsistenciaTurnoMedico(turno);
 
 
+
+                }
+
+
+            }
+            cargarTurnosAll();
         }
+
     }
+
 }

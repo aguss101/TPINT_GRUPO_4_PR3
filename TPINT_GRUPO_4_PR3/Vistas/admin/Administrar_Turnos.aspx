@@ -362,6 +362,7 @@
                                             <asp:ListItem Value="DNIPacienteDES">DNI Paciente D</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
+                                </tr>
                                 <tr>
                                         <td class="no-select"></td>
                                         <td class="no-select">&nbsp;</td>

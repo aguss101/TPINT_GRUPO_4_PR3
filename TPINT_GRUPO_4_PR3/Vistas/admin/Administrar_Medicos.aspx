@@ -375,25 +375,31 @@
                                                 <tr>
                                                     <td class="auto-style32">Legajo:</td>
                                                     <td class="auto-style52">
-                                                        <asp:TextBox ID="txbLegajo" runat="server"></asp:TextBox></td>
-                                                    <td class="auto-style31">&nbsp;</td>
-                                                </tr>
+                                                        <asp:TextBox ID="txbLegajo" runat="server" ValidationGroup="AltaMedico"> </asp:TextBox>
+                                                        <asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txbLegajo" Display="Dynamic" ErrorMessage="* Hasta 2 digitos" ForeColor="Red" ValidationExpression="^([1-9]|[1-9]\d)$" ValidationGroup="AltaMedico" /> &nbsp;<td class="auto-style31">&nbsp;</td>
+                                                        
+                                                        </tr>
                                                 <tr>
                                                     <td class="auto-style32">DNI:</td>
                                                     <td class="auto-style52">
-                                                        <asp:TextBox ID="txbDni" runat="server"></asp:TextBox></td>
-                                                    <td class="auto-style31"></td>
+                                                        <asp:TextBox ID="txbDni" runat="server" ValidationGroup="AltaMedico"> </asp:TextBox>
+                                                        <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="txbDni" ValidationExpression="^\d{8}$" ErrorMessage="* 8 digitos" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
+                                                         
+                                                        <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style32">Nombre:</td>
                                                     <td class="auto-style52">
-                                                        <asp:TextBox ID="txbNombre" runat="server"></asp:TextBox></td>
-                                                    <td class="auto-style31"></td>
+                                                        <asp:TextBox ID="txbNombre" runat="server" ValidationGroup="AltaMedico"> </asp:TextBox>
+                                                        <asp:RegularExpressionValidator ID="revNombre" runat="server" ControlToValidate="txbNombre" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$"  ErrorMessage="* Solo letras" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
+                                                       
+                                                        <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style32">Apellido:</td>
                                                     <td class="auto-style52">
-                                                        <asp:TextBox ID="txbApellido" runat="server"></asp:TextBox></td>
+                                                        <asp:TextBox ID="txbApellido" runat="server" ValidationGroup="AltaMedico"> </asp:TextBox> </td>
+                                                    <asp:RegularExpressionValidator ID="revApellido" runat="server" ControlToValidate="txbApellido" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$"  ErrorMessage="* Solo letras" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
                                                     <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>
@@ -416,6 +422,7 @@
                                                     <td class="auto-style32">Fecha de nacimiento:</td>
                                                     <td class="auto-style52">
                                                         <asp:TextBox ID="txbFechaNacimiento" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;<asp:Label ID="lblCondiciones" runat="server" Font-Bold="True" Font-Size="Smaller" Font-Underline="True" Text="Formato: YYYY-MM-DD"></asp:Label><br />
+                                                    <asp:RegularExpressionValidator ID="revFechaNac" runat="server" ControlToValidate="txbFechaNacimiento" ValidationExpression="^\d{4}-\d{2}-\d{2}$" ErrorMessage="* Formato inválido (YYYY-MM-DD)" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
                                                     </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
@@ -426,24 +433,12 @@
                                                         <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT * FROM [Paises]"></asp:SqlDataSource>
                                                     </td>
                                                 </tr>
+
                                                 <tr>
                                                     <td class="auto-style32">Provincia:</td>
                                                     <td class="auto-style52">
-                                                        <asp:DropDownList 
-                                                            ID="ddlProvincia" 
-                                                            runat="server" 
-                                                            AutoPostBack="True"
-                                                            DataSourceID="dbProvincias" 
-                                                            DataTextField="nombreProvincia" 
-                                                            DataValueField="idProvincia"
-                                                            OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged">
-                                                        </asp:DropDownList>
-
-                                                        <asp:SqlDataSource 
-                                                            ID="dbProvincias" 
-                                                            runat="server" 
-                                                            ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" 
-                                                            SelectCommand="SELECT idProvincia, nombreProvincia FROM Provincias">
+                                                        <asp:DropDownList ID="ddlProvincia" runat="server" AutoPostBack="True" DataSourceID="dbProvincias" DataTextField="nombreProvincia" DataValueField="idProvincia" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"> </asp:DropDownList>
+                                                        <asp:SqlDataSource ID="dbProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT idProvincia, nombreProvincia FROM Provincias">
                                                         </asp:SqlDataSource>
                                                     </td>
                                                     <td class="auto-style31"></td>
@@ -557,6 +552,7 @@
                                                     <td class="auto-style51">Fecha de nacimiento:</td>
                                                     <td>
                                                         <asp:TextBox ID="txtbModFechaNac" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;<asp:Label ID="lblCondiciones0" runat="server" Font-Bold="True" Font-Size="Smaller" Font-Underline="True" Text="Formato: YYYY-MM-DD"></asp:Label></td>
+                                                        
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style51">Sexo:</td>

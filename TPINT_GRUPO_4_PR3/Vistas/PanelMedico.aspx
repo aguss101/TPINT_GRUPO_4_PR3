@@ -208,8 +208,6 @@
             user-select: none;
         }
 
-        .table {
-        }
 
         .auto-style30 {
             user-select: none;
@@ -380,36 +378,43 @@
                                     </asp:View>
                                 </asp:MultiView></td>
                             <td class="auto-style31">&nbsp;</td>
+                &nbsp;</td>
                         </tr>
                         <tr>
                             <td class="botonera" colspan="2">
+                                
                                 <asp:GridView ID="gvTurnos" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" CssClass="table" DataKeyNames="Legajo,FechaPactada" ForeColor="Black" GridLines="Horizontal" OnPageIndexChanging="gvTurnos_PageIndexChanging" Width="976px">
                                     <Columns>
+                                        <asp:TemplateField HeaderText="Seleccionar">
+                                            <ItemTemplate>
+                                                <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccionar_CheckedChanged" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
                                         <asp:BoundField DataField="DNIPaciente" HeaderText="DNI" />
                                         <asp:BoundField DataField="FechaPactada" DataFormatString="{0:dd/MM/yyyy HH:mm}" HeaderText="Fecha y Hora" />
+                                        <asp:BoundField DataField="EstadoDescripcion" HeaderText="Estado" />
                                         <asp:TemplateField HeaderText="Observación">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtObs" runat="server" Width="100%" />
+                                                <asp:TextBox ID="txbObs" runat="server" Width="100%"  Text ='<%# Eval("observacion") %>' Enabled="False" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="EstadoDescripcion" HeaderText="Estado" />
                                         <asp:TemplateField HeaderText="Diagnostico">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txbDiagnostico" runat="server" Width="100%" />
+                                                <asp:TextBox ID="txbDiagnostico" runat="server" Width="100%"  Text ='<%# Eval("diagnostico") %>' Enabled="False" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Estado de la Consulta">
                                             <ItemTemplate>
-                                                <asp:DropDownList ID="ddlEstado" runat="server" AutoPostBack="true">
-                                                    <asp:ListItem Text="Presente" Value="1"></asp:ListItem>
-                                                    <asp:ListItem Text="Ausente" Value="0"></asp:ListItem>
+                                                <asp:DropDownList ID="ddlEstado" runat="server"  Visible="False">
+                                                    <asp:ListItem Text="Ausente" Value="1"></asp:ListItem>
+                                                    <asp:ListItem Text="Presente" Value="0"></asp:ListItem>
                                                 </asp:DropDownList>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Enviar Diagnostico">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnEnviarDiagnostico" runat="server" Text="Enviar" OnClick="btnEnviarDiagnostico_Click" />
+                                                <asp:Button ID="btnEnviarDiagnostico" runat="server" Text="Enviar" OnClick="btnEnviarDiagnostico_Click" Visible="False" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>

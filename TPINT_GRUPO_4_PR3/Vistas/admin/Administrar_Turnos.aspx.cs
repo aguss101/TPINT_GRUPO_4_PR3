@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Web.UI.WebControls;
@@ -137,7 +136,7 @@ namespace Vistas.admin
 
 
             if (auxObs == "") { observacion = Session["observacionViejo"].ToString(); }
-            else {observacion = auxObs;}
+            else { observacion = auxObs; }
 
             if (auxDiag == "") { diagnostico = Session["diagnosticoViejo"].ToString(); }
             else { diagnostico = auxDiag; }
@@ -160,7 +159,6 @@ namespace Vistas.admin
             DateTime fechaNueva = DateTime.ParseExact(ddlModFecha.SelectedValue, "yyyy-MM-dd", CultureInfo.InvariantCulture);
             TimeSpan horaNueva = TimeSpan.Parse(ddlModHorario.SelectedValue);
             DateTime fechaHoraNueva = fechaNueva.Add(horaNueva);
-
 
             List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
             Turno turnoSeleccionado = turnos.FirstOrDefault();
@@ -263,33 +261,16 @@ namespace Vistas.admin
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            string legajo = ddlMedico.SelectedValue;
-            string dniPaciente = ddlPaciente.SelectedValue;
-            string fechaSeleccionada = ddlFecha.SelectedValue;
-            string horaSeleccionada = ddlHora.SelectedValue;
-
-            if (string.IsNullOrEmpty(legajo) || string.IsNullOrEmpty(dniPaciente) ||
-                string.IsNullOrEmpty(fechaSeleccionada) || string.IsNullOrEmpty(horaSeleccionada))
-            {
-                lblMensaje.Text = "Todos los campos deben estar completos.";
-                return;
-            }
-
             try
             {
-                DateTime fecha = DateTime.Parse(fechaSeleccionada);
-                TimeSpan hora = TimeSpan.Parse(horaSeleccionada);
-                DateTime fechaPactada = fecha.Add(hora);
-
                 Turno nuevoTurno = new Turno
                 {
-                    Legajo = legajo,
-                    DNIPaciente = dniPaciente,
-                    FechaPactada = fechaPactada,
-                    Observacion = txtObservacion.Text.Trim(),
-                    Diagnostico = txtDiagnostico.Text.Trim()
+                    Legajo = !string.IsNullOrEmpty(ddlMedico.SelectedValue) ? ddlMedico.SelectedValue : throw new ArgumentNullException(),
+                    DNIPaciente = !string.IsNullOrEmpty(ddlPaciente.SelectedValue) ? ddlPaciente.SelectedValue : throw new ArgumentNullException(),
+                    FechaPactada = DateTime.Parse(ddlFecha.SelectedValue).Add(TimeSpan.Parse(ddlHora.SelectedValue)),
+                    Observacion = "",
+                    Diagnostico = ""
                 };
-
                 int filasAfectadas = gestorturnos.InsertarTurno(nuevoTurno);
                 lblMensaje.Text = filasAfectadas > 0 ? "Turno registrado correctamente." : "No se pudo registrar el turno.";
 
@@ -299,15 +280,12 @@ namespace Vistas.admin
                     ddlFecha.ClearSelection();
                     ddlHora.ClearSelection();
                 }
+                return;
             }
-            catch (FormatException)
-            {
-                lblMensaje.Text = "Formato de fecha u hora inválido.";
-            }
-            catch (Exception ex)
-            {
-                lblMensaje.Text = "Error al registrar turno: " + ex.Message;
-            }
+            catch (FormatException){lblMensaje.Text = "Formato de fecha u hora inválido.";}
+            catch (Exception ex) when (ex is NullReferenceException || ex is ArgumentNullException){lblMensaje.Text = "Todos los campos deben estar completos.";}
+            catch (Exception ex){lblMensaje.Text = "Error al registrar turno: " + ex.Message;}
+            lblMensaje.Visible=true;
         }
 
         protected void btnBaja_Click(object sender, EventArgs e)

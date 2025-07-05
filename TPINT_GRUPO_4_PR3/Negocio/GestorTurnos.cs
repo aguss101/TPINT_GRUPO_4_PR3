@@ -22,6 +22,8 @@ namespace Negocio
 
         public int InsertarTurno(Turno turno) { return consultas.InsertarTurno(turno); }
 
+        public int MarcarAsistenciaTurnoMedico(Turno turno) { return consultas.MarcarAsistenciaTurnoMedico(turno); }
+
         public List<DateTime> ObtenerFechasDisponibles(string legajo, DateTime desde, DateTime hasta) { return consultas.ObtenerFechasDisponibles(legajo, desde, hasta); }
 
     }
