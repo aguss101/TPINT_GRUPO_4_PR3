@@ -683,7 +683,51 @@
                                     </asp:View>
                                     <asp:View ID="vwLectura" runat="server">
                                         <h3>Listar Médico</h3>
+                                         <div class="div-ddl">
+                                             <h3 class="auto-style35" style="margin: 0;">Búsqueda por:</h3>
+                                             <asp:DropDownList ID="ddlBusqueda_Medicos" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlBusqueda_Medicos_SelectedIndexChanged">
+                                                 <asp:ListItem Text="--Seleccione una búsqueda--" Value="-1" Selected="True" />
+                                                 <asp:ListItem>Apellido</asp:ListItem>
+                                                 <asp:ListItem>DNI</asp:ListItem>
+                                                 <asp:ListItem>Legajo</asp:ListItem>
+                                             </asp:DropDownList>
+                                         </div>
                                         <div>
+                                            <asp:MultiView ID="mwBusqueda" runat="server">
+                                                <asp:View ID="vwPorApellido" runat="server">
+                                                    <div>
+                                                        <table class="auto-style32">
+                                                            <tr>
+                                                                <td class="auto-style36">Ingrese apellido del médico:</td>
+                                                                <td>
+                                                                    <asp:TextBox ID="txbPorApellido" runat="server" AutoPostBack="True" OnTextChanged="txbPorApellido_TextChanged"></asp:TextBox></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </asp:View>
+                                                <asp:View ID="vwPorDNI" runat="server">
+                                                    <div>
+                                                        <table class="auto-style32">
+                                                            <tr>
+                                                                <td class="auto-style36">Ingrese DNI del médico:</td>
+                                                                <td>
+                                                                    <asp:TextBox ID="txbPorDNI" runat="server" OnTextChanged="txbPorDNI_TextChanged" AutoPostBack="True"></asp:TextBox></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </asp:View>
+                                                <asp:View ID="vwPorLegajo" runat="server">
+                                                    <div>
+                                                        <table class="auto-style32">
+                                                            <tr>
+                                                                <td class="auto-style36">Ingrese legajo del médico:</td>
+                                                                <td>
+                                                                    <asp:TextBox ID="txbPorLegajo" runat="server" OnTextChanged="txbPorLegajo_TextChanged" AutoPostBack="True"></asp:TextBox></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </asp:View>
+                                            </asp:MultiView>
                                             <asp:GridView ID="gvLecturaMedico" runat="server" AllowPaging="true" PageSize="10" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Style="margin-right: 0px" OnPageIndexChanging="gvLecturaMedico_PageIndexChanging">
                                                 <AlternatingRowStyle BackColor="White" />
                                                 <Columns>

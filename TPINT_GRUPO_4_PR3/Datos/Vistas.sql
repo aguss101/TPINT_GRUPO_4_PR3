@@ -24,3 +24,36 @@ INNER JOIN Medico        M     ON T.Legajo       = M.Legajo
 INNER JOIN Persona       P_Med ON M.DNI          = P_Med.DNI
 INNER JOIN Especialidades E    ON M.idEspecialidad = E.idEspecialidad
 INNER JOIN EstadoTurnos  ET    ON T.estado       = ET.idEstado;
+
+
+GO
+CREATE OR ALTER VIEW vw_MedicoConDatos AS 
+SELECT
+	ME.*, PE.nombre, 
+	PE.apellido AS apellido, 
+	PE.nacionalidad, 
+	PE.fechaNacimiento, 
+	PE.Direccion, 
+	S.idSexo, 
+	S.descripcion AS genero,
+	C.correo,
+	T.telefono,
+	L.idLocalidad,
+	L.nombreLocalidad,
+	P.idProvincia, 
+	P.nombreProvincia,
+    U.nombreUsuario,
+	U.contrasenia,
+	E.descripcion AS Especialidad,
+	PE.activo AS activo,
+	PE.DNI AS dniMedico,
+	ME.Legajo AS legajoMedico
+FROM Medico ME
+INNER JOIN Persona PE ON ME.DNI = PE.DNI
+INNER JOIN Usuario U ON PE.DNI = U.DNI
+INNER JOIN Sexos S ON PE.sexo = S.idSexo
+INNER JOIN Especialidades E ON ME.idEspecialidad = E.idEspecialidad
+INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad
+INNER JOIN Provincias P ON L.idProvincia = P.idProvincia
+LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
+LEFT JOIN Correos C ON PE.DNI = C.idPersona

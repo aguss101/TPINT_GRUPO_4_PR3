@@ -251,6 +251,13 @@
             user-select: none;
             width: 913px;
         }
+        .auto-style42 {
+            width: 913px;
+            height: 46px;
+        }
+        .auto-style43 {
+            height: 46px;
+        }
     </style>
 </head>
 <body>
@@ -260,8 +267,7 @@
                 <td class="columnaIndex">
                     <table class="auto-style3">
                         <tr>
-                            <td class="columnaIndex-Bienvenida">Bienvenido,<br />
-                                [nombre del medico]</td>
+                            <td class="columnaIndex-Bienvenida">Bienvenido</td>
                         </tr>
                         <tr>
                             <td class="td-btn-index">
@@ -307,10 +313,10 @@
                             <td class="auto-style31"></td>
                         </tr>
                         <tr>
-                            <td class="auto-style40">
+                            <td class="auto-style42">
                                 <div class="div-ddl">
                                     <h3 class="auto-style35" style="margin: 0;">Búsqueda por:</h3>
-                                    <asp:DropDownList ID="ddlBusqueda" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlBusqueda_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlBusqueda_Turnos" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlBusqueda_Turnos_SelectedIndexChanged">
                                         <asp:ListItem Text="--Seleccione una búsqueda--" Value="-1" Selected="True" />
                                         <asp:ListItem>Apellido</asp:ListItem>
                                         <asp:ListItem>DNI</asp:ListItem>
@@ -318,7 +324,7 @@
                                     </asp:DropDownList>
                                 </div>
                             </td>
-                            <td>&nbsp;</td>
+                            <td class="auto-style43"></td>
                         </tr>
                         <tr>
                             <td class="botonera" colspan="2">
@@ -462,9 +468,6 @@
                             <td class="auto-style28"></td>
                         </tr>
                     </table>
-                </td>
-            </tr>
-        </table>
     </form>
 </body>
 </html>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 using Entidades;
@@ -13,17 +14,31 @@ namespace Datos
         public List<Medico> GetMedicos()
         {
             List<Medico> medicos = new List<Medico>();
-            string query = @"SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, S.descripcion AS genero, C.correo, T.telefono, L.idLocalidad,L.nombreLocalidad, P.idProvincia, P.nombreProvincia,
-                U.nombreUsuario, U.contrasenia, E.descripcion AS Especialidad
-                FROM Medico ME
-                INNER JOIN Persona PE ON ME.DNI = PE.DNI
-                INNER JOIN Usuario U ON PE.DNI = U.DNI
-                INNER JOIN Sexos S ON PE.sexo = S.idSexo
-                INNER JOIN Especialidades E ON ME.idEspecialidad = E.idEspecialidad
-                INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad
-                INNER JOIN Provincias P ON L.idProvincia = P.idProvincia
-                LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
-                LEFT JOIN Correos C ON PE.DNI = C.idPersona
+            string query = @"SELECT
+	ME.*, PE.nombre, 
+	PE.apellido, 
+	PE.nacionalidad, 
+	PE.fechaNacimiento, 
+	PE.Direccion, 
+	S.idSexo, 
+	S.descripcion AS genero,
+	C.correo, T.telefono,
+	L.idLocalidad,
+	L.nombreLocalidad,
+	P.idProvincia, 
+	P.nombreProvincia,
+    U.nombreUsuario,
+	U.contrasenia,
+	E.descripcion AS Especialidad
+FROM Medico ME
+INNER JOIN Persona PE ON ME.DNI = PE.DNI
+INNER JOIN Usuario U ON PE.DNI = U.DNI
+INNER JOIN Sexos S ON PE.sexo = S.idSexo
+INNER JOIN Especialidades E ON ME.idEspecialidad = E.idEspecialidad
+INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad
+INNER JOIN Provincias P ON L.idProvincia = P.idProvincia
+LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
+LEFT JOIN Correos C ON PE.DNI = C.idPersona
                 WHERE activo = 1 ";
             try
             {
@@ -266,6 +281,7 @@ namespace Datos
                     {
                         if (reader.Read())
                         {
+                            //MapearMedico(reader);
                             medico = new Medico()
                             {
                                 Usuario = new Usuario()
@@ -302,6 +318,99 @@ namespace Datos
                 }
             }
             catch (Exception ex) { throw new Exception("Error al buscar medico por ID: " + ex.Message); }
+            return medico;
+        }
+        public Medico MapearMedico(SqlDataReader reader)
+        {
+            return new Medico
+            {
+                Usuario = new Usuario()
+                {
+                    NombreUsuario = reader["nombreUsuario"].ToString(),
+                    contrasenia = reader["contrasenia"].ToString()
+                },
+                Legajo = reader["Legajo"].ToString(),
+                DNI = reader["DNI"].ToString(),
+                Especialidad = new Especialidad() { descripcion = reader["Especialidad"].ToString() },
+                nombre = reader["nombre"].ToString(),
+                apellido = reader["apellido"].ToString(),
+                sexos = new Sexos { idSexo = Convert.ToInt32(reader["idSexo"]), descripcion = reader["genero"].ToString() },
+                fechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]),
+                Direccion = reader["Direccion"].ToString(),
+                Provincia = Convert.ToInt32(reader["idProvincia"]),
+                Provincias = new Provincias
+                {
+                    idProvincia = Convert.ToInt32(reader["idProvincia"]),
+                    nombreProvincia = reader["nombreProvincia"].ToString()
+                },
+                Localidad = Convert.ToInt32(reader["idLocalidad"]), // NO BORRAR
+                Localidades = new Localidades
+                {
+                    idLocalidad = Convert.ToInt32(reader["idLocalidad"]),
+                    nombreLocalidad = reader["nombreLocalidad"].ToString()
+                },
+                nacionalidad = reader["nacionalidad"].ToString(),
+                Correo = reader["Correo"].ToString(),
+                Telefono = reader["Telefono"].ToString()
+            };
+        }
+        public List<Medico> FiltrarMedicoxApellido(string apellido)
+        {
+            List<Medico> medico = new List<Medico>();
+            string query = @"SELECT * FROM vw_MedicoConDatos
+                WHERE activo = 1
+                AND (@Apellido IS NULL OR apellido COLLATE Latin1_General_CI_AI LIKE '%' + @Apellido + '%')
+                ORDER BY Legajo";
+
+            try
+            {
+                using (SqlConnection con = conexion.AbrirConexion())
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@Apellido", SqlDbType.VarChar, 25) { Value = apellido });
+                    using (SqlDataReader reader = cmd.ExecuteReader()) { while (reader.Read()) { medico.Add(MapearMedico(reader)); } }
+                }
+            }
+            catch (Exception ex) { throw new Exception("Error al cargar médicos por apellido: " + ex.Message); }
+            return medico;
+        }
+        public List<Medico> FiltrarMedicoxDNI(string dniMedico)
+        {
+            List<Medico> medico = new List<Medico>();
+            string query = @"SELECT * FROM vw_MedicoConDatos
+                WHERE activo = 1
+                AND (@DNI IS NULL OR dniMedico COLLATE Latin1_General_CI_AI LIKE '%' + @DNI + '%')
+                ORDER BY Legajo";
+            try
+            {
+                using (SqlConnection con = conexion.AbrirConexion())
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@DNI", SqlDbType.VarChar, 20) { Value = dniMedico });
+                    using (SqlDataReader reader = cmd.ExecuteReader()) { while (reader.Read()) { medico.Add(MapearMedico(reader)); } }
+                }
+            }
+            catch (Exception ex) { throw new Exception("Error al cargar turnos por DNI: " + ex.Message); }
+            return medico;
+        }
+        public List<Medico> FiltrarMedicoxLegajo(string legajo)
+        {
+            List<Medico> medico = new List<Medico>();
+            string query = @"
+               SELECT * FROM vw_MedicoConDatos
+               WHERE activo = 1
+               AND (@Legajo IS NULL OR Legajo LIKE '%' + @Legajo + '%')
+                ORDER BY Legajo";
+            try
+            {
+                using (SqlConnection con = conexion.AbrirConexion())
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@Legajo", SqlDbType.VarChar, 20) { Value = legajo });
+                    using (SqlDataReader reader = cmd.ExecuteReader()) { while (reader.Read()) { medico.Add(MapearMedico(reader)); } }
+                }
+            }
+            catch (Exception ex) { throw new Exception("Error al cargar turnos por legajo: " + ex.Message); }
             return medico;
         }
     }

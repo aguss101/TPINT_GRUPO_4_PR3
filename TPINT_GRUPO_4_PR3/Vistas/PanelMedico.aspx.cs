@@ -109,9 +109,9 @@ namespace Vistas
             cargarTurnosxFecha();
         }
 
-        protected void ddlBusqueda_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlBusqueda_Turnos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (ddlBusqueda.SelectedIndex)
+            switch (ddlBusqueda_Turnos.SelectedIndex)
             {
                 case 1:
                     mwBusqueda.ActiveViewIndex = 0;
