@@ -267,6 +267,7 @@ namespace Vistas.admin
         }
         protected void ddlBusqueda_Medicos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            loadGridMedicos();
             switch (ddlBusqueda_Medicos.SelectedIndex)
             {
                 case 1:
@@ -309,18 +310,21 @@ namespace Vistas.admin
         protected void txbPorApellido_TextChanged(object sender, EventArgs e)
         {
             Session["Apellido"] = txbPorApellido.Text.Trim();
+            txbPorApellido.Text = "";
             cargarMedicosxApellido();
         }
 
         protected void txbPorDNI_TextChanged(object sender, EventArgs e)
         {
             Session["DNI"] = txbPorDNI.Text.Trim();
+            txbPorDNI.Text = "";
             cargarMedicosxDNI();
         }
 
         protected void txbPorLegajo_TextChanged(object sender, EventArgs e)
         {
             Session["Legajo"] = txbPorLegajo.Text.Trim();
+            txbPorLegajo.Text = "";
             cargarMedicosxLegajo();
         }
     }

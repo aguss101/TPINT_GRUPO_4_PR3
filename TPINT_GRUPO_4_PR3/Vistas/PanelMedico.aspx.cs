@@ -111,6 +111,7 @@ namespace Vistas
 
         protected void ddlBusqueda_Turnos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cargarTurnosAll();
             switch (ddlBusqueda_Turnos.SelectedIndex)
             {
                 case 1:
@@ -131,12 +132,14 @@ namespace Vistas
         protected void txbPorApellido_TextChanged(object sender, EventArgs e)
         {
             Session["apellidoPaciente"] = txbPorApellido.Text;
+            txbPorApellido.Text = "";
             cargarTurnosxApellido();
         }
 
         protected void txbPorDNI_TextChanged(object sender, EventArgs e)
         {
             Session["dniPaciente"] = txbPorDNI.Text;
+            txbPorDNI.Text = "";
             cargarTurnosxDNI();
         }
 
