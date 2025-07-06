@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Web.UI.WebControls;
 using Entidades;
 using Negocio;
@@ -94,8 +95,6 @@ namespace Vistas.admin
         }
         protected void InsertarMedicos()
         {
-
-
             lblAddUserState0.Visible = false;
             try
             {
@@ -123,7 +122,6 @@ namespace Vistas.admin
                     Telefono = txbTelefono.Text.Trim()
                 };
 
-
                 int filas = gestorMedico.InsertarMedico(medico, medico.Usuario);
 
                 if (filas > 0)
@@ -138,14 +136,13 @@ namespace Vistas.admin
                 }
                 lblAddUserState0.Visible = true;
 
-
+                
             }
             catch (Exception ex)
             {
-                // lblAddUserState0.Text = "❌ Error: " + ex.Message;
-                // lblAddUserState0.ForeColor = System.Drawing.Color.Red;
-                // lblAddUserState0.Text = "Hola";
-                // lblAddUserState0.Visible = true;
+                lblAddUserState0.Text = "❌ Error: " + ex.Message;
+                lblAddUserState0.ForeColor = System.Drawing.Color.Red;
+                lblAddUserState0.Visible = true;
             }
         }
         protected void ModificarMedico()
@@ -213,6 +210,12 @@ namespace Vistas.admin
             if (Page.IsValid)
             {
                 InsertarMedicos();
+            }
+            else
+            {
+                lblAddUserState0.Text = "⚠️ Por favor corrija los errores del formulario.";
+                lblAddUserState0.ForeColor = System.Drawing.Color.OrangeRed;
+                lblAddUserState0.Visible = true;
             }
         }
         protected void btnModificarMedico_Click(object sender, EventArgs e)

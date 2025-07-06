@@ -267,15 +267,6 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.DropDownList ddlGenero;
 
         /// <summary>
-        /// Control dbGenero.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dbGenero;
-
-        /// <summary>
         /// Control rfvgenero.
         /// </summary>
         /// <remarks>
@@ -283,6 +274,15 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvgenero;
+
+        /// <summary>
+        /// Control dbGenero.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dbGenero;
 
         /// <summary>
         /// Control txbfechanacimiento.
@@ -303,13 +303,13 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.Label lblCondiciones;
 
         /// <summary>
-        /// Control rfvFechaNac.
+        /// Control rfvfechanac.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFechaNac;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvfechanac;
 
         /// <summary>
         /// Control revfechanac.
@@ -330,15 +330,6 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.DropDownList ddlNacionalidad;
 
         /// <summary>
-        /// Control dbNacionalidades.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dbNacionalidades;
-
-        /// <summary>
         /// Control rfvpais.
         /// </summary>
         /// <remarks>
@@ -346,6 +337,15 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvpais;
+
+        /// <summary>
+        /// Control dbNacionalidades.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dbNacionalidades;
 
         /// <summary>
         /// Control ddlProvincia.
@@ -357,15 +357,6 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.DropDownList ddlProvincia;
 
         /// <summary>
-        /// Control dbProvincias.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dbProvincias;
-
-        /// <summary>
         /// Control rfvprovincia.
         /// </summary>
         /// <remarks>
@@ -373,6 +364,15 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvprovincia;
+
+        /// <summary>
+        /// Control dbProvincias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dbProvincias;
 
         /// <summary>
         /// Control ddlLocalidades.
@@ -384,15 +384,6 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.DropDownList ddlLocalidades;
 
         /// <summary>
-        /// Control dbLocalidades.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dbLocalidades;
-
-        /// <summary>
         /// Control rfvlocalidades.
         /// </summary>
         /// <remarks>
@@ -400,6 +391,15 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvlocalidades;
+
+        /// <summary>
+        /// Control dbLocalidades.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dbLocalidades;
 
         /// <summary>
         /// Control txbDireccion.
@@ -481,6 +481,15 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revtelefono;
+
+        /// <summary>
+        /// Control lblCondicioness.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCondicioness;
 
         /// <summary>
         /// Control txbUsuario.
