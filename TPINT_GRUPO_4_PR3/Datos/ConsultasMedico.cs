@@ -235,7 +235,7 @@ namespace Datos
         public Medico getMedicoPorID(string idMedico)
         {
             Medico medico = null;
-            string query = @"SELECT * FROM vw_MedicoConDatos
+            string query = @"SELECT * FROM vw_MedicoConDatos ME
                 WHERE ME.DNI = @id";
             try
             {

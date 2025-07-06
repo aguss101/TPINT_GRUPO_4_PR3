@@ -111,10 +111,18 @@ namespace Vistas.admin
                 DataTable dtHoras = gestorturnos.ObtenerHorasDisponibles(legajo, fecha);
 
                 ddlHora.Items.Add(new ListItem("--Seleccione hora--", ""));
-                foreach (DataRow row in dtHoras.Rows)
+                if(dtHoras.Rows.Count > 0)
                 {
-                    string hora = row["rangoHorario"].ToString();
-                    ddlHora.Items.Add(new ListItem(hora, hora));
+                    string horario = dtHoras.Rows[0]["rangoHorario"].ToString();
+                    if(DateTime.TryParse(horario, out DateTime horaInicial))
+                    {
+                        for(int i = 0; i < 8; i++)
+                        {
+                            DateTime hora = horaInicial.AddHours(i);
+                            string horaMod = hora.ToString("HH:mm");
+                            ddlHora.Items.Add(new ListItem(horaMod, horaMod));
+                        }
+                    }
                 }
             }
         }
