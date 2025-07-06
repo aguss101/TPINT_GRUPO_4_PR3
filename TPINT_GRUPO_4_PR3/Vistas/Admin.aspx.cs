@@ -43,29 +43,29 @@ namespace Vistas
             switch (tipo)
             {
                 case "1":  // Médicos
-                    if (cat == "1")
+                    if (cat == "Por Especialidad")
                         CargarGrafico("Especialidad", "CantMedicos", gestor.GetCantidadMedicosxEspecialidad());
-                    else if (cat == "2")
+                    else if (cat == "Cantidad de Turnos")
                         CargarGrafico("NombreCompleto", "CantidadTurnos", gestor.GetCantidadTurnosxMedico());
-                    else if (cat == "3")
+                    else if (cat == "Por Edad")
                         CargarGrafico("CategoriaEdad", "Cantidad", gestor.GetMedicosxEdad());
                     break;
 
                 case "2":  // Pacientes
-                    if (cat == "1")
+                    if (cat == "Por Edad")
                         CargarGrafico("CategoriaEdad", "Cantidad", gestor.GetPacientesxEdad());
-                    else if (cat == "2")
+                    else if (cat == "Por Obra Social")
                         CargarGrafico("ObraSocial", "CantPacientes", gestor.GetPacientesxObraSocial());
-                    else if (cat == "3")
+                    else if (cat == "Cantidad de Turnos")
                         CargarGrafico("Estado", "CantidadTurnos", gestor.GetTurnosxEstado());
-                    else if (cat == "4")
+                    else if (cat == "Cantidad de Ausentes")
                         CargarGrafico("Mes", "CantidadAusentes", gestor.GetPacientesxAusentesMes());
                     break;
 
                 case "3":  // Turnos
-                    if (cat == "1")
+                    if (cat == "Cantidad de Turnos")
                         CargarGrafico("Estado", "CantidadTurnos", gestor.GetTurnosxEstado());
-                    else if (cat == "2")
+                    else if (cat == "Promedio Turnos x Especialidad")
                         CargarGrafico("Especialidad", "PromediosTurnosxEspecialidad", gestor.GetPromedioTurnosxEspecialidad());
                     break;
 
@@ -97,7 +97,33 @@ namespace Vistas
 
         protected void ddlReportes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ddlCategoria.Items.Clear();
+            ddlCategoria.Items.Add(new ListItem("--Seleccione--"));
             ddlCategoria.SelectedIndex = 0;
+            DropDownList ddl = (DropDownList)sender;
+
+            int valor = int.Parse(ddl.SelectedValue);
+           
+            switch(valor){
+                case 1:
+                    ddlCategoria.Items.Add(new ListItem("Por Especialidad"));
+                    ddlCategoria.Items.Add(new ListItem("Cantidad de Turnos"));
+                    ddlCategoria.Items.Add(new ListItem("Por Edad"));
+                    break;
+                case 2:
+                    ddlCategoria.Items.Add(new ListItem("Por Edad"));
+                    ddlCategoria.Items.Add(new ListItem("Por Obra Social"));
+                    ddlCategoria.Items.Add(new ListItem("Cantidad de Turnos"));
+                    ddlCategoria.Items.Add(new ListItem("Cantidad de Ausentes"));
+                    break;
+                case 3:
+                    ddlCategoria.Items.Add(new ListItem("Cantidad de Turnos"));
+                    ddlCategoria.Items.Add(new ListItem("Promedio Turnos x Especialidad"));
+                    break;
+                default:
+                    break;
+
+            }
         }
         
     }
