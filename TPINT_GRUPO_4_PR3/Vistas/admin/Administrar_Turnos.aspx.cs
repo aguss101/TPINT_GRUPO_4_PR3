@@ -184,18 +184,18 @@ namespace Vistas.admin
             {
                 if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
                 {
-                    string observacionV = Server.HtmlDecode(row.Cells[5].Text.Trim());
+                    string observacionV = row.Cells[5].Text.Trim();
                     Session["observacionViejo"] = observacionV;
-                    string diagnosticoV = Server.HtmlDecode(row.Cells[6].Text.Trim());
+                    string diagnosticoV = row.Cells[6].Text.Trim();
                     Session["diagnosticoViejo"] = diagnosticoV;
 
 
                     string legajo = row.Cells[1].Text;
                     Session["Legajo"] = legajo;
-                    string auxFechaPactada = row.Cells[3].Text.Trim();
+                    string auxFechaPactada = row.Cells[3].Text.ToString().Trim();
                     Session["FechaVieja"] = auxFechaPactada;
 
-                    DateTime fechaPactada = DateTime.ParseExact(auxFechaPactada, "d/M/yyyy HH:mm", CultureInfo.InvariantCulture);
+                    DateTime fechaPactada = DateTime.Parse(auxFechaPactada);
 
                     List<Turno> turnos = gestorturnos.GetTurnosMedico(legajo, fechaPactada);
 
@@ -282,10 +282,10 @@ namespace Vistas.admin
                 }
                 return;
             }
-            catch (FormatException){lblMensaje.Text = "Formato de fecha u hora inválido.";}
-            catch (Exception ex) when (ex is NullReferenceException || ex is ArgumentNullException){lblMensaje.Text = "Todos los campos deben estar completos.";}
-            catch (Exception ex){lblMensaje.Text = "Error al registrar turno: " + ex.Message;}
-            lblMensaje.Visible=true;
+            catch (FormatException) { lblMensaje.Text = "Formato de fecha u hora inválido."; }
+            catch (Exception ex) when (ex is NullReferenceException || ex is ArgumentNullException) { lblMensaje.Text = "Todos los campos deben estar completos."; }
+            catch (Exception ex) { lblMensaje.Text = "Error al registrar turno: " + ex.Message; }
+            lblMensaje.Visible = true;
         }
 
         protected void btnBaja_Click(object sender, EventArgs e)
@@ -310,7 +310,7 @@ namespace Vistas.admin
         {
             filtrarFechaPor(ddlFiltrarTurnosPor.SelectedValue);
         }
-        protected void filtrarFechaPor(String parametroDeFiltro)
+        protected void filtrarFechaPor(string parametroDeFiltro)
         {
             string query = null;
 

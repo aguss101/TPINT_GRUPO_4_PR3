@@ -383,7 +383,7 @@
                         <tr>
                             <td class="botonera" colspan="2">
                                 
-                                <asp:GridView ID="gvTurnos" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" CssClass="table" DataKeyNames="Legajo,FechaPactada" ForeColor="Black" GridLines="Horizontal" OnPageIndexChanging="gvTurnos_PageIndexChanging" Width="976px">
+                                <asp:GridView ID="gvTurnos" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" CssClass="table" DataKeyNames="Legajo,FechaPactada,observacion,diagnostico" ForeColor="Black" GridLines="Horizontal" OnPageIndexChanging="gvTurnos_PageIndexChanging" Width="976px">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Seleccionar">
                                             <ItemTemplate>
@@ -433,10 +433,7 @@
                         <tr>
                             <td class="auto-style40">
 
-                                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
-                                <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
-                            </td>
+                                &nbsp;</td>
                             <td class="no-select">&nbsp;</td>
                             <td class="auto-style28">&nbsp;</td>
                         </tr>

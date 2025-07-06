@@ -13,10 +13,9 @@ namespace Vistas
 
             if (!IsPostBack)
             {
+                lblUser.Text = Session["User"].ToString();
                 cargarTurnosAll();
-
             }
-
         }
         protected void cargarTurnosAll()
         {
@@ -62,7 +61,7 @@ namespace Vistas
         protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox chkClicked = (CheckBox)sender;
-            cargarTurnosAll();
+
 
             foreach (GridViewRow row in gvTurnos.Rows)
             {
@@ -83,15 +82,13 @@ namespace Vistas
                 ddlEstado.Visible = esSeleccionada;
                 btnEnviar.Visible = esSeleccionada;
 
-
+                if (!esSeleccionada)
+                {
+                    txtDiag.Text = gvTurnos.DataKeys[row.RowIndex]["diagnostico"].ToString();
+                    txtObs.Text = gvTurnos.DataKeys[row.RowIndex]["observacion"].ToString();
+                }
             }
-
-
         }
-
-
-
-
 
         protected void calendarMedico_SelectionChanged(object sender, EventArgs e)
         {

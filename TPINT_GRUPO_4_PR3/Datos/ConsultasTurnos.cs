@@ -13,8 +13,10 @@ namespace Datos
         public List<Turno> GetTurnosAdmin()
         {
             List<Turno> turnos = new List<Turno>();
-            string query = @"SELECT * FROM vw_TurnosConDatos
-                             ORDER BY FechaPactada,Legajo,DNIPaciente";
+            string query = @"
+                SELECT * 
+                FROM vw_TurnosConDatos
+                ORDER BY FechaPactada,Legajo,DNIPaciente";
             try
             {
                 using (SqlConnection con = conexion.AbrirConexion())
@@ -31,11 +33,11 @@ namespace Datos
         {
             var turnos = new List<Turno>();
             string query = @"
-                    SELECT *
-                    FROM vw_TurnosConDatos
-                    WHERE Legajo = @Legajo
-                    AND (@Fecha IS NULL OR CONVERT(date, fechaPactada) = @Fecha)
-                    ORDER BY fechaPactada, Legajo, DNIPaciente;
+                SELECT *
+                FROM vw_TurnosConDatos
+                WHERE Legajo = @Legajo
+                AND (@Fecha IS NULL OR CONVERT(date, fechaPactada) = @Fecha)
+                ORDER BY fechaPactada, Legajo, DNIPaciente;
             ";
 
 
@@ -53,11 +55,11 @@ namespace Datos
         public bool ModificarTurno(Turno turno)
         {
             string query = @"
-            UPDATE Turnos 
-            SET fechaPactada = @FechaNueva, observacion = @Observacion, diagnostico = @Diagnostico
-            WHERE Legajo = @Legajo 
-            AND DNIPaciente = @DNIPaciente
-            AND CONVERT(date, fechaPactada) = CONVERT(date, @FechaOriginal)";
+                UPDATE Turnos 
+                SET fechaPactada = @FechaNueva, observacion = @Observacion, diagnostico = @Diagnostico
+                WHERE Legajo = @Legajo 
+                AND DNIPaciente = @DNIPaciente
+                AND CONVERT(date, fechaPactada) = CONVERT(date, @FechaOriginal)";
 
 
             using (SqlConnection con = conexion.AbrirConexion())
@@ -112,11 +114,12 @@ namespace Datos
         {
             List<Turno> turnos = new List<Turno>();
             string query = @"
-            SELECT * FROM vw_TurnosConDatos 
-            WHERE Legajo = @Legajo 
-            AND (@Apellido IS NULL OR ApellidoPaciente 
-            COLLATE Latin1_General_CI_AI LIKE '%' + @Apellido + '%') 
-            ORDER BY fechaPactada, Legajo, DNIPaciente";
+                SELECT * 
+                FROM vw_TurnosConDatos 
+                WHERE Legajo = @Legajo 
+                AND (@Apellido IS NULL OR ApellidoPaciente 
+                COLLATE Latin1_General_CI_AI LIKE '%' + @Apellido + '%') 
+                ORDER BY fechaPactada, Legajo, DNIPaciente";
             try
             {
                 using (SqlConnection con = conexion.AbrirConexion())
@@ -133,10 +136,11 @@ namespace Datos
         public List<Turno> FiltrarPacientexDNI(string legajo, string dniPaciente)
         {
             List<Turno> turnos = new List<Turno>();
-            string query = @"SELECT * FROM vw_TurnosConDatos 
-                            WHERE Legajo = @Legajo 
-                            AND (@DNI IS NULL OR DNIPaciente LIKE '%' + @DNI + '%')
-                            ORDER BY fechaPactada, Legajo, DNIPaciente";
+            string query = @"
+                SELECT * FROM vw_TurnosConDatos 
+                WHERE Legajo = @Legajo 
+                AND (@DNI IS NULL OR DNIPaciente LIKE '%' + @DNI + '%')
+                ORDER BY fechaPactada, Legajo, DNIPaciente";
             try
             {
                 using (SqlConnection con = conexion.AbrirConexion())
@@ -152,7 +156,12 @@ namespace Datos
         }
         public DataTable ObtenerMedicosPorEspecialidad(int idEspecialidad)
         {
-            string query = @"SELECT M.Legajo, P.nombre + ' ' + P.apellido AS NombreCompleto FROM Medico M INNER JOIN Persona P ON M.DNI = P.DNI WHERE M.idEspecialidad = @idEspecialidad";
+            string query = @"
+                SELECT M.Legajo, P.nombre + ' ' + P.apellido AS NombreCompleto 
+                FROM Medico M 
+                INNER JOIN Persona P ON M.DNI = P.DNI 
+                WHERE M.idEspecialidad = @idEspecialidad
+            ";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -219,8 +228,9 @@ namespace Datos
 
         public int InsertarTurno(Turno turno)
         {
-            string query = @"INSERT INTO Turnos (Legajo, DNIPaciente, fechaPactada, estado, observacion, diagnostico)
-                     VALUES (@Legajo, @DNI, @Fecha, @Estado, @Obs, @Diag)";
+            string query = @"
+                INSERT INTO Turnos (Legajo, DNIPaciente, fechaPactada, estado, observacion, diagnostico)
+                VALUES (@Legajo, @DNI, @Fecha, @Estado, @Obs, @Diag)";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -239,7 +249,12 @@ namespace Datos
 
         public int EliminarTurno(string legajo, DateTime fechapactada)
         {
-            string query = @"UPDATE Turnos SET estado = @Estado WHERE Legajo = @Legajo AND fechaPactada = @Fecha";
+            string query = @"
+                UPDATE Turnos 
+                SET estado = @Estado 
+                WHERE Legajo = @Legajo 
+                AND fechaPactada = @Fecha
+            ";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -287,8 +302,8 @@ namespace Datos
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@Estado", turno.Estado),
-                new SqlParameter("@Observacion", turno.Observacion),
-                new SqlParameter("@Diagnostico",  turno.Diagnostico),
+                new SqlParameter("@Observacion", string.IsNullOrWhiteSpace(turno.Observacion) ? (object)DBNull.Value : turno.Observacion),
+                new SqlParameter("@Diagnostico",  string.IsNullOrWhiteSpace(turno.Diagnostico) ? (object)DBNull.Value : turno.Diagnostico),
                 new SqlParameter("@Legajo", turno.Legajo),
                 new SqlParameter("@Fecha", turno.FechaPactada)
             };

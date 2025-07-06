@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
-using System.Text.RegularExpressions;
 using Entidades;
 using Negocio;
 
@@ -19,6 +18,7 @@ namespace Vistas.admin
                 btnBaja.Visible = false;
                 txbLegajo.Attributes["placeholder"] = "Legajo del medico";
                 txbLegajo.Text = string.Empty;
+
             }
         }
         protected void btnAlta_Click(object sender, EventArgs e)
@@ -94,161 +94,58 @@ namespace Vistas.admin
         }
         protected void InsertarMedicos()
         {
+
+
             lblAddUserState0.Visible = false;
             try
             {
-                /// VALIDACIONES - INSERTAR
-                /// Es necesario pasar todo esto a RFV(RequiredFieldValidator) este codigo es MUY TOSCO
-                if (txbDni.Text.Trim() == "" || txbLegajo.Text.Trim() == "" || txbNombre.Text.Trim() == "" || txbApellido.Text.Trim() == "" || txbDireccion.Text.Trim() == "" || txbCorreo.Text.Trim() == "" || txbTelefono.Text.Trim() == "")
+                Medico medico = new Medico()
                 {
-                    lblAddUserState0.Visible = true;
-                    lblAddUserState0.Text = "Faltan campos por rellenar";
-                }
-                string mensajeError;
-
-                if (!Regex.IsMatch(txbApellido.Text.Trim(), @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$"))
-                {
-                    mensajeError = "⚠️ Apellido inválido. Solo se permiten letras.";
-                    lblAddUserState0.Visible = true;
-                    lblAddUserState0.Text = mensajeError;
-                    return;
-                }
-                if (string.IsNullOrEmpty(ddlEspecialidad.SelectedValue))
-                {
-                    mensajeError = "⚠️ Debe seleccionar una especialidad.";
-                    lblAddUserState0.Visible = true;
-                    lblAddUserState0.Text = mensajeError;
-                    return;
-                }
-                if (string.IsNullOrEmpty(ddlGenero.SelectedValue))
-                {
-                    mensajeError = "⚠️ Debe seleccionar un género.";
-                    lblAddUserState0.Visible = true;
-                    lblAddUserState0.Text = mensajeError;
-                    return;
-                }
-                if (!DateTime.TryParse(txbFechaNacimiento.Text.Trim(), out DateTime fechaNac))
-                {
-                    mensajeError = "⚠️ Fecha de nacimiento inválida.";
-                    lblAddUserState0.Visible = true;
-                    lblAddUserState0.Text = mensajeError;
-                    return;
-                }
-                var edadMin = DateTime.Today.AddYears(-120);
-                var edadMax = DateTime.Today.AddYears(-18);
-                if (fechaNac < edadMin || fechaNac > edadMax)
-                {
-                    mensajeError = "⚠️ La edad debe ser entre 18 y 120 años.";
-                    lblAddUserState0.Visible = true;
-                    lblAddUserState0.Text = mensajeError;
-                    return;
-                }
-                if (string.IsNullOrEmpty(ddlNacionalidad.SelectedValue))
-                {
-                    mensajeError = "⚠️ Debe seleccionar una nacionalidad.";
-                    lblAddUserState0.Visible = true;
-                    lblAddUserState0.Text = mensajeError;
-                    return;
-                }
-                if (string.IsNullOrEmpty(ddlProvincia.SelectedValue))
-                {
-                    mensajeError = "⚠️ Debe seleccionar una provincia.";
-                    lblAddUserState0.Visible = true;
-                    lblAddUserState0.Text = mensajeError;
-                    return;
-                }
-
-                if (string.IsNullOrEmpty(ddlLocalidades.SelectedValue))
-                {
-                    mensajeError = "⚠️ Debe seleccionar una localidad.";
-                    lblAddUserState0.Visible = true;
-                    lblAddUserState0.Text = mensajeError;
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txbDireccion.Text))
-                {
-                    mensajeError = "⚠️ Dirección obligatoria.";
-                    lblAddUserState0.Visible = true;
-                    lblAddUserState0.Text = mensajeError;
-                    return;
-                }
-                if (!Regex.IsMatch(txbCorreo.Text.Trim(), @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-                {
-                    mensajeError = "⚠️ Correo inválido.";
-                    lblAddUserState0.Visible = true;
-                    lblAddUserState0.Text = mensajeError;
-                    return;
-                }
-                if (!Regex.IsMatch(txbTelefono.Text.Trim(), @"^\d{6,15}$"))
-                {
-                    mensajeError = "⚠️ Teléfono inválido. Con 10 digitos. Formato: 11 1234 1234";
-                    lblAddUserState0.Visible = true;
-                    lblAddUserState0.Text = mensajeError;
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txbUsuario.Text))
-                {
-                    mensajeError = "⚠️ Nombre de usuario obligatorio.";
-                    lblAddUserState0.Visible = true;
-                    lblAddUserState0.Text = mensajeError;
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txbContrasenia.Text))
-                {
-                    mensajeError = "⚠️ Contraseña obligatoria.";
-                    lblAddUserState0.Visible = true;
-                    lblAddUserState0.Text = mensajeError;
-                    return;
-                }
-                else ///FIN VALIDACIONES
-                {
-
-                    Medico medico = new Medico()
+                    Usuario = new Usuario()
                     {
-                        Usuario = new Usuario()
-                        {
-                            NombreUsuario = txbUsuario.Text.Trim(),
-                            contrasenia = txbContrasenia.Text.Trim(),
-                            alta = Convert.ToDateTime(DateTime.Now),
-                            ultimoIngreso = Convert.ToDateTime(DateTime.Now),
-                            idRol = 2
-                        },
-                        Legajo = txbLegajo.Text.Trim(),
-                        DNI = txbDni.Text.Trim(),
-                        nombre = txbNombre.Text.Trim(),
-                        apellido = txbApellido.Text.Trim(),
-                        Especialidad = new Especialidad { idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue), descripcion = ddlEspecialidad.SelectedItem.Text.Trim() },
-                        sexos = new Sexos { idSexo = int.Parse(ddlGenero.SelectedValue), descripcion = ddlGenero.SelectedItem.Text },
-                        nacionalidad = ddlNacionalidad.SelectedValue.ToString(),
-                        fechaNacimiento = Convert.ToDateTime(txbFechaNacimiento.Text.Trim()),
-                        Direccion = txbDireccion.Text.Trim(),
-                        Localidad = int.Parse(ddlLocalidades.SelectedValue),
-                        Correo = txbCorreo.Text.Trim(),
-                        Telefono = txbTelefono.Text.Trim()
-                    };
+                        NombreUsuario = txbUsuario.Text.Trim(),
+                        contrasenia = txbContrasenia.Text.Trim(),
+                        alta = Convert.ToDateTime(DateTime.Now),
+                        ultimoIngreso = Convert.ToDateTime(DateTime.Now),
+                        idRol = 2
+                    },
+                    Legajo = txbLegajo.Text.Trim(),
+                    DNI = txbDni.Text.Trim(),
+                    nombre = txbNombre.Text.Trim(),
+                    apellido = txbApellido.Text.Trim(),
+                    Especialidad = new Especialidad { idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue), descripcion = ddlEspecialidad.SelectedItem.Text.Trim() },
+                    sexos = new Sexos { idSexo = int.Parse(ddlGenero.SelectedValue), descripcion = ddlGenero.SelectedItem.Text },
+                    nacionalidad = ddlNacionalidad.SelectedValue.ToString(),
+                    fechaNacimiento = Convert.ToDateTime(txbfechanacimiento.Text.Trim()),
+                    Direccion = txbDireccion.Text.Trim(),
+                    Localidad = int.Parse(ddlLocalidades.SelectedValue),
+                    Correo = txbCorreo.Text.Trim(),
+                    Telefono = txbTelefono.Text.Trim()
+                };
 
 
-                    int filas = gestorMedico.InsertarMedico(medico, medico.Usuario);
+                int filas = gestorMedico.InsertarMedico(medico, medico.Usuario);
 
-                    if (filas > 0)
-                    {
-                        lblAddUserState0.Text = "Se agregó correctamente el médico";
-                        lblAddUserState0.ForeColor = System.Drawing.Color.Green;
-                    }
-                    else
-                    {
-                        lblAddUserState0.Text = "Hubo un error durante la carga (no se insertó ninguna fila)";
-                        lblAddUserState0.ForeColor = System.Drawing.Color.Red;
-                    }
-                    lblAddUserState0.Visible = true;
-
+                if (filas > 0)
+                {
+                    lblAddUserState0.Text = "Se agregó correctamente el médico";
+                    lblAddUserState0.ForeColor = System.Drawing.Color.Green;
                 }
+                else
+                {
+                    lblAddUserState0.Text = "Hubo un error durante la carga (no se insertó ninguna fila)";
+                    lblAddUserState0.ForeColor = System.Drawing.Color.Red;
+                }
+                lblAddUserState0.Visible = true;
+
+
             }
             catch (Exception ex)
             {
-                lblAddUserState0.Text = "❌ Error: " + ex.Message;
-                lblAddUserState0.ForeColor = System.Drawing.Color.Red;
-                lblAddUserState0.Visible = true;
+                // lblAddUserState0.Text = "❌ Error: " + ex.Message;
+                // lblAddUserState0.ForeColor = System.Drawing.Color.Red;
+                // lblAddUserState0.Text = "Hola";
+                // lblAddUserState0.Visible = true;
             }
         }
         protected void ModificarMedico()

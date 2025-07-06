@@ -13,7 +13,10 @@ namespace Datos
         public List<Usuario> getUsuarios()
         {
             List<Usuario> usuarios = new List<Usuario>();
-            string query = @"SELECT U.DNI,U.IdRol,U.nombreUsuario,U.contrasenia,U.ultimoIngreso, U.alta FROM Usuario U";
+            string query = @"
+                SELECT U.DNI,U.IdRol,U.nombreUsuario,U.contrasenia,U.ultimoIngreso, U.alta 
+                FROM Usuario U
+            ";
             try
             {
                 using (SqlConnection con = conexion.AbrirConexion())
