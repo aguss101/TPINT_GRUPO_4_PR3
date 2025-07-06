@@ -60,6 +60,28 @@ namespace Vistas.admin
             lblAddUserState.Text = "";
             lblAddUserState.Visible = false;
         }
+        protected void LimpiarFormularioAltaMedico()
+        {
+            txbNombre.Text = "";
+            txbApellido.Text = "";
+            txbDni.Text = "";
+            txbLegajo.Text = "";
+            txbCorreo.Text = "";
+            txbTelefono.Text = "";
+            txbDireccion.Text = "";
+            txbUsuario.Text = "";
+            txbfechanacimiento.Text = "";
+
+            ddlEspecialidad.ClearSelection();
+            ddlGenero.ClearSelection();
+            ddlNacionalidad.ClearSelection();
+            ddlProvincia.ClearSelection();
+            ddlLocalidades.ClearSelection();
+
+
+            lblAddUserState.Text = "";
+            lblAddUserState.Visible = false;
+        }
         protected void btnAlta_Click(object sender, EventArgs e)
         {
             mvFormularios.ActiveViewIndex = 0;

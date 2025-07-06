@@ -273,9 +273,9 @@
                                 </asp:DropDownList>
                         <asp:DropDownList ID="ddlCategoria" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCategoria_SelectedIndexChanged">
                             <asp:ListItem Value="0">--Seleccione--</asp:ListItem>
-                            <asp:ListItem Value="1">1ero</asp:ListItem>
-                            <asp:ListItem Value="2">2do</asp:ListItem>
-                            <asp:ListItem Value="3">3ro</asp:ListItem>
+                            <asp:ListItem Value="1"></asp:ListItem>
+                            <asp:ListItem Value="2"></asp:ListItem>
+                            <asp:ListItem Value="3"></asp:ListItem>
                         </asp:DropDownList>
                             </td>
                             <td class="no-select">&nbsp;</td>

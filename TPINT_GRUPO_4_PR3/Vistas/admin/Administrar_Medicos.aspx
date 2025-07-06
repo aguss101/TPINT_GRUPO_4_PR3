@@ -440,7 +440,7 @@
                                                 <tr>
                                                     <td class="auto-style32">Fecha de nacimiento:</td>
                                                     <td class="auto-style52">
-                                                        <asp:TextBox ID="txbfechanacimiento" runat="server" TextMode="Date"></asp:TextBox>&nbsp;&nbsp;&nbsp;<asp:RequiredFieldValidator ID="rfvfechanac" runat="server" ControlToValidate="txbfechanacimiento" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="AltaMedico" />
+                                                        <asp:TextBox ID="txbfechanacimiento" runat="server" TextMode="Date" Height="22px"></asp:TextBox>&nbsp;&nbsp;&nbsp;<asp:RequiredFieldValidator ID="rfvfechanac" runat="server" ControlToValidate="txbfechanacimiento" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="AltaMedico" />
                                                         <br />
                                                     </td>
                                                     <td class="auto-style31"></td>
