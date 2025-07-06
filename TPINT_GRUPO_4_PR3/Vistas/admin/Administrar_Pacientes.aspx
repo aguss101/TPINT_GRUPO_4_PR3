@@ -362,27 +362,37 @@
                                         <div>
                                             <table class="auto-style44">
                                                 <tr>
-                                                    <td class="auto-style32">DNI</td>
-                                                    <td class="auto-style30">
-                                                        <asp:TextBox ID="txbDni" runat="server"></asp:TextBox></td>
+                                                    <td class="auto-style32">DNI:</td>
+                                                    <td class="auto-style52">
+                                                        <asp:TextBox ID="txbDni" runat="server" ValidationGroup="AltaPaciente"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvDni" runat="server" ControlToValidate="txbDni" ErrorMessage="* Campo obligatorio" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaPaciente" />
+                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txbDni" ValidationExpression="^\d{8}$" ErrorMessage="* 8 digitos" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
+                                                    </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style32">Nombre</td>
                                                     <td class="auto-style30">
-                                                        <asp:TextBox ID="txbNombre" runat="server"></asp:TextBox></td>
+                                                        <asp:TextBox ID="txbNombre" runat="server"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txbNombre" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="AltaMedico" />
+                                                        <asp:RegularExpressionValidator ID="revnombre" runat="server" ControlToValidate="txbNombre" Display="Dynamic" ErrorMessage="* Solo letras" ForeColor="Red" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$" ValidationGroup="AltaMedico" />
+                                                    </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style32">Apellido</td>
                                                     <td class="auto-style30">
-                                                        <asp:TextBox ID="txbApellido" runat="server"></asp:TextBox></td>
+                                                        <asp:TextBox ID="txbApellido" runat="server"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvapellido" runat="server" ControlToValidate="txbNombre" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="AltaPaciente" />
+                                                        <asp:RegularExpressionValidator ID="revapellido" runat="server" ControlToValidate="txbApellido" Display="Dynamic" ErrorMessage="* Solo letras" ForeColor="Red" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$" ValidationGroup="AltaPaciente" />
+                                                    </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style32">Sexo</td>
                                                     <td class="auto-style30">
                                                         <asp:DropDownList ID="ddlGenero" runat="server" AutoPostBack="True" DataSourceID="dbGenero" DataTextField="descripcion" DataValueField="idSexo"></asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="rfvgenero" runat="server" ControlToValidate="ddlGenero" Display="Dynamic" ErrorMessage="* Seleccione un genero" ForeColor="Red" InitialValue="" ValidationGroup="AltaPaciente" />
                                                         <asp:SqlDataSource ID="dbGenero" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT * FROM [Sexos]"></asp:SqlDataSource>
                                                     </td>
                                                     <td class="auto-style31"></td>
@@ -390,13 +400,17 @@
                                                 <tr>
                                                     <td class="auto-style32">Fecha de nacimiento</td>
                                                     <td class="auto-style30">
-                                                        <asp:TextBox ID="txbFechaNacimiento" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;<asp:Label ID="lblCondiciones" runat="server" Font-Bold="True" Font-Size="Smaller" Font-Underline="True" Text="Formato: YYYY-MM-DD"></asp:Label></td>
+                                                        <asp:TextBox ID="txbFechaNacimiento" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;<asp:Label ID="lblCondiciones" runat="server" Font-Bold="True" Font-Size="Smaller" Font-Underline="True" Text="Formato: YYYY-MM-DD"></asp:Label>
+                                                        <asp:RequiredFieldValidator ID="rfvfechanac" runat="server" ControlToValidate="txbFechaNacimiento" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="AltaPaciente" />
+                                                        <asp:RegularExpressionValidator ID="revFechaNnac" runat="server" ControlToValidate="txbFechaNacimiento" Display="Dynamic" ErrorMessage="* Formato inválido (YYYY-MM-DD)" ForeColor="Red" ValidationExpression="^\d{4}-\d{2}-\d{2}$" ValidationGroup="AltaPaciente" />
+                                                    </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style32">Nacionalidad</td>
                                                     <td class="auto-style30">
                                                         <asp:DropDownList ID="ddlNacionalidad" runat="server" DataSourceID="dbNacionalidades" DataTextField="gentilicio" DataValueField="gentilicio"></asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="rfvpais" runat="server" ControlToValidate="ddlNacionalidad" Display="Dynamic" ErrorMessage="* Seleccione un país" ForeColor="Red" InitialValue="" ValidationGroup="AltaPaciente" />
                                                         <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT * FROM [Paises]"></asp:SqlDataSource>
                                                     </td>
                                                     <td class="auto-style31"></td>
@@ -407,6 +421,7 @@
                                                         <asp:DropDownList
                                                             ID="ddlProvincia" runat="server" AutoPostBack="True" DataSourceID="dbProvincias" DataTextField="nombreProvincia" DataValueField="idProvincia" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged">
                                                         </asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="rfvprovincia" runat="server" ControlToValidate="ddlProvincia" Display="Dynamic" ErrorMessage="* Seleccione una provincia" ForeColor="Red" InitialValue="" ValidationGroup="AltaPaciente" />
                                                         <asp:SqlDataSource ID="dbProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT idProvincia, nombreProvincia FROM Provincias"></asp:SqlDataSource>
                                                     </td>
                                                     <td class="auto-style31"></td>
@@ -416,6 +431,7 @@
                                                     <td class="auto-style30">
                                                         <asp:DropDownList ID="ddlLocalidades" runat="server" DataSourceID="dbLocalidades" DataTextField="nombreLocalidad" DataValueField="idLocalidad">
                                                         </asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="rfvlocalidades" runat="server" ControlToValidate="ddlLocalidades" Display="Dynamic" ErrorMessage="* Seleccione una localidad" ForeColor="Red" InitialValue="" ValidationGroup="AltaPaciente" />
                                                         <asp:SqlDataSource ID="dbLocalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT idLocalidad, nombreLocalidad FROM Localidades WHERE idProvincia = @idProvincia">
                                                             <SelectParameters>
                                                                 <asp:ControlParameter ControlID="ddlProvincia" Name="idProvincia" PropertyName="SelectedValue" />
@@ -428,6 +444,8 @@
                                                     <td class="auto-style32">Dirección</td>
                                                     <td class="auto-style30">
                                                         <asp:TextBox ID="txbDireccion" runat="server"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvdireccion" runat="server" ControlToValidate="txbDireccion" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="AltaPaciente" />
+                                                        <asp:RegularExpressionValidator ID="revdireccion" runat="server" ControlToValidate="txbDireccion" Display="Dynamic" ErrorMessage="* Formato inválido" ForeColor="Red" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 ]+$" ValidationGroup="AltaPaciente" />
                                                     </td>
                                                     <td class="auto-style31">&nbsp;</td>
                                                 </tr>
@@ -444,6 +462,8 @@
                                                     <td class="auto-style32">Teléfono</td>
                                                     <td class="auto-style30">
                                                         <asp:TextBox ID="txbTelefono" runat="server"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvtelefono" runat="server" ControlToValidate="txbTelefono" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="AltaPaciente" />
+                                                        <asp:RegularExpressionValidator ID="revtelefono" runat="server" ControlToValidate="txbTelefono" Display="Dynamic" ErrorMessage="Invalido" ForeColor="Red" ValidationExpression="^^\d{2}[-\s]\d{4}[-\s]\d{4}$" ValidationGroup="AltaPaciente" />
                                                     </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
@@ -451,21 +471,20 @@
                                                     <td class="auto-style37">Correo</td>
                                                     <td class="no-select">
                                                         <asp:TextBox ID="txbCorreo" runat="server"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvcorreo" runat="server" ControlToValidate="txbCorreo" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="AltaPaciente" />
+                                                        <asp:RegularExpressionValidator ID="revcorreo" runat="server" ControlToValidate="txbCorreo" Display="Dynamic" ErrorMessage="* Formato inválido" ForeColor="Red" ValidationExpression="^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$" ValidationGroup="AltaPaciente" />
                                                     </td>
                                                     <td class="auto-style36"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style32">
-                                                        <asp:Button ID="btnRegistrarPaciente" runat="server" OnClick="btnRegistrarPaciente_Click" Text="Registrar paciente" Width="188px" />
+                                                        <asp:Button ID="btnRegistrarPaciente" runat="server" OnClick="btnRegistrarPaciente_Click" Text="Registrar paciente" Width="188px" ValidationGroup="AltaPaciente" />
                                                     </td>
                                                     <td class="auto-style30">
                                                         <asp:Label ID="lblAddUserState" runat="server" Visible="False"></asp:Label>
                                                     </td>
                                                     <td class="auto-style31">&nbsp;</td>
                                                 </tr>
-                                                </caption>
-                                                </caption>
-                                           
                                             </table>
                                         </div>
                                     </asp:View>
@@ -480,20 +499,26 @@
                                                 <tr>
                                                     <td class="auto-style32">DNI</td>
                                                     <td class="auto-style30">
-                                                        <asp:TextBox ID="txbDni" runat="server" ValidationGroup="AltaMedico"></asp:TextBox>
-                                                        <asp:RegularExpressionValidator ID="revDni" runat="server" ControlToValidate="txbDni" ValidationExpression="^\d{8}$" ErrorMessage="* Obligatorio - 8 digitos" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
-                                                    <td class="auto-style31"></td>
+                                                        <asp:TextBox ID="txbModDni" enabled="false" runat="server" ValidationGroup="ModPaciente"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvModDni" runat="server" ControlToValidate="txbModDni" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="ModPaciente" />
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style32">Nombre</td>
                                                     <td class="auto-style30">
-                                                        <asp:TextBox ID="txbModNombre" runat="server"></asp:TextBox></td>
+                                                        <asp:TextBox ID="txbModNombre" runat="server" ValidationGroup="ModPaciente"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvModNombre" runat="server" ControlToValidate="txbModNombre" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="ModPaciente" />
+                                                        <asp:RegularExpressionValidator ID="revModNombre" runat="server" ControlToValidate="txbModNombre" Display="Dynamic" ErrorMessage="* Solo letras" ForeColor="Red" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$" ValidationGroup="ModPaciente" />
+                                                    </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style32">Apellido</td>
                                                     <td class="auto-style30">
-                                                        <asp:TextBox ID="txbModApellido" runat="server"></asp:TextBox></td>
+                                                        <asp:TextBox ID="txbModApellido" runat="server" ValidationGroup="ModPaciente"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvModApellido" runat="server" ControlToValidate="txbModApellido" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="ModPaciente" />
+                                                        <asp:RegularExpressionValidator ID="revModApellido" runat="server" ControlToValidate="txbModApellido" Display="Dynamic" ErrorMessage="* Solo letras" ForeColor="Red" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$" ValidationGroup="ModPaciente" />
+                                                    </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>
@@ -507,7 +532,9 @@
                                                 <tr>
                                                     <td class="auto-style32">Fecha de nacimiento:</td>
                                                     <td class="auto-style30">
-                                                        <asp:TextBox ID="txbModFechaNacimiento" runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="txbModFechaNacimiento" runat="server" ValidationGroup="ModPaciente"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvModFechaNac" runat="server" ControlToValidate="txbModFechaNacimiento" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="ModPaciente" />
+                                                        <asp:RegularExpressionValidator ID="revModFechaNnac" runat="server" ControlToValidate="txbModFechaNacimiento" Display="Dynamic" ErrorMessage="* Formato inválido (YYYY-MM-DD)" ForeColor="Red" ValidationExpression="^\d{4}-\d{2}-\d{2}$" ValidationGroup="ModPaciente" />
                                                     </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
@@ -545,7 +572,9 @@
                                                     <tr>
                                                         <td class="auto-style32">Dirección</td>
                                                         <td class="auto-style30">
-                                                            <asp:TextBox ID="txbModDireccion" runat="server"></asp:TextBox>
+                                                            <asp:TextBox ID="txbModDireccion" runat="server" ValidationGroup="ModPaciente"></asp:TextBox>
+                                                            <asp:RequiredFieldValidator ID="rfvModDireccion" runat="server" ControlToValidate="txbModDireccion" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="ModPaciente" />
+                                                            <asp:RegularExpressionValidator ID="revModDireccion" runat="server" ControlToValidate="txbModDireccion" Display="Dynamic" ErrorMessage="* Formato inválido" ForeColor="Red" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 ]+$" ValidationGroup="ModPaciente" />
                                                         </td>
                                                         <td class="auto-style31">&nbsp;</td>
                                                     </tr>
@@ -561,20 +590,25 @@
                                                     <tr>
                                                         <td class="auto-style32">Teléfono</td>
                                                         <td class="auto-style30">
-                                                            <asp:TextBox ID="txbModTelefono" runat="server"></asp:TextBox>
+                                                            <asp:TextBox ID="txbModTelefono" runat="server" ValidationGroup="ModPaciente"></asp:TextBox>
+                                                            <asp:Label ID="lblCondicioness" runat="server" Font-Bold="True" Font-Size="Smaller" Font-Underline="True" Text="Formato: 11-1234-5678 // 11 1234 5678"></asp:Label>
+                                                            <asp:RequiredFieldValidator ID="rfvModTelefono" runat="server" ControlToValidate="txbModTelefono" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="ModPaciente" />
+                                                            <asp:RegularExpressionValidator ID="revModTelefono" runat="server" ControlToValidate="txbModTelefono" Display="Dynamic" ErrorMessage="Invalido" ForeColor="Red" ValidationExpression="^^\d{2}[-\s]\d{4}[-\s]\d{4}$" ValidationGroup="ModPaciente" />
                                                         </td>
                                                         <td class="auto-style31"></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="auto-style37">Correo</td>
                                                         <td class="no-select">
-                                                            <asp:TextBox ID="txbModCorreo" runat="server"></asp:TextBox>
+                                                            <asp:TextBox ID="txbModCorreo" runat="server" ValidationGroup="ModPaciente"></asp:TextBox>
+                                                            <asp:RequiredFieldValidator ID="rfvModCorreo" runat="server" ControlToValidate="txbModCorreo" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="ModPaciente" />
+                                                            <asp:RegularExpressionValidator ID="revcorreo0" runat="server" ControlToValidate="txbModCorreo" Display="Dynamic" ErrorMessage="* Formato inválido" ForeColor="Red" ValidationExpression="^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$" ValidationGroup="ModPaciente" />
                                                         </td>
                                                         <td class="auto-style36"></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="auto-style32">
-                                                            <asp:Button ID="btnModificarPaciente" runat="server" OnClick="btnModificarPaciente_Click" Text="Modificar paciente" Width="188px" />
+                                                            <asp:Button ID="btnModificarPaciente" runat="server" OnClick="btnModificarPaciente_Click" Text="Modificar paciente" Width="188px" ValidationGroup="ModPaciente" />
                                                         </td>
                                                         <td class="auto-style30">
                                                             <asp:Label ID="lblModUser" runat="server" Visible="False"></asp:Label>

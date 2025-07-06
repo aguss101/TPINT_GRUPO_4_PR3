@@ -465,6 +465,15 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.TextBox txbTelefono;
 
         /// <summary>
+        /// Control lblCondicioness.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCondicioness;
+
+        /// <summary>
         /// Control rfvtelefono.
         /// </summary>
         /// <remarks>
@@ -481,15 +490,6 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revtelefono;
-
-        /// <summary>
-        /// Control lblCondicioness.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCondicioness;
 
         /// <summary>
         /// Control txbUsuario.
@@ -600,6 +600,15 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.TextBox txtbModMedicoLegajo;
 
         /// <summary>
+        /// Control rfvModLegajo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvModLegajo;
+
+        /// <summary>
         /// Control txtbModMedicoDNI.
         /// </summary>
         /// <remarks>
@@ -607,6 +616,15 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbModMedicoDNI;
+
+        /// <summary>
+        /// Control rfvModDni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvModDni;
 
         /// <summary>
         /// Control txtbModMedicoNombre.
@@ -618,6 +636,15 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.TextBox txtbModMedicoNombre;
 
         /// <summary>
+        /// Control rfvModNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvModNombre;
+
+        /// <summary>
         /// Control txtbModMedicoApellido.
         /// </summary>
         /// <remarks>
@@ -625,6 +652,15 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbModMedicoApellido;
+
+        /// <summary>
+        /// Control rfvModApellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvModApellido;
 
         /// <summary>
         /// Control ddlModEspecialidad.
@@ -661,6 +697,24 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCondiciones0;
+
+        /// <summary>
+        /// Control rfvModFechaNac.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvModFechaNac;
+
+        /// <summary>
+        /// Control revModFechaNac.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revModFechaNac;
 
         /// <summary>
         /// Control ddlModGenero.
@@ -744,6 +798,24 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.TextBox txtbModMedicoDireccion;
 
         /// <summary>
+        /// Control rfvModDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvModDireccion;
+
+        /// <summary>
+        /// Control revModDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revModDireccion;
+
+        /// <summary>
         /// Control txtbModMedicoTelefono.
         /// </summary>
         /// <remarks>
@@ -751,6 +823,33 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbModMedicoTelefono;
+
+        /// <summary>
+        /// Control lblCondicioness0.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCondicioness0;
+
+        /// <summary>
+        /// Control rfvModTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvModTelefono;
+
+        /// <summary>
+        /// Control revModTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revModTelefono;
 
         /// <summary>
         /// Control txtbModMedicoCorreo.
@@ -762,6 +861,24 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.TextBox txtbModMedicoCorreo;
 
         /// <summary>
+        /// Control rfvModCorreo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvModCorreo;
+
+        /// <summary>
+        /// Control revModCorreo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revModCorreo;
+
+        /// <summary>
         /// Control txtbModMedicoUsuario.
         /// </summary>
         /// <remarks>
@@ -771,6 +888,15 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.TextBox txtbModMedicoUsuario;
 
         /// <summary>
+        /// Control rfvModContrasenia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvModContrasenia;
+
+        /// <summary>
         /// Control txtbModMedicoContrasenia.
         /// </summary>
         /// <remarks>
@@ -778,6 +904,15 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbModMedicoContrasenia;
+
+        /// <summary>
+        /// Control rfvModRContrasenia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvModRContrasenia;
 
         /// <summary>
         /// Control btnModificarMedico.

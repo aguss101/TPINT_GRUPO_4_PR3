@@ -17,10 +17,23 @@ namespace Vistas.admin
                 lblUser.Text = Session["User"] as string;
                 btnMod.Visible = false;
                 btnBaja.Visible = false;
-                txbLegajo.Attributes["placeholder"] = "Legajo del medico";
                 txbLegajo.Text = string.Empty;
-
+                setPlaceHolders();
             }
+        }
+        protected void setPlaceHolders()
+        {
+            txbLegajo.Attributes["placeholder"] = "Legajo";
+            txbDni.Attributes["placeholder"] = "DNI";
+            txbNombre.Attributes["placeholder"] = "Nombre";
+            txbApellido.Attributes["placeholder"] = "Apellido";
+            txbfechanacimiento.Attributes["placeholder"] = "Fecha de nacimiento (yyyy-MM-dd)";
+            txbDireccion.Attributes["placeholder"] = "Dirección";
+            txbTelefono.Attributes["placeholder"] = "Teléfono";
+            txbCorreo.Attributes["placeholder"] = "Correo electrónico ";
+            txbUsuario.Attributes["placeholder"] = "Nombre de usuario";
+            txbContrasenia.Attributes["placeholder"] = "Contraseña";
+            txbRepContrasenia.Attributes["placeholder"] = "Repetir contraseña";
         }
         protected void btnAlta_Click(object sender, EventArgs e)
         {

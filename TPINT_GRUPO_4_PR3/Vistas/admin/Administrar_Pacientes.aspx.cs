@@ -17,7 +17,19 @@ namespace Vistas.admin
                 lblUser.Text = Session["User"] as string;
                 btnMod.Visible = false;
                 btnBaja.Visible = false;
+                setPlaceHolders();
             }
+        }
+        protected void setPlaceHolders()
+        {
+            
+            txbDni.Attributes["placeholder"] = "DNI";
+            txbNombre.Attributes["placeholder"] = "Nombre";
+            txbApellido.Attributes["placeholder"] = "Apellido";
+            txbFechaNacimiento.Attributes["placeholder"] = "Fecha de nacimiento (yyyy-MM-dd)";
+            txbDireccion.Attributes["placeholder"] = "Dirección";
+            txbTelefono.Attributes["placeholder"] = "Teléfono";
+            txbCorreo.Attributes["placeholder"] = "Correo electrónico ";
         }
         protected void btnAlta_Click(object sender, EventArgs e) { mvFormularios.ActiveViewIndex = 0; }
         protected void btnBaja_Click(object sender, EventArgs e)
@@ -82,7 +94,14 @@ namespace Vistas.admin
             mvFormularios.ActiveViewIndex = 3;
             loadGridPacientes();
         }
-        protected void btnRegistrarPaciente_Click(object sender, EventArgs e) { InsertarPacientes(); }
+        protected void btnRegistrarPaciente_Click(object sender, EventArgs e) { if (Page.IsValid) { InsertarPacientes(); }
+            else
+            {
+                lblAddUserState.Text = "⚠️ Por favor corrija los errores del formulario.";
+                lblAddUserState.ForeColor = System.Drawing.Color.OrangeRed;
+                lblAddUserState.Visible = true;
+            }
+        }
         protected void btnModificarPaciente_Click(object sender, EventArgs e) { ModificarPaciente(); }
         protected void loadGridPacientes()
         {
