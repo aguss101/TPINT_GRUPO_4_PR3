@@ -224,6 +224,7 @@
         .auto-style34 {
             user-select: none;
             height: 51px;
+            width: 909px;
         }
 
         .auto-style35 {
@@ -248,6 +249,15 @@
             padding: 0px 30px 30px 30px;
             font-weight: normal;
             height: 108%;
+        }
+        .auto-style39 {
+            user-select: none;
+            height: 24px;
+            width: 909px;
+        }
+        .auto-style40 {
+            user-select: none;
+            width: 909px;
         }
     </style>
 </head>
@@ -308,7 +318,7 @@
                                 </tr>
                                 <tr>
                                     <td class="auto-style32">Especialidad</td>
-                                    <td class="auto-style30">
+                                    <td class="auto-style39">
                                         <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" DataSourceID="dbEspecialidades" DataTextField="descripcion" DataValueField="idEspecialidad" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">
                                         </asp:DropDownList>
                                         <asp:SqlDataSource ID="dbEspecialidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT * FROM [Especialidades]"></asp:SqlDataSource>
@@ -317,41 +327,42 @@
                                 </tr>
                                 <tr>
                                     <td class="auto-style32">Médico</td>
-                                    <td class="auto-style30">
+                                    <td class="auto-style39">
                                         <asp:DropDownList ID="ddlMedico" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged"></asp:DropDownList></td>
                                     <td class="auto-style31"></td>
                                 </tr>
                                 <tr>
                                     <td class="auto-style32">Fecha</td>
-                                    <td class="auto-style30">
+                                    <td class="auto-style39">
                                         <asp:DropDownList ID="ddlFecha" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFecha_SelectedIndexChanged"></asp:DropDownList></td>
-                                    <td class="auto-style31"></td>
+                                    <td class="auto-style31">&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td class="auto-style32">Horario</td>
-                                    <td class="auto-style30">
+                                    <td class="auto-style39">
                                         <asp:DropDownList ID="ddlHora" runat="server" AutoPostBack="True"></asp:DropDownList></td>
                                     <td class="auto-style31"></td>
                                 </tr>
                                 <tr>
                                     <td class="auto-style32">Paciente</td>
-                                    <td class="auto-style30">
+                                    <td class="auto-style39">
                                         <asp:DropDownList ID="ddlPaciente" runat="server" AutoPostBack="True" DataSourceID="dbPaciente" DataTextField="Paciente" DataValueField="DNI"></asp:DropDownList>
                                         <asp:SqlDataSource ID="dbPaciente" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT PA.DNI, P_Pac.nombre + ' ' + P_Pac.apellido AS Paciente FROM Persona P_Pac INNER JOIN Paciente PA ON PA.DNI        = P_Pac.DNI"></asp:SqlDataSource>
+                                        <asp:Label ID="lblActionTurno" runat="server"></asp:Label>
                                     </td>
                                     <td class="auto-style31"></td>
                                 </tr>
                                 <tr>
                                     <td class="no-select"></td>
-                                    <td class="no-select"></td>
+                                    <td class="auto-style40"></td>
                                     <td class="auto-style36"></td>
                                 </tr>
                                 <tr>
                                     <td class="auto-style32">
                                         <asp:Button ID="btnRegistrar" runat="server" Text="Registrar Turno" Width="188px" OnClick="btnRegistrar_Click" /></td>
-                                    <td class="auto-style30">
+                                    <td class="auto-style39">
                                         <asp:Button ID="btnMod" runat="server" Text="Modificar Turno" OnClick="btnMod_Click" Width="188px" />
-                                        <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" Width="188px" OnClick="btnBaja_Click" />
+                                        <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" Width="188px" OnClick="btnBaja_Click" OnClientClick="return confirm('¿Está seguro que desea dar de baja el turno?');" /> 
                                         <asp:TextBox ID="txtBoxPrueba" runat="server"></asp:TextBox>
                                         <asp:DropDownList ID="ddlFiltrarTurnosPor" runat="server" AutoPostBack="true" Height="16px" OnSelectedIndexChanged="ddlFiltrarTurnosPor_SelectedIndexChanged" Style="margin-bottom: 0px; margin-top: 0px;" Width="465px">
                                             <asp:ListItem Value="FechaASC">Fecha A</asp:ListItem>
@@ -365,13 +376,13 @@
                                 </tr>
                                 <tr>
                                         <td class="no-select"></td>
-                                        <td class="no-select">&nbsp;</td>
+                                        <td class="auto-style40">&nbsp;</td>
                                         <td class="no-select"></td>
                                     <td class="auto-style31">&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td class="no-select"></td>
-                                    <td class="no-select">
+                                    <td class="auto-style40">
                                         <asp:GridView ID="gvTurnos" runat="server" AllowPaging="true" PageSize="10" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="False" OnPageIndexChanging="gvTurnos_PageIndexChanging">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Seleccionar">

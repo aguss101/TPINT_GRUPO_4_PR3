@@ -29,6 +29,7 @@ namespace Vistas.admin
                 txtObservacion.Attributes["placeholder"] = "Observación";
                 txtDiagnostico.Attributes["placeholder"] = "Diagnóstico";
 
+
                 btnMod.Visible = false;
                 btnBaja.Visible = false;
             }
@@ -171,10 +172,14 @@ namespace Vistas.admin
                 turnoSeleccionado.Diagnostico = diagnostico;
                 bool exito = gestorturnos.ModificarTurno(turnoSeleccionado);
 
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
+                lblMensaje.Visible = true;
                 lblMensaje.Text = exito ? "Turno actualizado con éxito." : "No se pudo actualizar el turno.";
             }
             else
             {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Visible = true;
                 lblMensaje.Text = "No se encontró el turno a modificar.";
             }
         }
@@ -272,7 +277,8 @@ namespace Vistas.admin
                     Diagnostico = ""
                 };
                 int filasAfectadas = gestorturnos.InsertarTurno(nuevoTurno);
-                lblMensaje.Text = filasAfectadas > 0 ? "Turno registrado correctamente." : "No se pudo registrar el turno.";
+                lblActionTurno.ForeColor = System.Drawing.Color.Green;
+                lblActionTurno.Text = filasAfectadas > 0 ? "Turno registrado correctamente." : "No se pudo registrar el turno.";
 
                 if (filasAfectadas > 0)
                 {
@@ -282,10 +288,12 @@ namespace Vistas.admin
                 }
                 return;
             }
-            catch (FormatException) { lblMensaje.Text = "Formato de fecha u hora inválido."; }
-            catch (Exception ex) when (ex is NullReferenceException || ex is ArgumentNullException) { lblMensaje.Text = "Todos los campos deben estar completos."; }
-            catch (Exception ex) { lblMensaje.Text = "Error al registrar turno: " + ex.Message; }
-            lblMensaje.Visible = true;
+
+            catch (FormatException) { lblActionTurno.Text = "Formato de fecha u hora inválido."; }
+            catch (Exception ex) when (ex is NullReferenceException || ex is ArgumentNullException) { lblActionTurno.Text = "Todos los campos deben estar completos."; }
+            catch (Exception ex) { lblActionTurno.Text = "Error al registrar turno: " + ex.Message; }
+            lblActionTurno.ForeColor = System.Drawing.Color.Red;
+            lblActionTurno.Visible = true;
         }
 
         protected void btnBaja_Click(object sender, EventArgs e)
@@ -298,7 +306,8 @@ namespace Vistas.admin
                     DateTime fechaPactada = DateTime.Parse(row.Cells[3].Text);
 
                     int eliminado = gestorturnos.EliminarTurno(legajo, fechaPactada);
-                    lblMensaje.Text = eliminado > 0 ? "Turno eliminado correctamente." : "No se pudo eliminar el turno.";
+                    lblActionTurno.ForeColor = System.Drawing.Color.Red;
+                    lblActionTurno.Text = eliminado > 0 ? "Turno eliminado correctamente." : "No se pudo eliminar el turno.";
                     break;
                 }
             }
