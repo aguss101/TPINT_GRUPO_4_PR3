@@ -208,6 +208,7 @@ namespace Vistas.admin
         }
         protected void ddlBusqueda_Pacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            loadGridPacientes();
             switch (ddlBusqueda_Pacientes.SelectedIndex)
             {
                 case 1:
@@ -242,12 +243,14 @@ namespace Vistas.admin
         protected void txbPorApellido_TextChanged(object sender, EventArgs e)
         {
             Session["Apellido"] = txbPorApellido.Text.Trim();
+            txbPorApellido.Text = "";
             cargarPacientesxApellido();
         }
 
         protected void txbPorDNI_TextChanged(object sender, EventArgs e)
         {
             Session["DNI"] = txbPorDNI.Text.Trim();
+            txbPorDNI.Text = "";
             cargarPacientesxDNI();
         }
 
