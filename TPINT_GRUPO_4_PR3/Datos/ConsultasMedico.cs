@@ -14,32 +14,8 @@ namespace Datos
         public List<Medico> GetMedicos()
         {
             List<Medico> medicos = new List<Medico>();
-            string query = @"SELECT
-	ME.*, PE.nombre, 
-	PE.apellido, 
-	PE.nacionalidad, 
-	PE.fechaNacimiento, 
-	PE.Direccion, 
-	S.idSexo, 
-	S.descripcion AS genero,
-	C.correo, T.telefono,
-	L.idLocalidad,
-	L.nombreLocalidad,
-	P.idProvincia, 
-	P.nombreProvincia,
-    U.nombreUsuario,
-	U.contrasenia,
-	E.descripcion AS Especialidad
-FROM Medico ME
-INNER JOIN Persona PE ON ME.DNI = PE.DNI
-INNER JOIN Usuario U ON PE.DNI = U.DNI
-INNER JOIN Sexos S ON PE.sexo = S.idSexo
-INNER JOIN Especialidades E ON ME.idEspecialidad = E.idEspecialidad
-INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad
-INNER JOIN Provincias P ON L.idProvincia = P.idProvincia
-LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
-LEFT JOIN Correos C ON PE.DNI = C.idPersona
-                WHERE activo = 1 ";
+            string query = @"SELECT * FROM vw_MedicoConDatos
+            WHERE activo = 1 ";
             try
             {
                 using (SqlConnection con = conexion.AbrirConexion())
@@ -259,17 +235,7 @@ LEFT JOIN Correos C ON PE.DNI = C.idPersona
         public Medico getMedicoPorID(string idMedico)
         {
             Medico medico = null;
-            string query = @"SELECT ME.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, S.idSexo, S.descripcion AS genero, C.correo, T.telefono,
-                L.idLocalidad,L.nombreLocalidad, U.nombreUsuario, U.contrasenia, E.descripcion AS Especialidad, P.idProvincia, P.nombreProvincia
-                FROM Medico ME 
-                INNER JOIN Persona PE ON ME.DNI = PE.DNI 
-                INNER JOIN Usuario U ON PE.DNI = U.DNI
-                INNER JOIN Sexos S ON PE.sexo = S.idSexo
-                INNER JOIN Especialidades E ON ME.idEspecialidad = E.idEspecialidad
-                INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad 
-                INNER JOIN Provincias P ON L.idProvincia = P.idProvincia
-                LEFT JOIN Telefonos T ON PE.DNI = T.idPersona 
-                LEFT JOIN Correos C ON PE.DNI = C.idPersona 
+            string query = @"SELECT * FROM vw_MedicoConDatos
                 WHERE ME.DNI = @id";
             try
             {
