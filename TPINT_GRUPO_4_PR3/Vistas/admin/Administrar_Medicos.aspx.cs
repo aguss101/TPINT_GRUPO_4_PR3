@@ -35,14 +35,35 @@ namespace Vistas.admin
             txbContrasenia.Attributes["placeholder"] = "Contraseña";
             txbRepContrasenia.Attributes["placeholder"] = "Repetir contraseña";
         }
+        protected void LimpiarFormularioAltaMedico()
+        {
+            txbNombre.Text = "";
+            txbApellido.Text = "";
+            txbDni.Text = "";
+            txbLegajo.Text = "";
+            txbCorreo.Text = "";
+            txbTelefono.Text = "";
+            txbDireccion.Text = "";
+            txbUsuario.Text = "";
+            txbfechanacimiento.Text = "";
+
+            ddlEspecialidad.ClearSelection();
+            ddlGenero.ClearSelection();
+            ddlNacionalidad.ClearSelection();
+            ddlProvincia.ClearSelection();
+            ddlLocalidades.ClearSelection();
+
+
+            lblAddUserState.Text = "";
+            lblAddUserState.Visible = false;
+        }
         protected void btnAlta_Click(object sender, EventArgs e)
         {
-            lblAddUserState.Visible = false;
             mvFormularios.ActiveViewIndex = 0;
+            LimpiarFormularioAltaMedico();
         }
         protected void btnBaja_Click(object sender, EventArgs e)
         {
-
             try
             {
                 foreach (GridViewRow row in gvLecturaMedico.Rows)
