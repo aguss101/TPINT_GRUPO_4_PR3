@@ -285,15 +285,6 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.TextBox txbfechanacimiento;
 
         /// <summary>
-        /// Control lblCondiciones.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCondiciones;
-
-        /// <summary>
         /// Control rfvfechanac.
         /// </summary>
         /// <remarks>
@@ -301,15 +292,6 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvfechanac;
-
-        /// <summary>
-        /// Control revfechanac.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revfechanac;
 
         /// <summary>
         /// Control ddlNacionalidad.
@@ -553,15 +535,6 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRegistrarMedico;
-
-        /// <summary>
-        /// Control lblAddUserState.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddUserState;
 
         /// <summary>
         /// Control vwBaja.
@@ -1014,21 +987,12 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.GridView gvLecturaMedico;
 
         /// <summary>
-        /// Control lblAddUserState0.
+        /// Control lblAddUserState.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddUserState0;
-
-        /// <summary>
-        /// Control lblCheck.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCheck;
+        protected global::System.Web.UI.WebControls.Label lblAddUserState;
     }
 }

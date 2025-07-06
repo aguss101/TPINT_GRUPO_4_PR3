@@ -37,12 +37,12 @@ namespace Vistas.admin
         }
         protected void btnAlta_Click(object sender, EventArgs e)
         {
-            lblAddUserState0.Visible = false;
+            lblAddUserState.Visible = false;
             mvFormularios.ActiveViewIndex = 0;
         }
         protected void btnBaja_Click(object sender, EventArgs e)
         {
-            lblAddUserState0.Visible = false;
+
             try
             {
                 foreach (GridViewRow row in gvLecturaMedico.Rows)
@@ -54,13 +54,14 @@ namespace Vistas.admin
                     }
                 }
                 loadGridMedicos();
-                lblAddUserState0.Text = "Médico/s dado/s de baja correctamente.";
-                lblAddUserState0.ForeColor = System.Drawing.Color.Green;
+                lblAddUserState.Visible = true;
+                lblAddUserState.Text = "Médico dado de baja correctamente.";
+                lblAddUserState.ForeColor = System.Drawing.Color.Red;
             }
             catch (Exception ex)
             {
-                lblAddUserState0.Text = "❌ Error: " + ex.Message;
-                lblAddUserState0.ForeColor = System.Drawing.Color.Red;
+                lblAddUserState.Text = "❌ Error: " + ex.Message;
+                lblAddUserState.ForeColor = System.Drawing.Color.Red;
             }
             btnMod.Visible = false;
             btnBaja.Visible = false;
@@ -74,7 +75,7 @@ namespace Vistas.admin
                     string DNI = row.Cells[2].Text;
                     Medico medico = new Medico() { Usuario = new Usuario() };
                     medico = gestorMedico.getMedicoPorID(DNI);
-                    lblAddUserState0.Visible = false;
+                    lblAddUserState.Visible = false;
                     Session["DNI_VIEJO"] = medico.DNI;
                     Session["LEGAJO_VIEJO"] = medico.Legajo;
                     mvFormularios.ActiveViewIndex = 2;
@@ -85,30 +86,32 @@ namespace Vistas.admin
                     DateTime fechaNac = medico.fechaNacimiento.Date;
                     txtbModFechaNac.Text = fechaNac.ToString("yyyy-MM-dd");
                     ddlModNacionalidad.SelectedValue = medico.nacionalidad;
-                    if (ddlModEspecialidad.Items.FindByValue(medico.Especialidad.idEspecialidad.ToString()) != null) { ddlModEspecialidad.SelectedValue = medico.Especialidad.idEspecialidad.ToString(); }
-                    //ddlModEspecialidad.SelectedValue = medico.Especialidad.idEspecialidad.ToString();
+                    if (ddlModEspecialidad.Items.FindByValue(medico.Especialidad.idEspecialidad.ToString()) != null)
+                    {
+                        ddlModEspecialidad.SelectedValue = medico.Especialidad.idEspecialidad.ToString();
+                        break;
+                    }
                     ddlModGenero.SelectedValue = medico.sexos.idSexo.ToString();
-                    //if (ddlModGenero.Items.FindByValue(medico.sexos.idSexo.ToString()) != null)  { ddlGenero.SelectedValue = medico.sexos.idSexo.ToString(); }
                     txtbModMedicoDireccion.Text = medico.Direccion;
                     txtbModMedicoTelefono.Text = medico.Telefono.ToString();
                     txtbModMedicoCorreo.Text = medico.Correo;
                     txtbModMedicoUsuario.Text = medico.Usuario.NombreUsuario;
                     txtbModMedicoContrasenia.Text = medico.Usuario.contrasenia;
-                    break;
                 }
+                btnMod.Visible = false;
+                btnBaja.Visible = false;
             }
-            btnMod.Visible = false;
-            btnBaja.Visible = false;
+
         }
         protected void btnLectura_Click(object sender, EventArgs e)
         {
-            lblAddUserState0.Visible = false;
+            lblAddUserState.Visible = false;
             mvFormularios.ActiveViewIndex = 3;
             loadGridMedicos();
         }
         protected void InsertarMedicos()
         {
-            lblAddUserState0.Visible = false;
+            lblAddUserState.Visible = false;
             try
             {
                 Medico medico = new Medico()
@@ -139,23 +142,23 @@ namespace Vistas.admin
 
                 if (filas > 0)
                 {
-                    lblAddUserState0.Text = "Se agregó correctamente el médico";
-                    lblAddUserState0.ForeColor = System.Drawing.Color.Green;
+                    lblAddUserState.Text = "Se agregó correctamente el médico";
+                    lblAddUserState.ForeColor = System.Drawing.Color.Green;
                 }
                 else
                 {
-                    lblAddUserState0.Text = "Hubo un error durante la carga (no se insertó ninguna fila)";
-                    lblAddUserState0.ForeColor = System.Drawing.Color.Red;
+                    lblAddUserState.Text = "Hubo un error durante la carga (no se insertó ninguna fila)";
+                    lblAddUserState.ForeColor = System.Drawing.Color.Red;
                 }
-                lblAddUserState0.Visible = true;
+                lblAddUserState.Visible = true;
 
-                
+
             }
             catch (Exception ex)
             {
-                lblAddUserState0.Text = "❌ Error: " + ex.Message;
-                lblAddUserState0.ForeColor = System.Drawing.Color.Red;
-                lblAddUserState0.Visible = true;
+                lblAddUserState.Text = "❌ Error: " + ex.Message;
+                lblAddUserState.ForeColor = System.Drawing.Color.Red;
+                lblAddUserState.Visible = true;
             }
         }
         protected void ModificarMedico()
@@ -226,9 +229,9 @@ namespace Vistas.admin
             }
             else
             {
-                lblAddUserState0.Text = "⚠️ Por favor corrija los errores del formulario.";
-                lblAddUserState0.ForeColor = System.Drawing.Color.OrangeRed;
-                lblAddUserState0.Visible = true;
+                lblAddUserState.Text = "⚠️ Por favor corrija los errores del formulario.";
+                lblAddUserState.ForeColor = System.Drawing.Color.OrangeRed;
+                lblAddUserState.Visible = true;
             }
         }
         protected void btnModificarMedico_Click(object sender, EventArgs e)
@@ -290,7 +293,7 @@ namespace Vistas.admin
         protected void cargarMedicosxDNI()
         {
             string dniMedico = Session["DNI"].ToString();
-            //string dniPaciente = Session["dniPaciente"].ToString();
+
             Debug.WriteLine(dniMedico, "DNI");
             gvLecturaMedico.DataSource = gestorMedico.FiltrarMedicoxDNI(dniMedico);
             gvLecturaMedico.DataBind();
@@ -298,7 +301,7 @@ namespace Vistas.admin
         protected void cargarMedicosxLegajo()
         {
             string Legajo = Session["Legajo"].ToString();
-            //string dniPaciente = Session["dniPaciente"].ToString();
+
             Debug.WriteLine(Legajo, "DNI");
             gvLecturaMedico.DataSource = gestorMedico.FiltrarMedicoxLegajo(Legajo);
             gvLecturaMedico.DataBind();

@@ -377,7 +377,7 @@
                                                     <td class="auto-style52">
                                                         <asp:TextBox ID="txbLegajo"  runat="server"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txbLegajo" ErrorMessage="* Campo obligatorio" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
-                                                        <asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txbLegajo" Display="Dynamic" ErrorMessage="* Hasta 2 digitos" ForeColor="Red" ValidationExpression="^([1-9]|[1-9]\d)$" ValidationGroup="AltaMedico" />
+                                                        <asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txbLegajo" Display="Dynamic" ErrorMessage="* El legajo debe iniciar con 'M' y tener tres números (ej. M123). " ForeColor="Red" ValidationExpression="^M\d{3}$$" ValidationGroup="AltaMedico" />
                                                     </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
@@ -429,9 +429,7 @@
                                                 <tr>
                                                     <td class="auto-style32">Fecha de nacimiento:</td>
                                                     <td class="auto-style52">
-                                                        <asp:TextBox ID="txbfechanacimiento" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;<asp:Label ID="lblCondiciones" runat="server" Font-Bold="True" Font-Size="Smaller" Font-Underline="True" Text="Formato: YYYY-MM-DD"></asp:Label>
-                                                        <asp:RequiredFieldValidator ID="rfvfechanac" runat="server" ControlToValidate="txbfechanacimiento" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="AltaMedico" />
-                                                        <asp:RegularExpressionValidator ID="revfechanac" runat="server" ControlToValidate="txbfechanacimiento" Display="Dynamic" ErrorMessage="* Formato inválido (YYYY-MM-DD)" ForeColor="Red" ValidationExpression="^\d{4}-\d{2}-\d{2}$" ValidationGroup="AltaMedico" />
+                                                        <asp:TextBox ID="txbfechanacimiento" runat="server" TextMode="Date"></asp:TextBox>&nbsp;&nbsp;&nbsp;<asp:RequiredFieldValidator ID="rfvfechanac" runat="server" ControlToValidate="txbfechanacimiento" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="AltaMedico" />
                                                         <br />
                                                     </td>
                                                     <td class="auto-style31"></td>
@@ -507,17 +505,17 @@
                                                     <td class="auto-style64"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="auto-style56">Contrasenia</td>
+                                                    <td class="auto-style56">Contraseña</td>
                                                     <td class="auto-style57">
-                                                        <asp:TextBox ID="txbContrasenia" runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="txbContrasenia" runat="server" TextMode="Password"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="rfvcontrasenia" runat="server" ControlToValidate="txbContrasenia" ErrorMessage="* Campo obligatorio" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
                                                         </td>
                                                     <td class="auto-style58"></td>
                                                 </tr>
                                                 <tr>
-                                                <td class="auto-style56">Contrasenia</td>
+                                                <td class="auto-style56">Repetir Contraseña</td>
                                                 <td class="auto-style57">
-                                                    <asp:TextBox ID="txbRepContrasenia" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txbRepContrasenia" runat="server" TextMode="Password"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="rfvrepcontrasenia" runat="server" ControlToValidate="txbRepContrasenia" ErrorMessage="* Campo obligatorio" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
                                                     </td>
                                                 <td class="auto-style58"></td>
@@ -527,7 +525,7 @@
                                                     <td class="auto-style32">
                                                         <asp:Button ID="btnRegistrarMedico" runat="server" Text="Registrar medico" Width="188px" OnClick="btnRegistrarMedico_Click" ValidationGroup="AltaMedico" CausesValidation="True"/></td>
                                                     <td class="auto-style52">
-                                                        <asp:Label ID="lblAddUserState" runat="server" Visible="False"></asp:Label></td>
+                                                        &nbsp;</td>
                                                     <td class="auto-style31">&nbsp;</td>
                                                 </tr>
                                             </table>
@@ -583,7 +581,7 @@
                                                 <tr>
                                                     <td class="auto-style51">Fecha de nacimiento:</td>
                                                     <td>
-                                                        <asp:TextBox ID="txtbModFechaNac" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;<asp:Label ID="lblCondiciones0" runat="server" Font-Bold="True" Font-Size="Smaller" Font-Underline="True" Text="Formato: YYYY-MM-DD"></asp:Label>
+                                                        <asp:TextBox ID="txtbModFechaNac" runat="server" TextMode="Date"></asp:TextBox>&nbsp;&nbsp;&nbsp;<asp:Label ID="lblCondiciones0" runat="server" Font-Bold="True" Font-Size="Smaller" Font-Underline="True" Text="Formato: YYYY-MM-DD"></asp:Label>
                                                         <asp:RequiredFieldValidator ID="rfvModFechaNac" runat="server" ControlToValidate="txtbModFechaNac" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="ModMedico" />
                                                         <asp:RegularExpressionValidator ID="revModFechaNac" runat="server" ControlToValidate="txtbModFechaNac" Display="Dynamic" ErrorMessage="* Formato inválido (YYYY-MM-DD)" ForeColor="Red" ValidationExpression="^\d{4}-\d{2}-\d{2}$" ValidationGroup="ModMedico" />
                                                     </td>
@@ -674,7 +672,7 @@
                                                     <td class="auto-style51">
                                                         <asp:Button ID="btnModificarMedico" runat="server" OnClick="btnModificarMedico_Click" Text="Modificar Medico" Width="188px" ValidationGroup="ModMedico" /></td>
                                                     <td class="auto-style46">
-                                                        <asp:Label ID="lblModificarMedico" runat="server" Text="Medico modificado con éxito" Visible="False"></asp:Label></td>
+                                                        <asp:Label ID="lblModificarMedico" runat="server" Visible="False"></asp:Label></td>
                                                     <td>&nbsp;</td>
                                                 </tr>
                                             </table>
@@ -769,7 +767,7 @@
                         <tr>
                             <td class="auto-style33">
                                 <h3>
-                                    <asp:Label ID="lblAddUserState0" runat="server" Visible="False"></asp:Label><asp:Label ID="lblCheck" runat="server"></asp:Label></h3>
+                                                        <asp:Label ID="lblAddUserState" runat="server" Visible="False"></asp:Label></h3>
                             </td>
                             <td class="auto-style38"></td>
                             <td class="auto-style39"></td>
