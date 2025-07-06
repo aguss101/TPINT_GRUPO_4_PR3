@@ -198,7 +198,7 @@
         .auto-style32 {
             user-select: none;
             height: 24px;
-            width: 196px;
+            width: 329px;
         }
         .auto-style33 {
             user-select: none;
@@ -307,6 +307,12 @@
             user-select: none;
             width: 347px;
             height: 51px;
+        }
+        .auto-style72 {
+            width: 132px;
+        }
+        .auto-style73 {
+            width: 128px;
         }
     </style>
 </head>
@@ -701,8 +707,8 @@
                                                     <div>
                                                         <table class="auto-style32">
                                                             <tr>
-                                                                <td class="auto-style36">Ingrese apellido del médico:</td>
-                                                                <td>
+                                                                <td class="auto-style72">Ingrese apellido:</td>
+                                                                <td class="auto-style73">
                                                                     <asp:TextBox ID="txbPorApellido" runat="server" AutoPostBack="True" OnTextChanged="txbPorApellido_TextChanged"></asp:TextBox></td>
                                                             </tr>
                                                         </table>
@@ -712,7 +718,7 @@
                                                     <div>
                                                         <table class="auto-style32">
                                                             <tr>
-                                                                <td class="auto-style36">Ingrese DNI del médico:</td>
+                                                                <td class="auto-style36">Ingrese DNI:</td>
                                                                 <td>
                                                                     <asp:TextBox ID="txbPorDNI" runat="server" OnTextChanged="txbPorDNI_TextChanged" AutoPostBack="True"></asp:TextBox></td>
                                                             </tr>
@@ -723,7 +729,7 @@
                                                     <div>
                                                         <table class="auto-style32">
                                                             <tr>
-                                                                <td class="auto-style36">Ingrese legajo del médico:</td>
+                                                                <td class="auto-style36">Ingrese legajo:</td>
                                                                 <td>
                                                                     <asp:TextBox ID="txbPorLegajo" runat="server" OnTextChanged="txbPorLegajo_TextChanged" AutoPostBack="True"></asp:TextBox></td>
                                                             </tr>

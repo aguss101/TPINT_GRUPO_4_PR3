@@ -400,9 +400,7 @@
                                                 <tr>
                                                     <td class="auto-style32">Fecha de nacimiento</td>
                                                     <td class="auto-style30">
-                                                        <asp:TextBox ID="txbFechaNacimiento" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;<asp:Label ID="lblCondiciones" runat="server" Font-Bold="True" Font-Size="Smaller" Font-Underline="True" Text="Formato: YYYY-MM-DD"></asp:Label>
-                                                        <asp:RequiredFieldValidator ID="rfvfechanac" runat="server" ControlToValidate="txbFechaNacimiento" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="AltaPaciente" />
-                                                        <asp:RegularExpressionValidator ID="revFechaNnac" runat="server" ControlToValidate="txbFechaNacimiento" Display="Dynamic" ErrorMessage="* Formato inválido (YYYY-MM-DD)" ForeColor="Red" ValidationExpression="^\d{4}-\d{2}-\d{2}$" ValidationGroup="AltaPaciente" />
+                                                        <asp:TextBox ID="txbFechaNacimiento" runat="server" TextMode="Date"></asp:TextBox>&nbsp;&nbsp;&nbsp;<asp:RequiredFieldValidator ID="rfvfechanac" runat="server" ControlToValidate="txbFechaNacimiento" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="AltaPaciente" />
                                                     </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
@@ -533,10 +531,8 @@
                                                 <tr>
                                                     <td class="auto-style32">Fecha de nacimiento:</td>
                                                     <td class="auto-style30">
-                                                        <asp:TextBox ID="txbModFechaNacimiento" runat="server" ValidationGroup="ModPaciente"></asp:TextBox>
-                                                        <asp:Label ID="lblCondiciones0" runat="server" Font-Bold="True" Font-Size="Smaller" Font-Underline="True" Text="Formato: YYYY-MM-DD"></asp:Label>
+                                                        <asp:TextBox ID="txbModFechaNacimiento" runat="server" ValidationGroup="ModPaciente" TextMode="Date"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="rfvModFechaNac" runat="server" ControlToValidate="txbModFechaNacimiento" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="ModPaciente" />
-                                                        <asp:RegularExpressionValidator ID="revModFechaNnac" runat="server" ControlToValidate="txbModFechaNacimiento" Display="Dynamic" ErrorMessage="* Formato inválido (YYYY-MM-DD)" ForeColor="Red" ValidationExpression="^\d{4}-\d{2}-\d{2}$" ValidationGroup="ModPaciente" />
                                                     </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
@@ -656,6 +652,7 @@
                                             </asp:View>
                                         </asp:MultiView>
                                         <div>
+                                    <asp:Label ID="lblEliminado" runat="server"></asp:Label>
                                             <asp:GridView ID="gvLecturaPaciente" runat="server" AllowPaging="true" PageSize="10" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Height="205px" Width="1027px" OnPageIndexChanging="GridView2_PageIndexChanging">
                                                 <AlternatingRowStyle BackColor="White" />
                                                 <Columns>
@@ -694,7 +691,8 @@
                         </tr>
                         <tr>
                             <td class="auto-style33">
-                                <h3>&nbsp;</h3>
+                                <h3>
+                                </h3>
                             </td>
                             <td class="auto-style38"></td>
                             <td class="auto-style39"></td>

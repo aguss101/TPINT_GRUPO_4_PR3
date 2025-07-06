@@ -23,7 +23,7 @@ namespace Vistas.admin
         }
         protected void setPlaceHolders()
         {
-            
+
             txbDni.Attributes["placeholder"] = "DNI";
             txbNombre.Attributes["placeholder"] = "Nombre";
             txbApellido.Attributes["placeholder"] = "Apellido";
@@ -32,7 +32,27 @@ namespace Vistas.admin
             txbTelefono.Attributes["placeholder"] = "Teléfono";
             txbCorreo.Attributes["placeholder"] = "Correo electrónico ";
         }
-        protected void btnAlta_Click(object sender, EventArgs e) { mvFormularios.ActiveViewIndex = 0; }
+        protected void LimpiarFormularioAltaPaciente()
+        {
+            txbNombre.Text = "";
+            txbApellido.Text = "";
+            txbDni.Text = "";
+            txbCorreo.Text = "";
+            txbTelefono.Text = "";
+            txbDireccion.Text = "";
+            txbModFechaNacimiento.Text = "";
+
+            ddlObraSocial.ClearSelection();
+            ddlGenero.ClearSelection();
+            ddlNacionalidad.ClearSelection();
+            ddlProvincia.ClearSelection();
+            ddlLocalidades.ClearSelection();
+
+
+            lblAddUserState.Text = "";
+            lblAddUserState.Visible = false;
+        }
+        protected void btnAlta_Click(object sender, EventArgs e) { mvFormularios.ActiveViewIndex = 0; LimpiarFormularioAltaPaciente(); }
         protected void btnBaja_Click(object sender, EventArgs e)
         {
             try
@@ -46,8 +66,8 @@ namespace Vistas.admin
                     }
                 }
                 loadGridPacientes();
-                lblAddUserState.Text = "Paciente/s dado/s de baja correctamente.";
-                lblAddUserState.ForeColor = System.Drawing.Color.Green;
+                lblEliminado.Text = "Paciente dado de baja correctamente.";
+                lblEliminado.ForeColor = System.Drawing.Color.Red;
             }
             catch (Exception ex)
             {
@@ -95,7 +115,9 @@ namespace Vistas.admin
             mvFormularios.ActiveViewIndex = 3;
             loadGridPacientes();
         }
-        protected void btnRegistrarPaciente_Click(object sender, EventArgs e) { if (Page.IsValid) { InsertarPacientes(); }
+        protected void btnRegistrarPaciente_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid) { InsertarPacientes(); }
             else
             {
                 lblAddUserState.Text = "⚠️ Por favor corrija los errores del formulario.";
