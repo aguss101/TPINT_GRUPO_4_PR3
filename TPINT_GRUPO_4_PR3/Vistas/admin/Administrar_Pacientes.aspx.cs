@@ -26,7 +26,7 @@ namespace Vistas.admin
             txbDni.Attributes["placeholder"] = "DNI";
             txbNombre.Attributes["placeholder"] = "Nombre";
             txbApellido.Attributes["placeholder"] = "Apellido";
-            txbFechaNacimiento.Attributes["placeholder"] = "Fecha de nacimiento (yyyy-MM-dd)";
+            txbFechaNacimiento.Attributes["placeholder"] = "Fecha de nacimiento";
             txbDireccion.Attributes["placeholder"] = "Dirección";
             txbTelefono.Attributes["placeholder"] = "Teléfono";
             txbCorreo.Attributes["placeholder"] = "Correo electrónico ";
@@ -200,5 +200,12 @@ namespace Vistas.admin
         }
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e) { ddlLocalidades.DataBind(); }
         protected void ddlModProvincia_SelectedIndexChanged(object sender, EventArgs e) { ddlModLocalidades.DataBind(); }
+        protected void GridView2_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView2.PageIndex = e.NewPageIndex;
+            loadGridPacientes();
+        }
+
+
     }
 }

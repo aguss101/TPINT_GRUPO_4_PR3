@@ -362,7 +362,7 @@
                                 <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" CssClass="btn-td" OnClick="btnBaja_Click" />
                                 <asp:Button ID="btnMod" runat="server" Text="Modificar" CssClass="btn-td" OnClick="btnMod_Click" />
                                 <asp:Button ID="btnLectura" runat="server" Text="Listar" CssClass="btn-td" OnClick="btnLectura_Click" />
-                                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn-td" OnClick="btnEliminar_Click" Visible="False" /></td>
+                                </td>
                             <td class="auto-style41"></td>
                         </tr>
                         <tr>
@@ -684,12 +684,12 @@
                                     <asp:View ID="vwLectura" runat="server">
                                         <h3>Listar Médico</h3>
                                         <div>
-                                            <asp:GridView ID="gvLecturaMedico" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Style="margin-right: 0px">
+                                            <asp:GridView ID="gvLecturaMedico" runat="server" AllowPaging="true" PageSize="10" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Style="margin-right: 0px" OnPageIndexChanging="gvLecturaMedico_PageIndexChanging">
                                                 <AlternatingRowStyle BackColor="White" />
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Seleccionar">
                                                         <ItemTemplate>
-                                                            <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccionar_CheckedChanged" /></ItemTemplate>
+                                                            <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="true" OnCheckedChanged="chkSeleccionar_CheckedChanged" /></ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:BoundField DataField="Legajo" HeaderText="Legajo" />
                                                     <asp:BoundField DataField="DNI" HeaderText="DNI" />

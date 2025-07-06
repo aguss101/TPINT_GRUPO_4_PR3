@@ -402,6 +402,15 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.TextBox txbTelefono;
 
         /// <summary>
+        /// Control lblCondicioness0.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCondicioness0;
+
+        /// <summary>
         /// Control rfvtelefono.
         /// </summary>
         /// <remarks>
@@ -580,6 +589,15 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txbModFechaNacimiento;
+
+        /// <summary>
+        /// Control lblCondiciones0.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCondiciones0;
 
         /// <summary>
         /// Control rfvModFechaNac.

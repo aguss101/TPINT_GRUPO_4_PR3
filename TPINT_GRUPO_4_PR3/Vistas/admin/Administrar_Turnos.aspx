@@ -372,10 +372,7 @@
                                 <tr>
                                     <td class="no-select"></td>
                                     <td class="no-select">
-                                        <asp:GridView ID="gvTurnos" runat="server" 
-                                            BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" 
-                                            CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="False">
-    
+                                        <asp:GridView ID="gvTurnos" runat="server" AllowPaging="true" PageSize="10" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="False" OnPageIndexChanging="gvTurnos_PageIndexChanging">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Seleccionar">
                                                     <ItemTemplate>

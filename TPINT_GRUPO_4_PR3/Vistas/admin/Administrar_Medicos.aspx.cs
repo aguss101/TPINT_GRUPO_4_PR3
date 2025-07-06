@@ -27,7 +27,7 @@ namespace Vistas.admin
             txbDni.Attributes["placeholder"] = "DNI";
             txbNombre.Attributes["placeholder"] = "Nombre";
             txbApellido.Attributes["placeholder"] = "Apellido";
-            txbfechanacimiento.Attributes["placeholder"] = "Fecha de nacimiento (yyyy-MM-dd)";
+            txbfechanacimiento.Attributes["placeholder"] = "Fecha de nacimiento";
             txbDireccion.Attributes["placeholder"] = "Dirección";
             txbTelefono.Attributes["placeholder"] = "Teléfono";
             txbCorreo.Attributes["placeholder"] = "Correo electrónico ";
@@ -83,7 +83,7 @@ namespace Vistas.admin
                     txtbModMedicoNombre.Text = medico.nombre;
                     txtbModMedicoApellido.Text = medico.apellido;
                     DateTime fechaNac = medico.fechaNacimiento.Date;
-                    txtbModFechaNac.Text = fechaNac.ToString("dd-MM-yyyy");
+                    txtbModFechaNac.Text = fechaNac.ToString("yyyy-MM-dd");
                     ddlModNacionalidad.SelectedValue = medico.nacionalidad;
                     if (ddlModEspecialidad.Items.FindByValue(medico.Especialidad.idEspecialidad.ToString()) != null) { ddlModEspecialidad.SelectedValue = medico.Especialidad.idEspecialidad.ToString(); }
                     //ddlModEspecialidad.SelectedValue = medico.Especialidad.idEspecialidad.ToString();
@@ -257,5 +257,10 @@ namespace Vistas.admin
         protected void btnEliminar_Click(object sender, EventArgs e) { mvFormularios.ActiveViewIndex = 1; }
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e) { ddlLocalidades.DataBind(); }
         protected void ddlModProvincia_SelectedIndexChanged(object sender, EventArgs e) { ddlModLocalidad.DataBind(); }
+        protected void gvLecturaMedico_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvLecturaMedico.PageIndex = e.NewPageIndex;
+            loadGridMedicos();
+        }
     }
 }

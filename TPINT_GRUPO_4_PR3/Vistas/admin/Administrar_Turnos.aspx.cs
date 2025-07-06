@@ -345,5 +345,10 @@ namespace Vistas.admin
             gvTurnos.DataBind();
 
         }
+        protected void gvTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvTurnos.PageIndex = e.NewPageIndex;
+            CargarTurnos();
+        }
     }
 }

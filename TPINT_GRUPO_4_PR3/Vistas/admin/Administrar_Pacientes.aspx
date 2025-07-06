@@ -462,6 +462,7 @@
                                                     <td class="auto-style32">Teléfono</td>
                                                     <td class="auto-style30">
                                                         <asp:TextBox ID="txbTelefono" runat="server"></asp:TextBox>
+                                                        <asp:Label ID="lblCondicioness0" runat="server" Font-Bold="True" Font-Size="Smaller" Font-Underline="True" Text="Formato: 11-1234-5678 // 11 1234 5678"></asp:Label>
                                                         <asp:RequiredFieldValidator ID="rfvtelefono" runat="server" ControlToValidate="txbTelefono" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="AltaPaciente" />
                                                         <asp:RegularExpressionValidator ID="revtelefono" runat="server" ControlToValidate="txbTelefono" Display="Dynamic" ErrorMessage="Invalido" ForeColor="Red" ValidationExpression="^^\d{2}[-\s]\d{4}[-\s]\d{4}$" ValidationGroup="AltaPaciente" />
                                                     </td>
@@ -533,6 +534,7 @@
                                                     <td class="auto-style32">Fecha de nacimiento:</td>
                                                     <td class="auto-style30">
                                                         <asp:TextBox ID="txbModFechaNacimiento" runat="server" ValidationGroup="ModPaciente"></asp:TextBox>
+                                                        <asp:Label ID="lblCondiciones0" runat="server" Font-Bold="True" Font-Size="Smaller" Font-Underline="True" Text="Formato: YYYY-MM-DD"></asp:Label>
                                                         <asp:RequiredFieldValidator ID="rfvModFechaNac" runat="server" ControlToValidate="txbModFechaNacimiento" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="ModPaciente" />
                                                         <asp:RegularExpressionValidator ID="revModFechaNnac" runat="server" ControlToValidate="txbModFechaNacimiento" Display="Dynamic" ErrorMessage="* Formato inválido (YYYY-MM-DD)" ForeColor="Red" ValidationExpression="^\d{4}-\d{2}-\d{2}$" ValidationGroup="ModPaciente" />
                                                     </td>
@@ -622,7 +624,7 @@
                                     <asp:View ID="vwLectura" runat="server">
                                         <h3>Listar Pacientes</h3>
                                         <div>
-                                            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Height="205px" Width="1027px">
+                                            <asp:GridView ID="GridView2" runat="server" AllowPaging="true" PageSize="10" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Height="205px" Width="1027px" OnPageIndexChanging="GridView2_PageIndexChanging">
                                                 <AlternatingRowStyle BackColor="White" />
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Seleccionar">
