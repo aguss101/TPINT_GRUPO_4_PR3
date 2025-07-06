@@ -623,8 +623,40 @@
                                     </asp:View>
                                     <asp:View ID="vwLectura" runat="server">
                                         <h3>Listar Pacientes</h3>
+                                        <div class="div-ddl">
+                                            <h3 class="auto-style71" style="margin: 0;">Seleccione una búsqueda o filtro:</h3>
+                                            <asp:DropDownList ID="ddlBusqueda_Pacientes" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlBusqueda_Pacientes_SelectedIndexChanged">
+                                                <asp:ListItem Text="--Seleccione una búsqueda o filtro--" Value="-1" Selected="True" />
+                                                <asp:ListItem>Búsqueda por Apellido</asp:ListItem>
+                                                <asp:ListItem>Búsqueda por DNI</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <asp:MultiView ID="mwBusqueda" runat="server">
+                                            <asp:View ID="vwPorApellido" runat="server">
+                                                <div>
+                                                    <table class="auto-style32">
+                                                        <tr>
+                                                            <td class="auto-style36">Ingrese apellido del paciente:</td>
+                                                            <td>
+                                                                <asp:TextBox ID="txbPorApellido" runat="server" AutoPostBack="True" OnTextChanged="txbPorApellido_TextChanged"></asp:TextBox></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </asp:View>
+                                            <asp:View ID="vwPorDNI" runat="server">
+                                                <div>
+                                                    <table class="auto-style32">
+                                                        <tr>
+                                                            <td class="auto-style36">Ingrese DNI del paciente:</td>
+                                                            <td>
+                                                                <asp:TextBox ID="txbPorDNI" runat="server" OnTextChanged="txbPorDNI_TextChanged" AutoPostBack="True"></asp:TextBox></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </asp:View>
+                                        </asp:MultiView>
                                         <div>
-                                            <asp:GridView ID="GridView2" runat="server" AllowPaging="true" PageSize="10" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Height="205px" Width="1027px" OnPageIndexChanging="GridView2_PageIndexChanging">
+                                            <asp:GridView ID="gvLecturaPaciente" runat="server" AllowPaging="true" PageSize="10" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Height="205px" Width="1027px" OnPageIndexChanging="GridView2_PageIndexChanging">
                                                 <AlternatingRowStyle BackColor="White" />
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Seleccionar">

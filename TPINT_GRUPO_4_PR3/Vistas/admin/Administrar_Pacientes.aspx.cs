@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Web.UI.WebControls;
 using Entidades;
 using Negocio;
@@ -36,7 +37,7 @@ namespace Vistas.admin
         {
             try
             {
-                foreach (GridViewRow row in GridView2.Rows)
+                foreach (GridViewRow row in gvLecturaPaciente.Rows)
                 {
                     if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
                     {
@@ -58,7 +59,7 @@ namespace Vistas.admin
         }
         protected void btnMod_Click(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in GridView2.Rows)
+            foreach (GridViewRow row in gvLecturaPaciente.Rows)
             {
                 if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
                 {
@@ -106,8 +107,8 @@ namespace Vistas.admin
         protected void loadGridPacientes()
         {
             List<Paciente> listaPacientes = new GestorPaciente().GetPacientes();
-            GridView2.DataSource = listaPacientes;
-            GridView2.DataBind();
+            gvLecturaPaciente.DataSource = listaPacientes;
+            gvLecturaPaciente.DataBind();
         }
         protected void InsertarPacientes()
         {
@@ -185,7 +186,7 @@ namespace Vistas.admin
         }
         protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in GridView2.Rows) { if (row.FindControl("chkSeleccionar") is CheckBox chk && chk != sender) { chk.Checked = false; } }
+            foreach (GridViewRow row in gvLecturaPaciente.Rows) { if (row.FindControl("chkSeleccionar") is CheckBox chk && chk != sender) { chk.Checked = false; } }
             btnMod.Visible = btnBaja.Visible = (sender as CheckBox)?.Checked == true;
         }
         protected void navigateButton_Click(object sender, CommandEventArgs e)
@@ -202,10 +203,53 @@ namespace Vistas.admin
         protected void ddlModProvincia_SelectedIndexChanged(object sender, EventArgs e) { ddlModLocalidades.DataBind(); }
         protected void GridView2_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            GridView2.PageIndex = e.NewPageIndex;
+            gvLecturaPaciente.PageIndex = e.NewPageIndex;
             loadGridPacientes();
         }
+        protected void ddlBusqueda_Pacientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (ddlBusqueda_Pacientes.SelectedIndex)
+            {
+                case 1:
+                    mwBusqueda.ActiveViewIndex = 0;
+                    break;
+                case 2:
+                    mwBusqueda.ActiveViewIndex = 1;
+                    break;
+                //case 3:
+                //    mwBusqueda.ActiveViewIndex = 2;
+                //    break;
+                default:
+                    mwBusqueda.ActiveViewIndex = -1;
+                    break;
+            }
+        }
+        protected void cargarPacientesxApellido()
+        {
+            string apellido = Session["Apellido"].ToString();
 
+            gvLecturaPaciente.DataSource = gestorPaciente.FiltrarPacientexApellido(apellido);
+            gvLecturaPaciente.DataBind();
+        }
+        protected void cargarPacientesxDNI()
+        {
+            string dniPaciente = Session["DNI"].ToString();
+
+            Debug.WriteLine(dniPaciente, "DNI");
+            gvLecturaPaciente.DataSource = gestorPaciente.FiltrarPacientexDNI(dniPaciente);
+            gvLecturaPaciente.DataBind();
+        }
+        protected void txbPorApellido_TextChanged(object sender, EventArgs e)
+        {
+            Session["Apellido"] = txbPorApellido.Text.Trim();
+            cargarPacientesxApellido();
+        }
+
+        protected void txbPorDNI_TextChanged(object sender, EventArgs e)
+        {
+            Session["DNI"] = txbPorDNI.Text.Trim();
+            cargarPacientesxDNI();
+        }
 
     }
 }

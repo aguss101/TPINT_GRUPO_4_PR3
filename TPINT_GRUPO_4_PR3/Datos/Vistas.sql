@@ -57,3 +57,33 @@ INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad
 INNER JOIN Provincias P ON L.idProvincia = P.idProvincia
 LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
 LEFT JOIN Correos C ON PE.DNI = C.idPersona
+
+
+
+GO
+CREATE OR ALTER VIEW vw_PacienteConDatos AS
+SELECT
+	PA.*,
+	PE.nombre, 
+	PE.apellido, 
+	PE.nacionalidad, 
+	PE.fechaNacimiento, 
+	PE.Direccion,
+	S.idSexo,
+	S.descripcion AS genero,
+	O.idObraSocial,
+	O.nombre AS nombreObraSocial,
+	C.correo, T.telefono,
+	L.idLocalidad,
+	L.nombreLocalidad,
+	P.idProvincia,
+	P.nombreProvincia,
+	PE.activo AS activo,
+	PA.DNI AS dniPaciente
+FROM Paciente PA
+INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo 
+INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial 
+INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad 
+INNER JOIN Provincias P ON L.idProvincia = P.idProvincia
+LEFT JOIN Correos C ON PE.DNI = C.idPersona
+LEFT JOIN Telefonos T ON PE.DNI = T.idPersona

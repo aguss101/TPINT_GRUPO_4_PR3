@@ -303,6 +303,11 @@
             width: 34px;
             height: 30px;
         }
+        .auto-style71 {
+            user-select: none;
+            width: 347px;
+            height: 51px;
+        }
     </style>
 </head>
 <body>
@@ -682,12 +687,12 @@
                                     <asp:View ID="vwLectura" runat="server">
                                         <h3>Listar Médico</h3>
                                          <div class="div-ddl">
-                                             <h3 class="auto-style35" style="margin: 0;">Búsqueda por:</h3>
+                                             <h3 class="auto-style71" style="margin: 0;">Seleccione una búsqueda o filtro:</h3>
                                              <asp:DropDownList ID="ddlBusqueda_Medicos" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlBusqueda_Medicos_SelectedIndexChanged">
-                                                 <asp:ListItem Text="--Seleccione una búsqueda--" Value="-1" Selected="True" />
-                                                 <asp:ListItem>Apellido</asp:ListItem>
-                                                 <asp:ListItem>DNI</asp:ListItem>
-                                                 <asp:ListItem>Legajo</asp:ListItem>
+                                                 <asp:ListItem Text="--Seleccione una búsqueda o filtro--" Value="-1" Selected="True" />
+                                                 <asp:ListItem>Búsqueda por Apellido</asp:ListItem>
+                                                 <asp:ListItem>Búsqueda por DNI</asp:ListItem>
+                                                 <asp:ListItem>Búsqueda por Legajo</asp:ListItem>
                                              </asp:DropDownList>
                                          </div>
                                         <div>

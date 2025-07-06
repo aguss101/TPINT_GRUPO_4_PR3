@@ -12,5 +12,7 @@ namespace Negocio
         public int InsertarPaciente(Paciente paciente) { return consultas.InsertarPaciente(paciente); }
         public int ModificarPaciente(Paciente paciente, string DNI_VIEJO) { return consultas.ModificarPaciente(paciente, DNI_VIEJO); }
         public int EliminarPaciente(string DNI) { return consultas.EliminarPaciente(DNI);}
+        public List<Paciente> FiltrarPacientexApellido(string apellido) { return consultas.FiltrarPacientexApellido(apellido); }
+        public List<Paciente> FiltrarPacientexDNI(string DNI) { return consultas.FiltrarPacientexDNI(DNI); }
     }
 }

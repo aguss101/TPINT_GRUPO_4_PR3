@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 using Entidades;
@@ -12,15 +13,8 @@ namespace Datos
         public List<Paciente> GetPacientes()
         {
             List<Paciente> pacientes = new List<Paciente>();
-            string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, 
-            S.idSexo, S.descripcion AS genero, O.idObraSocial, O.nombre AS nombreObraSocial, C.correo, T.telefono, L.idLocalidad, L.nombreLocalidad, P.idProvincia, P.nombreProvincia
-            FROM Paciente PA
-            INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo 
-            INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial 
-            INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad 
-            INNER JOIN Provincias P ON L.idProvincia = P.idProvincia
-            LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
-            WHERE activo = 1;";
+            string query = @"SELECT * FROM vw_PacienteConDatos
+            WHERE activo = 1";
             try
             {
                 using (SqlConnection con = conexion.AbrirConexion())
@@ -64,7 +58,7 @@ namespace Datos
                 }
 
             }
-            catch (Exception ex) { throw new Exception("Error al cargar usuarios: " + ex.Message); }
+            catch (Exception ex) { throw new Exception("Error al cargar pacientes: " + ex.Message); }
             return pacientes;
         }
         public int InsertarPaciente(Paciente paciente)
@@ -199,15 +193,8 @@ namespace Datos
         public Paciente getPacientePorID(string idPaciente)
         {
             Paciente paciente = null;
-            string query = @"SELECT PA.*, PE.nombre, PE.apellido, PE.nacionalidad, PE.fechaNacimiento, PE.Direccion, 
-            S.idSexo, S.descripcion AS genero, O.idObraSocial, O.nombre AS nombreObraSocial, C.correo, T.telefono, L.idLocalidad, L.nombreLocalidad, P.idProvincia, P.nombreProvincia
-            FROM Paciente PA
-            INNER JOIN Persona PE ON PA.DNI = PE.DNI INNER JOIN Sexos S ON PE.sexo = S.idSexo 
-            INNER JOIN ObraSocial O ON PA.ObraSocial = O.idObraSocial
-            INNER JOIN Localidades L ON PE.idLocalidad = L.idLocalidad 
-            INNER JOIN Provincias P ON L.idProvincia = P.idProvincia
-            LEFT JOIN Correos C ON PE.DNI = C.idPersona  LEFT JOIN Telefonos T ON PE.DNI = T.idPersona
-            WHERE activo = 1 AND PE.DNI = @id ";
+            string query = @"SELECT * FROM vw_PacienteConDatos
+            WHERE activo = 1 AND dniPaciente = @id ";
             try
             {
                 using (SqlConnection con = conexion.AbrirConexion())
@@ -250,6 +237,75 @@ namespace Datos
                 }
             }
             catch (Exception ex) { throw new Exception("Error al buscar paciente por ID: " + ex.Message); }
+            return paciente;
+        }
+        public Paciente MapearPaciente(SqlDataReader reader)
+        {
+            return new Paciente
+            {
+                DNI = reader["DNI"].ToString(),
+                nombre = reader["nombre"].ToString(),
+                apellido = reader["apellido"].ToString(),
+                ObraSocial = new ObraSocial { idObraSocial = Convert.ToInt32(reader["idObraSocial"]), Onombre = reader["nombreObraSocial"].ToString() },
+                ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),
+                Alta = Convert.ToDateTime(reader["alta"]),
+                sexos = new Sexos { idSexo = Convert.ToInt32(reader["idSexo"]), descripcion = reader["genero"].ToString() },
+                fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
+                nacionalidad = reader["nacionalidad"].ToString(),
+                Provincia = Convert.ToInt32(reader["idProvincia"]),
+                Provincias = new Provincias
+                {
+                    idProvincia = Convert.ToInt32(reader["idProvincia"]),
+                    nombreProvincia = reader["nombreProvincia"].ToString()
+                },
+                Localidad = Convert.ToInt32(reader["idLocalidad"]),
+                Localidades = new Localidades
+                {
+                    idLocalidad = Convert.ToInt32(reader["idLocalidad"]),
+                    nombreLocalidad = reader["nombreLocalidad"].ToString()
+                },
+                Direccion = reader["direccion"].ToString(),
+                Correo = reader["Correo"].ToString(),
+                Telefono = reader["Telefono"].ToString()
+            };
+        }
+        public List<Paciente> FiltrarPacientexApellido(string apellido)
+        {
+            List<Paciente> paciente = new List<Paciente>();
+            string query = @"SELECT * FROM vw_PacienteConDatos
+                WHERE activo = 1
+                AND (@Apellido IS NULL OR apellido COLLATE Latin1_General_CI_AI LIKE '%' + @Apellido + '%')
+                ORDER BY apellido";
+
+            try
+            {
+                using (SqlConnection con = conexion.AbrirConexion())
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@Apellido", SqlDbType.VarChar, 25) { Value = apellido });
+                    using (SqlDataReader reader = cmd.ExecuteReader()) { while (reader.Read()) { paciente.Add(MapearPaciente(reader)); } }
+                }
+            }
+            catch (Exception ex) { throw new Exception("Error al cargar pacientes por apellido: " + ex.Message); }
+            return paciente;
+        }
+        public List<Paciente> FiltrarPacientexDNI(string dniPaciente)
+        {
+            List<Paciente> paciente = new List<Paciente>();
+            string query = @"SELECT * FROM vw_PacienteConDatos
+                WHERE activo = 1
+                AND (@DNI IS NULL OR CAST(dniPaciente AS VARCHAR) LIKE '%' + @DNI + '%')
+                ORDER BY dniPaciente";
+            try
+            {
+                using (SqlConnection con = conexion.AbrirConexion())
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@DNI", SqlDbType.VarChar, 20) { Value = dniPaciente });
+                    using (SqlDataReader reader = cmd.ExecuteReader()) { while (reader.Read()) { paciente.Add(MapearPaciente(reader)); } }
+                }
+            }
+            catch (Exception ex) { throw new Exception("Error al cargar pacientes por DNI: " + ex.Message); }
             return paciente;
         }
     }
