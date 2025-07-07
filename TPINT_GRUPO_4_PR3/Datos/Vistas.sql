@@ -31,12 +31,12 @@ CREATE OR ALTER VIEW dbo.vw_MedicoConDatos AS
 SELECT
     ME.*,
     PE.nombre,
-    PE.apellido                AS apellido,
+    PE.apellido              AS apellido,
     PE.nacionalidad,
     PE.fechaNacimiento,
     PE.Direccion,
     S.idSexo,
-    S.descripcion              AS genero,
+    S.descripcion            AS genero,
     C.correo,
     T.telefono,
     L.idLocalidad,
@@ -45,11 +45,11 @@ SELECT
     P.nombreProvincia,
     U.nombreUsuario,
     U.contrasenia,
-    H.Hora,                    -- ? UNA sola hora distinta por médico
-    E.descripcion              AS Especialidad,
+    H.Hora,                          -- 1 hora por médico
+    E.descripcion          AS Especialidad,
     PE.activo,
-    PE.DNI                     AS dniMedico,
-    ME.Legajo                  AS legajoMedico
+    PE.DNI                 AS dniMedico,
+    ME.Legajo              AS legajoMedico
 FROM  Medico ME
 INNER JOIN Persona        PE ON ME.DNI            = PE.DNI
 INNER JOIN Usuario        U  ON PE.DNI            = U.DNI
@@ -57,17 +57,30 @@ INNER JOIN Sexos          S  ON PE.sexo           = S.idSexo
 INNER JOIN Especialidades E  ON ME.idEspecialidad = E.idEspecialidad
 INNER JOIN Localidades    L  ON PE.idLocalidad    = L.idLocalidad
 INNER JOIN Provincias     P  ON L.idProvincia     = P.idProvincia
-LEFT  JOIN Telefonos      T  ON PE.DNI            = T.idPersona
-LEFT  JOIN Correos        C  ON PE.DNI            = C.idPersona
 
 
-CROSS APPLY (
-    SELECT DISTINCT TOP (1) rangoHorario AS Hora
+OUTER APPLY (
+    SELECT TOP 1 telefono
+    FROM   Telefonos
+    WHERE  idPersona = PE.DNI
+    ORDER  BY telefono       
+) T
+
+
+OUTER APPLY (
+    SELECT TOP 1 correo
+    FROM   Correos
+    WHERE  idPersona = PE.DNI
+    ORDER  BY correo
+) C
+
+
+OUTER APPLY (
+    SELECT TOP 1 rangoHorario AS Hora
     FROM   Jornadas
     WHERE  Legajo = ME.Legajo
-    ORDER BY rangoHorario                
+    ORDER  BY rangoHorario
 ) H;
-
 
 GO
 CREATE OR ALTER VIEW vw_PacienteConDatos AS
