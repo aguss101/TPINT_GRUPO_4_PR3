@@ -340,8 +340,14 @@
                                 </tr>
                                 <tr>
                                     <td class="auto-style32">Paciente</td>
-                                    <td class="auto-style39">
-                                        <asp:DropDownList ID="ddlPaciente" runat="server" AutoPostBack="True" DataSourceID="dbPaciente" DataTextField="Paciente" DataValueField="DNI"></asp:DropDownList>
+                                    <td class="auto-style39"><asp:DropDownList ID="ddlPaciente" runat="server" 
+                                                AutoPostBack="True"
+                                                DataSourceID="dbPaciente" 
+                                                DataTextField="Paciente" 
+                                                DataValueField="DNI"
+                                                AppendDataBoundItems="True">
+                                                <asp:ListItem Value="0">--Seleccionar Paciente--</asp:ListItem>
+                                            </asp:DropDownList>
                                         <asp:SqlDataSource ID="dbPaciente" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT PA.DNI, P_Pac.nombre + ' ' + P_Pac.apellido AS Paciente FROM Persona P_Pac INNER JOIN Paciente PA ON PA.DNI        = P_Pac.DNI"></asp:SqlDataSource>
                                         <asp:Label ID="lblActionTurno" runat="server"></asp:Label>
                                     </td>
