@@ -772,7 +772,6 @@
                                                         <asp:Button ID="btnModificarMedico" runat="server" OnClick="btnModificarMedico_Click" Text="Modificar Medico" Width="188px" ValidationGroup="ModMedico" /></td>
                                                     <td class="auto-style46">
                                                         <asp:Label ID="lblModificarMedico" runat="server" Visible="False"></asp:Label>
-                                                        <asp:Button ID="btnJornada" runat="server" OnClick="btnJornada_Click" Text="Ir a Jornadas" />
                                                     </td>
                                                     <td>&nbsp;</td>
                                                 </tr>
@@ -849,6 +848,7 @@
                                                     <asp:BoundField DataField="correo" HeaderText="Correo" />
                                                     <asp:BoundField DataField="telefono" HeaderText="Telefono" />
                                                     <asp:BoundField DataField="SiglasDiasHabiles" HeaderText="Dias Habiles" />
+                                                    <asp:BoundField DataField="entrada" HeaderText="Hora" />
                                                 </Columns>
                                                 <EditRowStyle BackColor="#2461BF" />
                                                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

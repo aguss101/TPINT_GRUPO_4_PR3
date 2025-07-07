@@ -53,7 +53,8 @@ namespace Datos
                                 },
                                 nacionalidad = reader["nacionalidad"].ToString(),
                                 Correo = reader["Correo"].ToString(),
-                                Telefono = reader["telefono"].ToString()
+                                Telefono = reader["telefono"].ToString(),
+                                entrada = TimeSpan.Parse(reader["Hora"].ToString()) 
                             };
                             medicos.Add(medico);
                         }

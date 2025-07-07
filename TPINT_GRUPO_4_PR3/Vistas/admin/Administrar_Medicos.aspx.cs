@@ -233,7 +233,7 @@ namespace Vistas.admin
 
             btnMod.Visible = false;
             btnBaja.Visible = false;
-            btnJornada.Visible = false;
+
         }
 
 
@@ -353,10 +353,6 @@ namespace Vistas.admin
             cargarMedicosxLegajo();
         }
 
-        protected void btnJornada_Click(object sender, EventArgs e)
-        {
-            mvFormularios.SetActiveView(vwJornadas);
-        }
 
         protected void btnRegistrarJornada_Click(object sender, EventArgs e)
         {
