@@ -233,6 +233,7 @@ namespace Vistas.admin
 
             btnMod.Visible = false;
             btnBaja.Visible = false;
+            btnJornadas.Visible = false;
 
         }
 

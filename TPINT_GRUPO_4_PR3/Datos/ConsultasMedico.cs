@@ -54,7 +54,9 @@ namespace Datos
                                 nacionalidad = reader["nacionalidad"].ToString(),
                                 Correo = reader["Correo"].ToString(),
                                 Telefono = reader["telefono"].ToString(),
-                                entrada = TimeSpan.Parse(reader["Hora"].ToString()) 
+                                entrada = reader["Hora"] == DBNull.Value
+                                    ? TimeSpan.Zero
+                                : (TimeSpan)reader["Hora"]
                             };
                             medicos.Add(medico);
                         }
