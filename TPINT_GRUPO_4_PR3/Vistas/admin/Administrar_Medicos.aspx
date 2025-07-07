@@ -529,7 +529,8 @@
                                                 <td class="auto-style57">
                                                     <asp:TextBox ID="txbRepContrasenia" runat="server" TextMode="Password"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="rfvrepcontrasenia" runat="server" ControlToValidate="txbRepContrasenia" ErrorMessage="* Campo obligatorio" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
-                                                    </td>
+                                                    <asp:CompareValidator ID="cvContrasenias" runat="server" ControlToCompare="txbContrasenia" ControlToValidate="txbRepContrasenia" ErrorMessage="Las contraseñas no coinciden" ForeColor="Red" Operator="Equal" Type="String" Display="Dynamic" ValidationGroup="AltaMedico" />    
+                                                </td>
                                                 <td class="auto-style58"></td>
 
                                                 </tr>
