@@ -260,7 +260,6 @@ namespace Datos
                     {
                         if (reader.Read())
                         {
-                            //MapearMedico(reader);
                             medico = new Medico()
                             {
                                 Usuario = new Usuario()
@@ -282,7 +281,7 @@ namespace Datos
                                     idProvincia = Convert.ToInt32(reader["idProvincia"]),
                                     nombreProvincia = reader["nombreProvincia"].ToString()
                                 },
-                                Localidad = Convert.ToInt32(reader["idLocalidad"]), // NO BORRAR
+                                Localidad = Convert.ToInt32(reader["idLocalidad"]), 
                                 Localidades = new Localidades
                                 {
                                     idLocalidad = Convert.ToInt32(reader["idLocalidad"]),
@@ -322,7 +321,7 @@ namespace Datos
                     idProvincia = Convert.ToInt32(reader["idProvincia"]),
                     nombreProvincia = reader["nombreProvincia"].ToString()
                 },
-                Localidad = Convert.ToInt32(reader["idLocalidad"]), // NO BORRAR
+                Localidad = Convert.ToInt32(reader["idLocalidad"]), 
                 Localidades = new Localidades
                 {
                     idLocalidad = Convert.ToInt32(reader["idLocalidad"]),
