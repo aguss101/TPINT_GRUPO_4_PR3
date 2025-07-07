@@ -357,6 +357,7 @@ namespace Vistas.admin
 
         protected void btnRegistrarJornada_Click(object sender, EventArgs e)
         {
+
             List<string> diasSeleccionados = new List<string>();
             string legajo = Session["LegajoMedico"] as string;
             TimeSpan hora;
@@ -381,12 +382,18 @@ namespace Vistas.admin
             lblAddJornada.Text = "Jornada Actualizada";
             lblAddJornada.Visible = true;
 
+
+            cblDias.ClearSelection();
+            txbHorarioEntrada.Text = "";
             loadGridMedicos();
+            lblAddJornada.Visible = false;
+            mvFormularios.SetActiveView(vwLectura);
         }
 
         protected void btnJornadas_Click(object sender, EventArgs e)
         {
             mvFormularios.SetActiveView(vwJornadas);
+            btnJornadas.Visible = false;
         }
         protected void cvNombreUsuario_ServerValidate(object source, ServerValidateEventArgs args)
         {
