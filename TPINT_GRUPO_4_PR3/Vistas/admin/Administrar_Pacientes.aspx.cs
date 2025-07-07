@@ -227,11 +227,23 @@ namespace Vistas.admin
         protected void GridView2_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvLecturaPaciente.PageIndex = e.NewPageIndex;
-            loadGridPacientes();
+            if (Session["DNI"] != null)
+            {
+                cargarPacientesxDNI();
+            }
+            if (Session["Apellido"] != null)
+            {
+                cargarPacientesxApellido();
+            }
         }
         protected void ddlBusqueda_Pacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Session["DNI"] = null;
+            Session["Apellido"] = null;
+            gvLecturaPaciente.PageIndex = 0;
+
             loadGridPacientes();
+
             switch (ddlBusqueda_Pacientes.SelectedIndex)
             {
                 case 1:
@@ -259,13 +271,15 @@ namespace Vistas.admin
         {
             string dniPaciente = Session["DNI"].ToString();
 
-            Debug.WriteLine(dniPaciente, "DNI");
             gvLecturaPaciente.DataSource = gestorPaciente.FiltrarPacientexDNI(dniPaciente);
             gvLecturaPaciente.DataBind();
         }
         protected void txbPorApellido_TextChanged(object sender, EventArgs e)
         {
             Session["Apellido"] = txbPorApellido.Text.Trim();
+            Session["DNI"] = null;
+            gvLecturaPaciente.PageIndex = 0;
+
             txbPorApellido.Text = "";
             cargarPacientesxApellido();
         }
@@ -273,6 +287,9 @@ namespace Vistas.admin
         protected void txbPorDNI_TextChanged(object sender, EventArgs e)
         {
             Session["DNI"] = txbPorDNI.Text.Trim();
+            Session["Apellido"] = null;
+            gvLecturaPaciente.PageIndex = 0;
+
             txbPorDNI.Text = "";
             cargarPacientesxDNI();
         }
