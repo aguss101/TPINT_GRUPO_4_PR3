@@ -43,5 +43,16 @@ namespace Datos
             catch (Exception ex) { throw new Exception("Error al cargar usuarios: " + ex.Message); }
             return usuarios;
         }
+        public bool ExisteNombreUsuario(string nombreUsuario)
+        {
+            string query = "SELECT COUNT(*) FROM Usuario WHERE nombreUsuario = @nombreUsuario";
+            using (SqlConnection con = conexion.AbrirConexion())
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
+                int count = (int)cmd.ExecuteScalar();
+                return count > 0;
+            }
+        }
     }
 }

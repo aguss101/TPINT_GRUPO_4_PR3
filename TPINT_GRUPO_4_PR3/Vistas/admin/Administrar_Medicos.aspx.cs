@@ -401,14 +401,18 @@ namespace Vistas.admin
             }
             if (diasSeleccionados != null)
             {
-                gestorMedico.insertarJornadasMedico(legajo, diasSeleccionados, hora);
+                gestorMedico.InsertarOActualizarJornadas(legajo, diasSeleccionados, hora);
             }
         }
 
         protected void btnJornadas_Click(object sender, EventArgs e)
         {
-
             mvFormularios.SetActiveView(vwJornadas);
+        }
+        protected void cvNombreUsuario_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            GestorUsuario gestorUsuario = new GestorUsuario();
+            args.IsValid = !gestorUsuario.ValidarNombreUsuario(args.Value);
         }
     }
 }

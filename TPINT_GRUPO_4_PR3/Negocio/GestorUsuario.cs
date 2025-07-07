@@ -8,5 +8,6 @@ namespace Negocio
     {
         private ConsultasUsuario consultaUsuario= new ConsultasUsuario();
         public List<Usuario> GetUsuarios() { return consultaUsuario.getUsuarios(); }
+        public bool ValidarNombreUsuario(string nombreUsuario) { return consultaUsuario.ExisteNombreUsuario(nombreUsuario); }
     }
 }

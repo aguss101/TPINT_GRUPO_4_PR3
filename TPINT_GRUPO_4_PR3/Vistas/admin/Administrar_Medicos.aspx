@@ -513,7 +513,9 @@
                                                         <asp:TextBox ID="txbUsuario" runat="server"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="rfvusuario" runat="server" ControlToValidate="txbUsuario" ErrorMessage="* Campo obligatorio" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
                                                         <asp:RegularExpressionValidator ID="revusuario" runat="server" ControlToValidate="txbUsuario" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$"  ErrorMessage="* Solo letras" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
-                                                        </td>
+                                                        &nbsp;
+                                                        <asp:CustomValidator ID="cvNombreUsuario" runat="server" ControlToValidate="txbUsuario" OnServerValidate="cvNombreUsuario_ServerValidate" ErrorMessage="El nombre de usuario ya existe" ForeColor="Red" Display="Dynamic" ValidateEmptyText="true" ValidationGroup="AltaMedico" />
+                                                    </td>
                                                     <td class="auto-style64"></td>
                                                 </tr>
                                                 <tr>

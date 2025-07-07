@@ -386,12 +386,19 @@ namespace Datos
         }
 
 
-        public int insertarJornadasMedico(string legajo, List<string> diasLaborales, TimeSpan hora)
+        public int InsertarOActualizarJornadas(string legajo, List<string> diasLaborales, TimeSpan hora)
         {
+            const string sql = @"
+       
+            UPDATE Jornadas
+           SET rangoHorario = @RangoHorario
+            WHERE Legajo    = @Legajo
+            AND DiaSemana = @DiaSemana;
 
-            string deleteQuery = @"DELETE FROM Jornadas WHERE Legajo = @Legajo;";
-            string query = @"INSERT INTO Jornadas (Legajo, DiaSemana, rangoHorario)
-                           VALUES (@Legajo, @DiaSemana, @RangoHorario);";
+       
+             IF @@ROWCOUNT = 0
+            INSERT INTO Jornadas (Legajo, DiaSemana, rangoHorario)
+                 VALUES          (@Legajo, @DiaSemana, @RangoHorario);";
 
             try
             {
@@ -400,16 +407,9 @@ namespace Datos
                 {
                     try
                     {
-                        using (SqlCommand del = new SqlCommand(deleteQuery, con, tx))
-                        {
-                            del.Parameters.AddWithValue("@Legajo", legajo);
-                            del.ExecuteNonQuery();
-                        }
-
-
                         foreach (string dia in diasLaborales)
                         {
-                            using (SqlCommand cmd = new SqlCommand(query, con, tx))
+                            using (SqlCommand cmd = new SqlCommand(sql, con, tx))
                             {
                                 cmd.Parameters.AddWithValue("@Legajo", legajo);
                                 cmd.Parameters.AddWithValue("@DiaSemana", dia);
@@ -421,7 +421,7 @@ namespace Datos
                         tx.Commit();
                         return 1;
                     }
-                    catch (Exception)
+                    catch
                     {
                         tx.Rollback();
                         throw;
@@ -430,7 +430,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al insertar jornadas del médico: " + ex.Message, ex);
+                throw new Exception("Error al registrar/actualizar jornadas: " + ex.Message, ex);
             }
         }
 
