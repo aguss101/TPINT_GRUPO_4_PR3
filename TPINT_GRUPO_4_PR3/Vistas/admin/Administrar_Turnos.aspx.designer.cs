@@ -186,15 +186,6 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.Button btnBaja;
 
         /// <summary>
-        /// Control txtBoxPrueba.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBoxPrueba;
-
-        /// <summary>
         /// Control ddlFiltrarTurnosPor.
         /// </summary>
         /// <remarks>

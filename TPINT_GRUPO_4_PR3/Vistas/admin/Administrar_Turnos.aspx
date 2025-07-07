@@ -198,11 +198,6 @@
             width: 34px;
         }
 
-        .auto-style30 {
-            user-select: none;
-            height: 24px;
-        }
-
         .auto-style31 {
             user-select: none;
             width: 34px;
@@ -363,7 +358,6 @@
                                     <td class="auto-style39">
                                         <asp:Button ID="btnMod" runat="server" Text="Modificar Turno" OnClick="btnMod_Click" Width="188px" />
                                         <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" Width="188px" OnClick="btnBaja_Click" OnClientClick="return confirm('¿Está seguro que desea dar de baja el turno?');" /> 
-                                        <asp:TextBox ID="txtBoxPrueba" runat="server"></asp:TextBox>
                                         <asp:DropDownList ID="ddlFiltrarTurnosPor" runat="server" AutoPostBack="true" Height="16px" OnSelectedIndexChanged="ddlFiltrarTurnosPor_SelectedIndexChanged" Style="margin-bottom: 0px; margin-top: 0px;" Width="465px">
                                             <asp:ListItem Value="FechaASC">Fecha A</asp:ListItem>
                                             <asp:ListItem Value="FechaDES">Fecha D</asp:ListItem>

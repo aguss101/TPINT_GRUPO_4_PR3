@@ -177,11 +177,7 @@ namespace Vistas
         protected void ddlEstados_SelectedIndexChanged(object sender, EventArgs e)
         {
             string legajo = Session["LegajoMedico"] as string;
-            if (string.IsNullOrEmpty(legajo))
-            {
-                Debug.WriteLine(legajo, "medico");
-                return;
-            }
+            if (string.IsNullOrEmpty(legajo)) { return; }
 
             string estado = ddlEstados.SelectedValue;
             if (estado == "TODOS") estado = null;

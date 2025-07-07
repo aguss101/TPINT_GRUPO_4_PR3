@@ -267,19 +267,11 @@
                 <td class="columnaIndex">
                     <table class="auto-style3">
                         <tr>
-                            <td class="columnaIndex-Bienvenida">Bienvenido</td>
+                            <td class="columnaIndex-Bienvenida">Bienvenido/a</td>
                         </tr>
                         <tr>
                             <td class="td-btn-index">
                                 <asp:Button runat="server" Text="Ver Turnos" CssClass="btn-index" /></td>
-                        </tr>
-                        <tr>
-                            <td class="td-btn-index">
-                                <asp:Button ID="Button2" runat="server" Text="Cargar Diagnostico" CssClass="btn-index" /></td>
-                        </tr>
-                        <tr>
-                            <td class="td-btn-index">
-                                <asp:Button ID="Button3" runat="server" Text="Ver Historial" CssClass="btn-index" /></td>
                         </tr>
                         <tr>
                             <td class="auto-style4"></td>
@@ -356,7 +348,7 @@
                                     </asp:View>
                                     <asp:View ID="vwEstado" runat="server">
                                         <asp:DropDownList ID="ddlEstados" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlEstados_SelectedIndexChanged">
-                                            <asp:ListItem>-- Seleccionar --</asp:ListItem>
+                                            <asp:ListItem Value="TODOS">-- Seleccionar --</asp:ListItem>
                                             <asp:ListItem>PRESENTE</asp:ListItem>
                                             <asp:ListItem>AUSENTE</asp:ListItem>
                                             <asp:ListItem>PENDIENTE</asp:ListItem>

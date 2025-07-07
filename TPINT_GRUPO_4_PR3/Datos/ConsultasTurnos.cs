@@ -326,14 +326,11 @@ namespace Datos
           AND (@Estado IS NULL OR EstadoDescripcion = @Estado)
         ORDER BY DNIPaciente DESC, fechaPactada, Legajo;";
 
-            var parametros = new[]
+            SqlParameter[] parametros = new SqlParameter []
             {
-        new SqlParameter("@Legajo",  legajo),                          // médico
-        new SqlParameter("@Estado",                                     // nombre del estado o NULL
-            string.IsNullOrWhiteSpace(estadoTurno) ? DBNull.Value
-                                                   : (object)estadoTurno)
-    };
-
+               new SqlParameter("@Legajo",  legajo),
+               new SqlParameter("@Estado",string.IsNullOrWhiteSpace(estadoTurno) ? DBNull.Value : (object)estadoTurno) 
+            };
             return conexion.EjecutarConsultaConParametros(query, parametros);
         }
     }
