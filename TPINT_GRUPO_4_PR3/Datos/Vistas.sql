@@ -27,60 +27,61 @@ INNER JOIN EstadoTurnos  ET    ON T.estado       = ET.idEstado;
 
 
 GO
-CREATE OR ALTER VIEW dbo.vw_MedicoConDatos AS
+CREATE OR ALTER VIEW vw_MedicoConDatos AS
 SELECT
-    ME.*,
+    ME.Legajo              AS legajoMedico,
+    ME.DNI                 AS dniMedico,
+    ME.*,                                   
     PE.nombre,
-    PE.apellido              AS apellido,
+    PE.apellido,
     PE.nacionalidad,
     PE.fechaNacimiento,
     PE.Direccion,
     S.idSexo,
     S.descripcion            AS genero,
-    C.correo,
-    T.telefono,
+    ISNULL(C.correo,   '')   AS correo,
+    ISNULL(T.telefono, '')   AS telefono,
     L.idLocalidad,
     L.nombreLocalidad,
     P.idProvincia,
     P.nombreProvincia,
     U.nombreUsuario,
     U.contrasenia,
-    H.Hora,                          -- 1 hora por médico
-    E.descripcion          AS Especialidad,
-    PE.activo,
-    PE.DNI                 AS dniMedico,
-    ME.Legajo              AS legajoMedico
-FROM  Medico ME
-INNER JOIN Persona        PE ON ME.DNI            = PE.DNI
-INNER JOIN Usuario        U  ON PE.DNI            = U.DNI
-INNER JOIN Sexos          S  ON PE.sexo           = S.idSexo
-INNER JOIN Especialidades E  ON ME.idEspecialidad = E.idEspecialidad
-INNER JOIN Localidades    L  ON PE.idLocalidad    = L.idLocalidad
-INNER JOIN Provincias     P  ON L.idProvincia     = P.idProvincia
 
+   
+    COALESCE(H.Hora, CAST('00:00:00' AS time)) AS Hora,
 
-OUTER APPLY (
+    E.descripcion           AS Especialidad,
+    PE.activo
+FROM  Medico           ME
+JOIN  Persona          PE ON ME.DNI            = PE.DNI
+JOIN  Usuario           U ON PE.DNI            = U.DNI
+JOIN  Sexos             S ON PE.sexo           = S.idSexo
+JOIN  Especialidades    E ON ME.idEspecialidad = E.idEspecialidad
+JOIN  Localidades       L ON PE.idLocalidad    = L.idLocalidad
+JOIN  Provincias        P ON L.idProvincia     = P.idProvincia
+
+OUTER APPLY (                       
     SELECT TOP 1 telefono
     FROM   Telefonos
     WHERE  idPersona = PE.DNI
-    ORDER  BY telefono       
+    ORDER BY telefono
 ) T
 
-
-OUTER APPLY (
+OUTER APPLY (                      
     SELECT TOP 1 correo
     FROM   Correos
     WHERE  idPersona = PE.DNI
-    ORDER  BY correo
+    ORDER BY correo
 ) C
 
-
-OUTER APPLY (
-    SELECT TOP 1 rangoHorario AS Hora
+OUTER APPLY (                       
+    SELECT TOP 1
+           TRY_CONVERT(time, rangoHorario) AS Hora   
     FROM   Jornadas
     WHERE  Legajo = ME.Legajo
-    ORDER  BY rangoHorario
-) H;
+    ORDER BY rangoHorario
+) H;  
 
 GO
 CREATE OR ALTER VIEW vw_PacienteConDatos AS

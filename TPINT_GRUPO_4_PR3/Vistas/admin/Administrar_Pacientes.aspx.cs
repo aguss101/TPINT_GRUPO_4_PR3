@@ -1,7 +1,6 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Web.UI.WebControls;
 using Entidades;
 using Negocio;
@@ -234,6 +233,11 @@ namespace Vistas.admin
             if (Session["Apellido"] != null)
             {
                 cargarPacientesxApellido();
+            }
+            if (Session["DNI"] == null && Session["Apellido"] == null)
+            {
+                loadGridPacientes();
+
             }
         }
         protected void ddlBusqueda_Pacientes_SelectedIndexChanged(object sender, EventArgs e)

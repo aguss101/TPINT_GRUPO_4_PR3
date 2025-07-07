@@ -301,6 +301,10 @@ namespace Vistas.admin
             {
                 cargarMedicosxLegajo();
             }
+            if (Session["Legajo"] == null && Session["Apellido"] == null && Session["DNI"] == null)
+            {
+                loadGridMedicos();
+            }
         }
         protected void ddlBusqueda_Medicos_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -391,14 +395,16 @@ namespace Vistas.admin
             TimeSpan hora;
             TimeSpan.TryParse(txbHorarioEntrada.Text, out hora);
 
-            Debug.WriteLine(legajo, "LEGAJO");
+            Debug.WriteLine(hora, "hora");
+
+
 
 
             foreach (ListItem item in cblDias.Items)
             {
                 if (item.Selected)
                 {
-                    Debug.WriteLine(item, "Dia");
+
                     diasSeleccionados.Add(item.Text);
                 }
             }
@@ -411,8 +417,8 @@ namespace Vistas.admin
             lblAddJornada.Visible = true;
 
 
-            cblDias.ClearSelection();
-            txbHorarioEntrada.Text = "";
+
+
             loadGridMedicos();
             lblAddJornada.Visible = false;
             mvFormularios.SetActiveView(vwLectura);
