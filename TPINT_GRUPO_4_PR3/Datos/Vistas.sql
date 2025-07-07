@@ -25,8 +25,9 @@ INNER JOIN Persona       P_Med ON M.DNI          = P_Med.DNI
 INNER JOIN Especialidades E    ON M.idEspecialidad = E.idEspecialidad
 INNER JOIN EstadoTurnos  ET    ON T.estado       = ET.idEstado;
 
+
 GO
-CREATE OR ALTER VIEW vw_MedicoConDatos AS
+CREATE OR ALTER VIEW dbo.vw_MedicoConDatos AS
 SELECT
     ME.*,
     PE.nombre,
@@ -44,7 +45,7 @@ SELECT
     P.nombreProvincia,
     U.nombreUsuario,
     U.contrasenia,
-    H.Hora,
+    H.Hora,                    -- ? UNA sola hora distinta por médico
     E.descripcion              AS Especialidad,
     PE.activo,
     PE.DNI                     AS dniMedico,
@@ -59,13 +60,13 @@ INNER JOIN Provincias     P  ON L.idProvincia     = P.idProvincia
 LEFT  JOIN Telefonos      T  ON PE.DNI            = T.idPersona
 LEFT  JOIN Correos        C  ON PE.DNI            = C.idPersona
 
+
 CROSS APPLY (
     SELECT DISTINCT TOP (1) rangoHorario AS Hora
     FROM   Jornadas
     WHERE  Legajo = ME.Legajo
-    ORDER BY rangoHorario
+    ORDER BY rangoHorario                
 ) H;
-
 
 
 GO
