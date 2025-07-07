@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Web.UI.WebControls;
 using Entidades;
 using Negocio;
@@ -41,7 +40,7 @@ namespace Vistas
         {
             string Legajo = Session["LegajoMedico"].ToString();
             string apellidoSelected = Session["apellidoPaciente"].ToString();
-            string estado = Session["EstadoDescripcion"].ToString();
+
 
             gvTurnos.DataSource = gestorturnos.FiltrarPacientexApellido(Legajo, apellidoSelected);
             gvTurnos.DataBind();
