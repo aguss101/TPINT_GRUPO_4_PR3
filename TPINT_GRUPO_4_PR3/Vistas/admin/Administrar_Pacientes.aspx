@@ -236,7 +236,7 @@
         .auto-style32 {
             user-select: none;
             height: 24px;
-            width: 196px;
+            width: 305px;
         }
 
         .auto-style33 {
@@ -292,6 +292,16 @@
 
         .auto-style44 {
             width: 100%;
+        }
+        .auto-style45 {
+            user-select: none;
+            height: 25px;
+            width: 145px;
+        }
+        .auto-style46 {
+            user-select: none;
+            height: 25px;
+            width: 122px;
         }
     </style>
 </head>
@@ -633,7 +643,7 @@
                                                 <div>
                                                     <table class="auto-style32">
                                                         <tr>
-                                                            <td class="auto-style36">Ingrese apellido del paciente:</td>
+                                                            <td class="auto-style46">Ingrese apellido:</td>
                                                             <td>
                                                                 <asp:TextBox ID="txbPorApellido" runat="server" AutoPostBack="True" OnTextChanged="txbPorApellido_TextChanged"></asp:TextBox></td>
                                                         </tr>
@@ -644,7 +654,7 @@
                                                 <div>
                                                     <table class="auto-style32">
                                                         <tr>
-                                                            <td class="auto-style36">Ingrese DNI del paciente:</td>
+                                                            <td class="auto-style45">Ingrese DNI:</td>
                                                             <td>
                                                                 <asp:TextBox ID="txbPorDNI" runat="server" OnTextChanged="txbPorDNI_TextChanged" AutoPostBack="True"></asp:TextBox></td>
                                                         </tr>
@@ -653,7 +663,7 @@
                                             </asp:View>
                                         </asp:MultiView>
                                         <div>
-                                    <asp:Label ID="lblEliminado" runat="server"></asp:Label>
+                                    <asp:Label ID="lblEliminado" runat="server" Font-Size="Large"></asp:Label>
                                             <asp:GridView ID="gvLecturaPaciente" runat="server" AllowPaging="true" PageSize="10" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Height="205px" Width="1027px" OnPageIndexChanging="GridView2_PageIndexChanging">
                                                 <AlternatingRowStyle BackColor="White" />
                                                 <Columns>
