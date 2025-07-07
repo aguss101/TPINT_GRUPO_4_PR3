@@ -62,12 +62,17 @@ namespace Datos
 
             }
             catch (Exception ex) { throw new Exception("Error al buscar medicos: " + ex.Message); }
+
+            foreach (Medico medico in medicos)
+            {
+              medico.SiglasDiashabiles = GetDiaHabilesDeMedico(medico.Legajo);
+            }
             return medicos;
         }
 
 
 
-
+        
 
         public int InsertarMedico(Medico medico, Usuario usuario)
         {
@@ -442,6 +447,45 @@ namespace Datos
                 int count = (int)cmd.ExecuteScalar();
                 return count > 0;
             }
+        }
+
+
+
+        public string GetDiaHabilesDeMedico(string legajo)
+        {
+            string query = "SELECT DiaSemana FROM Jornadas WHERE Legajo = @Legajo";
+            List<string> dias = new List<string>();
+
+            using (SqlConnection con = conexion.AbrirConexion())
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@Legajo", legajo);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string dia = reader.GetString(0);
+                        dias.Add(SiglasDias(dia));
+                    }
+                }
+            }
+
+            return string.Join(", ", dias);
+        }
+        public string SiglasDias(string diaCompleto)
+        {
+            switch (diaCompleto.ToLower())
+            {
+                case "lunes": return "L";
+                case "martes": return "M";
+                case "miércoles": return "MI";
+                case "jueves": return "J";
+                case "viernes": return "V";
+                case "sábado": return "S";
+                case "domingo": return "D";
+                default: return diaCompleto;
+            }
+
         }
 
     }

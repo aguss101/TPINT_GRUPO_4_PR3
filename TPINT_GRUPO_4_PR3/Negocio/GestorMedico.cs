@@ -18,5 +18,8 @@ namespace Negocio
         public List<Medico> FiltrarMedicoxApellido(string apellido) { return consultas.FiltrarMedicoxApellido(apellido); }
         public List<Medico> FiltrarMedicoxDNI(string DNI) { return consultas.FiltrarMedicoxDNI(DNI); }
         public List<Medico> FiltrarMedicoxLegajo(string legajo) { return consultas.FiltrarMedicoxLegajo(legajo); }
+
+        public string GetDiaHabilesDeMedico(string legajo) { return consultas.GetDiaHabilesDeMedico(legajo); }
+        private string SiglasDia(string diaCompleto) { return consultas.SiglasDias(diaCompleto); }
     }
 }

@@ -10,33 +10,38 @@
             font-family: Arial, sans-serif;
             height: 100%;
         }
+
         .container {
             display: flex;
             height: 100vh;
             border-radius: 25px;
         }
+
         .sidebar {
             width: 200px;
             background-color: #f4f4f4;
             padding: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
-        .sidebar h2 {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-        .sidebar .btn {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            text-align: left;
-        }
+
+            .sidebar h2 {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .sidebar .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 10px;
+                padding: 10px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                cursor: pointer;
+                border-radius: 4px;
+                text-align: left;
+            }
+
         .containerCartel {
             display: flex;
             flex-direction: row;
@@ -61,24 +66,29 @@
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
             margin-top: 4px;
         }
+
         .titulo-con-nombre {
             display: flex;
             flex-direction: column;
             align-items: flex-end; /* Alinea todo a la derecha */
         }
+
         .sidebar .btn:hover {
             background-color: #0056b3;
         }
+
         .main-content {
             flex-grow: 1;
             padding: 30px;
             background-color: #fff;
         }
+
         .header {
             font-size: 22px;
             font-weight: bold;
             margin-bottom: 20px;
         }
+
         .content-box {
             padding: 20px;
             border: 1px solid #ddd;
@@ -86,26 +96,32 @@
             background-color: #fafafa;
             min-height: 300px;
         }
+
         .tablaDiv {
             width: 100%;
             height: 100%;
         }
+
         .no-select {
             user-select: none;
         }
+
         .columnaIndex {
             width: 157px;
             background-color: #ffffff;
             height: 100%;
         }
+
         .auto-style3 {
             width: 100%;
             height: 100%;
         }
+
         .auto-style4 {
             width: 151px;
             height: 310px;
         }
+
         .columnaIndex-PanelAdmin {
             width: 151px;
             text-align: center;
@@ -113,12 +129,14 @@
             font-weight: bold;
             height: 80px;
         }
+
         .columnaBody {
             background-color: #e6e6e6;
             padding: 0px 30px 30px 30px;
             font-weight: normal;
             height: 100%;
         }
+
         .btn-index {
             background-color: white;
             color: #595959;
@@ -132,185 +150,225 @@
             height: 100%;
             transition: background-color 0.3s, color 0.3s;
         }
+
         .td-btn-index {
             width: 151px;
             height: 10px;
         }
+
         .btn-index:hover {
             background-color: #4da9ff;
             color: white;
             border-color: #4da9ff;
         }
+
         .hl-CerrarSesion {
             width: 151px;
             height: 26px;
             text-align: center;
         }
+
         .nombre-clinica {
             text-align: right;
         }
+
         .clinica {
             color: #666666;
             font-weight: bold;
         }
+
         .frgp {
             color: #00aaff;
             font-weight: bold;
         }
+
         .botonera {
             width: 100%;
             padding: 0;
         }
-        .botonera .btn-td {
-            display: inline;
-            width: 20%;
-            margin-bottom: 10px; /* espacio entre botones */
-            box-sizing: border-box;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 6px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
-        .botonera .btn-td:hover {
-            background-color: #0056b3;
-        }
+
+            .botonera .btn-td {
+                display: inline;
+                width: 20%;
+                margin-bottom: 10px; /* espacio entre botones */
+                box-sizing: border-box;
+                padding: 10px;
+                font-size: 16px;
+                border-radius: 6px;
+                border: none;
+                background-color: #007bff;
+                color: white;
+                cursor: pointer;
+            }
+
+                .botonera .btn-td:hover {
+                    background-color: #0056b3;
+                }
+
         .auto-style10 {
             width: 100%;
             height: 100%;
             margin-top: 0px;
         }
+
         .auto-style22 {
             text-align: right;
             height: 26px;
         }
+
         .auto-style28 {
             user-select: none;
             width: 34px;
         }
+
         .auto-style31 {
             user-select: none;
             width: 34px;
             height: 24px;
         }
+
         .auto-style32 {
             user-select: none;
             height: 24px;
             width: 329px;
         }
+
         .auto-style33 {
             user-select: none;
             width: 196px;
             height: 34px;
         }
+
         .auto-style34 {
             user-select: none;
             height: 51px;
         }
+
         .auto-style35 {
             user-select: none;
             width: 34px;
             height: 51px;
         }
+
         .auto-style37 {
             user-select: none;
             width: 196px;
         }
+
         .auto-style38 {
             user-select: none;
             height: 34px;
         }
+
         .auto-style39 {
             user-select: none;
             width: 34px;
             height: 34px;
         }
+
         .auto-style41 {
             user-select: none;
             width: 34px;
             height: 18px;
         }
+
         .auto-style43 {
             width: 100%;
             padding: 0;
             height: 18px;
         }
+
         .auto-style44 {
             width: 100%;
         }
+
         .auto-style46 {
             width: 1397px;
         }
+
         .auto-style49 {
             width: 190px;
             height: 22px;
         }
+
         .auto-style50 {
             height: 22px;
         }
+
         .auto-style51 {
             width: 190px;
         }
+
         .auto-style52 {
             user-select: none;
             height: 24px;
             width: 1136px;
         }
+
         .auto-style56 {
             user-select: none;
             height: 29px;
             width: 196px;
         }
+
         .auto-style57 {
             user-select: none;
             height: 29px;
             width: 1136px;
         }
+
         .auto-style58 {
             user-select: none;
             width: 34px;
             height: 29px;
         }
+
         .auto-style62 {
             user-select: none;
             height: 25px;
             width: 196px;
         }
+
         .auto-style63 {
             user-select: none;
             height: 25px;
             width: 1136px;
         }
+
         .auto-style64 {
             user-select: none;
             height: 25px;
             width: 34px;
         }
+
         .auto-style68 {
             user-select: none;
             height: 30px;
             width: 196px;
         }
+
         .auto-style69 {
             user-select: none;
             height: 30px;
             width: 1136px;
         }
+
         .auto-style70 {
             user-select: none;
             width: 34px;
             height: 30px;
         }
+
         .auto-style71 {
             user-select: none;
             width: 347px;
             height: 51px;
         }
+
         .auto-style72 {
             width: 132px;
         }
+
         .auto-style73 {
             width: 128px;
         }
@@ -375,7 +433,7 @@
                                 <asp:Button ID="btnMod" runat="server" Text="Modificar" CssClass="btn-td" OnClick="btnMod_Click" />
                                 <asp:Button ID="btnLectura" runat="server" Text="Listar" CssClass="btn-td" OnClick="btnLectura_Click" />
                                 <asp:Button ID="btnJornadas" runat="server" Text="Jornadas" CssClass="btn-td" OnClick="btnJornadas_Click" Visible="False" />
-                                </td>
+                            </td>
                             <td class="auto-style41"></td>
                         </tr>
                         <tr>
@@ -388,7 +446,7 @@
                                                 <tr>
                                                     <td class="auto-style32">Legajo:</td>
                                                     <td class="auto-style52">
-                                                        <asp:TextBox ID="txbLegajo"  runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="txbLegajo" runat="server"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txbLegajo" ErrorMessage="* Campo obligatorio" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
                                                         <asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txbLegajo" Display="Dynamic" ErrorMessage="* El legajo debe iniciar con 'M' y tener tres números (ej. M123). " ForeColor="Red" ValidationExpression="^M\d{3}$$" ValidationGroup="AltaMedico" />
                                                         <asp:CustomValidator ID="cvLegajo" runat="server" ControlToValidate="txbLegajo" Display="Dynamic" ErrorMessage="El legajo ya existe" ForeColor="Red" OnServerValidate="cvLegajo_ServerValidate" ValidateEmptyText="true" ValidationGroup="AltaMedico" />
@@ -409,7 +467,7 @@
                                                     <td class="auto-style52">
                                                         <asp:TextBox ID="txbNombre" runat="server"> </asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="rfvnombre" runat="server" ControlToValidate="txbNombre" ErrorMessage="* Campo obligatorio" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
-                                                        <asp:RegularExpressionValidator ID="revnombre" runat="server" ControlToValidate="txbNombre" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$"  ErrorMessage="* Solo letras" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
+                                                        <asp:RegularExpressionValidator ID="revnombre" runat="server" ControlToValidate="txbNombre" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$" ErrorMessage="* Solo letras" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
                                                     </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
@@ -417,9 +475,9 @@
                                                     <td class="auto-style32">Apellido:</td>
                                                     <td class="auto-style52">
                                                         <asp:TextBox ID="txbApellido" runat="server"> </asp:TextBox>
-                                                            <asp:RequiredFieldValidator ID="rfvapellido" runat="server" ControlToValidate="txbApellido" ErrorMessage="* Campo obligatorio" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
-                                                        <asp:RegularExpressionValidator ID="revapellido" runat="server" ControlToValidate="txbApellido" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$"  ErrorMessage="* Solo letras" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
-                                                     </td>
+                                                        <asp:RequiredFieldValidator ID="rfvapellido" runat="server" ControlToValidate="txbApellido" ErrorMessage="* Campo obligatorio" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
+                                                        <asp:RegularExpressionValidator ID="revapellido" runat="server" ControlToValidate="txbApellido" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$" ErrorMessage="* Solo letras" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
+                                                    </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
                                                 <tr>
@@ -450,7 +508,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style32">Nacionalidad:</td>
-                                                    <td class="auto-style52"> <br />
+                                                    <td class="auto-style52">
+                                                        <br />
                                                         <asp:DropDownList ID="ddlNacionalidad" runat="server" DataSourceID="dbNacionalidades" DataTextField="nombrePais" DataValueField="gentilicio"></asp:DropDownList>
                                                         <asp:RequiredFieldValidator ID="rfvpais" runat="server" ControlToValidate="ddlNacionalidad" InitialValue="" ErrorMessage="* Seleccione un país" Display="Dynamic" ForeColor="Red" ValidationGroup="AltaMedico" />
                                                         <asp:SqlDataSource ID="dbNacionalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT * FROM [Paises]"></asp:SqlDataSource>
@@ -459,7 +518,7 @@
                                                 <tr>
                                                     <td class="auto-style32">Provincia:</td>
                                                     <td class="auto-style52">
-                                                        <asp:DropDownList ID="ddlProvincia" runat="server" AutoPostBack="True" DataSourceID="dbProvincias" DataTextField="nombreProvincia" DataValueField="idProvincia" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"> </asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlProvincia" runat="server" AutoPostBack="True" DataSourceID="dbProvincias" DataTextField="nombreProvincia" DataValueField="idProvincia" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
                                                         <asp:RequiredFieldValidator ID="rfvprovincia" runat="server" ControlToValidate="ddlProvincia" InitialValue="" ErrorMessage="* Seleccione una provincia" Display="Dynamic" ForeColor="Red" ValidationGroup="AltaMedico" />
                                                         <asp:SqlDataSource ID="dbProvincias" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT idProvincia, nombreProvincia FROM Provincias"></asp:SqlDataSource>
                                                     </td>
@@ -469,7 +528,7 @@
                                                 <tr>
                                                     <td class="auto-style32">Localidad:</td>
                                                     <td class="auto-style52">
-                                                        <asp:DropDownList ID="ddlLocalidades" runat="server" DataSourceID="dbLocalidades" DataTextField="nombreLocalidad" DataValueField="idLocalidad"> </asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlLocalidades" runat="server" DataSourceID="dbLocalidades" DataTextField="nombreLocalidad" DataValueField="idLocalidad"></asp:DropDownList>
                                                         <asp:RequiredFieldValidator ID="rfvlocalidades" runat="server" ControlToValidate="ddlLocalidades" InitialValue="" ErrorMessage="* Seleccione una localidad" Display="Dynamic" ForeColor="Red" ValidationGroup="AltaMedico" />
                                                         <asp:SqlDataSource ID="dbLocalidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT idLocalidad, nombreLocalidad FROM Localidades WHERE idProvincia = @idProvincia">
                                                             <SelectParameters>
@@ -487,16 +546,16 @@
                                                         <asp:RequiredFieldValidator ID="rfvdireccion" runat="server" ControlToValidate="txbDireccion" ErrorMessage="* Campo obligatorio" Display="Dynamic" ForeColor="Red" ValidationGroup="AltaMedico" />
                                                         <asp:RegularExpressionValidator ID="revdireccion" runat="server" ControlToValidate="txbDireccion" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 ]+$" ErrorMessage="* Formato inválido" Display="Dynamic" ForeColor="Red" ValidationGroup="AltaMedico" />
                                                     </td>
-                                                    <td class="auto-style70"></td>  
+                                                    <td class="auto-style70"></td>
                                                     <td class="auto-style70"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style56">Correo:</td>
                                                     <td class="auto-style57">
                                                         <asp:TextBox ID="txbCorreo" runat="server"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfvcorreo" runat="server" ControlToValidate="txbCorreo" ErrorMessage="* Campo obligatorio" Display="Dynamic" ForeColor="Red" ValidationGroup="AltaMedico" />
-                                                    <asp:RegularExpressionValidator ID="revcorreo" runat="server" ControlToValidate="txbCorreo" ValidationExpression="^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$" ErrorMessage="* Formato inválido" Display="Dynamic" ForeColor="Red" ValidationGroup="AltaMedico" />
-                                                        </td>
+                                                        <asp:RequiredFieldValidator ID="rfvcorreo" runat="server" ControlToValidate="txbCorreo" ErrorMessage="* Campo obligatorio" Display="Dynamic" ForeColor="Red" ValidationGroup="AltaMedico" />
+                                                        <asp:RegularExpressionValidator ID="revcorreo" runat="server" ControlToValidate="txbCorreo" ValidationExpression="^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$" ErrorMessage="* Formato inválido" Display="Dynamic" ForeColor="Red" ValidationGroup="AltaMedico" />
+                                                    </td>
                                                     <td class="auto-style58"></td>
                                                 </tr>
                                                 <tr>
@@ -514,7 +573,7 @@
                                                     <td class="auto-style63">
                                                         <asp:TextBox ID="txbUsuario" runat="server"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="rfvusuario" runat="server" ControlToValidate="txbUsuario" ErrorMessage="* Campo obligatorio" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
-                                                        <asp:RegularExpressionValidator ID="revusuario" runat="server" ControlToValidate="txbUsuario" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$"  ErrorMessage="* Solo letras" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
+                                                        <asp:RegularExpressionValidator ID="revusuario" runat="server" ControlToValidate="txbUsuario" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$" ErrorMessage="* Solo letras" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
                                                         &nbsp;
                                                         <asp:CustomValidator ID="cvNombreUsuario" runat="server" ControlToValidate="txbUsuario" OnServerValidate="cvNombreUsuario_ServerValidate" ErrorMessage="El nombre de usuario ya existe" ForeColor="Red" Display="Dynamic" ValidateEmptyText="true" ValidationGroup="AltaMedico" />
                                                     </td>
@@ -525,24 +584,23 @@
                                                     <td class="auto-style57">
                                                         <asp:TextBox ID="txbContrasenia" runat="server" TextMode="Password"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="rfvcontrasenia" runat="server" ControlToValidate="txbContrasenia" ErrorMessage="* Campo obligatorio" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
-                                                        </td>
+                                                    </td>
                                                     <td class="auto-style58"></td>
                                                 </tr>
                                                 <tr>
-                                                <td class="auto-style56">Repetir Contraseña</td>
-                                                <td class="auto-style57">
-                                                    <asp:TextBox ID="txbRepContrasenia" runat="server" TextMode="Password"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfvrepcontrasenia" runat="server" ControlToValidate="txbRepContrasenia" ErrorMessage="* Campo obligatorio" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
-                                                    <asp:CompareValidator ID="cvContrasenias" runat="server" ControlToCompare="txbContrasenia" ControlToValidate="txbRepContrasenia" ErrorMessage="Las contraseñas no coinciden" ForeColor="Red" Operator="Equal" Type="String" Display="Dynamic" ValidationGroup="AltaMedico" />    
-                                                </td>
-                                                <td class="auto-style58"></td>
+                                                    <td class="auto-style56">Repetir Contraseña</td>
+                                                    <td class="auto-style57">
+                                                        <asp:TextBox ID="txbRepContrasenia" runat="server" TextMode="Password"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvrepcontrasenia" runat="server" ControlToValidate="txbRepContrasenia" ErrorMessage="* Campo obligatorio" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
+                                                        <asp:CompareValidator ID="cvContrasenias" runat="server" ControlToCompare="txbContrasenia" ControlToValidate="txbRepContrasenia" ErrorMessage="Las contraseñas no coinciden" ForeColor="Red" Operator="Equal" Type="String" Display="Dynamic" ValidationGroup="AltaMedico" />
+                                                    </td>
+                                                    <td class="auto-style58"></td>
 
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style32">
-                                                        <asp:Button ID="btnRegistrarMedico" runat="server" Text="Registrar medico" Width="188px" OnClick="btnRegistrarMedico_Click" ValidationGroup="AltaMedico" CausesValidation="True"/></td>
-                                                    <td class="auto-style52">
-                                                        &nbsp;</td>
+                                                        <asp:Button ID="btnRegistrarMedico" runat="server" Text="Registrar medico" Width="188px" OnClick="btnRegistrarMedico_Click" ValidationGroup="AltaMedico" CausesValidation="True" /></td>
+                                                    <td class="auto-style52">&nbsp;</td>
                                                     <td class="auto-style31">&nbsp;</td>
                                                 </tr>
                                             </table>
@@ -626,7 +684,7 @@
                                                         <asp:RequiredFieldValidator ID="rfvModFechaNac" runat="server" ControlToValidate="txtbModFechaNac" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="ModMedico" />
                                                         <asp:RegularExpressionValidator ID="revModFechaNac" runat="server" ControlToValidate="txtbModFechaNac" Display="Dynamic" ErrorMessage="* Formato inválido (YYYY-MM-DD)" ForeColor="Red" ValidationExpression="^\d{4}-\d{2}-\d{2}$" ValidationGroup="ModMedico" />
                                                     </td>
-                                                        
+
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style51">Sexo:</td>
@@ -661,7 +719,7 @@
                                                                 <asp:ControlParameter Name="idProvincia" ControlID="ddlModProvincia" PropertyName="SelectedValue" />
                                                             </SelectParameters>
                                                         </asp:SqlDataSource>
-                                                        
+
                                                     </td>
                                                     <td>&nbsp;</td>
                                                 </tr>
@@ -724,15 +782,15 @@
                                     </asp:View>
                                     <asp:View ID="vwLectura" runat="server">
                                         <h3>Listar Médico</h3>
-                                         <div class="div-ddl">
-                                             <h3 class="auto-style71" style="margin: 0;">Seleccione una búsqueda o filtro:</h3>
-                                             <asp:DropDownList ID="ddlBusqueda_Medicos" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlBusqueda_Medicos_SelectedIndexChanged">
-                                                 <asp:ListItem Text="--Seleccione una búsqueda o filtro--" Value="-1" Selected="True" />
-                                                 <asp:ListItem>Búsqueda por Apellido</asp:ListItem>
-                                                 <asp:ListItem>Búsqueda por DNI</asp:ListItem>
-                                                 <asp:ListItem>Búsqueda por Legajo</asp:ListItem>
-                                             </asp:DropDownList>
-                                         </div>
+                                        <div class="div-ddl">
+                                            <h3 class="auto-style71" style="margin: 0;">Seleccione una búsqueda o filtro:</h3>
+                                            <asp:DropDownList ID="ddlBusqueda_Medicos" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlBusqueda_Medicos_SelectedIndexChanged">
+                                                <asp:ListItem Text="--Seleccione una búsqueda o filtro--" Value="-1" Selected="True" />
+                                                <asp:ListItem>Búsqueda por Apellido</asp:ListItem>
+                                                <asp:ListItem>Búsqueda por DNI</asp:ListItem>
+                                                <asp:ListItem>Búsqueda por Legajo</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
                                         <div>
                                             <asp:MultiView ID="mwBusqueda" runat="server">
                                                 <asp:View ID="vwPorApellido" runat="server">
@@ -769,12 +827,13 @@
                                                     </div>
                                                 </asp:View>
                                             </asp:MultiView>
-                                            <asp:GridView ID="gvLecturaMedico" runat="server" AllowPaging="true" PageSize="10" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Style="margin-right: 0px" OnPageIndexChanging="gvLecturaMedico_PageIndexChanging">
+                                            <asp:GridView ID="gvLecturaMedico" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Style="margin-right: 0px" OnPageIndexChanging="gvLecturaMedico_PageIndexChanging" >
                                                 <AlternatingRowStyle BackColor="White" />
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Seleccionar">
                                                         <ItemTemplate>
-                                                            <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="true" OnCheckedChanged="chkSeleccionar_CheckedChanged" /></ItemTemplate>
+                                                            <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="true" OnCheckedChanged="chkSeleccionar_CheckedChanged" />
+                                                        </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:BoundField DataField="Legajo" HeaderText="Legajo" />
                                                     <asp:BoundField DataField="DNI" HeaderText="DNI" />
@@ -789,6 +848,7 @@
                                                     <asp:BoundField DataField="Localidades.nombreLocalidad" HeaderText="Localidad" />
                                                     <asp:BoundField DataField="correo" HeaderText="Correo" />
                                                     <asp:BoundField DataField="telefono" HeaderText="Telefono" />
+                                                    <asp:BoundField DataField="SiglasDiasHabiles" HeaderText="Dias Habiles" />
                                                 </Columns>
                                                 <EditRowStyle BackColor="#2461BF" />
                                                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -808,19 +868,17 @@
                             <td class="auto-style41"></td>
                         </tr>
                         <tr>
-                            <td class="auto-style43" colspan="2">
-                                &nbsp;</td>
+                            <td class="auto-style43" colspan="2">&nbsp;</td>
                             <td class="auto-style41">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="auto-style43" colspan="2">
-                                &nbsp;</td>
+                            <td class="auto-style43" colspan="2">&nbsp;</td>
                             <td class="auto-style41">&nbsp;</td>
                         </tr>
                         <tr>
                             <td class="auto-style33">
                                 <h3>
-                                                        <asp:Label ID="lblAddUserState" runat="server" Visible="False"></asp:Label></h3>
+                                    <asp:Label ID="lblAddUserState" runat="server" Visible="False"></asp:Label></h3>
                             </td>
                             <td class="auto-style38"></td>
                             <td class="auto-style39"></td>

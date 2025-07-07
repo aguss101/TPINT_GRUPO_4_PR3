@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using Entidades;
 using Negocio;
@@ -228,10 +229,15 @@ namespace Vistas.admin
             List<Medico> listaMedicos = new GestorMedico().GetMedicos();
             gvLecturaMedico.DataSource = listaMedicos;
             gvLecturaMedico.DataBind();
+
+
             btnMod.Visible = false;
             btnBaja.Visible = false;
             btnJornada.Visible = false;
         }
+
+
+
         protected void btnRegistrarMedico_Click(object sender, EventArgs e)
         {
             if (Page.IsValid) { InsertarMedicos(); }
@@ -377,6 +383,8 @@ namespace Vistas.admin
             lblAddJornada.ForeColor = System.Drawing.Color.Green;
             lblAddJornada.Text = "Jornada Actualizada";
             lblAddJornada.Visible = true;
+
+            loadGridMedicos();
         }
 
         protected void btnJornadas_Click(object sender, EventArgs e)
