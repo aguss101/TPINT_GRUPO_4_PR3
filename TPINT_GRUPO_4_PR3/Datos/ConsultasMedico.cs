@@ -479,10 +479,10 @@ namespace Datos
             {
                 case "lunes": return "L";
                 case "martes": return "M";
-                case "miércoles": return "MI";
+                case "miercoles": return "MI";
                 case "jueves": return "J";
                 case "viernes": return "V";
-                case "sábado": return "S";
+                case "sabado": return "S";
                 case "domingo": return "D";
                 default: return diaCompleto;
             }

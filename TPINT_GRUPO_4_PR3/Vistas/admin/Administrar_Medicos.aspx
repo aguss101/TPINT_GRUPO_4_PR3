@@ -619,10 +619,10 @@
                                                     <asp:CheckBoxList ID="cblDias" runat="server" RepeatDirection="Horizontal" Width="387px">
                                                         <asp:ListItem>Lunes</asp:ListItem>
                                                         <asp:ListItem>Martes</asp:ListItem>
-                                                        <asp:ListItem>Míercoles</asp:ListItem>
+                                                        <asp:ListItem Value="Miercoles">Miercoles</asp:ListItem>
                                                         <asp:ListItem>Jueves</asp:ListItem>
                                                         <asp:ListItem>Viernes</asp:ListItem>
-                                                        <asp:ListItem>Sábado</asp:ListItem>
+                                                        <asp:ListItem>Sabado</asp:ListItem>
                                                         <asp:ListItem>Domingo</asp:ListItem>
                                                     </asp:CheckBoxList>
                                                     <br />
