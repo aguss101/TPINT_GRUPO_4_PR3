@@ -378,7 +378,7 @@ namespace Vistas.admin
             }
             if (diasSeleccionados != null)
             {
-                gestorMedico.InsertarOActualizarJornadas(legajo, diasSeleccionados, hora);
+                gestorMedico.InsertarJornadasMedico(legajo, diasSeleccionados, hora);
             }
             lblAddJornada.ForeColor = System.Drawing.Color.Green;
             lblAddJornada.Text = "Jornada Actualizada";

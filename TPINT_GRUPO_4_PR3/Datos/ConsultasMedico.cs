@@ -65,14 +65,14 @@ namespace Datos
 
             foreach (Medico medico in medicos)
             {
-              medico.SiglasDiashabiles = GetDiaHabilesDeMedico(medico.Legajo);
+                medico.SiglasDiashabiles = GetDiaHabilesDeMedico(medico.Legajo);
             }
             return medicos;
         }
 
 
 
-        
+
 
         public int InsertarMedico(Medico medico, Usuario usuario)
         {
@@ -391,19 +391,12 @@ namespace Datos
         }
 
 
-        public int InsertarOActualizarJornadas(string legajo, List<string> diasLaborales, TimeSpan hora)
+        public int InsertarJornadasMedico(string legajo, List<string> diasLaborales, TimeSpan hora)
         {
-            const string sql = @"
-       
-            UPDATE Jornadas
-           SET rangoHorario = @RangoHorario
-            WHERE Legajo    = @Legajo
-            AND DiaSemana = @DiaSemana;
 
-       
-             IF @@ROWCOUNT = 0
-            INSERT INTO Jornadas (Legajo, DiaSemana, rangoHorario)
-                 VALUES          (@Legajo, @DiaSemana, @RangoHorario);";
+            string deleteQuery = @"DELETE FROM Jornadas WHERE Legajo = @Legajo;";
+            string query = @"INSERT INTO Jornadas (Legajo, DiaSemana, rangoHorario)
+                           VALUES (@Legajo, @DiaSemana, @RangoHorario);";
 
             try
             {
@@ -412,9 +405,16 @@ namespace Datos
                 {
                     try
                     {
+                        using (SqlCommand del = new SqlCommand(deleteQuery, con, tx))
+                        {
+                            del.Parameters.AddWithValue("@Legajo", legajo);
+                            del.ExecuteNonQuery();
+                        }
+
+
                         foreach (string dia in diasLaborales)
                         {
-                            using (SqlCommand cmd = new SqlCommand(sql, con, tx))
+                            using (SqlCommand cmd = new SqlCommand(query, con, tx))
                             {
                                 cmd.Parameters.AddWithValue("@Legajo", legajo);
                                 cmd.Parameters.AddWithValue("@DiaSemana", dia);
@@ -422,10 +422,11 @@ namespace Datos
                                 cmd.ExecuteNonQuery();
                             }
                         }
+
                         tx.Commit();
                         return 1;
                     }
-                    catch
+                    catch (Exception)
                     {
                         tx.Rollback();
                         throw;
@@ -434,7 +435,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al registrar/actualizar jornadas: " + ex.Message, ex);
+                throw new Exception("Error al insertar jornadas del médico: " + ex.Message, ex);
             }
         }
         public bool ExisteLegajo(string Legajo)
