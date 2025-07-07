@@ -320,6 +320,7 @@
                                         <asp:ListItem Text="--Seleccione una búsqueda--" Value="-1" Selected="True" />
                                         <asp:ListItem>Apellido</asp:ListItem>
                                         <asp:ListItem>DNI</asp:ListItem>
+                                        <asp:ListItem>Estado</asp:ListItem>
                                         <asp:ListItem>Fecha</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
@@ -335,7 +336,8 @@
                                                 <tr>
                                                     <td class="auto-style36">Ingrese apellido del paciente:</td>
                                                     <td>
-                                                        <asp:TextBox ID="txbPorApellido" runat="server" AutoPostBack="True" OnTextChanged="txbPorApellido_TextChanged"></asp:TextBox></td>
+                                                        <asp:TextBox ID="txbPorApellido" runat="server" AutoPostBack="True" OnTextChanged="txbPorApellido_TextChanged"></asp:TextBox>
+                                                    </td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -346,40 +348,36 @@
                                                 <tr>
                                                     <td class="auto-style36">Ingrese DNI del paciente:</td>
                                                     <td>
-                                                        <asp:TextBox ID="txbPorDNI" runat="server" OnTextChanged="txbPorDNI_TextChanged"></asp:TextBox></td>
+                                                        <asp:TextBox ID="txbPorDNI" runat="server" OnTextChanged="txbPorDNI_TextChanged"></asp:TextBox>
+                                                    </td>
                                                 </tr>
                                             </table>
                                         </div>
                                     </asp:View>
+                                    <asp:View ID="vwEstado" runat="server">
+                                        <asp:DropDownList ID="ddlEstados" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlEstados_SelectedIndexChanged">
+                                            <asp:ListItem>-- Seleccionar --</asp:ListItem>
+                                            <asp:ListItem>PRESENTE</asp:ListItem>
+                                            <asp:ListItem>AUSENTE</asp:ListItem>
+                                            <asp:ListItem>PENDIENTE</asp:ListItem>
+                                            <asp:ListItem>CANCELADO</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </asp:View>
                                     <asp:View ID="vwPorFecha" runat="server">
                                         <div>
-                                            <table class="auto-style32">
-                                                <tr>
-                                                    <td class="auto-style38">
-                                                        <h3>Seleccione una fecha</h3>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:Calendar ID="calendarMedico" runat="server" BackColor="White" BorderColor="Black" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" OnSelectionChanged="calendarMedico_SelectionChanged" SelectedDate="06/26/2025 16:42:26" TitleFormat="Month" Width="400px">
-                                                            <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" ForeColor="#333333" Height="10pt" />
-                                                            <DayStyle Width="14%" />
-                                                            <NextPrevStyle Font-Size="8pt" ForeColor="White" />
-                                                            <OtherMonthDayStyle ForeColor="#999999" />
-                                                            <SelectedDayStyle BackColor="#CC3333" ForeColor="White" />
-                                                            <SelectorStyle BackColor="#CCCCCC" Font-Bold="True" Font-Names="Verdana" Font-Size="8pt" ForeColor="#333333" Width="1%" />
-                                                            <TitleStyle BackColor="Black" Font-Bold="True" Font-Size="13pt" ForeColor="White" Height="14pt" />
-                                                            <TodayDayStyle BackColor="#CCCC99" />
-                                                        </asp:Calendar>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>&nbsp;</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>&nbsp;</td>
-                                                </tr>
-                                            </table>
+                                            Seleccione una fecha<br />
+                                            <br />
+                                            <asp:Calendar ID="calendarMedico" runat="server" BackColor="White" BorderColor="Black" DayNameFormat="Shortest" Font-Names="Times New Roman" Font-Size="10pt" ForeColor="Black" Height="220px" NextPrevFormat="FullMonth" OnSelectionChanged="calendarMedico_SelectionChanged" SelectedDate="06/26/2025 16:42:26" TitleFormat="Month" Width="400px">
+                                                <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" ForeColor="#333333" Height="10pt" />
+                                                <DayStyle Width="14%" />
+                                                <NextPrevStyle Font-Size="8pt" ForeColor="White" />
+                                                <OtherMonthDayStyle ForeColor="#999999" />
+                                                <SelectedDayStyle BackColor="#CC3333" ForeColor="White" />
+                                                <SelectorStyle BackColor="#CCCCCC" Font-Bold="True" Font-Names="Verdana" Font-Size="8pt" ForeColor="#333333" Width="1%" />
+                                                <TitleStyle BackColor="Black" Font-Bold="True" Font-Size="13pt" ForeColor="White" Height="14pt" />
+                                                <TodayDayStyle BackColor="#CCCC99" />
+                                            </asp:Calendar>
+                                            <br />
                                         </div>
                                     </asp:View>
                                 </asp:MultiView></td>
@@ -388,6 +386,24 @@
                         </tr>
                         <tr>
                             <td class="botonera" colspan="2">
+                                
+                                            <table class="auto-style32">
+                                                <tr>
+                                                    <td class="auto-style38">
+                                                        <h3>&nbsp;</h3>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        &nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                            </table>
                                 
                                 <asp:GridView ID="gvTurnos" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" CssClass="table" DataKeyNames="Legajo,FechaPactada,observacion,diagnostico" ForeColor="Black" GridLines="Horizontal" OnPageIndexChanging="gvTurnos_PageIndexChanging" Width="976px">
                                     <Columns>

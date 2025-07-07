@@ -12,6 +12,8 @@ namespace Negocio
         public List<Turno> GetTurnos() { return consultas.GetTurnosAdmin(); }
         public List<Turno> GetTurnosMedico(string legajo, DateTime? fechaSelected) { return consultas.GetTurnosMedico(legajo, fechaSelected); }
         public List<Turno> GetTurnosOrdX(string query) { return consultas.GetTurnosOrdX(query); }
+
+        public DataTable FiltradoTurnosMedico(string estadoTurno, string legajo) { return consultas.FiltradoTurnosMedico(estadoTurno, legajo); }
         public List<Turno> FiltrarPacientexApellido(string legajo, string apellidoSelected) { return consultas.FiltrarPacientexApellido(legajo, apellidoSelected); }
 
         public List<Turno> FiltrarPacientexDNI(string legajo, string dniPaciente) { return consultas.FiltrarPacientexDNI(legajo, dniPaciente); }

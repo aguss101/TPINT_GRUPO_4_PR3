@@ -315,5 +315,26 @@ namespace Datos
             };
             return conexion.EjecutarComandoConParametros(query, parametros);
         }
+
+        public DataTable FiltradoTurnosMedico(string estadoTurno, string legajo)
+        {
+
+            const string query = @"
+        SELECT *
+        FROM   vw_TurnosConDatos
+        WHERE  Legajo = @Legajo
+          AND (@Estado IS NULL OR EstadoDescripcion = @Estado)
+        ORDER BY DNIPaciente DESC, fechaPactada, Legajo;";
+
+            var parametros = new[]
+            {
+        new SqlParameter("@Legajo",  legajo),                          // médico
+        new SqlParameter("@Estado",                                     // nombre del estado o NULL
+            string.IsNullOrWhiteSpace(estadoTurno) ? DBNull.Value
+                                                   : (object)estadoTurno)
+    };
+
+            return conexion.EjecutarConsultaConParametros(query, parametros);
+        }
     }
 }

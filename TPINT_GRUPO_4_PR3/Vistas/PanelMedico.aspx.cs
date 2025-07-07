@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Web.UI.WebControls;
 using Entidades;
 using Negocio;
@@ -14,6 +15,7 @@ namespace Vistas
             if (!IsPostBack)
             {
                 lblUser.Text = Session["User"].ToString();
+                ddlEstados.SelectedValue = Session["EstadoDescripcion"] as string ?? "TODOS";
                 cargarTurnosAll();
             }
         }
@@ -39,6 +41,7 @@ namespace Vistas
         {
             string Legajo = Session["LegajoMedico"].ToString();
             string apellidoSelected = Session["apellidoPaciente"].ToString();
+            string estado = Session["EstadoDescripcion"].ToString();
 
             gvTurnos.DataSource = gestorturnos.FiltrarPacientexApellido(Legajo, apellidoSelected);
             gvTurnos.DataBind();
@@ -116,6 +119,9 @@ namespace Vistas
                 case 3:
                     mwBusqueda.ActiveViewIndex = 2;
                     break;
+                case 4:
+                    mwBusqueda.ActiveViewIndex = 3;
+                    break;
                 default:
                     mwBusqueda.ActiveViewIndex = -1;
                     break;
@@ -166,6 +172,22 @@ namespace Vistas
                 }
             }
             cargarTurnosAll();
+        }
+
+        protected void ddlEstados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string legajo = Session["LegajoMedico"] as string;
+            if (string.IsNullOrEmpty(legajo))
+            {
+                Debug.WriteLine(legajo, "medico");
+                return;
+            }
+
+            string estado = ddlEstados.SelectedValue;
+            if (estado == "TODOS") estado = null;
+
+            gvTurnos.DataSource = gestorturnos.FiltradoTurnosMedico(estado, legajo);
+            gvTurnos.DataBind();
         }
     }
 }

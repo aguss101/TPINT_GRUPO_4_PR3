@@ -21,7 +21,7 @@ namespace Vistas
             usuarios = gestorUsuario.GetUsuarios();
             foreach (Usuario usuario in usuarios)
             {
-                if (usuario.NombreUsuario == txbUser.Text.ToLower() && usuario.contrasenia == TxbPassword.Text.ToLower())
+                if (usuario.NombreUsuario.ToLower() == txbUser.Text.ToLower() && usuario.contrasenia.ToLower() == TxbPassword.Text.ToLower())
                 {
                     Session["User"] = usuario.NombreUsuario;
 
