@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-
 using Entidades;
 
 namespace Datos
@@ -65,6 +64,10 @@ namespace Datos
             catch (Exception ex) { throw new Exception("Error al buscar medicos: " + ex.Message); }
             return medicos;
         }
+
+
+
+
 
         public int InsertarMedico(Medico medico, Usuario usuario)
         {
@@ -136,6 +139,8 @@ namespace Datos
             }
             catch (Exception ex) { throw new Exception("Error al insertar medico: " + ex.Message); }
         }
+
+
 
         public int EliminarMedico(string dni)
         {
@@ -379,5 +384,60 @@ namespace Datos
             catch (Exception ex) { throw new Exception("Error al cargar turnos por legajo: " + ex.Message); }
             return medico;
         }
+
+
+        public int insertarJornadasMedico(string legajo, List<string> diasLaborales, TimeSpan hora)
+        {
+
+            string deleteQuery = @"DELETE FROM Jornadas WHERE Legajo = @Legajo;";
+            string query = @"INSERT INTO Jornadas (Legajo, DiaSemana, rangoHorario)
+                           VALUES (@Legajo, @DiaSemana, @RangoHorario);";
+
+            try
+            {
+                using (SqlConnection con = conexion.AbrirConexion())
+                using (SqlTransaction tx = con.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand del = new SqlCommand(deleteQuery, con, tx))
+                        {
+                            del.Parameters.AddWithValue("@Legajo", legajo);
+                            del.ExecuteNonQuery();
+                        }
+
+
+                        foreach (string dia in diasLaborales)
+                        {
+                            using (SqlCommand cmd = new SqlCommand(query, con, tx))
+                            {
+                                cmd.Parameters.AddWithValue("@Legajo", legajo);
+                                cmd.Parameters.AddWithValue("@DiaSemana", dia);
+                                cmd.Parameters.AddWithValue("@RangoHorario", hora);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        tx.Commit();
+                        return 1;
+                    }
+                    catch (Exception)
+                    {
+                        tx.Rollback();
+                        throw;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al insertar jornadas del médico: " + ex.Message, ex);
+            }
+        }
+
     }
+
+
+
+
+
 }

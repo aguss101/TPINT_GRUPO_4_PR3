@@ -373,6 +373,7 @@
                                 <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" CssClass="btn-td" OnClick="btnBaja_Click" OnClientClick="return confirm('¿Está seguro que desea dar de baja el medico?');" />
                                 <asp:Button ID="btnMod" runat="server" Text="Modificar" CssClass="btn-td" OnClick="btnMod_Click" />
                                 <asp:Button ID="btnLectura" runat="server" Text="Listar" CssClass="btn-td" OnClick="btnLectura_Click" />
+                                <asp:Button ID="btnJornadas" runat="server" Text="Jornadas" CssClass="btn-td" OnClick="btnJornadas_Click" Visible="False" />
                                 </td>
                             <td class="auto-style41"></td>
                         </tr>
@@ -542,9 +543,31 @@
                                             </table>
                                         </div>
                                     </asp:View>
-                                    <asp:View ID="vwBaja" runat="server">
-                                        <h3>Dar de baja Médico</h3>
-                                        <div></div>
+                                    <asp:View ID="vwJornadas" runat="server">
+                                        Gestionar Jornadas<table class="auto-style44">
+                                            <tr>
+                                                <td>
+                                                    <asp:TextBox ID="txbHorarioEntrada" runat="server" TextMode="Time"></asp:TextBox>
+                                                </td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <asp:CheckBoxList ID="cblDias" runat="server" RepeatDirection="Horizontal" Width="387px">
+                                                        <asp:ListItem>Lunes</asp:ListItem>
+                                                        <asp:ListItem>Martes</asp:ListItem>
+                                                        <asp:ListItem>Míercoles</asp:ListItem>
+                                                        <asp:ListItem>Jueves</asp:ListItem>
+                                                        <asp:ListItem>Viernes</asp:ListItem>
+                                                        <asp:ListItem>Sábado</asp:ListItem>
+                                                        <asp:ListItem>Domingo</asp:ListItem>
+                                                    </asp:CheckBoxList>
+                                                </td>
+                                                <td>
+                                                    <asp:Button ID="btnRegistrarJornada" runat="server" OnClick="btnRegistrarJornada_Click" Text="Registrar Jornada" />
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </asp:View>
                                     <asp:View ID="vwModificacion" runat="server">
                                         <h3>Modificar Medico</h3>
@@ -683,7 +706,9 @@
                                                     <td class="auto-style51">
                                                         <asp:Button ID="btnModificarMedico" runat="server" OnClick="btnModificarMedico_Click" Text="Modificar Medico" Width="188px" ValidationGroup="ModMedico" /></td>
                                                     <td class="auto-style46">
-                                                        <asp:Label ID="lblModificarMedico" runat="server" Visible="False"></asp:Label></td>
+                                                        <asp:Label ID="lblModificarMedico" runat="server" Visible="False"></asp:Label>
+                                                        <asp:Button ID="btnJornada" runat="server" OnClick="btnJornada_Click" Text="Ir a Jornadas" />
+                                                    </td>
                                                     <td>&nbsp;</td>
                                                 </tr>
                                             </table>
@@ -774,6 +799,16 @@
                                 </asp:MultiView>
                             </td>
                             <td class="auto-style41"></td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style43" colspan="2">
+                                &nbsp;</td>
+                            <td class="auto-style41">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style43" colspan="2">
+                                &nbsp;</td>
+                            <td class="auto-style41">&nbsp;</td>
                         </tr>
                         <tr>
                             <td class="auto-style33">

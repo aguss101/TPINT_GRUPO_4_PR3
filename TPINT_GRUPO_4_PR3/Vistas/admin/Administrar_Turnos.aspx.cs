@@ -21,6 +21,7 @@ namespace Vistas.admin
                 lblUser.Text = Session["User"] as string;
 
                 CargarTurnos();
+                CargarEspecialidades();
 
                 ddlMedico.Items.Clear();
                 ddlFecha.Items.Clear();
@@ -37,23 +38,16 @@ namespace Vistas.admin
         }
 
         protected void btnAdministrarMedicos_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/admin/Administrar_Medicos.aspx");
-        }
+        { Response.Redirect("/admin/Administrar_Medicos.aspx"); }
 
         protected void btnAdministrarPacientes_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/admin/Administrar_Pacientes.aspx");
-        }
+        { Response.Redirect("/admin/Administrar_Pacientes.aspx"); }
 
         protected void btnAdministrarTurnos_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/admin/Administrar_Turnos.aspx");
-        }
+        { Response.Redirect("/admin/Administrar_Turnos.aspx"); }
 
         protected void CargarTurnos()
         {
-
             gvTurnos.DataSource = gestorturnos.GetTurnos();
             gvTurnos.DataBind();
         }
@@ -265,6 +259,7 @@ namespace Vistas.admin
 
             switch (e.CommandArgument.ToString())
             {
+                case "Admin": Response.Redirect("/Admin.aspx"); break;
                 case "Medicos": Response.Redirect("/admin/Administrar_Medicos.aspx"); break;
                 case "Pacientes": Response.Redirect("/admin/Administrar_Pacientes.aspx"); break;
                 case "Turnos": Response.Redirect("/admin/Administrar_Turnos.aspx"); break;
@@ -366,6 +361,17 @@ namespace Vistas.admin
         {
             gvTurnos.PageIndex = e.NewPageIndex;
             CargarTurnos();
+        }
+
+        protected void CargarEspecialidades()
+        {
+            GestorTurnos gestorTurnos = new GestorTurnos();
+            ddlEspecialidad.DataSource = gestorTurnos.ObtenerEspecialidades();
+            ddlEspecialidad.DataTextField = "descripcion";
+            ddlEspecialidad.DataValueField = "idEspecialidad";
+            ddlEspecialidad.DataBind();
+
+            ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione una especialidad --", "0"));
         }
     }
 }

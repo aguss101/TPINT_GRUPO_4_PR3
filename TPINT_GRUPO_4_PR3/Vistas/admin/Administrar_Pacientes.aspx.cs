@@ -215,6 +215,7 @@ namespace Vistas.admin
         {
             switch (e.CommandArgument.ToString())
             {
+                case "Admin": Response.Redirect("/Admin.aspx"); break;
                 case "Medicos": Response.Redirect("/admin/Administrar_Medicos.aspx"); break;
                 case "Pacientes": Response.Redirect("/admin/Administrar_Pacientes.aspx"); break;
                 case "Turnos": Response.Redirect("/admin/Administrar_Turnos.aspx"); break;

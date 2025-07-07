@@ -105,6 +105,15 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.Button btnLectura;
 
         /// <summary>
+        /// Control btnJornadas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnJornadas;
+
+        /// <summary>
         /// Control mvFormularios.
         /// </summary>
         /// <remarks>
@@ -537,13 +546,40 @@ namespace Vistas.admin
         protected global::System.Web.UI.WebControls.Button btnRegistrarMedico;
 
         /// <summary>
-        /// Control vwBaja.
+        /// Control vwJornadas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View vwBaja;
+        protected global::System.Web.UI.WebControls.View vwJornadas;
+
+        /// <summary>
+        /// Control txbHorarioEntrada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbHorarioEntrada;
+
+        /// <summary>
+        /// Control cblDias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList cblDias;
+
+        /// <summary>
+        /// Control btnRegistrarJornada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRegistrarJornada;
 
         /// <summary>
         /// Control vwModificacion.
@@ -895,6 +931,15 @@ namespace Vistas.admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblModificarMedico;
+
+        /// <summary>
+        /// Control btnJornada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnJornada;
 
         /// <summary>
         /// Control vwLectura.

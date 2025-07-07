@@ -319,9 +319,8 @@
                                 <tr>
                                     <td class="auto-style32">Especialidad</td>
                                     <td class="auto-style39">
-                                        <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" DataSourceID="dbEspecialidades" DataTextField="descripcion" DataValueField="idEspecialidad" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" DataTextField="descripcion" DataValueField="idEspecialidad" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">
                                         </asp:DropDownList>
-                                        <asp:SqlDataSource ID="dbEspecialidades" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaDBConnectionGlobal %>" SelectCommand="SELECT * FROM [Especialidades]"></asp:SqlDataSource>
                                     </td>
                                     <td class="auto-style31"></td>
                                 </tr>

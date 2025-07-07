@@ -17,6 +17,7 @@ namespace Vistas.admin
                 lblUser.Text = Session["User"] as string;
                 btnMod.Visible = false;
                 btnBaja.Visible = false;
+
                 txbLegajo.Text = string.Empty;
                 setPlaceHolders();
             }
@@ -60,31 +61,10 @@ namespace Vistas.admin
             lblAddUserState.Text = "";
             lblAddUserState.Visible = false;
         }
-        protected void LimpiarFormularioAltaMedico()
-        {
-            txbNombre.Text = "";
-            txbApellido.Text = "";
-            txbDni.Text = "";
-            txbLegajo.Text = "";
-            txbCorreo.Text = "";
-            txbTelefono.Text = "";
-            txbDireccion.Text = "";
-            txbUsuario.Text = "";
-            txbfechanacimiento.Text = "";
 
-            ddlEspecialidad.ClearSelection();
-            ddlGenero.ClearSelection();
-            ddlNacionalidad.ClearSelection();
-            ddlProvincia.ClearSelection();
-            ddlLocalidades.ClearSelection();
-
-
-            lblAddUserState.Text = "";
-            lblAddUserState.Visible = false;
-        }
         protected void btnAlta_Click(object sender, EventArgs e)
         {
-            mvFormularios.ActiveViewIndex = 0;
+            mvFormularios.SetActiveView(vwAlta);
             LimpiarFormularioAltaMedico();
         }
         protected void btnBaja_Click(object sender, EventArgs e)
@@ -124,7 +104,7 @@ namespace Vistas.admin
                     lblAddUserState.Visible = false;
                     Session["DNI_VIEJO"] = medico.DNI;
                     Session["LEGAJO_VIEJO"] = medico.Legajo;
-                    mvFormularios.ActiveViewIndex = 2;
+                    mvFormularios.SetActiveView(vwModificacion);
                     txtbModMedicoDNI.Text = medico.DNI;
                     txtbModMedicoLegajo.Text = medico.Legajo.ToString();
                     txtbModMedicoNombre.Text = medico.nombre;
@@ -152,7 +132,7 @@ namespace Vistas.admin
         protected void btnLectura_Click(object sender, EventArgs e)
         {
             lblAddUserState.Visible = false;
-            mvFormularios.ActiveViewIndex = 3;
+            mvFormularios.SetActiveView(vwLectura);
             loadGridMedicos();
         }
         protected void InsertarMedicos()
@@ -266,6 +246,9 @@ namespace Vistas.admin
             List<Medico> listaMedicos = new GestorMedico().GetMedicos();
             gvLecturaMedico.DataSource = listaMedicos;
             gvLecturaMedico.DataBind();
+            btnMod.Visible = false;
+            btnBaja.Visible = false;
+            btnJornada.Visible = false;
         }
         protected void btnRegistrarMedico_Click(object sender, EventArgs e)
         {
@@ -282,12 +265,16 @@ namespace Vistas.admin
         }
         protected void btnModificarMedico_Click(object sender, EventArgs e)
         {
+
             ModificarMedico();
+
+
         }
         protected void navigateButton_Click(object sender, CommandEventArgs e)
         {
             switch (e.CommandArgument.ToString())
             {
+                case "Admin": Response.Redirect("/Admin.aspx"); break;
                 case "Medicos": Response.Redirect("/admin/Administrar_Medicos.aspx"); break;
                 case "Pacientes": Response.Redirect("/admin/Administrar_Pacientes.aspx"); break;
                 case "Turnos": Response.Redirect("/admin/Administrar_Turnos.aspx"); break;
@@ -296,14 +283,27 @@ namespace Vistas.admin
         }
         protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
         {
+            CheckBox chkActual = sender as CheckBox;
+
+            GridViewRow fila = (GridViewRow)chkActual.NamingContainer;
+
             foreach (GridViewRow row in gvLecturaMedico.Rows)
             {
                 if (row.FindControl("chkSeleccionar") is CheckBox chk && chk != sender)
-                { chk.Checked = false; }
+                {
+                    chk.Checked = false;
+
+
+                }
+
+                if (chkActual.Checked)
+                    Session["LegajoMedico"] = fila.Cells[1].Text.Trim();
+                else
+                    Session.Remove("LegajoMedico");
             }
-            btnMod.Visible = btnBaja.Visible = (sender as CheckBox)?.Checked == true;
+            btnMod.Visible = btnBaja.Visible = btnJornadas.Visible = (sender as CheckBox)?.Checked == true;
         }
-        protected void btnEliminar_Click(object sender, EventArgs e) { mvFormularios.ActiveViewIndex = 1; }
+
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e) { ddlLocalidades.DataBind(); }
         protected void ddlModProvincia_SelectedIndexChanged(object sender, EventArgs e) { ddlModLocalidad.DataBind(); }
         protected void gvLecturaMedico_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -373,5 +373,43 @@ namespace Vistas.admin
             txbPorLegajo.Text = "";
             cargarMedicosxLegajo();
         }
+
+        protected void btnJornada_Click(object sender, EventArgs e)
+        {
+            mvFormularios.SetActiveView(vwJornadas);
+        }
+
+        protected void btnRegistrarJornada_Click(object sender, EventArgs e)
+        {
+            List<string> diasSeleccionados = new List<string>();
+            string legajo = Session["LegajoMedico"] as string;
+            TimeSpan hora;
+            TimeSpan.TryParse(txbHorarioEntrada.Text, out hora);
+
+            Debug.WriteLine(legajo, "LEGAJO");
+
+
+            foreach (ListItem item in cblDias.Items)
+            {
+                if (item.Selected)
+                {
+                    Debug.WriteLine(item, "Dia");
+                    diasSeleccionados.Add(item.Text);
+                }
+
+
+            }
+            if (diasSeleccionados != null)
+            {
+                gestorMedico.insertarJornadasMedico(legajo, diasSeleccionados, hora);
+            }
+        }
+
+        protected void btnJornadas_Click(object sender, EventArgs e)
+        {
+
+            mvFormularios.SetActiveView(vwJornadas);
+        }
     }
 }
+

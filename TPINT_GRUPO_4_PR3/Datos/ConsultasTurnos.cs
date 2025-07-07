@@ -29,6 +29,12 @@ namespace Datos
             catch (Exception ex) { throw new Exception("Error al cargar turnos: " + ex.Message); }
             return turnos;
         }
+        public DataTable ObtenerEspecialidades()
+        {
+            string query = @"SELECT * FROM Especialidades";
+
+            return conexion.EjecutarConsulta(query);
+        }
         public List<Turno> GetTurnosMedico(string legajo, DateTime? fechaSelected)
         {
             var turnos = new List<Turno>();
