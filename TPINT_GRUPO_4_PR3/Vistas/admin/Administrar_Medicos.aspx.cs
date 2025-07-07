@@ -289,11 +289,28 @@ namespace Vistas.admin
         protected void gvLecturaMedico_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvLecturaMedico.PageIndex = e.NewPageIndex;
-            loadGridMedicos();
+            if (Session["DNI"] != null)
+            {
+                cargarMedicosxDNI();
+            }
+            if (Session["Apellido"] != null)
+            {
+                cargarMedicosxApellido();
+            }
+            if (Session["Legajo"] != null)
+            {
+                cargarMedicosxLegajo();
+            }
         }
         protected void ddlBusqueda_Medicos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Session["DNI"] = null;
+            Session["Apellido"] = null;
+            Session["Legajo"] = null;
+            gvLecturaMedico.PageIndex = 0;
+
             loadGridMedicos();
+
             switch (ddlBusqueda_Medicos.SelectedIndex)
             {
                 case 1:
@@ -321,7 +338,6 @@ namespace Vistas.admin
         {
             string dniMedico = Session["DNI"].ToString();
 
-            Debug.WriteLine(dniMedico, "DNI");
             gvLecturaMedico.DataSource = gestorMedico.FiltrarMedicoxDNI(dniMedico);
             gvLecturaMedico.DataBind();
         }
@@ -329,13 +345,16 @@ namespace Vistas.admin
         {
             string Legajo = Session["Legajo"].ToString();
 
-            Debug.WriteLine(Legajo, "DNI");
             gvLecturaMedico.DataSource = gestorMedico.FiltrarMedicoxLegajo(Legajo);
             gvLecturaMedico.DataBind();
         }
         protected void txbPorApellido_TextChanged(object sender, EventArgs e)
         {
             Session["Apellido"] = txbPorApellido.Text.Trim();
+            Session["DNI"] = null;
+            Session["Legajo"] = null;
+            gvLecturaMedico.PageIndex = 0;
+
             txbPorApellido.Text = "";
             cargarMedicosxApellido();
         }
@@ -343,13 +362,22 @@ namespace Vistas.admin
         protected void txbPorDNI_TextChanged(object sender, EventArgs e)
         {
             Session["DNI"] = txbPorDNI.Text.Trim();
+            Session["Apellido"] = null;
+            Session["Legajo"] = null;
+            gvLecturaMedico.PageIndex = 0;
+
             txbPorDNI.Text = "";
             cargarMedicosxDNI();
+
         }
 
         protected void txbPorLegajo_TextChanged(object sender, EventArgs e)
         {
             Session["Legajo"] = txbPorLegajo.Text.Trim();
+            Session["Apellido"] = null;
+            Session["DNI"] = null;
+            gvLecturaMedico.PageIndex = 0;
+
             txbPorLegajo.Text = "";
             cargarMedicosxLegajo();
         }
