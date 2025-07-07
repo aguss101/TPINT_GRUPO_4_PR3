@@ -234,10 +234,7 @@ namespace Vistas.admin
         }
         protected void btnRegistrarMedico_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid)
-            {
-                InsertarMedicos();
-            }
+            if (Page.IsValid) { InsertarMedicos(); }
             else
             {
                 lblAddUserState.Text = "⚠️ Por favor corrija los errores del formulario.";
@@ -247,10 +244,7 @@ namespace Vistas.admin
         }
         protected void btnModificarMedico_Click(object sender, EventArgs e)
         {
-
             ModificarMedico();
-
-
         }
         protected void navigateButton_Click(object sender, CommandEventArgs e)
         {
@@ -274,10 +268,7 @@ namespace Vistas.admin
                 if (row.FindControl("chkSeleccionar") is CheckBox chk && chk != sender)
                 {
                     chk.Checked = false;
-
-
                 }
-
                 if (chkActual.Checked)
                     Session["LegajoMedico"] = fila.Cells[1].Text.Trim();
                 else
@@ -378,13 +369,14 @@ namespace Vistas.admin
                     Debug.WriteLine(item, "Dia");
                     diasSeleccionados.Add(item.Text);
                 }
-
-
             }
             if (diasSeleccionados != null)
             {
                 gestorMedico.InsertarOActualizarJornadas(legajo, diasSeleccionados, hora);
             }
+            lblAddJornada.ForeColor = System.Drawing.Color.Green;
+            lblAddJornada.Text = "Jornada Actualizada";
+            lblAddJornada.Visible = true;
         }
 
         protected void btnJornadas_Click(object sender, EventArgs e)
@@ -395,6 +387,11 @@ namespace Vistas.admin
         {
             GestorUsuario gestorUsuario = new GestorUsuario();
             args.IsValid = !gestorUsuario.ValidarNombreUsuario(args.Value);
+        }
+        protected void cvLegajo_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            GestorMedico gestorMedico = new GestorMedico();
+            args.IsValid = !gestorMedico.ValidarLegajo(args.Value);
         }
     }
 }

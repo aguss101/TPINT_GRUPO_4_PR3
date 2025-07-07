@@ -391,6 +391,7 @@
                                                         <asp:TextBox ID="txbLegajo"  runat="server"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="rfvLegajo" runat="server" ControlToValidate="txbLegajo" ErrorMessage="* Campo obligatorio" ForeColor="Red" Display="Dynamic" ValidationGroup="AltaMedico" />
                                                         <asp:RegularExpressionValidator ID="revLegajo" runat="server" ControlToValidate="txbLegajo" Display="Dynamic" ErrorMessage="* El legajo debe iniciar con 'M' y tener tres números (ej. M123). " ForeColor="Red" ValidationExpression="^M\d{3}$$" ValidationGroup="AltaMedico" />
+                                                        <asp:CustomValidator ID="cvLegajo" runat="server" ControlToValidate="txbLegajo" Display="Dynamic" ErrorMessage="El legajo ya existe" ForeColor="Red" OnServerValidate="cvLegajo_ServerValidate" ValidateEmptyText="true" ValidationGroup="AltaMedico" />
                                                     </td>
                                                     <td class="auto-style31"></td>
                                                 </tr>
@@ -566,6 +567,8 @@
                                                         <asp:ListItem>Sábado</asp:ListItem>
                                                         <asp:ListItem>Domingo</asp:ListItem>
                                                     </asp:CheckBoxList>
+                                                    <br />
+                                                    <asp:Label ID="lblAddJornada" runat="server" Font-Size="X-Large" Visible="False"></asp:Label>
                                                 </td>
                                                 <td>
                                                     <asp:Button ID="btnRegistrarJornada" runat="server" OnClick="btnRegistrarJornada_Click" Text="Registrar Jornada" />

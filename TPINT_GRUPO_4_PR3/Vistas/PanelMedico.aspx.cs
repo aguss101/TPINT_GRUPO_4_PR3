@@ -97,13 +97,6 @@ namespace Vistas
         }
 
 
-        protected void btnEstado_Click(object sender, EventArgs e)
-        {
-
-
-
-        }
-
         protected void btnPorFecha_Click(object sender, EventArgs e)
         {
             cargarTurnosxFecha();
@@ -128,7 +121,6 @@ namespace Vistas
                     break;
             }
         }
-
         protected void txbPorApellido_TextChanged(object sender, EventArgs e)
         {
             Session["apellidoPaciente"] = txbPorApellido.Text;
@@ -146,10 +138,8 @@ namespace Vistas
 
         protected void btnEnviarDiagnostico_Click(object sender, EventArgs e)
         {
-
             foreach (GridViewRow row in gvTurnos.Rows)
             {
-
                 if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
                 {
                     string legajom = Session["LegajoMedico"] as string;
@@ -163,8 +153,6 @@ namespace Vistas
                     string observacion = txtObs.Text;
                     int estado = ddlEstado.SelectedIndex;
 
-
-
                     Turno turno = new Turno()
                     {
                         Legajo = legajom,
@@ -174,18 +162,10 @@ namespace Vistas
                         Observacion = observacion
 
                     };
-
                     int filas = gestorturnos.MarcarAsistenciaTurnoMedico(turno);
-
-
-
                 }
-
-
             }
             cargarTurnosAll();
         }
-
     }
-
 }

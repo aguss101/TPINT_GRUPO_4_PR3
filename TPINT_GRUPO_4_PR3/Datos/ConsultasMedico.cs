@@ -417,7 +417,6 @@ namespace Datos
                                 cmd.ExecuteNonQuery();
                             }
                         }
-
                         tx.Commit();
                         return 1;
                     }
@@ -433,11 +432,17 @@ namespace Datos
                 throw new Exception("Error al registrar/actualizar jornadas: " + ex.Message, ex);
             }
         }
+        public bool ExisteLegajo(string Legajo)
+        {
+            string query = "SELECT COUNT(*) FROM Medico WHERE Legajo = @Legajo";
+            using (SqlConnection con = conexion.AbrirConexion())
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@Legajo", Legajo);
+                int count = (int)cmd.ExecuteScalar();
+                return count > 0;
+            }
+        }
 
     }
-
-
-
-
-
 }
