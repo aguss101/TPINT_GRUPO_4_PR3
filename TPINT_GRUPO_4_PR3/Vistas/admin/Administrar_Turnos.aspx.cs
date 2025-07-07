@@ -329,22 +329,36 @@ namespace Vistas.admin
             switch (parametroDeFiltro)
             {
                 case "MedicoASC":
-                    query = @"SELECT * FROM vw_TurnosConDatos ORDER BY CAST(Legajo AS INT), fechaPactada, DNIPaciente;";
+                    query = @"SELECT * FROM vw_TurnosConDatos ORDER BY Legajo, fechaPactada, DNIPaciente;";
                     break;
                 case "MedicoDES":
-                    query = "SELECT * FROM vw_TurnosConDatos ORDER BY CAST(Legajo AS INT) DESC, fechaPactada, DNIPaciente;";
+                    query = "SELECT * FROM vw_TurnosConDatos ORDER BY Legajo DESC, fechaPactada, DNIPaciente;";
                     break;
                 case "FechaASC":
-                    query = "SELECT * FROM vw_TurnosConDatos ORDER BY fechaPactada, CAST(Legajo AS INT), DNIPaciente;";
+                    query = "SELECT * FROM vw_TurnosConDatos ORDER BY Legajo ASC, fechaPactada, DNIPaciente;";
                     break;
                 case "FechaDES":
-                    query = "SELECT * FROM vw_TurnosConDatos ORDER BY fechaPactada DESC, CAST(Legajo AS INT), DNIPaciente";
+                    query = "SELECT * FROM vw_TurnosConDatos ORDER BY fechaPactada DESC, Legajo, DNIPaciente";
                     break;
                 case "DNIPacienteASC":
-                    query = "SELECT * FROM vw_TurnosConDatos ORDER BY DNIPaciente, fechaPactada, CAST(Legajo AS INT);";
+                    query = "SELECT * FROM vw_TurnosConDatos ORDER BY DNIPaciente, fechaPactada, Legajo;";
                     break;
                 case "DNIPacienteDES":
-                    query = "SELECT * FROM vw_TurnosConDatos ORDER BY DNIPaciente DESC, fechaPactada, CAST(Legajo AS INT);";
+                    query = "SELECT * FROM vw_TurnosConDatos ORDER BY DNIPaciente DESC, fechaPactada, Legajo;";
+                    break;
+                case "PRESENTES":
+                    query = "SELECT * FROM vw_TurnosConDatos WHERE EstadoDescripcion = 'PRESENTE' ORDER BY DNIPaciente DESC, fechaPactada, Legajo;";
+                    break;
+                case "AUSENTES":
+                    query = "SELECT * FROM vw_TurnosConDatos WHERE EstadoDescripcion = 'AUSENTE' ORDER BY DNIPaciente DESC, fechaPactada, Legajo;";
+                    break;
+
+                case "PENDIENTES":
+                    query = "SELECT * FROM vw_TurnosConDatos WHERE EstadoDescripcion = 'PENDIENTE' ORDER BY DNIPaciente DESC, fechaPactada, Legajo;";
+                    break;
+
+                case "CANCELADOS":
+                    query = "SELECT * FROM vw_TurnosConDatos WHERE EstadoDescripcion = 'CANCELADO' ORDER BY DNIPaciente DESC, fechaPactada, Legajo;";
                     break;
                 default:
                     lblMensaje.Text = "Error";

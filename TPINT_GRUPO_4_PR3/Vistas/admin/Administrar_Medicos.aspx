@@ -323,7 +323,8 @@
                 <td class="columnaIndex">
                     <table class="auto-style3">
                         <tr>
-                            <td class="columnaIndex-PanelAdmin">Panel Admin</td>
+                            <td class="td-btn-index">
+                                <asp:Button ID="btnAdmin" runat="server" Text="Panel Admin" CssClass="btn-index" CommandArgument="Admin" OnCommand="navigateButton_Click" /></td>
                         </tr>
                         <tr>
                             <td class="td-btn-index">

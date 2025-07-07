@@ -208,24 +208,6 @@ namespace Vistas.admin
             string DNI_VIEJO = (Session["DNI_VIEJO"] as string).Trim();
             string LEGAJO_VIEJO = (Session["LEGAJO_VIEJO"] as string).Trim();
 
-            if (medico.DNI == "" || medico.Legajo == "" || medico.nombre == "" || medico.apellido == "")
-            {
-                lblModificarMedico.Text = "⚠️ Faltan datos obligatorios.";
-                lblModificarMedico.ForeColor = System.Drawing.Color.OrangeRed;
-                lblModificarMedico.Visible = true;
-                return;
-            }
-
-            DateTime edadMinima = DateTime.Today.AddYears(-18);
-            DateTime edadMaxima = DateTime.Today.AddYears(-120);
-
-            if (medico.fechaNacimiento > edadMinima || medico.fechaNacimiento < edadMaxima)
-            {
-                lblModificarMedico.Text = "⚠️ Fecha de nacimiento inválida.";
-                lblModificarMedico.ForeColor = System.Drawing.Color.OrangeRed;
-                lblModificarMedico.Visible = true;
-                return;
-            }
             int filas = gestorMedico.ModificarMedico(medico, medico.Usuario, DNI_VIEJO, LEGAJO_VIEJO);
 
             if (filas > 0)

@@ -268,7 +268,8 @@
                 <td class="auto-style37">
                     <table class="auto-style3">
                         <tr>
-                            <td class="columnaIndex-PanelAdmin">Panel Admin</td>
+                            <td class="td-btn-index">
+                            <asp:Button ID="btnAdmin" runat="server" Text="Panel Admin" CssClass="btn-index" CommandArgument="Admin" OnCommand="navigateButton_Click" /></td>
                         </tr>
                         <tr>
                             <td class="td-btn-index">
@@ -370,6 +371,10 @@
                                             <asp:ListItem Value="MedicoDES">Medico D</asp:ListItem>
                                             <asp:ListItem Value="DNIPacienteASC">DNI Paciente A</asp:ListItem>
                                             <asp:ListItem Value="DNIPacienteDES">DNI Paciente D</asp:ListItem>
+                                            <asp:ListItem>PRESENTES</asp:ListItem>
+                                            <asp:ListItem>AUSENTES</asp:ListItem>
+                                            <asp:ListItem>PENDIENTES</asp:ListItem>
+                                            <asp:ListItem>CANCELADOS</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
