@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using Entidades;
 
 namespace Datos
@@ -207,6 +206,7 @@ namespace Datos
             while (dia <= hasta.Date)
             {
                 DataTable dtHoras = ObtenerHorasDisponibles(legajo, dia);
+
                 if (dtHoras.Rows.Count > 0)
                 {
                     if (dia > DateTime.Today)
@@ -216,18 +216,30 @@ namespace Datos
                     else if (dia == DateTime.Today)
                     {
                         TimeSpan horaActual = DateTime.Now.TimeOfDay;
+                        bool hayTurnoDisponible = false;
 
-                        IEnumerable<DataRow> filasValidas = dtHoras.AsEnumerable()
-                        .Where(row =>
+                        foreach (DataRow row in dtHoras.Rows)
                         {
-                            TimeSpan horaTurno = TimeSpan.Parse(row["RangoHorario"].ToString());
-                            return horaTurno > horaActual;
-                        });
-                        if (filasValidas.Any()) { fechas.Add(dia); }
+                            TimeSpan horaTurno;
+                            bool parseOk = TimeSpan.TryParse(row["RangoHorario"].ToString(), out horaTurno);
+
+                            if (parseOk && horaTurno > horaActual)
+                            {
+                                hayTurnoDisponible = true;
+                                break;
+                            }
+                        }
+
+                        if (hayTurnoDisponible)
+                        {
+                            fechas.Add(dia);
+                        }
                     }
                 }
+
                 dia = dia.AddDays(1);
             }
+
             return fechas;
         }
 
@@ -326,10 +338,10 @@ namespace Datos
           AND (@Estado IS NULL OR EstadoDescripcion = @Estado)
         ORDER BY DNIPaciente DESC, fechaPactada, Legajo;";
 
-            SqlParameter[] parametros = new SqlParameter []
+            SqlParameter[] parametros = new SqlParameter[]
             {
                new SqlParameter("@Legajo",  legajo),
-               new SqlParameter("@Estado",string.IsNullOrWhiteSpace(estadoTurno) ? DBNull.Value : (object)estadoTurno) 
+               new SqlParameter("@Estado",string.IsNullOrWhiteSpace(estadoTurno) ? DBNull.Value : (object)estadoTurno)
             };
             return conexion.EjecutarConsultaConParametros(query, parametros);
         }
