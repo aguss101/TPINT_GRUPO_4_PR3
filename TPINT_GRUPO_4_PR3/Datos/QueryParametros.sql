@@ -45,8 +45,8 @@ GROUP BY
   END
 ORDER BY CategoriaEdad;
 
-PACIENTE
-PacientexEdad
+--PACIENTE
+--PacientexEdad
 SELECT 
   CASE 
     WHEN edad <= 30 THEN 'Joven'
