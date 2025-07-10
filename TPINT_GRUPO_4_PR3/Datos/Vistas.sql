@@ -81,7 +81,7 @@ OUTER APPLY (
     FROM   Jornadas
     WHERE  Legajo = ME.Legajo
     ORDER BY rangoHorario
-) H;  
+) H;
 
 GO
 CREATE OR ALTER VIEW vw_PacienteConDatos AS

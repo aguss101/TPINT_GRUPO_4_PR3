@@ -51,6 +51,8 @@ namespace Vistas.admin
             txbDireccion.Text = "";
             txbUsuario.Text = "";
             txbfechanacimiento.Text = "";
+            txbContrasenia.Text = "";
+            txbRepContrasenia.Text = "";
 
             ddlEspecialidad.ClearSelection();
             ddlGenero.ClearSelection();
@@ -242,7 +244,7 @@ namespace Vistas.admin
 
         protected void btnRegistrarMedico_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid) { InsertarMedicos(); }
+            if (Page.IsValid) { InsertarMedicos(); LimpiarFormularioAltaMedico(); }
             else
             {
                 lblAddUserState.Text = "⚠️ Por favor corrija los errores del formulario para el Alta.";

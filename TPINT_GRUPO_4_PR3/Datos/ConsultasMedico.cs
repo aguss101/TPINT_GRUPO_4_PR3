@@ -21,55 +21,12 @@ namespace Datos
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Medico medico = new Medico()
-                            {
-                                Usuario = new Usuario()
-                                {
-                                    NombreUsuario = reader["nombreUsuario"].ToString(),
-                                    contrasenia = reader["contrasenia"].ToString()
-                                },
-                                Legajo = reader["Legajo"].ToString(),
-                                DNI = reader["DNI"].ToString(),
-                                Especialidad = new Especialidad() { descripcion = reader["Especialidad"].ToString() },
-                                nombre = reader["nombre"].ToString(),
-                                apellido = reader["apellido"].ToString(),
-                                sexos = new Sexos() { descripcion = (reader["genero"].ToString()) },
-                                fechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]),
-                                Direccion = reader["Direccion"].ToString(),
-                                Provincia = Convert.ToInt32(reader["idProvincia"]),
-                                Provincias = new Provincias
-                                {
-                                    idProvincia = Convert.ToInt32(reader["idProvincia"]),
-                                    nombreProvincia = reader["nombreProvincia"].ToString()
-                                },
-                                Localidad = Convert.ToInt32(reader["idLocalidad"]),
-                                Localidades = new Localidades
-                                {
-                                    idLocalidad = Convert.ToInt32(reader["idLocalidad"]),
-                                    nombreLocalidad = reader["nombreLocalidad"].ToString()
-                                },
-                                nacionalidad = reader["nacionalidad"].ToString(),
-                                Correo = reader["Correo"].ToString(),
-                                Telefono = reader["telefono"].ToString(),
-                                entrada = reader["Hora"] == DBNull.Value
-                                    ? TimeSpan.Zero
-                                : (TimeSpan)reader["Hora"]
-                            };
-                            medicos.Add(medico);
-                        }
+                    { while (reader.Read())
+                        { medicos.Add(MapearMedico(reader)); }
                     }
                 }
-
             }
             catch (Exception ex) { throw new Exception("Error al buscar medicos: " + ex.Message); }
-
-            foreach (Medico medico in medicos)
-            {
-                medico.SiglasDiashabiles = GetDiaHabilesDeMedico(medico.Legajo);
-            }
             return medicos;
         }
 
@@ -257,42 +214,7 @@ namespace Datos
                 {
                     cmd.Parameters.AddWithValue("@id", idMedico);
                     using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            medico = new Medico()
-                            {
-                                Usuario = new Usuario()
-                                {
-                                    NombreUsuario = reader["nombreUsuario"].ToString(),
-                                    contrasenia = reader["contrasenia"].ToString()
-                                },
-                                Legajo = reader["Legajo"].ToString(),
-                                DNI = reader["DNI"].ToString(),
-                                Especialidad = new Especialidad() { descripcion = reader["Especialidad"].ToString() },
-                                nombre = reader["nombre"].ToString(),
-                                apellido = reader["apellido"].ToString(),
-                                sexos = new Sexos { idSexo = Convert.ToInt32(reader["idSexo"]), descripcion = reader["genero"].ToString() },
-                                fechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]),
-                                Direccion = reader["Direccion"].ToString(),
-                                Provincia = Convert.ToInt32(reader["idProvincia"]),
-                                Provincias = new Provincias
-                                {
-                                    idProvincia = Convert.ToInt32(reader["idProvincia"]),
-                                    nombreProvincia = reader["nombreProvincia"].ToString()
-                                },
-                                Localidad = Convert.ToInt32(reader["idLocalidad"]), 
-                                Localidades = new Localidades
-                                {
-                                    idLocalidad = Convert.ToInt32(reader["idLocalidad"]),
-                                    nombreLocalidad = reader["nombreLocalidad"].ToString()
-                                },
-                                nacionalidad = reader["nacionalidad"].ToString(),
-                                Correo = reader["Correo"].ToString(),
-                                Telefono = reader["Telefono"].ToString()
-                            };
-                        }
-                    }
+                    { if (reader.Read()) { medico = (MapearMedico(reader)); }}
                 }
             }
             catch (Exception ex) { throw new Exception("Error al buscar medico por ID: " + ex.Message); }
@@ -321,7 +243,7 @@ namespace Datos
                     idProvincia = Convert.ToInt32(reader["idProvincia"]),
                     nombreProvincia = reader["nombreProvincia"].ToString()
                 },
-                Localidad = Convert.ToInt32(reader["idLocalidad"]), 
+                Localidad = Convert.ToInt32(reader["idLocalidad"]),
                 Localidades = new Localidades
                 {
                     idLocalidad = Convert.ToInt32(reader["idLocalidad"]),
@@ -329,7 +251,11 @@ namespace Datos
                 },
                 nacionalidad = reader["nacionalidad"].ToString(),
                 Correo = reader["Correo"].ToString(),
-                Telefono = reader["Telefono"].ToString()
+                Telefono = reader["telefono"].ToString(),
+                entrada = reader["Hora"] == DBNull.Value
+                    ? TimeSpan.Zero
+                : (TimeSpan)reader["Hora"],
+                SiglasDiashabiles = GetDiaHabilesDeMedico(reader ["legajo"].ToString())
             };
         }
         public List<Medico> FiltrarMedicoxApellido(string apellido)
