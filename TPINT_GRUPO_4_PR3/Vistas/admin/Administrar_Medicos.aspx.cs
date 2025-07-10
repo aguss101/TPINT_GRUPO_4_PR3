@@ -210,7 +210,7 @@ namespace Vistas.admin
                 string DNI_VIEJO = (Session["DNI_VIEJO"] as string).Trim();
                 string LEGAJO_VIEJO = (Session["LEGAJO_VIEJO"] as string).Trim();
 
-                int filas = gestorMedico.ModificarMedico(medico, medico.Usuario, DNI_VIEJO, LEGAJO_VIEJO);
+                int filas = gestorMedico.ModificarMedico(medico, medico.Usuario);
 
                 if (filas > 0)
                 {

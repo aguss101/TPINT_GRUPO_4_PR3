@@ -117,22 +117,22 @@ namespace Datos
             return conexion.EjecutarComandoConParametros(query, parametros);
         }
 
-        public int ModificarMedico(Medico medico, Usuario usuario, string DNI_VIEJO, string LEGAJO_VIEJO)
+        public int ModificarMedico(Medico medico, Usuario usuario)
         {
-            string queryUsuario = @"UPDATE Usuario SET DNI = @DNI_NUEVO, nombreUsuario = @Usuario, contrasenia = @Contrasenia WHERE DNI = @DNI";
+            string queryUsuario = @"UPDATE Usuario SET DNI = @DNI_NUEVO, nombreUsuario = @Usuario, contrasenia = @Contrasenia WHERE DNI = @DNI_NUEVO";
 
-            string queryCorreo = @"UPDATE Correos SET idPersona = @DNI_NUEVO, correo = @Correo WHERE idPersona = @DNI";
+            string queryCorreo = @"UPDATE Correos SET idPersona = @DNI_NUEVO, correo = @Correo WHERE idPersona = @DNI_NUEVO";
 
-            string queryTelefono = @"UPDATE Telefonos SET idPersona = @DNI_NUEVO, telefono = @Telefono WHERE idPersona = @DNI";
+            string queryTelefono = @"UPDATE Telefonos SET idPersona = @DNI_NUEVO, telefono = @Telefono WHERE idPersona = @DNI_NUEVO";
 
-            string queryJornadas = "UPDATE Jornadas SET Legajo = @LegajoNuevo WHERE Legajo = @Legajo";
+            string queryJornadas = "UPDATE Jornadas SET Legajo = @LegajoNuevo WHERE Legajo = @LegajoNuevo";
 
-            string queryTurnos = "UPDATE Turnos SET Legajo = @LegajoNuevo WHERE Legajo = @Legajo";
+            string queryTurnos = "UPDATE Turnos SET Legajo = @LegajoNuevo WHERE Legajo = @LegajoNuevo";
 
             string queryPersona = @"UPDATE Persona SET DNI = @DNI_NUEVO, nombre = @Nombre, apellido = @Apellido, sexo = @Sexo, direccion = @Direccion, idLocalidad = @IdLocalidad, 
-                                    fechaNacimiento = @FechaNacimiento, nacionalidad = @Nacionalidad WHERE DNI = @DNI";
+                                    fechaNacimiento = @FechaNacimiento, nacionalidad = @Nacionalidad WHERE DNI = @DNI_NUEVO";
 
-            string queryMedico = @"UPDATE Medico SET DNI = @DNI_NUEVO, idEspecialidad = @idEspecialidad, Legajo = @LegajoNuevo WHERE DNI = @DNI";
+            string queryMedico = @"UPDATE Medico SET DNI = @DNI_NUEVO, idEspecialidad = @idEspecialidad, Legajo = @LegajoNuevo WHERE DNI = @DNI_NUEVO";
             try
             {
                 using (SqlConnection con = conexion.AbrirConexion())
@@ -144,39 +144,33 @@ namespace Datos
                             cmd.Parameters.AddWithValue("@DNI_NUEVO", medico.DNI);
                             cmd.Parameters.AddWithValue("@Usuario", usuario.NombreUsuario);
                             cmd.Parameters.AddWithValue("@Contrasenia", usuario.contrasenia);
-                            cmd.Parameters.AddWithValue("@DNI", DNI_VIEJO);
                             cmd.ExecuteNonQuery();
                         }
                         using (SqlCommand cmd = new SqlCommand(queryCorreo, con, transaction))
                         {
                             cmd.Parameters.AddWithValue("@DNI_NUEVO", medico.DNI);
                             cmd.Parameters.AddWithValue("@Correo", medico.Correo);
-                            cmd.Parameters.AddWithValue("@DNI", DNI_VIEJO);
                             cmd.ExecuteNonQuery();
                         }
                         using (SqlCommand cmd = new SqlCommand(queryTelefono, con, transaction))
                         {
                             cmd.Parameters.AddWithValue("@DNI_NUEVO", medico.DNI);
                             cmd.Parameters.AddWithValue("@Telefono", medico.Telefono);
-                            cmd.Parameters.AddWithValue("@DNI", DNI_VIEJO);
                             cmd.ExecuteNonQuery();
                         }
                         using (SqlCommand cmd = new SqlCommand(queryJornadas, con, transaction))
                         {
                             cmd.Parameters.AddWithValue("@LegajoNuevo", medico.Legajo);
-                            cmd.Parameters.AddWithValue("@Legajo", LEGAJO_VIEJO);
                             cmd.ExecuteNonQuery();
                         }
                         using (SqlCommand cmd = new SqlCommand(queryTurnos, con, transaction))
                         {
                             cmd.Parameters.AddWithValue("@LegajoNuevo", medico.Legajo);
-                            cmd.Parameters.AddWithValue("@Legajo", LEGAJO_VIEJO);
                             cmd.ExecuteNonQuery();
                         }
                         using (SqlCommand cmd = new SqlCommand(queryPersona, con, transaction))
                         {
                             cmd.Parameters.AddWithValue("@DNI_NUEVO", medico.DNI);
-                            cmd.Parameters.AddWithValue("@DNI", DNI_VIEJO);
                             cmd.Parameters.AddWithValue("@Nombre", medico.nombre);
                             cmd.Parameters.AddWithValue("@Apellido", medico.apellido);
                             cmd.Parameters.AddWithValue("@Sexo", medico.sexos.idSexo);
@@ -191,7 +185,6 @@ namespace Datos
                             cmd.Parameters.AddWithValue("@DNI_NUEVO", medico.DNI);
                             cmd.Parameters.AddWithValue("@idEspecialidad", medico.Especialidad.idEspecialidad);
                             cmd.Parameters.AddWithValue("@LegajoNuevo", medico.Legajo);
-                            cmd.Parameters.AddWithValue("@DNI", DNI_VIEJO);
                             cmd.ExecuteNonQuery();
                         }
                         transaction.Commit();
