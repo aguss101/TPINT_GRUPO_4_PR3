@@ -30,10 +30,12 @@ namespace Vistas.admin
                 txtObservacion.Attributes["placeholder"] = "Observación";
                 txtDiagnostico.Attributes["placeholder"] = "Diagnóstico";
 
-
+                
                 btnMod.Visible = false;
                 btnBaja.Visible = false;
             }
+
+           
 
         }
 
@@ -48,6 +50,7 @@ namespace Vistas.admin
 
         protected void CargarTurnos()
         {
+            lblActionTurno.Visible = false;
             gvTurnos.DataSource = gestorturnos.GetTurnos();
             gvTurnos.DataBind();
         }
@@ -286,11 +289,14 @@ namespace Vistas.admin
                 if (filasAfectadas > 0)
                 {
                     CargarTurnos();
+                    ddlEspecialidad.ClearSelection();
+                    ddlMedico.ClearSelection();
                     ddlFecha.ClearSelection();
                     ddlHora.ClearSelection();
                 }
                 return;
             }
+            
 
             catch (FormatException) { lblActionTurno.Text = "Formato de fecha u hora inválido."; }
             catch (Exception ex) when (ex is NullReferenceException || ex is ArgumentNullException) { lblActionTurno.Text = "Todos los campos deben estar completos."; }
