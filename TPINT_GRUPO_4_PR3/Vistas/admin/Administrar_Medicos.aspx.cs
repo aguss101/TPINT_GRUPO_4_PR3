@@ -212,6 +212,7 @@ namespace Vistas.admin
 
                 int filas = gestorMedico.ModificarMedico(medico, medico.Usuario);
 
+                lblModificarMedico.Visible = true;
                 if (filas > 0)
                 {
                     lblModificarMedico.Text = "Se modifico correctamente el Medico.";
@@ -222,7 +223,6 @@ namespace Vistas.admin
                     lblModificarMedico.Text = "❌ Error: no se modificó ninguna fila.";
                     lblModificarMedico.ForeColor = System.Drawing.Color.Red;
                 }
-                    lblModificarMedico.Visible = true;
             }
             catch (Exception ex)
             {

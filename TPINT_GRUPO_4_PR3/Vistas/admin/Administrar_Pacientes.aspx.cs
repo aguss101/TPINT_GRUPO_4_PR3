@@ -65,6 +65,8 @@ namespace Vistas.admin
                     }
                 }
                 loadGridPacientes();
+
+                lblEliminado.Visible = true;
                 lblEliminado.Text = "Paciente dado de baja correctamente.";
                 lblEliminado.ForeColor = System.Drawing.Color.Red;
             }
@@ -111,12 +113,13 @@ namespace Vistas.admin
         }
         protected void btnLectura_Click(object sender, EventArgs e)
         {
+            lblEliminado.Visible = false;
             mvFormularios.ActiveViewIndex = 3;
             loadGridPacientes();
         }
         protected void btnRegistrarPaciente_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid) { InsertarPacientes(); }
+            if (Page.IsValid) { InsertarPacientes(); LimpiarFormularioAltaPaciente(); }
             else
             {
                 lblAddUserState.Text = "⚠️ Por favor corrija los errores del formulario.";
@@ -124,16 +127,19 @@ namespace Vistas.admin
                 lblAddUserState.Visible = true;
             }
         }
-        protected void btnModificarPaciente_Click(object sender, EventArgs e) { ModificarPaciente(); }
+        protected void btnModificarPaciente_Click(object sender, EventArgs e) { ModificarPaciente(); btnMod.Visible = false; btnBaja.Visible = false;
+        }
         protected void loadGridPacientes()
         {
             List<Paciente> listaPacientes = new GestorPaciente().GetPacientes();
             gvLecturaPaciente.DataSource = listaPacientes;
             gvLecturaPaciente.DataBind();
+            lblModUser.Visible = false;
+            btnMod.Visible = false;
+            btnBaja.Visible = false;
         }
         protected void InsertarPacientes()
         {
-            lblAddUserState.Visible = false;
             try
             {
 
@@ -178,6 +184,7 @@ namespace Vistas.admin
         }
         protected void ModificarPaciente()
         {
+            lblModUser.Visible = false;
             Paciente paciente = new Paciente()
             {
 
@@ -198,11 +205,16 @@ namespace Vistas.admin
             };
             string DNI_VIEJO = (Session["DNI_VIEJO"] as string)?.Trim();
             int filas = gestorPaciente.ModificarPaciente(paciente, DNI_VIEJO);
+            lblModUser.Visible = true;
             if (filas > 0)
             {
                 lblModUser.Text = "Se modifico correctamente el Paciente";
                 lblModUser.ForeColor = System.Drawing.Color.Green;
-                lblModUser.Visible = true;
+            }
+            else
+            {
+                lblModUser.Text = "❌ Error: no se modificó ninguna fila.";
+                lblModUser.ForeColor = System.Drawing.Color.Red;
             }
         }
         protected void chkSeleccionar_CheckedChanged(object sender, EventArgs e)
@@ -256,9 +268,6 @@ namespace Vistas.admin
                 case 2:
                     mwBusqueda.ActiveViewIndex = 1;
                     break;
-                //case 3:
-                //    mwBusqueda.ActiveViewIndex = 2;
-                //    break;
                 default:
                     mwBusqueda.ActiveViewIndex = -1;
                     break;

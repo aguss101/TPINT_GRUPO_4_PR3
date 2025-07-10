@@ -23,40 +23,9 @@ namespace Datos
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
-                        {
-
-                            Paciente paciente = new Paciente
-                            {
-                                DNI = reader["DNI"].ToString(),
-                                nombre = reader["nombre"].ToString(),
-                                apellido = reader["apellido"].ToString(),
-                                sexos = new Sexos() { descripcion = (reader["genero"].ToString()) },
-                                ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),
-                                Alta = Convert.ToDateTime(reader["alta"]),
-                                ObraSocial = new ObraSocial() { Onombre = (reader["nombreObraSocial"].ToString()) },
-                                fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
-                                nacionalidad = reader["nacionalidad"].ToString(),
-                                Provincia = Convert.ToInt32(reader["idProvincia"]),
-                                Provincias = new Provincias
-                                {
-                                    idProvincia = Convert.ToInt32(reader["idProvincia"]),
-                                    nombreProvincia = reader["nombreProvincia"].ToString()
-                                },
-                                Localidad = Convert.ToInt32(reader["idLocalidad"]),
-                                Localidades = new Localidades
-                                {
-                                    idLocalidad = Convert.ToInt32(reader["idLocalidad"]),
-                                    nombreLocalidad = reader["nombreLocalidad"].ToString()
-                                },
-                                Direccion = reader["Direccion"].ToString(),
-                                Correo = reader["Correo"].ToString(),
-                                Telefono = reader["telefono"].ToString()
-                            };
-                            pacientes.Add(paciente);
-                        }
+                        { pacientes.Add(MapearPaciente(reader)); }
                     }
                 }
-
             }
             catch (Exception ex) { throw new Exception("Error al cargar pacientes: " + ex.Message); }
             return pacientes;
@@ -203,36 +172,7 @@ namespace Datos
                     cmd.Parameters.AddWithValue("@id", idPaciente);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())
-                        {
-                            paciente = new Paciente()
-                            {
-                                DNI = reader["DNI"].ToString(),
-                                nombre = reader["nombre"].ToString(),
-                                apellido = reader["apellido"].ToString(),
-                                ObraSocial = new ObraSocial { idObraSocial = Convert.ToInt32(reader["idObraSocial"]), Onombre = reader["nombreObraSocial"].ToString() },
-                                ultimaAtencion = Convert.ToDateTime(reader["ultimaAtencion"]),
-                                Alta = Convert.ToDateTime(reader["alta"]),
-                                sexos = new Sexos { idSexo = Convert.ToInt32(reader["idSexo"]), descripcion = reader["genero"].ToString() },
-                                fechaNacimiento = Convert.ToDateTime(reader["fechaNacimiento"]),
-                                nacionalidad = reader["nacionalidad"].ToString(),
-                                Provincia = Convert.ToInt32(reader["idProvincia"]),
-                                Provincias = new Provincias
-                                {
-                                    idProvincia = Convert.ToInt32(reader["idProvincia"]),
-                                    nombreProvincia = reader["nombreProvincia"].ToString()
-                                },
-                                Localidad = Convert.ToInt32(reader["idLocalidad"]),
-                                Localidades = new Localidades
-                                {
-                                    idLocalidad = Convert.ToInt32(reader["idLocalidad"]),
-                                    nombreLocalidad = reader["nombreLocalidad"].ToString()
-                                },
-                                Direccion = reader["direccion"].ToString(),
-                                Correo = reader["Correo"].ToString(),
-                                Telefono = reader["Telefono"].ToString()
-                            };
-                        }
+                        if (reader.Read()) { paciente = MapearPaciente(reader); }
                     }
                 }
             }
@@ -264,9 +204,9 @@ namespace Datos
                     idLocalidad = Convert.ToInt32(reader["idLocalidad"]),
                     nombreLocalidad = reader["nombreLocalidad"].ToString()
                 },
-                Direccion = reader["direccion"].ToString(),
+                Direccion = reader["Direccion"].ToString(),
                 Correo = reader["Correo"].ToString(),
-                Telefono = reader["Telefono"].ToString()
+                Telefono = reader["telefono"].ToString()
             };
         }
         public List<Paciente> FiltrarPacientexApellido(string apellido)

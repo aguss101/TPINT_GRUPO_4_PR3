@@ -286,9 +286,6 @@ namespace Datos
             return conexion.EjecutarComandoConParametros(query, parametros);
 
         }
-
-        //Sobrecargo el metodo de GetTurnosMedico, para que me traiga los turnos ordenados segun el legajo, sin importar la fecha
-
         public List<Turno> GetTurnosOrdX(string query)
         {
             var turnos = new List<Turno>();
@@ -310,7 +307,7 @@ namespace Datos
         }
 
 
-        public int MarcarAsistenciaTurnoMedico(Turno turno) // Turno Medico
+        public int MarcarAsistenciaTurnoMedico(Turno turno)
         {
             string query = @"
                 UPDATE Turnos
