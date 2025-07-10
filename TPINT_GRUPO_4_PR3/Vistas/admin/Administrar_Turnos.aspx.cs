@@ -374,7 +374,17 @@ namespace Vistas.admin
         protected void gvTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvTurnos.PageIndex = e.NewPageIndex;
-            CargarTurnos();
+
+            
+            if (!string.IsNullOrEmpty(ddlFiltrarTurnosPor.SelectedValue))
+            {
+                filtrarFechaPor(ddlFiltrarTurnosPor.SelectedValue);
+            }
+            else
+            {
+                CargarTurnos();
+            }
+
         }
 
         protected void CargarEspecialidades()
