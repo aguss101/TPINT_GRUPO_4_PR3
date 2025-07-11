@@ -18,7 +18,7 @@ namespace Vistas.admin
             {
                 mvAsignarTurnos.ActiveViewIndex = 0;
 
-                lblUser.Text = Session["User"] as string;
+                lblUser.Text = Session["User"] as string + "🛠️"; 
 
                 CargarTurnos();
                 CargarEspecialidades();

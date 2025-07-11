@@ -15,7 +15,7 @@ namespace Vistas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblUser.Text = Session["User"] as string;
+            lblUser.Text = Session["User"] as string + "🛠️";
             if (!IsPostBack)
             {
                

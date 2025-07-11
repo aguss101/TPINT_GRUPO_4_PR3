@@ -15,7 +15,7 @@ namespace Vistas
 
             if (!IsPostBack)
             {
-                lblUser.Text = Session["User"].ToString();
+                lblUser.Text = Session["User"] + "🩺";
                 ddlEstados.SelectedValue = Session["EstadoDescripcion"] as string ?? "TODOS";
                 cargarTurnosAll();
             }
