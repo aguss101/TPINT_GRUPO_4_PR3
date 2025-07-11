@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Panel Administrador</title>
-    <link rel="stylesheet" href="Admin/style.css" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -37,7 +37,7 @@
                         </tr>
                         <tr>
                             <td class="hl-CerrarSesion">
-                                <asp:HyperLink ID="hlCerrarSesion" runat="server" NavigateUrl="~/Login.aspx">Cerrar Sesión</asp:HyperLink></td>
+                                <asp:HyperLink ID="hlCerrarSesion" runat="server" NavigateUrl="~/Login/Login.aspx">Cerrar Sesión</asp:HyperLink></td>
                         </tr>
                     </table>
                 </td>

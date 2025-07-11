@@ -27,7 +27,7 @@ namespace Vistas
 
                     if (usuario.idRol == 1)
                     {
-                        Response.Redirect("Admin.aspx");
+                        Response.Redirect("~/admin/Admin.aspx");
 
 
                     }
@@ -39,7 +39,7 @@ namespace Vistas
                         string legajo = medico.Legajo;
                         Session["LegajoMedico"] = legajo;
 
-                        Response.Redirect("PanelMedico.aspx");
+                        Response.Redirect("~/PanelMedico/PanelMedico.aspx");
                     }
                     return;
                 }

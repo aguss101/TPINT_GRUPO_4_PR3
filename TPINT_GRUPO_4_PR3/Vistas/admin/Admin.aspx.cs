@@ -35,16 +35,16 @@ namespace Vistas
 
         protected void btnAdministrarMedicos_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/admin/Administrar_Medicos.aspx");
+            Response.Redirect("~/admin/Administrar_Medicos/Administrar_Medicos.aspx");
         }
 
         protected void Administrar_Pacientes_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/admin/Administrar_Pacientes.aspx");
+            Response.Redirect("~/admin/Administrar_Pacientes/Administrar_Pacientes.aspx"); 
         }
 
         protected void Administrar_Turnos_Click(object sender, EventArgs e)
-        { Response.Redirect("/admin/Administrar_Turnos.aspx"); }
+        { Response.Redirect("~/admin/Administrar_Turnos/Administrar_Turnos.aspx"); }
 
 
 

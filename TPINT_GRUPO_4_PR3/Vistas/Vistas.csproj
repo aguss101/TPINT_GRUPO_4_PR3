@@ -68,56 +68,61 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="admin\Administrar_Medicos.aspx" />
-    <Content Include="admin\Administrar_Pacientes.aspx" />
-    <Content Include="admin\Administrar_Turnos.aspx" />
-    <Content Include="images\login-bg.jpg" />
-    <Content Include="Login.aspx" />
-    <Content Include="Admin.aspx" />
-    <Content Include="PanelMedico.aspx" />
+    <Content Include="admin\Administrar_Medicos\Administrar_Medicos.aspx" />
+    <Content Include="admin\Administrar_Medicos\style.css" />
+    <Content Include="admin\Administrar_Pacientes\Administrar_Pacientes.aspx" />
+    <Content Include="admin\Administrar_Pacientes\style.css" />
+    <Content Include="admin\Administrar_Turnos\Administrar_Turnos.aspx" />
+    <Content Include="admin\Administrar_Turnos\style.css" />
+    <Content Include="Login\images\login-bg.jpg" />
+    <Content Include="Login\Login.aspx" />
+    <Content Include="admin\Admin.aspx" />
+    <Content Include="Login\style.css" />
+    <Content Include="PanelMedico\PanelMedico.aspx" />
+    <Content Include="PanelMedico\style.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="admin\Administrar_Medicos.aspx.cs">
+    <Compile Include="admin\Administrar_Medicos\Administrar_Medicos.aspx.cs">
       <DependentUpon>Administrar_Medicos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Administrar_Medicos.aspx.designer.cs">
+    <Compile Include="admin\Administrar_Medicos\Administrar_Medicos.aspx.designer.cs">
       <DependentUpon>Administrar_Medicos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Administrar_Pacientes.aspx.cs">
+    <Compile Include="admin\Administrar_Pacientes\Administrar_Pacientes.aspx.cs">
       <DependentUpon>Administrar_Pacientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Administrar_Pacientes.aspx.designer.cs">
+    <Compile Include="admin\Administrar_Pacientes\Administrar_Pacientes.aspx.designer.cs">
       <DependentUpon>Administrar_Pacientes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Administrar_Turnos.aspx.cs">
+    <Compile Include="admin\Administrar_Turnos\Administrar_Turnos.aspx.cs">
       <DependentUpon>Administrar_Turnos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Administrar_Turnos.aspx.designer.cs">
+    <Compile Include="admin\Administrar_Turnos\Administrar_Turnos.aspx.designer.cs">
       <DependentUpon>Administrar_Turnos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
+    <Compile Include="Login\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
+    <Compile Include="Login\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin.aspx.cs">
+    <Compile Include="admin\Admin.aspx.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin.aspx.designer.cs">
+    <Compile Include="admin\Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PanelMedico.aspx.cs">
+    <Compile Include="PanelMedico\PanelMedico.aspx.cs">
       <DependentUpon>PanelMedico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PanelMedico.aspx.designer.cs">
+    <Compile Include="PanelMedico\PanelMedico.aspx.designer.cs">
       <DependentUpon>PanelMedico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

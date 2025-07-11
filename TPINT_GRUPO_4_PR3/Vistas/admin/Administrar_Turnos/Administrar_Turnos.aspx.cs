@@ -265,10 +265,10 @@ namespace Vistas.admin
 
             switch (e.CommandArgument.ToString())
             {
-                case "Admin": Response.Redirect("/Admin.aspx"); break;
-                case "Medicos": Response.Redirect("/admin/Administrar_Medicos.aspx"); break;
-                case "Pacientes": Response.Redirect("/admin/Administrar_Pacientes.aspx"); break;
-                case "Turnos": Response.Redirect("/admin/Administrar_Turnos.aspx"); break;
+                case "Admin": Response.Redirect("~/admin/Admin.aspx"); break;
+                case "Medicos": Response.Redirect("~/admin/Administrar_Medicos/Administrar_Medicos.aspx"); break;
+                case "Pacientes": Response.Redirect("~/admin/Administrar_Pacientes/Administrar_Pacientes.aspx"); break;
+                case "Turnos": Response.Redirect("~/admin/Administrar_Turnos/Administrar_Turnos.aspx"); break;
                 default: break;
             }
         }

@@ -5,7 +5,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <title>Login</title>
-    <link rel="stylesheet" href="Login/style.css" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <form id="form1" runat="server">
