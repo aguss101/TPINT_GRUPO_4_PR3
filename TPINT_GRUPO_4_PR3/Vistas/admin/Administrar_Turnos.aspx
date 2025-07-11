@@ -254,6 +254,65 @@
             user-select: none;
             width: 909px;
         }
+
+       .modern-grid {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    background-color: white;
+}
+
+.modern-grid th {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-bottom: 2px solid #007bff;
+    text-align: left;
+}
+
+.modern-grid td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #e3f2fd;
+    background-color: white;
+}
+
+.modern-grid tr:nth-child(even) {
+    background-color: #eaf6ff;
+}
+
+.modern-grid tr:hover {
+    background-color: #d6efff;
+}
+
+.modern-grid .grid-pager {
+    background-color: white;
+    text-align: right;
+    padding: 8px;
+}
+
+.grid-pager a,
+.grid-pager span {
+    margin: 0 5px;
+    padding: 5px 10px;
+    color: #007bff;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.grid-pager span {
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.grid-pager a:hover {
+    background-color: #d6efff;
+    border-color: #007bff;
+}
     </style>
 </head>
 <body>
@@ -360,7 +419,7 @@
                                 </tr>
                                 <tr>
                                     <td class="auto-style32">
-                                        <asp:Button ID="btnRegistrar" runat="server" Text="Registrar Turno" Width="188px" OnClick="btnRegistrar_Click" /></td>
+                                        <asp:Button ID="btnRegistrar" runat="server" Text="Registrar Turno" CssClass="btn-index" Width="188px" OnClick="btnRegistrar_Click" /></td>
                                     <td class="auto-style39">
                                         <asp:Button ID="btnMod" runat="server" Text="Modificar Turno" OnClick="btnMod_Click" Width="188px" />
                                         <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" Width="188px" OnClick="btnBaja_Click" OnClientClick="return confirm('¿Está seguro que desea dar de baja el turno?');" /> 
@@ -387,33 +446,26 @@
                                 <tr>
                                     <td class="no-select"></td>
                                     <td class="auto-style40">
-                                        <asp:GridView ID="gvTurnos" runat="server" AllowPaging="true" PageSize="10" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="False" OnPageIndexChanging="gvTurnos_PageIndexChanging">
-                                            <Columns>
-                                                <asp:TemplateField HeaderText="Seleccionar">
-                                                    <ItemTemplate>
-                                                        <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccionar_CheckedChanged" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                        <asp:GridView ID="gvTurnos" runat="server" AllowPaging="true" PageSize="10" 
+    AutoGenerateColumns="False" OnPageIndexChanging="gvTurnos_PageIndexChanging"
+    CssClass="modern-grid" PagerStyle-CssClass="grid-pager">
+    <Columns>
+        <asp:TemplateField HeaderText="Seleccionar">
+            <ItemTemplate>
+                <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccionar_CheckedChanged" />
+            </ItemTemplate>
+        </asp:TemplateField>
 
-                                                <asp:BoundField DataField="Legajo" HeaderText="Legajo" />
-                                                <asp:BoundField DataField="DNIPaciente" HeaderText="DNI-Paciente" />
-                                                <asp:BoundField DataField="FechaPactada" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy HH:mm}" HtmlEncode="false" />
-                                                <asp:BoundField DataField="EstadoDescripcion" HeaderText="Estado" />
-                                                <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
-                                                <asp:BoundField DataField="ObraSocial" HeaderText="ObraSocial" />
-                                                <asp:BoundField DataField="Medico" HeaderText="Medico" />
-                                                <asp:BoundField DataField="Especialidad" HeaderText="Especialidad" />
-                                            </Columns>
-
-                                            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-                                            <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
-                                            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
-                                            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-                                            <SortedAscendingCellStyle BackColor="#F7F7F7" />
-                                            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-                                            <SortedDescendingCellStyle BackColor="#E5E5E5" />
-                                            <SortedDescendingHeaderStyle BackColor="#242121" />
-                                    </asp:GridView>
+        <asp:BoundField DataField="Legajo" HeaderText="Legajo" />
+        <asp:BoundField DataField="DNIPaciente" HeaderText="DNI-Paciente" />
+        <asp:BoundField DataField="FechaPactada" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy HH:mm}" HtmlEncode="false" />
+        <asp:BoundField DataField="EstadoDescripcion" HeaderText="Estado" />
+        <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
+        <asp:BoundField DataField="ObraSocial" HeaderText="Obra Social" />
+        <asp:BoundField DataField="Medico" HeaderText="Médico" />
+        <asp:BoundField DataField="Especialidad" HeaderText="Especialidad" />
+    </Columns>
+</asp:GridView>
 
                                     </td>
                                     <td class="auto-style28"></td>

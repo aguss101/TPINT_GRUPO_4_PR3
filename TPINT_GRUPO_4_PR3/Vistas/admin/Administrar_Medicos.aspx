@@ -307,6 +307,64 @@
         .auto-style73 {
             width: 128px;
         }
+        .modern-grid {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 14px;
+        background-color: white;
+    }
+
+    .modern-grid th {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        border-bottom: 2px solid #007bff;
+        text-align: left;
+    }
+
+    .modern-grid td {
+        padding: 8px 10px;
+        border-bottom: 1px solid #e3f2fd;
+        background-color: white;
+    }
+
+    .modern-grid tr.alt-row {
+        background-color: #eaf6ff;
+    }
+
+    .modern-grid tr:hover {
+        background-color: #d6efff;
+    }
+
+    .grid-pager {
+        background-color: white;
+        text-align: center;
+        padding: 8px;
+    }
+
+    .grid-pager a,
+    .grid-pager span {
+        margin: 0 5px;
+        padding: 5px 10px;
+        color: #007bff;
+        text-decoration: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: white;
+    }
+
+    .grid-pager span {
+        font-weight: bold;
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+
+    .grid-pager a:hover {
+        background-color: #d6efff;
+        border-color: #007bff;
+    }
     </style>
 </head>
 <body>
@@ -761,41 +819,38 @@
                                                     </div>
                                                 </asp:View>
                                             </asp:MultiView>
-                                            <asp:GridView ID="gvLecturaMedico" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Style="margin-right: 0px" OnPageIndexChanging="gvLecturaMedico_PageIndexChanging" >
-                                                <AlternatingRowStyle BackColor="White" />
-                                                <Columns>
-                                                    <asp:TemplateField HeaderText="Seleccionar">
-                                                        <ItemTemplate>
-                                                            <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="true" OnCheckedChanged="chkSeleccionar_CheckedChanged" />
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:BoundField DataField="Legajo" HeaderText="Legajo" />
-                                                    <asp:BoundField DataField="DNI" HeaderText="DNI" />
-                                                    <asp:BoundField DataField="nombre" HeaderText="Nombre" />
-                                                    <asp:BoundField DataField="apellido" HeaderText="Apellido" />
-                                                    <asp:BoundField DataField="Usuario.nombreUsuario" HeaderText="Usuario" />
-                                                    <asp:BoundField DataField="Usuario.contrasenia" HeaderText="Contraseña" />
-                                                    <asp:BoundField DataField="Sexos.descripcion" HeaderText="Genero" />
-                                                    <asp:BoundField DataField="Especialidad.descripcion" HeaderText="Especialidad" />
-                                                    <asp:BoundField DataField="nacionalidad" HeaderText="Nacionalidad" />
-                                                    <asp:BoundField DataField="Provincias.nombreProvincia" HeaderText="Provincia" />
-                                                    <asp:BoundField DataField="Localidades.nombreLocalidad" HeaderText="Localidad" />
-                                                    <asp:BoundField DataField="correo" HeaderText="Correo" />
-                                                    <asp:BoundField DataField="telefono" HeaderText="Telefono" />
-                                                    <asp:BoundField DataField="SiglasDiasHabiles" HeaderText="Dias Habiles" />
-                                                    <asp:BoundField DataField="entrada" HeaderText="Hora" />
-                                                </Columns>
-                                                <EditRowStyle BackColor="#2461BF" />
-                                                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                                                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                                                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                                                <RowStyle BackColor="#EFF3FB" />
-                                                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                                                <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                                                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                                                <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                                                <SortedDescendingHeaderStyle BackColor="#4870BE" />
-                                            </asp:GridView>
+                                            <asp:GridView ID="gvLecturaMedico" runat="server" AllowPaging="True" AutoGenerateColumns="False" 
+    CssClass="modern-grid" 
+    OnPageIndexChanging="gvLecturaMedico_PageIndexChanging" 
+    Style="margin-right: 0px">
+    
+    <AlternatingRowStyle CssClass="alt-row" />
+    
+    <Columns>
+        <asp:TemplateField HeaderText="Seleccionar">
+            <ItemTemplate>
+                <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="true" OnCheckedChanged="chkSeleccionar_CheckedChanged" />
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:BoundField DataField="Legajo" HeaderText="Legajo" />
+        <asp:BoundField DataField="DNI" HeaderText="DNI" />
+        <asp:BoundField DataField="nombre" HeaderText="Nombre" />
+        <asp:BoundField DataField="apellido" HeaderText="Apellido" />
+        <asp:BoundField DataField="Usuario.nombreUsuario" HeaderText="Usuario" />
+        <asp:BoundField DataField="Usuario.contrasenia" HeaderText="Contraseña" />
+        <asp:BoundField DataField="Sexos.descripcion" HeaderText="Genero" />
+        <asp:BoundField DataField="Especialidad.descripcion" HeaderText="Especialidad" />
+        <asp:BoundField DataField="nacionalidad" HeaderText="Nacionalidad" />
+        <asp:BoundField DataField="Provincias.nombreProvincia" HeaderText="Provincia" />
+        <asp:BoundField DataField="Localidades.nombreLocalidad" HeaderText="Localidad" />
+        <asp:BoundField DataField="correo" HeaderText="Correo" />
+        <asp:BoundField DataField="telefono" HeaderText="Telefono" />
+        <asp:BoundField DataField="SiglasDiasHabiles" HeaderText="Dias Habiles" />
+        <asp:BoundField DataField="entrada" HeaderText="Hora" />
+    </Columns>
+
+    <PagerStyle CssClass="grid-pager" />
+</asp:GridView>
                                         </div>
                                     </asp:View>
                                 </asp:MultiView>

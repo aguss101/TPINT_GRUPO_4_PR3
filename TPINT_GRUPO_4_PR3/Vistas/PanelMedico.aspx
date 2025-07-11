@@ -258,6 +258,80 @@
         .auto-style43 {
             height: 46px;
         }
+
+        .modern-grid {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    background-color: white;
+}
+
+.modern-grid th {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-bottom: 2px solid #007bff;
+    text-align: left;
+}
+
+.modern-grid td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #e3f2fd;
+    background-color: white;
+}
+
+.modern-grid tr.alt-row {
+    background-color: #eaf6ff;
+}
+
+.modern-grid tr:hover {
+    background-color: #d6efff;
+}
+
+.grid-pager {
+    background-color: white;
+    text-align: right;
+    padding: 8px;
+}
+
+.grid-pager a,
+.grid-pager span {
+    margin: 0 5px;
+    padding: 5px 10px;
+    color: #007bff;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.grid-pager span {
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.grid-pager a:hover {
+    background-color: #d6efff;
+    border-color: #007bff;
+}
+
+.btn-enviar {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-enviar:hover {
+    background-color: #0056b3;
+}
     </style>
 </head>
 <body>
@@ -397,50 +471,56 @@
                                                 </tr>
                                             </table>
                                 
-                                <asp:GridView ID="gvTurnos" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" CssClass="table" DataKeyNames="Legajo,FechaPactada,observacion,diagnostico" ForeColor="Black" GridLines="Horizontal" OnPageIndexChanging="gvTurnos_PageIndexChanging" Width="976px">
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="Seleccionar">
-                                            <ItemTemplate>
-                                                <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccionar_CheckedChanged" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
-                                        <asp:BoundField DataField="DNIPaciente" HeaderText="DNI" />
-                                        <asp:BoundField DataField="FechaPactada" DataFormatString="{0:dd/MM/yyyy HH:mm}" HeaderText="Fecha y Hora" />
-                                        <asp:BoundField DataField="EstadoDescripcion" HeaderText="Estado" />
-                                        <asp:TemplateField HeaderText="Observación">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="txbObs" runat="server" Width="100%"  Text ='<%# Eval("observacion") %>' Enabled="False" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Diagnostico">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="txbDiagnostico" runat="server" Width="100%"  Text ='<%# Eval("diagnostico") %>' Enabled="False" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Estado de la Consulta">
-                                            <ItemTemplate>
-                                                <asp:DropDownList ID="ddlEstado" runat="server"  Visible="False">
-                                                    <asp:ListItem Text="Ausente" Value="1"></asp:ListItem>
-                                                    <asp:ListItem Text="Presente" Value="0"></asp:ListItem>
-                                                </asp:DropDownList>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Enviar Diagnostico">
-                                            <ItemTemplate>
-                                                <asp:Button ID="btnEnviarDiagnostico" runat="server" Text="Enviar" OnClick="btnEnviarDiagnostico_Click" Visible="False" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                    <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-                                    <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
-                                    <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
-                                    <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-                                    <SortedAscendingCellStyle BackColor="#F7F7F7" />
-                                    <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-                                    <SortedDescendingCellStyle BackColor="#E5E5E5" />
-                                    <SortedDescendingHeaderStyle BackColor="#242121" />
-                                </asp:GridView>
+                                <asp:GridView ID="gvTurnos" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+    CssClass="modern-grid" 
+    DataKeyNames="Legajo,FechaPactada,observacion,diagnostico"
+    OnPageIndexChanging="gvTurnos_PageIndexChanging" Width="100%">
+
+    <AlternatingRowStyle CssClass="alt-row" />
+
+    <Columns>
+        <asp:TemplateField HeaderText="Seleccionar">
+            <ItemTemplate>
+                <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccionar_CheckedChanged" />
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:BoundField DataField="Paciente" HeaderText="Paciente" />
+        <asp:BoundField DataField="DNIPaciente" HeaderText="DNI" />
+        <asp:BoundField DataField="FechaPactada" HeaderText="Fecha y Hora" DataFormatString="{0:dd/MM/yyyy HH:mm}" />
+        <asp:BoundField DataField="EstadoDescripcion" HeaderText="Estado" />
+
+        <asp:TemplateField HeaderText="Observación">
+            <ItemTemplate>
+                <asp:TextBox ID="txbObs" runat="server" Width="100%" CssClass="form-control" Text='<%# Eval("observacion") %>' Enabled="False" />
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Diagnóstico">
+            <ItemTemplate>
+                <asp:TextBox ID="txbDiagnostico" runat="server" Width="100%" CssClass="form-control" Text='<%# Eval("diagnostico") %>' Enabled="False" />
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Estado de la Consulta">
+            <ItemTemplate>
+                <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-control" Visible="False">
+                    <asp:ListItem Text="Ausente" Value="1"></asp:ListItem>
+                    <asp:ListItem Text="Presente" Value="0"></asp:ListItem>
+                </asp:DropDownList>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Enviar Diagnóstico">
+            <ItemTemplate>
+                <asp:Button ID="btnEnviarDiagnostico" runat="server" Text="Enviar" CssClass="btn-enviar" OnClick="btnEnviarDiagnostico_Click" Visible="False" />
+            </ItemTemplate>
+        </asp:TemplateField>
+    </Columns>
+
+    <PagerStyle CssClass="grid-pager" />
+</asp:GridView>
+
                             </td>
                             <td class="auto-style31">&nbsp;</td>
                         </tr>
