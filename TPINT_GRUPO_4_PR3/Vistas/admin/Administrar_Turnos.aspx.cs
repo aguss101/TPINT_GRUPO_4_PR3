@@ -239,21 +239,24 @@ namespace Vistas.admin
             if (!string.IsNullOrEmpty(ddlModFecha.SelectedValue))
             {
                 string legajo = Session["Legajo"].ToString();
-                DateTime fechaSeleccionada = DateTime.Parse(ddlModFecha.SelectedValue);
 
-
-                if (fechaSeleccionada == DateTime.Now)
-                {
-                    fechaSeleccionada = DateTime.Now;
-                }
-
-                DataTable dtHorariosDisponibles = gestorturnos.ObtenerHorasDisponibles(legajo, fechaSeleccionada);
-
+                DataTable dthoras = gestorturnos.ObtenerHorasDisponibles(legajo, DateTime.Parse(ddlModFecha.SelectedValue));
                 ddlModHorario.Items.Add(new ListItem("--Seleccione hora--", ""));
-                foreach (DataRow row in dtHorariosDisponibles.Rows)
+                if (dthoras.Rows.Count > 0)
                 {
-                    string hora = row["rangoHorario"].ToString();
-                    ddlModHorario.Items.Add(new ListItem(hora, hora));
+                    string horario = dthoras.Rows[0]["rangoHorario"].ToString();
+                   
+
+                    
+                    if (DateTime.TryParse(horario, out DateTime horaInicial))
+                    {
+                        for (int i = 0; i < 8; i++)
+                        {
+                            DateTime hora = horaInicial.AddHours(i);
+                            string horaMod = hora.ToString("HH:mm");
+                            ddlModHorario.Items.Add(new ListItem(horaMod, horaMod));
+                        }
+                    }
                 }
             }
         }
