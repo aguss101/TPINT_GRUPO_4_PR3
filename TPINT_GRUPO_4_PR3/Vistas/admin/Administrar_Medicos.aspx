@@ -868,13 +868,14 @@
                         <tr>
                             <td class="auto-style33">
                                 <h3>
-                                    <asp:Label ID="lblAddUserState" runat="server" Visible="False"></asp:Label></h3>
+                                    &nbsp;</h3>
                             </td>
                             <td class="auto-style38"></td>
                             <td class="auto-style39"></td>
                         </tr>
                         <tr>
-                            <td class="auto-style37"></td>
+                            <td class="auto-style37">
+                                    <asp:Label ID="lblAddUserState" runat="server" Visible="False"></asp:Label></td>
                             <td class="no-select"></td>
                             <td class="auto-style28"></td>
                         </tr>

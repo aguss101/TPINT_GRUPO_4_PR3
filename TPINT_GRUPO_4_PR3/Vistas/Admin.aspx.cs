@@ -16,7 +16,21 @@ namespace Vistas
         protected void Page_Load(object sender, EventArgs e)
         {
             lblUser.Text = Session["User"] as string;
-            //CargarGrafico();
+            if (!IsPostBack)
+            {
+               
+                if (ddlReportes.Items.Count > 0)
+                {
+                    ddlReportes.SelectedIndex = 1;
+                    ddlReportes_SelectedIndexChanged(ddlReportes, EventArgs.Empty);
+
+                    if (ddlCategoria.Items.Count > 1)
+                    {
+                        ddlCategoria.SelectedIndex = 1;
+                        ddlCategoria_SelectedIndexChanged(ddlCategoria, EventArgs.Empty);
+                    }
+                }
+            }
         }
 
         protected void btnAdministrarMedicos_Click(object sender, EventArgs e)
@@ -98,7 +112,7 @@ namespace Vistas
         protected void ddlReportes_SelectedIndexChanged(object sender, EventArgs e)
         {
             ddlCategoria.Items.Clear();
-            ddlCategoria.Items.Add(new ListItem("--Seleccione--"));
+            ddlCategoria.Items.Add(new ListItem("--Seleccionar--"));
             ddlCategoria.SelectedIndex = 0;
             DropDownList ddl = (DropDownList)sender;
 

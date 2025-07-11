@@ -60,8 +60,7 @@ namespace Vistas.admin
             ddlProvincia.ClearSelection();
             ddlLocalidades.ClearSelection();
 
-            lblAddUserState.Text = "";
-            lblAddUserState.Visible = false;
+           
         }
 
         protected void btnAlta_Click(object sender, EventArgs e)

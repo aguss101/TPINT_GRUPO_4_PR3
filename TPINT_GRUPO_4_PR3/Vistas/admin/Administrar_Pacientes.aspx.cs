@@ -48,8 +48,7 @@ namespace Vistas.admin
             ddlLocalidades.ClearSelection();
 
 
-            lblAddUserState.Text = "";
-            lblAddUserState.Visible = false;
+          
         }
         protected void btnAlta_Click(object sender, EventArgs e) { mvFormularios.ActiveViewIndex = 0; LimpiarFormularioAltaPaciente(); }
         protected void btnBaja_Click(object sender, EventArgs e)
