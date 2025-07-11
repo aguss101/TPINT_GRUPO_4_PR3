@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using Negocio;
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Web.UI.WebControls;
 
@@ -149,12 +150,8 @@ namespace Vistas
                 if (row.FindControl("chkSeleccionar") is CheckBox chk && chk.Checked)
                 {
                     string legajom = Session["LegajoMedico"] as string;
-                    DateTime fechaPactada;
-                    if (!DateTime.TryParseExact(row.Cells[3].Text, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaPactada))
-                    {
-                        
-                        throw new FormatException($"Fecha con formato erroneo: {row.Cells[3].Text}");
-                    }
+                    DateTime fechaPactada = DateTime.Parse(row.Cells[3].Text);
+                    Debug.WriteLine(fechaPactada, "fECHA");
 
                     TextBox txtDiag = (TextBox)row.FindControl("txbDiagnostico");
                     TextBox txtObs = (TextBox)row.FindControl("txbObs");

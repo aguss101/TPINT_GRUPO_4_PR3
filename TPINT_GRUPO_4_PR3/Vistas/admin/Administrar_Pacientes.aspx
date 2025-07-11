@@ -1,5 +1,4 @@
-﻿
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Administrar_Pacientes.aspx.cs" Inherits="Vistas.admin.Administrar_Pacientes" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Administrar_Pacientes.aspx.cs" Inherits="Vistas.admin.Administrar_Pacientes" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -188,6 +187,8 @@
             padding: 0;
         }
 
+
+
             .botonera .btn-td {
                 display: inline;
                 width: 20%;
@@ -293,11 +294,13 @@
         .auto-style44 {
             width: 100%;
         }
+
         .auto-style45 {
             user-select: none;
             height: 25px;
             width: 145px;
         }
+
         .auto-style46 {
             user-select: none;
             height: 25px;
@@ -305,63 +308,63 @@
         }
 
         .modern-grid {
-        width: 100%;
-        border-collapse: collapse;
-        font-family: 'Segoe UI', sans-serif;
-        font-size: 14px;
-        background-color: white;
-    }
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            background-color: white;
+        }
 
-    .modern-grid th {
-        background-color: #007bff;
-        color: white;
-        padding: 10px;
-        border-bottom: 2px solid #007bff;
-        text-align: left;
-    }
+            .modern-grid th {
+                background-color: #007bff;
+                color: white;
+                padding: 10px;
+                border-bottom: 2px solid #007bff;
+                text-align: left;
+            }
 
-    .modern-grid td {
-        padding: 8px 10px;
-        border-bottom: 1px solid #e3f2fd;
-        background-color: white;
-    }
+            .modern-grid td {
+                padding: 8px 10px;
+                border-bottom: 1px solid #e3f2fd;
+                background-color: white;
+            }
 
-    .modern-grid tr.alt-row {
-        background-color: #eaf6ff;
-    }
+            .modern-grid tr.alt-row {
+                background-color: #eaf6ff;
+            }
 
-    .modern-grid tr:hover {
-        background-color: #d6efff;
-    }
+            .modern-grid tr:hover {
+                background-color: #d6efff;
+            }
 
-    .grid-pager {
-        background-color: white;
-        text-align: center;
-        padding: 8px;
-    }
+        .grid-pager {
+            background-color: white;
+            text-align: center;
+            padding: 8px;
+        }
 
-    .grid-pager a,
-    .grid-pager span {
-        margin: 0 5px;
-        padding: 5px 10px;
-        color: #007bff;
-        text-decoration: none;
-        border: 1px solid transparent;
-        border-radius: 4px;
-        background-color: white;
-    }
+            .grid-pager a,
+            .grid-pager span {
+                margin: 0 5px;
+                padding: 5px 10px;
+                color: #007bff;
+                text-decoration: none;
+                border: 1px solid transparent;
+                border-radius: 4px;
+                background-color: white;
+            }
 
-    .grid-pager span {
-        font-weight: bold;
-        background-color: #007bff;
-        color: white;
-        border-color: #007bff;
-    }
+            .grid-pager span {
+                font-weight: bold;
+                background-color: #007bff;
+                color: white;
+                border-color: #007bff;
+            }
 
-    .grid-pager a:hover {
-        background-color: #d6efff;
-        border-color: #007bff;
-    }
+            .grid-pager a:hover {
+                background-color: #d6efff;
+                border-color: #007bff;
+            }
     </style>
 </head>
 <body>
@@ -547,7 +550,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="auto-style32">
-                                                        <asp:Button ID="btnRegistrarPaciente" runat="server" OnClick="btnRegistrarPaciente_Click" Text="Registrar paciente" Width="188px" ValidationGroup="AltaPaciente" />
+                                                        <asp:Button ID="btnRegistrarPaciente" runat="server" OnClick="btnRegistrarPaciente_Click" Text="Registrar paciente" Width="188px" CssClass="btn-td" ValidationGroup="AltaPaciente" />
                                                     </td>
                                                     <td class="auto-style30">
                                                         <asp:Label ID="lblAddUserState" runat="server" Visible="False"></asp:Label>
@@ -568,7 +571,7 @@
                                                 <tr>
                                                     <td class="auto-style32">DNI</td>
                                                     <td class="auto-style30">
-                                                        <asp:TextBox ID="txbModDni" enabled="false" runat="server" ValidationGroup="ModPaciente"></asp:TextBox>
+                                                        <asp:TextBox ID="txbModDni" Enabled="false" runat="server" ValidationGroup="ModPaciente"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="rfvModDni" runat="server" ControlToValidate="txbModDni" Display="Dynamic" ErrorMessage="* Campo obligatorio" ForeColor="Red" ValidationGroup="ModPaciente" />
                                                     </td>
                                                 </tr>
@@ -634,7 +637,7 @@
                                                                     <asp:ControlParameter Name="idProvincia" ControlID="ddlModProvincia" PropertyName="SelectedValue" />
                                                                 </SelectParameters>
                                                             </asp:SqlDataSource>
-                                                            </td>
+                                                        </td>
                                                         <td class="auto-style31">&nbsp;</td>
                                                     </tr>
                                                     <tr>
@@ -676,7 +679,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="auto-style32">
-                                                            <asp:Button ID="btnModificarPaciente" runat="server" OnClick="btnModificarPaciente_Click" Text="Modificar paciente" Width="188px" ValidationGroup="ModPaciente" />
+                                                            <asp:Button ID="btnModificarPaciente" runat="server" OnClick="btnModificarPaciente_Click" Text="Modificar paciente" CssClass="btn-td" Width="188px" ValidationGroup="ModPaciente" />
                                                         </td>
                                                         <td class="auto-style30">
                                                             <asp:Label ID="lblModUser" runat="server" Visible="False"></asp:Label>
@@ -722,30 +725,30 @@
                                             </asp:View>
                                         </asp:MultiView>
                                         <div>
-                                    <asp:Label ID="lblEliminado" runat="server" Font-Size="Large"></asp:Label>
-                                          <asp:GridView ID="gvLecturaPaciente" runat="server" AllowPaging="true" PageSize="10" 
-    AutoGenerateColumns="False" CssClass="modern-grid" OnPageIndexChanging="GridView2_PageIndexChanging">
-    <AlternatingRowStyle CssClass="alt-row" />
-    <Columns>
-        <asp:TemplateField HeaderText="Seleccionar">
-            <ItemTemplate>
-                <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccionar_CheckedChanged" />
-            </ItemTemplate>
-        </asp:TemplateField>
-        <asp:BoundField DataField="DNI" HeaderText="DNI" />
-        <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-        <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
-        <asp:BoundField DataField="Sexos.descripcion" HeaderText="Género" />
-        <asp:BoundField DataField="ObraSocial.Onombre" HeaderText="Obra Social" />
-        <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
-        <asp:BoundField DataField="Provincias.nombreProvincia" HeaderText="Provincia" />
-        <asp:BoundField DataField="Localidades.nombreLocalidad" HeaderText="Localidad" />
-        <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
-        <asp:BoundField HeaderText="Correo" DataField="correo" />
-        <asp:BoundField DataField="telefono" HeaderText="Teléfono" />
-    </Columns>
-    <PagerStyle CssClass="grid-pager" />
-</asp:GridView>
+                                            <asp:Label ID="lblEliminado" runat="server" Font-Size="Large"></asp:Label>
+                                            <asp:GridView ID="gvLecturaPaciente" runat="server" AllowPaging="true" PageSize="10"
+                                                AutoGenerateColumns="False" CssClass="modern-grid" OnPageIndexChanging="GridView2_PageIndexChanging">
+                                                <AlternatingRowStyle CssClass="alt-row" />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="Seleccionar">
+                                                        <ItemTemplate>
+                                                            <asp:CheckBox ID="chkSeleccionar" runat="server" AutoPostBack="True" OnCheckedChanged="chkSeleccionar_CheckedChanged" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:BoundField DataField="DNI" HeaderText="DNI" />
+                                                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                                                    <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
+                                                    <asp:BoundField DataField="Sexos.descripcion" HeaderText="Género" />
+                                                    <asp:BoundField DataField="ObraSocial.Onombre" HeaderText="Obra Social" />
+                                                    <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" />
+                                                    <asp:BoundField DataField="Provincias.nombreProvincia" HeaderText="Provincia" />
+                                                    <asp:BoundField DataField="Localidades.nombreLocalidad" HeaderText="Localidad" />
+                                                    <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
+                                                    <asp:BoundField HeaderText="Correo" DataField="correo" />
+                                                    <asp:BoundField DataField="telefono" HeaderText="Teléfono" />
+                                                </Columns>
+                                                <PagerStyle CssClass="grid-pager" />
+                                            </asp:GridView>
                                         </div>
                                     </asp:View>
                                 </asp:MultiView></td>
@@ -753,8 +756,7 @@
                         </tr>
                         <tr>
                             <td class="auto-style33">
-                                <h3>
-                                </h3>
+                                <h3></h3>
                             </td>
                             <td class="auto-style38"></td>
                             <td class="auto-style39"></td>
