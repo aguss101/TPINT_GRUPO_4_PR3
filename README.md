@@ -1,4 +1,4 @@
-# 🏥 TPINT_GRUPO_X_PR3 - Sistema de Gestión Clínica Médica
+# 🏥 TPINT_GRUPO_4_PR3 - Sistema de Gestión Clínica Médica
 
 Proyecto desarrollado como Trabajo Práctico Integrador para la materia **Programación III** de la **Tecnicatura Universitaria en Programación** - UTN FRGP (1º Cuatrimestre 2025).
 
