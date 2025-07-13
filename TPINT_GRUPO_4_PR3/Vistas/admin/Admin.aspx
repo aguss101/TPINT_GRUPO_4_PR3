@@ -94,6 +94,7 @@
                                         </asp:ChartArea>
                                     </ChartAreas>
                                 </asp:Chart>
+                                <asp:Button ID="btnExportarExcel" runat="server" OnClick="btnExportarExcel_Click" Text="Guardar " />
                                 </td>
                             <td class="auto-style28"></td>
                         </tr>

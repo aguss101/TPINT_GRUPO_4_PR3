@@ -7,6 +7,7 @@ using System.Web.Services.Discovery;
 using System.Web.UI;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
+using ClosedXML;
 using Negocio;
 
 namespace Vistas
@@ -24,11 +25,7 @@ namespace Vistas
                     ddlReportes.SelectedIndex = 1;
                     ddlReportes_SelectedIndexChanged(ddlReportes, EventArgs.Empty);
 
-                    if (ddlCategoria.Items.Count > 1)
-                    {
-                        ddlCategoria.SelectedIndex = 1;
-                        ddlCategoria_SelectedIndexChanged(ddlCategoria, EventArgs.Empty);
-                    }
+                    
                 }
             }
         }
@@ -107,6 +104,8 @@ namespace Vistas
 
             graficoReportes.DataSource = data;
             graficoReportes.DataBind();
+
+            Session["DatosReportes"] = data;
         }
 
         protected void ddlReportes_SelectedIndexChanged(object sender, EventArgs e)
@@ -114,11 +113,11 @@ namespace Vistas
             ddlCategoria.Items.Clear();
             ddlCategoria.Items.Add(new ListItem("--Seleccionar--"));
             ddlCategoria.SelectedIndex = 0;
-            DropDownList ddl = (DropDownList)sender;
 
-            int valor = int.Parse(ddl.SelectedValue);
-           
-            switch(valor){
+            int valor = int.Parse(((DropDownList)sender).SelectedValue);
+
+            switch (valor)
+            {
                 case 1:
                     ddlCategoria.Items.Add(new ListItem("Por Especialidad"));
                     ddlCategoria.Items.Add(new ListItem("Cantidad de Turnos"));
@@ -134,11 +133,45 @@ namespace Vistas
                     ddlCategoria.Items.Add(new ListItem("Cantidad de Turnos"));
                     ddlCategoria.Items.Add(new ListItem("Promedio Turnos x Especialidad"));
                     break;
-                default:
-                    break;
+            }
 
+           
+            if (ddlCategoria.Items.Count > 1)
+            {
+                ddlCategoria.SelectedIndex = 1;
+                ddlCategoria_SelectedIndexChanged(ddlCategoria, EventArgs.Empty);
             }
         }
         
+
+        protected void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            DataTable dt = Session["DatosReportes"] as DataTable;
+            if (dt != null)
+            {
+                ExportarAExcel(dt, "ReporteClinica");
+
+            }
+
+        }
+
+        private void ExportarAExcel(DataTable dt, string nombreArchivo)
+        {
+            ClosedXML.Excel.XLWorkbook wb = new ClosedXML.Excel.XLWorkbook();
+            wb.Worksheets.Add(dt, "Reporte");
+
+            System.IO.MemoryStream stream = new System.IO.MemoryStream();
+            wb.SaveAs(stream);
+
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", $"attachment;filename={nombreArchivo}.xlsx");
+            Response.BinaryWrite(stream.ToArray());
+            Response.Flush();
+            Response.End();
+        }
+
+
+
     }
 }
